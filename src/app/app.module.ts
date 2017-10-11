@@ -12,6 +12,7 @@ import {NavComponent} from './nav/nav.component';
 import {AppMaterialModule} from './app-material.module';
 import {StudentsComponent} from './students/students.component';
 import {BasicErrorHandler} from './shared/basic-error-handler';
+import {StudentsDataService} from './shared/services/students-data.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {BasicErrorHandler} from './shared/basic-error-handler';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: DomainUrlAppenderInterceptor, multi: true},
-    {provide: ErrorHandler, useClass: BasicErrorHandler}
+    {provide: ErrorHandler, useClass: BasicErrorHandler},
+    StudentsDataService
   ],
   bootstrap: [AppComponent]
 })

@@ -3,7 +3,8 @@ export const loggerColors = {
   component: 'green',
   directive: 'orange',
   http: 'yellow',
-  guard: 'grey',
-  utils: 'brown',
-  resolver: 'aqua'
+  guard: 'brown',
+  utils: 'grey',
+  resolver: 'aqua',
+  handler: 'red'
 };

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {WelcomeComponent} from './welcome/welcome.component';
@@ -10,7 +10,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {DomainUrlAppenderInterceptor} from './shared/interceptors/domain-url-appender.interceptor';
 import {NavComponent} from './nav/nav.component';
 import {AppMaterialModule} from './app-material.module';
-import { StudentsComponent } from './students/students.component';
+import {StudentsComponent} from './students/students.component';
+import {BasicErrorHandler} from './shared/basic-error-handler';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { StudentsComponent } from './students/students.component';
     LoginModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: DomainUrlAppenderInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: DomainUrlAppenderInterceptor, multi: true},
+    {provide: ErrorHandler, useClass: BasicErrorHandler}
   ],
   bootstrap: [AppComponent]
 })

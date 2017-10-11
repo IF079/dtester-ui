@@ -1,0 +1,14 @@
+.login-form {
+  margin: auto;
+  width: 600px;
+  text-align: center;
+  h1:first-child {
+    font-family: "Arial Black", serif;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,17 @@
+<form class="login-form" (submit)="login()">
+  <mat-card>
+    <h1>Name yourself, citizen!</h1>
+
+    <mat-form-field>
+      <input matInput [(ngModel)]="credentials.username" id="username" name="username" placeholder="Username">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="credentials.password" id="password" name="password" type="password"
+             placeholder="Password">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">Login</button>
+
+  </mat-card>
+</form>
+

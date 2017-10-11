@@ -8,15 +8,19 @@ import {LoginModule} from './login/login.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {DomainUrlAppenderInterceptor} from './shared/interceptors/domain-url-appender.interceptor';
+import {NavComponent} from './nav/nav.component';
+import {AppMaterialModule} from './app-material.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppMaterialModule,
     AppRoutingModule,
     LoginModule
   ],

@@ -15,11 +15,11 @@ import {LoginMaterialModule} from './login-material.module';
     LogoutComponent
   ],
   imports: [
-    LoginRoutingModule,
-    LoginMaterialModule,
     HttpClientModule,
     FormsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    LoginRoutingModule,
+    LoginMaterialModule
   ],
   providers: [
     AuthService,

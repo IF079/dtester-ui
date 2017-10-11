@@ -4,7 +4,7 @@ import {WelcomeComponent} from './welcome/welcome.component';
 
 const appRoutes = [
   {path: '', redirectTo: '/welcome', pathMatch: 'full'},
-  {path: 'welcome', component: WelcomeComponent}
+  {path: 'welcome', component: WelcomeComponent},
 ];
 
 @NgModule({

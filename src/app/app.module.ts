@@ -6,6 +6,8 @@ import {WelcomeComponent} from './welcome/welcome.component';
 import {AppRoutingModule} from './app-routing.module';
 import {LoginModule} from './login/login.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {DomainUrlAppenderInterceptor} from './shared/interceptors/domain-url-appender.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     LoginModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: DomainUrlAppenderInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

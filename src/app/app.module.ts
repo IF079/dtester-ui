@@ -10,12 +10,14 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {DomainUrlAppenderInterceptor} from './shared/interceptors/domain-url-appender.interceptor';
 import {NavComponent} from './nav/nav.component';
 import {AppMaterialModule} from './app-material.module';
+import { StudentsComponent } from './students/students.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    NavComponent
+    NavComponent,
+    StudentsComponent
   ],
   imports: [
     BrowserModule,

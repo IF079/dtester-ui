@@ -15,13 +15,23 @@ import {BasicErrorHandler} from './shared/basic-error-handler';
 import {StudentsDataService} from './shared/services/students-data.service';
 import { FacultiesComponent } from './faculties/faculties.component';
 
+import { SpecialityComponent } from './speciality/speciality.component';
+import { SpecialityService } from './shared/services/speciality.service';
+
+import { SubjectsComponent } from './subjects/subjects.component';
+import {SubjectsDataService} from './shared/services/subjects-data.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     NavComponent,
     StudentsComponent,
-    FacultiesComponent
+    FacultiesComponent,
+    SpecialityComponent,
+    SubjectsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -33,7 +43,9 @@ import { FacultiesComponent } from './faculties/faculties.component';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: DomainUrlAppenderInterceptor, multi: true},
     {provide: ErrorHandler, useClass: BasicErrorHandler},
-    StudentsDataService
+    StudentsDataService,
+    SpecialityService,
+    SubjectsDataService
   ],
   bootstrap: [AppComponent]
 })

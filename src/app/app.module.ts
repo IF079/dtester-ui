@@ -13,13 +13,16 @@ import {AppMaterialModule} from './app-material.module';
 import {StudentsComponent} from './students/students.component';
 import {BasicErrorHandler} from './shared/basic-error-handler';
 import {StudentsDataService} from './shared/services/students-data.service';
+import { SubjectsComponent } from './subjects/subjects.component';
+import {SubjectsDataService} from './shared/services/subjects-data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     NavComponent,
-    StudentsComponent
+    StudentsComponent,
+    SubjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import {StudentsDataService} from './shared/services/students-data.service';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: DomainUrlAppenderInterceptor, multi: true},
     {provide: ErrorHandler, useClass: BasicErrorHandler},
-    StudentsDataService
+    StudentsDataService,
+    SubjectsDataService
   ],
   bootstrap: [AppComponent]
 })

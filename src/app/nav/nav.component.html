@@ -6,6 +6,7 @@
 
   <mat-toolbar-row *ngIf="loginService.user.isAdmin()">
     <a mat-button="" color="primary" [routerLink]="'/students'" [routerLinkActive]="navActiveClass">Students</a>
+    <a mat-button="" color="primary" [routerLink]="'/subjects'" [routerLinkActive]="navActiveClass">Subjects</a>
   </mat-toolbar-row>
 
 </mat-toolbar>

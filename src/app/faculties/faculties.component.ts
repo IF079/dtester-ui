@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Faculties} from '../shared/entities/faculties';
 import {HttpClientService} from '../shared/services/http-client.service';
 

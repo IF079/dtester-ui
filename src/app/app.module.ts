@@ -13,7 +13,8 @@ import {AppMaterialModule} from './app-material.module';
 import {StudentsComponent} from './students/students.component';
 import {BasicErrorHandler} from './shared/basic-error-handler';
 import {StudentsDataService} from './shared/services/students-data.service';
-import { FacultiesComponent } from './faculties/faculties.component';
+import {FacultiesComponent} from './faculties/faculties.component';
+import {HttpClientService} from './shared/services/http-client.service';
 
 import { SpecialityComponent } from './speciality/speciality.component';
 import { SpecialityService } from './shared/services/speciality.service';
@@ -45,7 +46,8 @@ import {SubjectsDataService} from './shared/services/subjects-data.service';
     {provide: ErrorHandler, useClass: BasicErrorHandler},
     StudentsDataService,
     SpecialityService,
-    SubjectsDataService
+    SubjectsDataService,
+    HttpClientService
   ],
   bootstrap: [AppComponent]
 })

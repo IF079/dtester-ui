@@ -19,6 +19,7 @@ export class StudentsComponent implements OnInit {
   	// 	this.studentsData = data;
   	// 	console.log(this.studentsData);
   	// });
+
   }
 
 }

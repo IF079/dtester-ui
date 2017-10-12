@@ -25,6 +25,17 @@ export class StudentsComponent implements OnInit {
   		console.log(this.student);
   	});
 
+  	this.studentService.setStudent().subscribe(val => {
+            console.log("POST call successful value returned in body", 
+                        val);
+        },
+        response => {
+            console.log("POST call in error", response);
+        },
+        () => {
+            console.log("The POST observable is now completed.");
+        });
+
   }
 
 }

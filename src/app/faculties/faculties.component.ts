@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Faculties} from '../shared/entities/faculties';
+import {HttpClientService} from '../shared/services/http-client.service';
 
 @Component({
   selector: 'app-faculties',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FacultiesComponent implements OnInit {
 
-  constructor() { }
+  facultiesData: Faculties;
+  URL = '/Faculties/getRecords';
 
-  ngOnInit() {
+  constructor(private http: HttpClientService){
   }
-
+  ngOnInit() {
+    this.http.getData(`${this.URL}`).subscribe(data => {
+      this.facultiesData = data;
+      console.log(data);
+    });
+  }
 }

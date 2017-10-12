@@ -1,10 +1,10 @@
 export class Student {
 	userId: number;
-	gradebook_id: number;
-	student_surname: string;
-	student_name: string;
-	student_fname: string;
-	group_id: number;
-	plain_password: number;
+	gradebookId: string;
+	studentSurname: string;
+	studentName: string;
+	studentFname: string;
+	groupId: number;
+	plainPassword: number;
 	photo: string;
 }

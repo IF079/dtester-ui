@@ -8,11 +8,14 @@ export class StudentsDataService {
 
   URL = '/Student';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  // getData(): Observable<Student[]> {
-  // 	id = id ? `/${id}` : '';
-  // 	return this.http.get(`${this.URL}/getRecords`);
-  // }
+  getStudents(): Observable<Student[]> {
+  	return this.http.get(`${this.URL}/getRecords`);
+  }
+
+  getStudent(id): Observable<Student> {
+  	return this.http.get(`${this.URL}/getRecords/${id}`);
+  }
 
 }

@@ -9,16 +9,21 @@ import {Student} from './../shared/entities/student';
 })
 export class StudentsComponent implements OnInit {
 
-  studentsData: Student[];
+  students: Student[];
+  student: Student;
 
-  constructor() { }
+  constructor(private studentService: StudentsDataService) { }
 
   ngOnInit() {
 
-  	// this.studentService.getData().subscribe(data => {
-  	// 	this.studentsData = data;
-  	// 	console.log(this.studentsData);
-  	// });
+  	this.studentService.getStudents().subscribe(data => {
+  		this.students = data;
+  		console.log(this.students);
+  	});
+  	this.studentService.getStudent(8).subscribe(data => {
+  		this.student = data[0];
+  		console.log(this.student);
+  	});
 
   }
 

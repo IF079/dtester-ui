@@ -13,8 +13,13 @@ import {AppMaterialModule} from './app-material.module';
 import {StudentsComponent} from './students/students.component';
 import {BasicErrorHandler} from './shared/basic-error-handler';
 import {StudentsDataService} from './shared/services/students-data.service';
+
 import { SpecialityComponent } from './speciality/speciality.component';
 import { SpecialityService } from './shared/services/speciality.service';
+
+import { SubjectsComponent } from './subjects/subjects.component';
+import {SubjectsDataService} from './shared/services/subjects-data.service';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +27,8 @@ import { SpecialityService } from './shared/services/speciality.service';
     WelcomeComponent,
     NavComponent,
     StudentsComponent,
-    SpecialityComponent
+    SpecialityComponent,
+    SubjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,8 @@ import { SpecialityService } from './shared/services/speciality.service';
     {provide: HTTP_INTERCEPTORS, useClass: DomainUrlAppenderInterceptor, multi: true},
     {provide: ErrorHandler, useClass: BasicErrorHandler},
     StudentsDataService,
-    SpecialityService
+    SpecialityService,
+    SubjectsDataService
   ],
   bootstrap: [AppComponent]
 })

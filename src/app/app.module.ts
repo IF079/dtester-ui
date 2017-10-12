@@ -13,13 +13,15 @@ import {AppMaterialModule} from './app-material.module';
 import {StudentsComponent} from './students/students.component';
 import {BasicErrorHandler} from './shared/basic-error-handler';
 import {StudentsDataService} from './shared/services/students-data.service';
+import { FacultiesComponent } from './faculties/faculties.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     NavComponent,
-    StudentsComponent
+    StudentsComponent,
+    FacultiesComponent
   ],
   imports: [
     BrowserModule,

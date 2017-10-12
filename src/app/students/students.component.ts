@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StudentsDataService} from './../shared/services/students-data.service';
+import {Student} from './../shared/entities/student';
 
 @Component({
   selector: 'app-students',
@@ -8,15 +9,16 @@ import {StudentsDataService} from './../shared/services/students-data.service';
 })
 export class StudentsComponent implements OnInit {
 
-  studentsData = [] as any;
+  studentsData: Student[];
 
-  constructor(private newService: StudentsDataService) { }
+  constructor() { }
 
   ngOnInit() {
-  	this.newService.getData().subscribe(data => {
-  		this.studentsData = data;
-  		console.log(data);
-  	});
+
+  	// this.studentService.getData().subscribe(data => {
+  	// 	this.studentsData = data;
+  	// 	console.log(this.studentsData);
+  	// });
   }
 
 }

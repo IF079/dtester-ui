@@ -3,11 +3,16 @@
     <h1>Authorization</h1>
 
     <mat-form-field>
-      <input matInput [(ngModel)]="credentials.username" id="username" name="username" placeholder="Username">
+      <input matInput [formControl]="username" [errorStateMatcher]="usernameErrorStateMatcher" [(ngModel)]="credentials.username" id="username" name="username" placeholder="Username">
+      <mat-error *ngIf="username.invalid">{{username.invalid}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="credentials.password" id="password" name="password" type="password"
+      <input matInput [errorStateMatcher]="passwordErrorStateMatcher" [(ngModel)]="credentials.password" id="password" name="password" type="password"
              placeholder="Password">
+    </mat-form-field>
+
+    <mat-form-field>
+    <mat-error *ngIf="hasErrors()">{{errorMessageFor.username}}</mat-error>
     </mat-form-field>
 
     <button mat-raised-button="" color="primary">Login</button>

@@ -8,15 +8,6 @@ export class StudentService {
 
   URL = '/Student';
 
-  data = JSON.stringify({
-    gradebook_id : 'AU-8509358',
-    student_name : 'Петро',
-    student_fname : 'Петрович',
-    student_surname : 'Петренко',
-    plain_password : '123456qwerty',
-    group_id : '2'
-  });
-
   constructor(private http: HttpClient) { }
 
   getStudents(): Observable<Student[]> {
@@ -26,5 +17,26 @@ export class StudentService {
   getStudent(id: number): Observable<Student> {
     return this.http.get(`${this.URL}/getRecords/${id}`);
   }
+
+  setStudent(data): Observable<any> {
+    return this.http.post(`${this.URL}/insertData`, JSON.stringify(data));
+  }
+
+  /** setStudent input data example
+   *
+   * {
+      username: 'username',
+      password: 'password',
+      password_confirm: 'password_confirm',
+      email: 'email@gmail.com',
+      gradebook_id : 'AU-4309358',
+      student_name : 'student_name',
+      student_fname : 'student_fname',
+      student_surname : 'student_surname',
+      group_id : '1',
+      plain_password : 'plain_password',
+      photo: ''
+    }
+   */
 
 }

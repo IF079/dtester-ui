@@ -10,9 +10,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {DomainUrlAppenderInterceptor} from './shared/interceptors/domain-url-appender.interceptor';
 import {NavComponent} from './nav/nav.component';
 import {AppMaterialModule} from './app-material.module';
-import {StudentsComponent} from './students/students.component';
+import {StudentComponent} from './student/student.component';
 import {BasicErrorHandler} from './shared/basic-error-handler';
-import {StudentsDataService} from './shared/services/students-data.service';
 import {FacultiesComponent} from './faculties/faculties.component';
 import {HttpClientService} from './shared/services/http-client.service';
 
@@ -21,6 +20,7 @@ import { SpecialityService } from './shared/services/speciality.service';
 
 import { SubjectsComponent } from './subjects/subjects.component';
 import {SubjectsDataService} from './shared/services/subjects-data.service';
+import {StudentService} from './shared/services/student.service';
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import {SubjectsDataService} from './shared/services/subjects-data.service';
     AppComponent,
     WelcomeComponent,
     NavComponent,
-    StudentsComponent,
+    StudentComponent,
     FacultiesComponent,
     SpecialityComponent,
     SubjectsComponent
@@ -44,7 +44,7 @@ import {SubjectsDataService} from './shared/services/subjects-data.service';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: DomainUrlAppenderInterceptor, multi: true},
     {provide: ErrorHandler, useClass: BasicErrorHandler},
-    StudentsDataService,
+    StudentService,
     SpecialityService,
     SubjectsDataService,
     HttpClientService

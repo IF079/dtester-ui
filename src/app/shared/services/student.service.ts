@@ -19,7 +19,7 @@ export class StudentService {
   }
 
   setStudent(data): Observable<any> {
-    return this.http.post(`${this.URL}/insertData`, JSON.stringify(data));
+    return this.http.post(`${this.URL}/insertData`, data);
   }
 
   /** setStudent input data example

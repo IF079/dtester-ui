@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Credentials} from '../services/entities/credentials';
 import {LoginService} from '../services/login.service';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import {ErrorStateMatcher} from '@angular/material';
-import {ErrorStateMatcherFactory} from '../utils/error-state-matcher.factory';
 import {HttpErrorResponse} from '@angular/common/http';
 import {FormControl, Validators} from '@angular/forms';
 
@@ -14,26 +12,28 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  USERNAME_MIN_LENGTH = 3;
+  USERNAME_MAX_LENGTH = 16;
+  PASSWORD_MIN_LENGTH = 3;
+  PASSWORD_MAX_LENGTH = 16;
+
   credentials: Credentials = {
     username: 'admin1',
     password: 'dtapi_admin'
   };
 
-  errorMessageFor = {
-    username: '',
-    password: ''
-  };
+  username: FormControl = new FormControl('username', [
+    Validators.required,
+    Validators.minLength(this.USERNAME_MIN_LENGTH),
+    Validators.maxLength(this.USERNAME_MAX_LENGTH)
+  ]);
+  password: FormControl = new FormControl('password', [
+    Validators.required,
+    Validators.minLength(this.PASSWORD_MIN_LENGTH),
+    Validators.maxLength(this.PASSWORD_MAX_LENGTH)
+  ]);
 
-  private lastCredentials: Credentials = {
-    username: '',
-    password: ''
-  };
-
-  usernameErrorStateMatcher: ErrorStateMatcher = ErrorStateMatcherFactory.create(false);
-  passwordErrorStateMatcher: ErrorStateMatcher = ErrorStateMatcherFactory.create(false);
-
-  username: FormControl = new FormControl('username', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]);
-  password: FormControl = new FormControl('password', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]);
+  isBadCredentialsError = false;
 
   constructor(private loginService: LoginService) {
   }
@@ -42,8 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (!this.hasErrors()) {
-      this.setupLastCredentials();
+    if (this.isFormValid()) {
       this.loginService.login(this.credentials)
         .subscribe(
           () => {
@@ -59,24 +58,24 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  setupLastCredentials(): void {
-    this.lastCredentials.username = this.credentials.username.toString();
-    this.lastCredentials.password = this.credentials.password.toString();
+  getRequiredMsg(): string {
+    return 'Required';
   }
 
-  setupBadCredentialsError(err: HttpErrorResponse): void {
-    this.errorMessageFor.username = JSON.parse(err.error).response;
-    this.usernameErrorStateMatcher = ErrorStateMatcherFactory.createWithFunction(() => {
-      return this.credentials.username === this.lastCredentials.username;
-    });
-    this.passwordErrorStateMatcher = ErrorStateMatcherFactory.createWithFunction(() => {
-      return this.credentials.password === this.lastCredentials.password;
-    });
+  getInsufficientLengthErrorMsg(minLengthError: any): string {
+    return `Should be longer than ${minLengthError.requiredLength} symbols, currently ${minLengthError.actualLength}`;
   }
 
-  hasErrors(): boolean {
-    return this.usernameErrorStateMatcher.isErrorState(null, null) &&
-      this.passwordErrorStateMatcher.isErrorState(null, null);
+  getExceedingLengthErrorMsg(maxLengthError: any): string {
+    return `Should be shorter than ${maxLengthError.requiredLength} symbols, currently ${maxLengthError.actualLength}`;
+  }
+
+  private setupBadCredentialsError(err: HttpErrorResponse): void {
+    this.isBadCredentialsError = true;
+  }
+
+  private isFormValid(): boolean {
+    return this.username.valid && this.password.valid;
   }
 
 }

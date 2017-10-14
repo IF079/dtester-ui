@@ -1,8 +1,8 @@
 .login-form {
   margin: auto;
   width: 600px;
-  text-align: center;
   h1:first-child {
+    text-align: center;
     font-family: "Arial Black", serif;
   }
   mat-form-field {
@@ -10,5 +10,10 @@
   }
   button {
     width: 100%;
+  }
+
+  .server-error {
+    text-align: center;
+    margin: 10px 0;
   }
 }

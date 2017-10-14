@@ -1,15 +1,12 @@
-<p>
-  subjects works!
-</p>
 <form action="">
-  <input type="text">
-  <button>Save</button>
+
 </form>
+<div *ngIf="errWithDisplayingSubjects">{{errWithDisplayingSubjects}}</div>
 <table class="table table-inverse table-responsive">
   <thead>
-   <tr>
-      <th *ngFor="let col of displayedColumns">{{col}}</th>
-    </tr>
+  <tr>
+    <th *ngFor="let col of displayedColumns">{{col}}</th>
+  </tr>
   </thead>
 
   <tr *ngFor="let subject of subjects">

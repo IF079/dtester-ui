@@ -1,0 +1,23 @@
+<p>
+  subjects works!
+</p>
+<form action="">
+  <input type="text">
+  <button>Save</button>
+</form>
+<table class="table table-inverse table-responsive">
+  <thead>
+   <tr>
+      <th *ngFor="let col of displayedColumns">{{col}}</th>
+    </tr>
+  </thead>
+
+  <tr *ngFor="let subject of subjects">
+    <td>{{subject.subject_id}}</td>
+    <td>{{subject.subject_name}}</td>
+    <td>{{subject.subject_description}}</td>
+    <td>Редагувати</td>
+    <td>Видалити</td>
+  </tr>
+
+</table>

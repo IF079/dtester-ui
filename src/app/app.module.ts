@@ -18,8 +18,8 @@ import {HttpClientService} from './shared/services/http-client.service';
 import { SpecialityComponent } from './speciality/speciality.component';
 import { SpecialityService } from './shared/services/speciality.service';
 
-import { SubjectsComponent } from './subjects/subjects.component';
-import {SubjectsDataService} from './shared/services/subjects-data.service';
+import { SubjectComponent } from './subject/subject.component';
+import {SubjectService} from './shared/services/subject.service';
 import {StudentService} from './shared/services/student.service';
 
 
@@ -31,8 +31,7 @@ import {StudentService} from './shared/services/student.service';
     StudentComponent,
     FacultiesComponent,
     SpecialityComponent,
-    SubjectsComponent
-
+    SubjectComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +45,7 @@ import {StudentService} from './shared/services/student.service';
     {provide: ErrorHandler, useClass: BasicErrorHandler},
     StudentService,
     SpecialityService,
-    SubjectsDataService,
+    SubjectService,
     HttpClientService
   ],
   bootstrap: [AppComponent]

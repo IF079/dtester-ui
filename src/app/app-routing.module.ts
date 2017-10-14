@@ -5,7 +5,7 @@ import {StudentComponent} from './student/student.component';
 
 import {SpecialityComponent} from './speciality/speciality.component';
 
-import {SubjectsComponent} from './subjects/subjects.component';
+import {SubjectComponent} from './subject/subject.component';
 
 
 const appRoutes = [
@@ -13,7 +13,7 @@ const appRoutes = [
   {path: 'welcome', component: WelcomeComponent},
   {path: 'students', component: StudentComponent},
   {path: 'speciality', component: SpecialityComponent},
-  {path: 'subjects', component: SubjectsComponent}
+  {path: 'subject', component: SubjectComponent}
 
 ];
 

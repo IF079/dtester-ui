@@ -9,7 +9,8 @@ export class StudentService {
 
   URL = '/Student';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   static parseStudent(student: Student): StudentDto{
     const dto = new StudentDto();

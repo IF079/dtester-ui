@@ -6,7 +6,9 @@ import {Speciality} from '../entities/speciality';
 export class SpecialityService {
   URL = '/Speciality';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
+
   getSpeciality() {
     return this.http.get<Speciality>(`${this.URL}/getRecords`);
   }

@@ -49,8 +49,8 @@ export class StudentService {
     return this.http.get<StudentDto[]>(`${this.URL}/getRecords`).map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
   }
 
-  getStudent(id: number): Observable<Student> {
-    return this.http.get<StudentDto>(`${this.URL}/getRecords/${id}`).map(StudentService.toStudent);
+  getStudent(id: number): Observable<Student[]> {
+    return this.http.get<StudentDto[]>(`${this.URL}/getRecords/${id}`).map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
   }
 
   setStudent(student: Student): Observable<any> {

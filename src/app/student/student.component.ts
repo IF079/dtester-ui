@@ -12,7 +12,7 @@ export class StudentComponent implements OnInit {
 
   students: Student[];
   student: Student = new Student();
-  tableColumns = ['ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'Gradebook ID', 'ID групи'];
+  tableColumns = ['ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'Gradebook ID', 'ID групи', '', ''];
 
   constructor(private studentService: StudentService) {
   }

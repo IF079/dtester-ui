@@ -12,6 +12,23 @@ table{
             &:hover{
                 cursor: pointer;
             }
+            th{
+                i.fa{
+                    cursor: pointer;
+                    &.fa-pencil{
+                        color: green;
+                        &:hover{
+                            color: rgb(0, 97, 0);
+                        }
+                    }
+                    &.fa-times{
+                        color: rgb(218, 5, 5);
+                        &:hover{
+                            color: rgb(187, 1, 1);
+                        }
+                    }
+                }
+            }
         }
     }
 }

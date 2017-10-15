@@ -21,6 +21,7 @@ import { SpecialityService } from './shared/services/speciality.service';
 import { SubjectComponent } from './subject/subject.component';
 import {SubjectService} from './shared/services/subject.service';
 import {StudentService} from './shared/services/student.service';
+import {StudentDetailComponent} from './student-detail/student-detail.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {StudentService} from './shared/services/student.service';
     StudentComponent,
     FacultiesComponent,
     SpecialityComponent,
-    SubjectComponent
+    SubjectComponent,
+    StudentDetailComponent
   ],
   imports: [
     BrowserModule,

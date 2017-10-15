@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Student} from './../entities/student';
+import {Student} from '../entities/student';
+import {StudentDto} from './dto/student-dto';
 
 @Injectable()
 export class StudentService {
@@ -11,11 +12,19 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   getStudents(): Observable<Student[]> {
-    return this.http.get(`${this.URL}/getRecords`);
+    return this.http.get<StudentDto[]>(`${this.URL}/getRecords`)
+      .map(
+        studentDtoArr => studentDtoArr.map(
+          studentDto => studentDto.toStudent()
+        )
+      );
   }
 
   getStudent(id: number): Observable<Student> {
-    return this.http.get(`${this.URL}/getRecords/${id}`);
+    return this.http.get<StudentDto>(`${this.URL}/getRecords/${id}`)
+      .map(
+        studentDto => studentDto.toStudent()
+      );
   }
 
   setStudent(data): Observable<any> {

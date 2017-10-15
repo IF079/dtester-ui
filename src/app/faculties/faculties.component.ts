@@ -14,7 +14,6 @@ export class FacultiesComponent implements OnInit {
   displayedColumns = ['Id:', 'Назва', 'Опис', 'Редагувати'];
 
   constructor(private facultyService: FacultyService ){ }
-
   ngOnInit() {
 
     this.facultyService.getFaculties().subscribe(data => {

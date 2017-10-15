@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {StudentService} from './../shared/services/student.service';
-import {Student} from './../shared/entities/student';
+import {StudentService} from '../shared/services/student.service';
+import {Student} from '../shared/entities/student';
+import {LoggerFactory} from '../shared/logger/logger.factory';
 
 @Component({
   selector: 'app-students',
@@ -10,9 +11,11 @@ import {Student} from './../shared/entities/student';
 export class StudentComponent implements OnInit {
 
   students: Student[];
-  student: Student;
+  student: Student = new Student();
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService) {
+    log.info(JSON.stringify(this.student));
+  }
 
   ngOnInit() {
 
@@ -29,3 +32,5 @@ export class StudentComponent implements OnInit {
   }
 
 }
+
+const log = LoggerFactory.create(StudentComponent);

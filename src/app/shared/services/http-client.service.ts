@@ -5,9 +5,10 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class HttpClientService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  public getData(url: string): Observable<any>{
+  public getData(url: string): Observable<any> {
     return this.http.get(url);
   }
 }

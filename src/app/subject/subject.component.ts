@@ -12,25 +12,26 @@ import {FormControl, Validators} from '@angular/forms';
 export class SubjectComponent implements OnInit {
   SUBJECT_NAME_MAX_LENGTH = 20;
   SUBJECT_NAME_MIN_LENGTH = 10;
+  subjectName: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(this.SUBJECT_NAME_MIN_LENGTH),
+    Validators.maxLength(this.SUBJECT_NAME_MAX_LENGTH)
+  ]);
   SUBJECT_DESCRIPTION_MIN_LENGTH = 25;
   SUBJECT_DESCRIPTION_MAX_LENGTH = 50;
-  credentials  = {
+  subjectDescription: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(this.SUBJECT_DESCRIPTION_MIN_LENGTH),
+    Validators.maxLength(this.SUBJECT_DESCRIPTION_MAX_LENGTH)
+  ]);
+  credentials = {
     subjectName: 'admin1',
     subjectDescription: 'dtapi_admin'
   };
   subjects: Subject[];
   displayedColumns = ['Id:', 'Назва', 'Опис', 'Редагувати', 'Видалити'];
   errWithDisplayingSubjects: string;
-  subjectName: FormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(this.SUBJECT_NAME_MIN_LENGTH),
-    Validators.maxLength(this.SUBJECT_NAME_MAX_LENGTH)
-  ]);
-  subjectDescription: FormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(this.SUBJECT_DESCRIPTION_MIN_LENGTH),
-    Validators.maxLength(this.SUBJECT_DESCRIPTION_MAX_LENGTH)
-  ]);
+
   constructor(private subjectService: SubjectService) {
 
   }

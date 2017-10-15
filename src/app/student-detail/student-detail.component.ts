@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {StudentService} from './../shared/services/student.service';
 import {Student} from './../shared/entities/student';
 
 @Component({

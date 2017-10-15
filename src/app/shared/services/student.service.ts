@@ -8,7 +8,8 @@ export class StudentService {
 
   URL = '/Student';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getStudents(): Observable<Student[]> {
     return this.http.get(`${this.URL}/getRecords`);

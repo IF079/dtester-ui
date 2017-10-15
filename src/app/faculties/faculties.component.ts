@@ -12,8 +12,9 @@ export class FacultiesComponent implements OnInit {
   facultiesData: Faculties;
   URL = '/Faculties/getRecords';
 
-  constructor(private http: HttpClientService){
+  constructor(private http: HttpClientService) {
   }
+
   ngOnInit() {
     this.http.getData(`${this.URL}`).subscribe(data => {
       this.facultiesData = data;

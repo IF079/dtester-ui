@@ -9,7 +9,9 @@ import {Speciality} from '../shared/entities/speciality';
 })
 export class SpecialityComponent implements OnInit {
   public speciality: Speciality;
-  constructor(private specialityService: SpecialityService) { }
+
+  constructor(private specialityService: SpecialityService) {
+  }
 
   ngOnInit() {
     this.specialityService.getSpeciality().subscribe(

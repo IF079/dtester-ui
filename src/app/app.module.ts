@@ -15,13 +15,14 @@ import {BasicErrorHandler} from './shared/basic-error-handler';
 import {FacultiesComponent} from './faculties/faculties.component';
 import {HttpClientService} from './shared/services/http-client.service';
 
-import { SpecialityComponent } from './speciality/speciality.component';
-import { SpecialityService } from './shared/services/speciality.service';
+import {SpecialityComponent} from './speciality/speciality.component';
+import {SpecialityService} from './shared/services/speciality.service';
 
-import { SubjectComponent } from './subject/subject.component';
+import {SubjectComponent} from './subject/subject.component';
 import {SubjectService} from './shared/services/subject.service';
 import {StudentService} from './shared/services/student.service';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
+import {ModalComponent} from './modal/modal.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {StudentDetailComponent} from './student-detail/student-detail.component'
     FacultiesComponent,
     SpecialityComponent,
     SubjectComponent,
-    StudentDetailComponent
+    StudentDetailComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

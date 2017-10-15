@@ -12,21 +12,21 @@ export class StudentComponent implements OnInit {
 
   students: Student[];
   student: Student = new Student();
+  tableColumns = ['ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'Gradebook ID', 'ID групи'];
 
   constructor(private studentService: StudentService) {
-    log.info(JSON.stringify(this.student));
   }
 
   ngOnInit() {
 
     this.studentService.getStudents().subscribe(data => {
       this.students = data;
-      console.log(this.students);
+      // console.log(this.students);
     });
 
     this.studentService.getStudent(16).subscribe(data => {
-      // this.student = data[0];
-      console.log(data);
+      this.student = data[0];
+      // console.log(this.student);
     });
 
   }

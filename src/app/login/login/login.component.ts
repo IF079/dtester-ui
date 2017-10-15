@@ -14,25 +14,22 @@ export class LoginComponent implements OnInit {
 
   USERNAME_MIN_LENGTH = 3;
   USERNAME_MAX_LENGTH = 16;
-  PASSWORD_MIN_LENGTH = 3;
-  PASSWORD_MAX_LENGTH = 16;
-
-  credentials: Credentials = {
-    username: 'admin1',
-    password: 'dtapi_admin'
-  };
-
   username: FormControl = new FormControl('username', [
     Validators.required,
     Validators.minLength(this.USERNAME_MIN_LENGTH),
     Validators.maxLength(this.USERNAME_MAX_LENGTH)
   ]);
+  PASSWORD_MIN_LENGTH = 3;
+  PASSWORD_MAX_LENGTH = 16;
   password: FormControl = new FormControl('password', [
     Validators.required,
     Validators.minLength(this.PASSWORD_MIN_LENGTH),
     Validators.maxLength(this.PASSWORD_MAX_LENGTH)
   ]);
-
+  credentials: Credentials = {
+    username: 'admin',
+    password: 'dtapi_admin'
+  };
   isBadCredentialsError = false;
 
   constructor(private loginService: LoginService) {

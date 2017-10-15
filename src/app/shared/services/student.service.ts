@@ -11,24 +11,49 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
+  static parseStudent(student: Student): StudentDto{
+    const dto = new StudentDto();
+
+    dto.username = student.username;
+    dto.password = student.password;
+    dto.password_confirm = student.passwordConfirm;
+    dto.email = student.email;
+    dto.gradebook_id = student.gradebookId;
+    dto.student_surname = student.studentSurname;
+    dto.student_name = student.studentName;
+    dto.student_fname = student.studentFname;
+    dto.group_id = student.groupId;
+    dto.plain_password = student.password;
+    dto.photo = student.photo;
+
+    return dto;
+  }
+
+  static toStudent(studentDto: StudentDto): Student {
+    const entity = new Student();
+
+    entity.userId = studentDto.user_id;
+    entity.gradebookId = studentDto.gradebook_id;
+    entity.studentSurname = studentDto.student_surname;
+    entity.studentName = studentDto.student_name;
+    entity.studentFname = studentDto.student_fname;
+    entity.groupId = studentDto.group_id;
+    entity.plainPassword = studentDto.plain_password;
+    entity.photo = studentDto.photo;
+
+    return entity;
+  }
+
   getStudents(): Observable<Student[]> {
-    return this.http.get<StudentDto[]>(`${this.URL}/getRecords`)
-      .map(
-        studentDtoArr => studentDtoArr.map(
-          studentDto => studentDto.toStudent()
-        )
-      );
+    return this.http.get<StudentDto[]>(`${this.URL}/getRecords`).map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
   }
 
   getStudent(id: number): Observable<Student> {
-    return this.http.get<StudentDto>(`${this.URL}/getRecords/${id}`)
-      .map(
-        studentDto => studentDto.toStudent()
-      );
+    return this.http.get<StudentDto>(`${this.URL}/getRecords/${id}`).map(StudentService.toStudent);
   }
 
-  setStudent(data): Observable<any> {
-    return this.http.post(`${this.URL}/insertData`, data);
+  setStudent(student: Student): Observable<any> {
+    return this.http.post(`${this.URL}/insertData`, StudentService.parseStudent(student));
   }
 
   /** setStudent input data example

@@ -21,9 +21,9 @@ export class StudentComponent implements OnInit {
       console.log(this.students);
     });
 
-    this.studentService.getStudent(8).subscribe(data => {
-      this.student = data[0];
-      console.log(this.student);
+    this.studentService.getStudent(16).subscribe(data => {
+      // this.student = data[0];
+      console.log(data);
     });
 
   }

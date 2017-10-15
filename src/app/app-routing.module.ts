@@ -7,13 +7,16 @@ import {SpecialityComponent} from './speciality/speciality.component';
 
 import {SubjectComponent} from './subject/subject.component';
 
+import {FacultiesComponent} from './faculties/faculties.component';
+
 
 const appRoutes = [
   {path: '', redirectTo: '/welcome', pathMatch: 'full'},
   {path: 'welcome', component: WelcomeComponent},
   {path: 'students', component: StudentComponent},
   {path: 'speciality', component: SpecialityComponent},
-  {path: 'subject', component: SubjectComponent}
+  {path: 'subject', component: SubjectComponent},
+  {path: 'faculties', component: FacultiesComponent}
 
 ];
 

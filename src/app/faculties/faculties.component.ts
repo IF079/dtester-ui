@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Faculties} from '../shared/entities/faculties';
-import {HttpClientService} from '../shared/services/http-client.service';
+import {FacultyService} from './../shared/services/faculty.service';
+import {Faculty} from './../shared/entities/faculty';
 
 @Component({
   selector: 'app-faculties',
@@ -9,15 +9,17 @@ import {HttpClientService} from '../shared/services/http-client.service';
 })
 export class FacultiesComponent implements OnInit {
 
-  facultiesData: Faculties;
-  URL = '/Faculties/getRecords';
+  faculties: Faculty[];
+  /*faculty: Faculty;*/
+  displayedColumns = ['Id:', 'Назва', 'Опис', 'Редагувати'];
 
-  constructor(private http: HttpClientService){
-  }
+  constructor(private facultyService: FacultyService ){ }
+
   ngOnInit() {
-    this.http.getData(`${this.URL}`).subscribe(data => {
-      this.facultiesData = data;
-      console.log(data);
+
+    this.facultyService.getFaculties().subscribe(data => {
+      this.faculties = data;
+      console.log(this.faculties);
     });
   }
 }

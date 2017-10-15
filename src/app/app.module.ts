@@ -13,7 +13,7 @@ import {AppMaterialModule} from './app-material.module';
 import {StudentComponent} from './student/student.component';
 import {BasicErrorHandler} from './shared/basic-error-handler';
 import {FacultiesComponent} from './faculties/faculties.component';
-import {HttpClientService} from './shared/services/http-client.service';
+
 
 import { SpecialityComponent } from './speciality/speciality.component';
 import { SpecialityService } from './shared/services/speciality.service';
@@ -22,6 +22,7 @@ import { SubjectComponent } from './subject/subject.component';
 import {SubjectService} from './shared/services/subject.service';
 import {StudentService} from './shared/services/student.service';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
+import {FacultyService} from './shared/services/faculty.service';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import {StudentDetailComponent} from './student-detail/student-detail.component'
     StudentService,
     SpecialityService,
     SubjectService,
-    HttpClientService
+    FacultyService
   ],
   bootstrap: [AppComponent]
 })

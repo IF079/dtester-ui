@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Student} from '../entities/student';
 import {StudentDto} from './dto/student-dto';
+import {LoggerFactory} from '../logger/logger.factory';
 
 @Injectable()
 export class StudentService {
@@ -14,16 +15,19 @@ export class StudentService {
   getStudents(): Observable<Student[]> {
     return this.http.get<StudentDto[]>(`${this.URL}/getRecords`)
       .map(
-        studentDtoArr => studentDtoArr.map(
-          studentDto => studentDto.toStudent()
-        )
+        studentDtoArr => {
+          log.info('raw', studentDtoArr);
+          return studentDtoArr.map(
+          studentDto => new StudentDto(studentDto).toStudent()
+        );
+        }
       );
   }
 
   getStudent(id: number): Observable<Student> {
     return this.http.get<StudentDto>(`${this.URL}/getRecords/${id}`)
       .map(
-        studentDto => studentDto.toStudent()
+        studentDto => new StudentDto(studentDto).toStudent()
       );
   }
 
@@ -49,3 +53,5 @@ export class StudentService {
    */
 
 }
+
+const log = LoggerFactory.create(StudentService);

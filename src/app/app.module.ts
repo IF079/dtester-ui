@@ -13,14 +13,18 @@ import {AppMaterialModule} from './app-material.module';
 import {StudentComponent} from './student/student.component';
 import {BasicErrorHandler} from './shared/basic-error-handler';
 import {FacultiesComponent} from './faculties/faculties.component';
-import {HttpClientService} from './shared/services/http-client.service';
 
-import { SpecialityComponent } from './speciality/speciality.component';
-import { SpecialityService } from './shared/services/speciality.service';
 
-import { SubjectComponent } from './subject/subject.component';
+import {SpecialityComponent} from './speciality/speciality.component';
+import {SpecialityService} from './shared/services/speciality.service';
+
+import {SubjectComponent} from './subject/subject.component';
 import {SubjectService} from './shared/services/subject.service';
 import {StudentService} from './shared/services/student.service';
+import {StudentDetailComponent} from './student-detail/student-detail.component';
+import {FacultyService} from './shared/services/faculty.service';
+import {ModalComponent} from './modal/modal.component';
+
 
 
 @NgModule({
@@ -31,7 +35,9 @@ import {StudentService} from './shared/services/student.service';
     StudentComponent,
     FacultiesComponent,
     SpecialityComponent,
-    SubjectComponent
+    SubjectComponent,
+    StudentDetailComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,7 @@ import {StudentService} from './shared/services/student.service';
     StudentService,
     SpecialityService,
     SubjectService,
-    HttpClientService
+    FacultyService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {StudentService} from './../shared/services/student.service';
-import {Student} from './../shared/entities/student';
+import {StudentService} from '../shared/services/student.service';
+import {Student} from '../shared/entities/student';
+import {LoggerFactory} from '../shared/logger/logger.factory';
 
 @Component({
   selector: 'app-students',
@@ -10,22 +11,26 @@ import {Student} from './../shared/entities/student';
 export class StudentComponent implements OnInit {
 
   students: Student[];
-  student: Student;
+  student: Student = new Student();
+  tableColumns = ['ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'Gradebook ID', 'ID групи', '', ''];
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService) {
+  }
 
   ngOnInit() {
 
     this.studentService.getStudents().subscribe(data => {
       this.students = data;
-      console.log(this.students);
+      // console.log(this.students);
     });
 
-    this.studentService.getStudent(8).subscribe(data => {
+    this.studentService.getStudent(16).subscribe(data => {
       this.student = data[0];
-      console.log(this.student);
+      // console.log(this.student);
     });
 
   }
 
 }
+
+const log = LoggerFactory.create(StudentComponent);

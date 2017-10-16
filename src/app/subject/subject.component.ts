@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SubjectService} from '../shared/services/subject.service';
 import {Subject} from '../shared/entities/subject';
 import {LoggerFactory} from '../shared/logger/logger.factory';
-import {FormControl, Validators} from '@angular/forms';
-import {PageEvent} from '@angular/material';
+
 
 @Component({
   selector: 'app-subjects',
@@ -11,34 +10,16 @@ import {PageEvent} from '@angular/material';
   styleUrls: ['./subject.component.scss']
 })
 export class SubjectComponent implements OnInit {
-  /***********************************Validation things ***************************************/
-  SUBJECT_NAME_MAX_LENGTH = 20;
-  SUBJECT_NAME_MIN_LENGTH = 10;
-  SUBJECT_DESCRIPTION_MIN_LENGTH = 25;
-  SUBJECT_DESCRIPTION_MAX_LENGTH = 50;
-  credentials = {
-    subjectName: 'admin1',
-    subjectDescription: 'dtapi_admin'
-  };
+  displayedColumns = ['Id:', 'Назва', 'Опис', 'Ред', 'Bид'];
   subjects: Subject[];
-  displayedColumns = ['Id:', 'Назва', 'Опис', 'Ред/Вид'];
-  subjectName: FormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(this.SUBJECT_NAME_MIN_LENGTH),
-    Validators.maxLength(this.SUBJECT_NAME_MAX_LENGTH)
-  ]);
-  subjectDescription: FormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(this.SUBJECT_DESCRIPTION_MIN_LENGTH),
-    Validators.maxLength(this.SUBJECT_DESCRIPTION_MAX_LENGTH)
-  ]);
+  errWithDisplayingSubjects: string;
+  errWithCountingRecords: string;
+
   /*********************************** Pagination things ***************************************/
   currentOffset = 0;
   currentPage = 1;
   currentLimit = 10;
   numberOfRecords: number;
-  errWithDisplayingSubjects: string;
-  errWithCountingRecords: string;
   isLoaded = false;
 
   constructor(private subjectService: SubjectService) {

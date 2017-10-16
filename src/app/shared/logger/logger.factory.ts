@@ -14,6 +14,7 @@ export class LoggerFactory {
     return logger;
   }
 }
+
 const correspondingColor = (classType: string) => {
   return loggerColors[classType.toLowerCase()];
 };

@@ -11,13 +11,15 @@ export class SubjectService {
   constructor(private http: HttpClient) {
 
   }
+
   getSubjects(limit: number, offset: number): Observable<Subject[]> {
-   return this.http.get(`${this.URL}/getRecordsRange/${limit}/${offset}`);
+    return this.http.get(`${this.URL}/getRecordsRange/${limit}/${offset}`);
   }
 
   getSubject(id: number) {
     return this.http.get(`${this.URL}/getRecords/id`);
   }
+
   addSubject(data: Subject) {
     return this.http.post(`${this.URL}/insertData`, data);
   }

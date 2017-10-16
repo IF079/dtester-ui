@@ -17,17 +17,17 @@ export class SubjectComponent implements OnInit {
 
   /*********************************** Pagination things ***************************************/
   currentOffset = 0;
-  currentPage = 1;
-  currentLimit = 10;
-  numberOfRecords: number;
-  isLoaded = false;
+  currPage = 1;
+  currLimit = 10;
+  numOfRecords: number;
+  isLoading = false;
 
   constructor(private subjectService: SubjectService) {
 
   }
 
   getNumberOfPages(): number {
-    return Math.ceil(this.numberOfRecords / this.currentLimit) || 0;
+    return Math.ceil(this.numOfRecords / this.currLimit) || 0;
   }
 
   getButtonNumbers(): number[] {
@@ -41,30 +41,31 @@ export class SubjectComponent implements OnInit {
   }
 
   goToPage(n: number): void {
-    this.currentPage = n;
-    this.currentOffset = (this.currentPage * this.currentLimit) - this.currentLimit;
+    this.currPage = n;
+    this.currentOffset = (this.currPage * this.currLimit) - this.currLimit;
     this.getSubjects();
   }
   isLastPage(): boolean {
     const arrOfPages = this.getButtonNumbers();
-    return this.currentPage === Math.max(...arrOfPages);
+    return this.currPage === Math.max(...arrOfPages);
   }
   goToPreviousPage(): void {
-    this.currentOffset -= this.currentLimit;
-    this.currentPage -= 1;
+    this.currentOffset -= this.currLimit;
+    this.currPage -= 1;
     this.getSubjects();
   }
 
   goToNextPage(): void {
-    this.currentOffset += this.currentLimit;
-    this.currentPage += 1;
+    this.currentOffset += this.currLimit;
+    this.currPage += 1;
     this.getSubjects();
   }
 
   getSubjects(): void {
-    this.subjectService.getSubjects(this.currentLimit, this.currentOffset).subscribe((data) => {
+    this.isLoading = true;
+    this.subjectService.getSubjects(this.currLimit, this.currentOffset).subscribe((data) => {
         this.subjects = data;
-        this.isLoaded = true;
+        this.isLoading = false;
       },
       err => {
         console.log(err);
@@ -74,7 +75,7 @@ export class SubjectComponent implements OnInit {
 
   countRecords(): void {
     this.subjectService.countSubjects().subscribe((data) => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
+        this.numOfRecords = parseInt(data.numberOfRecords, 10);
       },
       err => {
         console.log(err);

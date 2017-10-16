@@ -24,6 +24,7 @@ import {StudentService} from './shared/services/student.service';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {FacultyService} from './shared/services/faculty.service';
 import {ModalComponent} from './modal/modal.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 
@@ -37,7 +38,8 @@ import {ModalComponent} from './modal/modal.component';
     SpecialityComponent,
     SubjectComponent,
     StudentDetailComponent,
-    ModalComponent
+    ModalComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

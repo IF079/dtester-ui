@@ -32,21 +32,12 @@
 
 </table>
 
-<mat-card *ngIf="numberOfRecords > 0">
-  <div class="pagination-functionality">
-    <button mat-raised-button (click)="goToPreviousPage()" [disabled]="currentPage === 1"><<</button>
-    <button mat-raised-button *ngFor="let pageNumber of getButtonNumbers()"
-            (click)="goToPage(pageNumber)"
-            [class.active]=" pageNumber === currentPage">
-      {{pageNumber}}
-    </button>
-    <button mat-raised-button (click)="goToNextPage()" [disabled]="isLastPage()"> >></button>
-  </div>
-  <div class="pagination-description">
-    <div>{{currentPage}} cторінка із {{getNumberOfPages()}}</div>
-    <div>Кількість предметів: {{numberOfRecords}}</div>
-    <div *ngIf="errWithCountingRecords">{{errWithCountingRecords}}</div>
-  </div>
-
-</mat-card>
+<app-pagination (goToPage)="goToPage($event)"
+                 (goToPrevPage)="goToPreviousPage()"
+                  (goToNextPage)="goToNextPage()"
+                  [isLoading]="isLoading"
+                   [currentPage]="currPage"
+                  [currentLimitPerPage]="currLimit"
+                  [numberOfRecords]="numOfRecords"
+                [errWithCounting]="errWithCountingRecords"></app-pagination>
 

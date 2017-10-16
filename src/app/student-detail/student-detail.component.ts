@@ -9,4 +9,6 @@ import {Student} from './../shared/entities/student';
 
 export class StudentDetailComponent {
   @Input() student: Student;
+
+
 }

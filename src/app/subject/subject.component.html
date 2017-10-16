@@ -1,20 +1,63 @@
-<form action="">
+<mat-card>
 
-</form>
+
+  <form action="">
+
+    <mat-form-field>
+      <input matInput placeholder="Назва предмету">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Опис предмету"></textarea>
+    </mat-form-field>
+    <button mat-raised-button>Додати</button>
+  </form>
+</mat-card>
 <div *ngIf="errWithDisplayingSubjects">{{errWithDisplayingSubjects}}</div>
-<table class="table table-inverse table-responsive">
-  <thead>
-  <tr>
-    <th *ngFor="let col of displayedColumns">{{col}}</th>
-  </tr>
-  </thead>
+<mat-card>
+  <table class="table mat-typography table-responsive">
+    <thead>
+    <tr>
+      <th *ngFor="let col of displayedColumns">
+        <mat-card> {{col}}</mat-card>
+      </th>
+    </tr>
 
-  <tr *ngFor="let subject of subjects">
-    <td>{{subject.subject_id}}</td>
-    <td>{{subject.subject_name}}</td>
-    <td>{{subject.subject_description}}</td>
-    <td>Редагувати</td>
-    <td>Видалити</td>
-  </tr>
+    </thead>
 
-</table>
+    <tr *ngFor="let subject of subjects">
+      <td>
+        <mat-card>{{subject.subject_id}}</mat-card>
+      </td>
+      <td>
+        <mat-card>{{subject.subject_name}}</mat-card>
+      </td>
+      <td>
+        <mat-card>{{subject.subject_description}}</mat-card>
+      </td>
+      <td>
+        <mat-card>Ред/Вид</mat-card>
+      </td>
+
+    </tr>
+
+  </table>
+</mat-card>
+<mat-card *ngIf="numberOfRecords > 0">
+  <div class="pagination-functionality">
+    <button mat-raised-button (click)="goToPreviousPage()" [disabled]="currentPage === 1"><<</button>
+    <button mat-raised-button *ngFor="let pageNumber of getButtonNumbers()"
+            (click)="goToPage(pageNumber)"
+            [class.active]=" pageNumber === currentPage">
+            {{pageNumber}}
+    </button>
+    <button mat-raised-button (click)="goToNextPage()" [disabled]="isLastPage()"> >></button>
+  </div>
+  <div class="pagination-description">
+    <div>{{currentPage}} cторінка із {{getNumberOfPages()}}</div>
+    <div>Кількість предметів: {{numberOfRecords}}</div>
+    <div *ngIf="errWithCountingRecords">{{errWithCountingRecords}}</div>
+
+  </div>
+
+</mat-card>
+

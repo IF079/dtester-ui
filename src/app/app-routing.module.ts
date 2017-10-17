@@ -16,6 +16,7 @@ const appRoutes = [
   {path: 'students', component: StudentComponent},
   {path: 'speciality', component: SpecialityComponent},
   {path: 'subject', component: SubjectComponent},
+  {path: 'subject/:currPage', component: SubjectComponent},
   {path: 'faculties', component: FacultiesComponent}
 
 ];

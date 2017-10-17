@@ -24,6 +24,7 @@ import {StudentService} from './shared/services/student.service';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {ModalComponent} from './modal/modal.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import {TimeTableComponent} from './time-table/time-table.component';
 
 
 
@@ -38,7 +39,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     SubjectComponent,
     StudentDetailComponent,
     ModalComponent,
-    PaginationComponent
+    PaginationComponent,
+    TimeTableComponent
   ],
   imports: [
     BrowserModule,

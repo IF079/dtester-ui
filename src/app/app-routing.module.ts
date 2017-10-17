@@ -8,6 +8,7 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {SubjectComponent} from './subject/subject.component';
 
 import {FacultiesComponent} from './faculties/faculties.component';
+import {TimeTableComponent} from './time-table/time-table.component';
 
 
 const appRoutes = [
@@ -16,7 +17,8 @@ const appRoutes = [
   {path: 'students', component: StudentComponent},
   {path: 'speciality', component: SpecialityComponent},
   {path: 'subject', component: SubjectComponent},
-  {path: 'faculties', component: FacultiesComponent}
+  {path: 'faculties', component: FacultiesComponent},
+  {path: 'timetable', component: TimeTableComponent}
 
 ];
 

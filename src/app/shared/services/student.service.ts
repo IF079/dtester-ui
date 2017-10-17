@@ -14,7 +14,6 @@ export class StudentService {
 
   static parseStudent(student: Student): StudentDto{
     const dto = new StudentDto();
-
     dto.username = student.username;
     dto.password = student.password;
     dto.password_confirm = student.passwordConfirm;

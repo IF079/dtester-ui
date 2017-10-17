@@ -4,8 +4,11 @@
       <th *ngFor="let col of tableColumns">{{col}}</th>
     </tr>
   </thead>
+  <app-student-detail [student]="selectedStudent"></app-student-detail>
   <tbody>
-    <tr *ngFor="let student of students" class="mat-card">
+    <tr *ngFor="let student of students" class="mat-card"
+        [class.selected]="student === selectedStudent"
+        (dblclick)="onSelect(student)">
       <th>{{student.userId}}</th>
       <th>{{student.studentSurname}}</th>
       <th>{{student.studentName}}</th>
@@ -17,3 +20,4 @@
     </tr>
   </tbody>
 </table>
+

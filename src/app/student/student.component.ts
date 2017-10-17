@@ -14,6 +14,12 @@ export class StudentComponent implements OnInit {
   student: Student = new Student();
   tableColumns = ['ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'Gradebook ID', 'ID групи', '', ''];
 
+  selectedStudent: Student;
+  onSelect(student: Student): void {
+    this.selectedStudent = student;
+   }
+
+
   constructor(private studentService: StudentService) {
   }
 

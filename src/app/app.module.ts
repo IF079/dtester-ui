@@ -22,7 +22,6 @@ import {SubjectComponent} from './subject/subject.component';
 import {SubjectService} from './shared/services/subject.service';
 import {StudentService} from './shared/services/student.service';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
-import {FacultyService} from './shared/services/faculty.service';
 import {ModalComponent} from './modal/modal.component';
 
 
@@ -52,7 +51,6 @@ import {ModalComponent} from './modal/modal.component';
     StudentService,
     SpecialityService,
     SubjectService,
-    FacultyService
   ],
   bootstrap: [AppComponent]
 })

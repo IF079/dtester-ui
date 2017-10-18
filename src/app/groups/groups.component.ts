@@ -21,7 +21,7 @@ export class GroupsComponent implements OnInit {
   ngOnInit() {
 
     this.groupsService.getGroups().subscribe(data => {
-      this.groups = data;
+      // this.groups = data;
       console.log(this.faculties);
     });
   }

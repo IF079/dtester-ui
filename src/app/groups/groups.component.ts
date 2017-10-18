@@ -13,16 +13,16 @@ import {Groups} from './../shared/entities/groups';
 })
 export class GroupsComponent implements OnInit {
 
-  faculties: Groups[];
+  groups: Groups[];
 
   displayedColumns = ['Id:', 'Name', 'Faculty id', 'Speciality id', ''];
 
-  constructor(private groupsService: GroupsService ){ }
+  constructor(private groupsService: GroupsService ) { }
   ngOnInit() {
 
     this.groupsService.getGroups().subscribe(data => {
-      // this.groups = data;
-      console.log(this.faculties);
+      this.groups = data;
+      console.log(this.groups);
     });
   }
 }

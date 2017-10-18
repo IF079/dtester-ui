@@ -13,10 +13,12 @@ import {AppMaterialModule} from './app-material.module';
 import {StudentComponent} from './student/student.component';
 import {BasicErrorHandler} from './shared/basic-error-handler';
 import {FacultiesComponent} from './faculties/faculties.component';
-
+import {GroupsComponent} from './groups/groups.component';
+import {GroupsService} from './shared/services/groups.service';
 
 import {SpecialityComponent} from './speciality/speciality.component';
 import {SpecialityService} from './shared/services/speciality.service';
+import {GroupsService} from './shared/services/groups.service';
 
 import {SubjectComponent} from './subject/subject.component';
 import {SubjectService} from './shared/services/subject.service';
@@ -37,6 +39,7 @@ import {SpinnerInterceptor} from './shared/interceptors/spinner.interceptor';
     NavComponent,
     StudentComponent,
     FacultiesComponent,
+    GroupsComponent,
     SpecialityComponent,
     SubjectComponent,
     StudentDetailComponent,
@@ -58,6 +61,7 @@ import {SpinnerInterceptor} from './shared/interceptors/spinner.interceptor';
     {provide: ErrorHandler, useClass: BasicErrorHandler},
     StudentService,
     SpecialityService,
+    GroupsService,
     SubjectService,
     SpinnerTasksTrackerService
   ],

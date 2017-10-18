@@ -5,7 +5,6 @@ import {Student} from '../entities/student';
 import {StudentDto} from './dto/student-dto';
 
 class OtherDtoInfo {
-  username: string;
   password: string;
   passwordConfirm: string;
   email: string;
@@ -28,8 +27,8 @@ export class StudentService {
     dto.student_fname = student.studentFname;
     dto.group_id = student.groupId;
     dto.photo = student.photo;
+    dto.username = student.username;
 
-    dto.username = otherDtoInfo.username;
     dto.password = otherDtoInfo.password;
     dto.password_confirm = otherDtoInfo.passwordConfirm;
     dto.plain_password = otherDtoInfo.password;
@@ -42,6 +41,7 @@ export class StudentService {
     const entity = new Student();
 
     entity.userId = studentDto.user_id;
+    entity.username = studentDto.username;
     entity.gradebookId = studentDto.gradebook_id;
     entity.studentSurname = studentDto.student_surname;
     entity.studentName = studentDto.student_name;

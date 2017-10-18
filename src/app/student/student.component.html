@@ -1,3 +1,4 @@
+<input type="text">
 <table class="table table-responsive table-hover">
   <thead>
     <tr>
@@ -9,14 +10,14 @@
     <tr *ngFor="let student of students" class="mat-card"
         [class.selected]="student === selectedStudent"
         (dblclick)="onSelect(student)">
-      <th>{{student.userId}}</th>
-      <th>{{student.studentSurname}}</th>
-      <th>{{student.studentName}}</th>
-      <th>{{student.studentFname}}</th>
-      <th>{{student.gradebookId}}</th>
-      <th>{{student.groupId}}</th>
-      <th><i class="fa fa-pencil" aria-hidden="true"></i></th>
-      <th><i class="fa fa-times" aria-hidden="true"></i></th>
+      <td>{{student.userId}}</td>
+      <td>{{student.studentSurname}}</td>
+      <td>{{student.studentName}}</td>
+      <td>{{student.studentFname}}</td>
+      <td>{{student.gradebookId}}</td>
+      <td>{{student.groupId}}</td>
+      <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+      <td><i class="fa fa-times" aria-hidden="true"></i></td>
     </tr>
   </tbody>
 </table>

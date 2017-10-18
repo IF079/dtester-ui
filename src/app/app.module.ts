@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -15,11 +14,8 @@ import {BasicErrorHandler} from './shared/basic-error-handler';
 import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {GroupsService} from './shared/services/groups.service';
-
 import {SpecialityComponent} from './speciality/speciality.component';
 import {SpecialityService} from './shared/services/speciality.service';
-import {GroupsService} from './shared/services/groups.service';
-
 import {SubjectComponent} from './subject/subject.component';
 import {SubjectService} from './shared/services/subject.service';
 import {StudentService} from './shared/services/student.service';

@@ -1,16 +1,38 @@
-.fa {
-  margin-left: 35px;
-  cursor: pointer;
-}
-.fa-pencil {
-  color: rgb(157, 160, 165);
-  &:hover{
-    color: rgb(63, 65, 68);
+@import './../../_variables.scss';
+
+table{
+  margin-top: 50px;
+  font-size: 15px;
+  thead{
+    tr{
+      background: #f5f5f5;
+      box-shadow: $basic-box-shadow;
+    }
   }
-}
-.fa-times {
-  color: rgb(229, 9, 9);
-  &:hover {
-    color: rgb(155, 9, 9);
+  tbody{
+    tr{
+      display: table-row;
+      box-shadow: $basic-box-shadow;
+      &:hover{
+        cursor: pointer;
+      }
+      td{
+        i.fa{
+          cursor: pointer;
+          &.fa-pencil-square-o{
+            color: #148038;
+            &:hover{
+              transform: scale(1.4);
+            }
+          }
+          &.fa-times{
+            color: rgb(218, 5, 5);
+            &:hover{
+              transform: scale(1.4);
+            }
+          }
+        }
+      }
+    }
   }
 }

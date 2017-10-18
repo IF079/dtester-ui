@@ -10,7 +10,7 @@ import {LoggerFactory} from '../shared/logger/logger.factory';
 })
 export class SpecialityComponent implements OnInit {
   speciality: Speciality[];
-  Row = ['ID', 'Код', 'Назва', 'Редагувати', 'Видалити'];
+  Row = ['ID', 'Код', 'Назва', '', ''];
   constructor(private specialityService: SpecialityService) {}
 
   ngOnInit() {
@@ -20,7 +20,5 @@ export class SpecialityComponent implements OnInit {
       }
     );
   }
-
 }
-
 const log = LoggerFactory.create(SpecialityComponent);

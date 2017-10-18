@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SubjectService} from '../shared/services/subject.service';
 import {Subject} from '../shared/entities/subject';
 import {LoggerFactory} from '../shared/logger/logger.factory';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -22,8 +23,17 @@ export class SubjectComponent implements OnInit {
   numOfRecords: number;
   isLoading = false;
 
-  constructor(private subjectService: SubjectService) {
+  constructor(private subjectService: SubjectService, private route: ActivatedRoute, private router: Router) {
+    this.route.params.subscribe( params => {
+      if (!params['currPage']) {
+        this.currPage = 1;
+        this.goToPage(this.currPage);
 
+      } else {
+        this.currPage = +params['currPage'];
+        this.goToPage(this.currPage);
+      }
+    });
   }
 
   getNumberOfPages(): number {
@@ -43,6 +53,7 @@ export class SubjectComponent implements OnInit {
   goToPage(n: number): void {
     this.currPage = n;
     this.currentOffset = (this.currPage * this.currLimit) - this.currLimit;
+    this.router.navigate(['subject', this.currPage]);
     this.getSubjects();
   }
   isLastPage(): boolean {
@@ -52,12 +63,15 @@ export class SubjectComponent implements OnInit {
   goToPreviousPage(): void {
     this.currentOffset -= this.currLimit;
     this.currPage -= 1;
+    this.router.navigate(['subject', this.currPage]);
+
     this.getSubjects();
   }
 
   goToNextPage(): void {
     this.currentOffset += this.currLimit;
     this.currPage += 1;
+    this.router.navigate(['subject', this.currPage]);
     this.getSubjects();
   }
 
@@ -84,6 +98,7 @@ export class SubjectComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.navigate(['subject', this.currPage]);
     this.getSubjects();
     this.countRecords();
   }

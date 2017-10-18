@@ -1,12 +1,13 @@
 <mat-card *ngIf="numberOfRecords > 0">
   <div class="pagination-functionality">
     <button mat-raised-button (click)="onPrev()" [disabled]="currentPage === 1 || isLoading">&lt;&lt;</button>
-    <button mat-raised-button *ngFor="let pageNumber of getButtonNumbers()"
+    <button  mat-raised-button *ngFor="let pageNumber of getButtonNumbers()"
             (click)="onPage(pageNumber)"
-            [class.active]=" pageNumber === currentPage">
+            [class.active]=" pageNumber === currentPage"
+            [routerLinkActive]="['active']">
       {{pageNumber}}
     </button>
-    <button mat-raised-button (click)="onNext(true)" [disabled]="isLastPage() || isLoading"> &gt;&gt;</button>
+    <button mat-raised-button (click)="onNext()" [disabled]="isLastPage() || isLoading"> &gt;&gt;</button>
   </div>
   <div class="pagination-description">
     <div>{{currentPage}} cторінка із {{getNumberOfPages()}}</div>

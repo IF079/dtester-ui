@@ -23,9 +23,11 @@ import {SubjectService} from './shared/services/subject.service';
 import {StudentService} from './shared/services/student.service';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {ModalComponent} from './modal/modal.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import {PaginationComponent} from './pagination/pagination.component';
 import {TimeTableComponent} from './time-table/time-table.component';
-
+import {HttpSpinnerComponent} from './http-spinner/http-spinner.component';
+import {SpinnerTasksTrackerService} from './shared/services/spinner.service';
+import {SpinnerInterceptor} from './shared/interceptors/spinner.interceptor';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import {TimeTableComponent} from './time-table/time-table.component';
     StudentDetailComponent,
     ModalComponent,
     PaginationComponent,
-    TimeTableComponent
+    TimeTableComponent,
+    HttpSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -51,10 +54,12 @@ import {TimeTableComponent} from './time-table/time-table.component';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: DomainUrlAppenderInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
     {provide: ErrorHandler, useClass: BasicErrorHandler},
     StudentService,
     SpecialityService,
     SubjectService,
+    SpinnerTasksTrackerService
   ],
   bootstrap: [AppComponent]
 })

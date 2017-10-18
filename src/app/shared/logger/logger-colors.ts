@@ -6,5 +6,6 @@ export const loggerColors = {
   guard: 'brown',
   utils: 'grey',
   resolver: 'aqua',
-  handler: 'red'
+  handler: 'red',
+  interceptor: 'violet'
 };

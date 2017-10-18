@@ -15,6 +15,7 @@ export class SubjectComponent implements OnInit {
   subjects: Subject[];
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;
+  routeSubj = 'subject';
 
   /*********************************** Pagination things ***************************************/
   currentOffset = 0;
@@ -25,16 +26,18 @@ export class SubjectComponent implements OnInit {
 
   constructor(private subjectService: SubjectService, private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe( params => {
-      if (!params['currPage']) {
+      if (!params['currentPage']) {
         this.currPage = 1;
         this.goToPage(this.currPage);
 
       } else {
-        this.currPage = +params['currPage'];
+        this.currPage = +params['currentPage'];
         this.goToPage(this.currPage);
       }
     });
   }
+
+
 
   getNumberOfPages(): number {
     return Math.ceil(this.numOfRecords / this.currLimit) || 0;
@@ -53,7 +56,6 @@ export class SubjectComponent implements OnInit {
   goToPage(n: number): void {
     this.currPage = n;
     this.currentOffset = (this.currPage * this.currLimit) - this.currLimit;
-    this.router.navigate(['subject', this.currPage]);
     this.getSubjects();
   }
   isLastPage(): boolean {
@@ -62,16 +64,12 @@ export class SubjectComponent implements OnInit {
   }
   goToPreviousPage(): void {
     this.currentOffset -= this.currLimit;
-    this.currPage -= 1;
-    this.router.navigate(['subject', this.currPage]);
-
     this.getSubjects();
   }
 
   goToNextPage(): void {
     this.currentOffset += this.currLimit;
-    this.currPage += 1;
-    this.router.navigate(['subject', this.currPage]);
+
     this.getSubjects();
   }
 

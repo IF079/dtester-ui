@@ -4,7 +4,8 @@
     <button  mat-raised-button *ngFor="let pageNumber of getButtonNumbers()"
             (click)="onPage(pageNumber)"
             [class.active]=" pageNumber === currentPage"
-            [routerLinkActive]="['active']">
+
+            [routerLinkActive]= "['active']">
       {{pageNumber}}
     </button>
     <button mat-raised-button (click)="onNext()" [disabled]="isLastPage() || isLoading"> &gt;&gt;</button>

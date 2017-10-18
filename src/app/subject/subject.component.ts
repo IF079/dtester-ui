@@ -15,7 +15,7 @@ export class SubjectComponent implements OnInit {
   subjects: Subject[];
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;
-  routeSubj = 'subject';
+  linkForRouting = 'subject';
 
   /*********************************** Pagination things ***************************************/
   currentOffset = 0;
@@ -25,57 +25,12 @@ export class SubjectComponent implements OnInit {
   isLoading = false;
 
   constructor(private subjectService: SubjectService, private route: ActivatedRoute, private router: Router) {
-    this.route.params.subscribe( params => {
-      if (!params['currentPage']) {
-        this.currPage = 1;
-        this.goToPage(this.currPage);
 
-      } else {
-        this.currPage = +params['currentPage'];
-        this.goToPage(this.currPage);
-      }
-    });
   }
 
-
-
-  getNumberOfPages(): number {
-    return Math.ceil(this.numOfRecords / this.currLimit) || 0;
-  }
-
-  getButtonNumbers(): number[] {
-    const numberOfPages = this.getNumberOfPages();
-    const arrOfButtonNumbers = [];
-    for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
-      arrOfButtonNumbers.push(pageNumber);
-    }
-
-    return arrOfButtonNumbers;
-  }
-
-  goToPage(n: number): void {
-    this.currPage = n;
-    this.currentOffset = (this.currPage * this.currLimit) - this.currLimit;
-    this.getSubjects();
-  }
-  isLastPage(): boolean {
-    const arrOfPages = this.getButtonNumbers();
-    return this.currPage === Math.max(...arrOfPages);
-  }
-  goToPreviousPage(): void {
-    this.currentOffset -= this.currLimit;
-    this.getSubjects();
-  }
-
-  goToNextPage(): void {
-    this.currentOffset += this.currLimit;
-
-    this.getSubjects();
-  }
-
-  getSubjects(): void {
+  getSubjects(limit, offset): void {
     this.isLoading = true;
-    this.subjectService.getSubjects(this.currLimit, this.currentOffset).subscribe((data) => {
+    this.subjectService.getSubjects(limit, offset).subscribe((data) => {
         this.subjects = data;
         this.isLoading = false;
       },
@@ -96,8 +51,8 @@ export class SubjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigate(['subject', this.currPage]);
-    this.getSubjects();
+    this.router.navigate([this.linkForRouting, this.currPage]);
+    this.getSubjects(this.currLimit, this.currentOffset);
     this.countRecords();
   }
 

@@ -32,14 +32,15 @@
 
 </table>
 
-<app-pagination (goToPage)="goToPage($event)"
-                 (goToPrevPage)="goToPreviousPage()"
-                  (goToNextPage)="goToNextPage()"
-                  [isLoading]="isLoading"
+<app-pagination
+                    [currentOffset]="currentOffset"
+                    [countData] = "countRecords"
+                    [getData] = "getSubjects"
+                    [isLoading]="isLoading"
                    [currentPage]="currPage"
                   [currentLimitPerPage]="currLimit"
                   [numberOfRecords]="numOfRecords"
-                  [linkForRouting]="routeSubj"
+                  [linkForRouting]="linkForRouting"
                 [errWithCounting]="errWithCountingRecords">
 </app-pagination>
 

@@ -32,15 +32,13 @@
 
 </table>
 
-<app-pagination
-                    [currentOffset]="currentOffset"
-                    [countData] = "countRecords"
-                    [getData] = "getSubjects"
-                    [isLoading]="isLoading"
-                   [currentPage]="currPage"
-                  [currentLimitPerPage]="currLimit"
-                  [numberOfRecords]="numOfRecords"
-                  [linkForRouting]="linkForRouting"
+<app-pagination (goToPage)="goToPage($event)"
+                (goToPrevPage)="goToPreviousPage()"
+                (goToNextPage)="goToNextPage()"
+                [isLoading]="isLoading"
+                [currentPage]="currPage"
+                [currentLimitPerPage]="currLimit"
+                [numberOfRecords]="numOfRecords"
+                [linkForRouting]="linkForRouting"
                 [errWithCounting]="errWithCountingRecords">
 </app-pagination>
-

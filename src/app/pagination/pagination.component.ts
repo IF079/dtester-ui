@@ -13,15 +13,16 @@ export class PaginationComponent implements OnInit {
 
   }
 
-  @Input() currentOffset: number;
-  @Input() getData: (limit: number, offset: number) => void;
-  @Input() countData: () => void;
   @Input() errWithCounting: string;
   @Input() linkForRouting: string;
   @Input() currentPage: number;
   @Input() numberOfRecords: number;
   @Input() currentLimitPerPage: number;
   @Input() isLoading: boolean;
+
+  @Output() goToPrevPage = new EventEmitter<boolean>();
+  @Output() goToNextPage = new EventEmitter<boolean>();
+  @Output() goToPage = new EventEmitter<number>();
 
   getNumberOfPages(): number {
     return Math.ceil(this.numberOfRecords / this.currentLimitPerPage) || 0;
@@ -36,36 +37,32 @@ export class PaginationComponent implements OnInit {
     return arrOfButtonNumbers;
   }
 
+  onPage(n: number): void {
+    this.currentPage = n;
+    this.router.navigate([this.linkForRouting, this.currentPage]);
+    this.goToPage.emit(this.currentPage);
+  }
 
   isLastPage(): boolean {
     const arrOfPages = this.getButtonNumbers();
     return this.currentPage === Math.max(...arrOfPages);
   }
-  onPage(n: number): void {
-    this.currentPage = n;
-    this.currentOffset = (this.currentPage * this.currentLimitPerPage) - this.currentLimitPerPage;
-    this.router.navigate([this.linkForRouting, this.currentPage]);
-    this.getData(this.currentLimitPerPage, this.currentOffset);
 
-  }
   onPrev(): void {
     this.currentPage -= 1;
-    this.currentOffset -= this.currentLimitPerPage;
     this.router.navigate([this.linkForRouting, this.currentPage]);
-    this.getData(this.currentLimitPerPage, this.currentOffset);
-
+    this.goToPrevPage.emit(true);
   }
 
   onNext(): void {
     this.currentPage += 1;
-    this.currentOffset += this.currentLimitPerPage;
     this.router.navigate([this.linkForRouting, this.currentPage]);
-    this.getData(this.currentLimitPerPage, this.currentOffset);
+    this.goToNextPage.emit(true);
   }
 
   ngOnInit() {
     this.router.navigate([this.linkForRouting, this.currentPage]);
-    this.countData();
+
   }
 
 }

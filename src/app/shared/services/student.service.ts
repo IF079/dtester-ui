@@ -4,6 +4,13 @@ import {Observable} from 'rxjs/Observable';
 import {Student} from '../entities/student';
 import {StudentDto} from './dto/student-dto';
 
+class OtherDtoInfo {
+  username: string;
+  password: string;
+  passwordConfirm: string;
+  email: string;
+}
+
 @Injectable()
 export class StudentService {
 
@@ -12,20 +19,21 @@ export class StudentService {
   constructor(private http: HttpClient) {
   }
 
-  static parseStudent(student: Student): StudentDto{
+  static parseStudent(student: Student, otherDtoInfo: OtherDtoInfo): StudentDto {
     const dto = new StudentDto();
 
-    dto.username = student.username;
-    dto.password = student.password;
-    dto.password_confirm = student.passwordConfirm;
-    dto.email = student.email;
     dto.gradebook_id = student.gradebookId;
     dto.student_surname = student.studentSurname;
     dto.student_name = student.studentName;
     dto.student_fname = student.studentFname;
     dto.group_id = student.groupId;
-    dto.plain_password = student.password;
     dto.photo = student.photo;
+
+    dto.username = otherDtoInfo.username;
+    dto.password = otherDtoInfo.password;
+    dto.password_confirm = otherDtoInfo.passwordConfirm;
+    dto.plain_password = otherDtoInfo.password;
+    dto.email = otherDtoInfo.email;
 
     return dto;
   }
@@ -53,8 +61,8 @@ export class StudentService {
     return this.http.get<StudentDto[]>(`${this.URL}/getRecords/${id}`).map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
   }
 
-  setStudent(student: Student): Observable<any> {
-    return this.http.post(`${this.URL}/insertData`, StudentService.parseStudent(student));
+  setStudent(student: Student, otherInfo: OtherDtoInfo): Observable<any> {
+    return this.http.post(`${this.URL}/insertData`, StudentService.parseStudent(student, otherInfo));
   }
 
   /** setStudent input data example

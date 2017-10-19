@@ -1,0 +1,18 @@
+@import '../../../variables';
+
+td {
+  font-weight: $primary-font-weight;
+}
+
+i.fa {
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.4);
+  }
+  &.fa-pencil-square-o {
+    color: #148038;
+  }
+  &.fa-times {
+    color: rgb(218, 5, 5);
+  }
+}

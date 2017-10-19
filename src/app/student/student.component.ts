@@ -13,6 +13,7 @@ export class StudentComponent implements OnInit {
   students: Student[];
   student: Student = new Student();
   tableColumns = ['ID', 'Gradebook ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
+  path = '/students';
 
   selectedStudent: Student;
   onSelect(student: Student): void {
@@ -40,7 +41,6 @@ export class StudentComponent implements OnInit {
     });
 
   }
-
 }
 
 const log = LoggerFactory.create(StudentComponent);

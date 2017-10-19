@@ -12,7 +12,7 @@ export class StudentComponent implements OnInit {
 
   students: Student[];
   student: Student = new Student();
-  tableColumns = ['ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'Gradebook ID', 'ID групи', '', ''];
+  tableColumns = ['ID', 'Gradebook ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
 
   selectedStudent: Student;
   onSelect(student: Student): void {
@@ -27,6 +27,10 @@ export class StudentComponent implements OnInit {
 
     this.studentService.getStudents().subscribe(data => {
       this.students = data;
+      this.students.forEach(item => {
+        delete item.photo;
+        delete item.plainPassword;
+      });
       // console.log(this.students);
     });
 

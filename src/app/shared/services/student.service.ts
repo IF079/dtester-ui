@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Student} from '../entities/student';
 import {StudentDto} from './dto/student-dto';
+import {LoggerFactory} from '../logger/logger.factory';
 
 class OtherDtoInfo {
   password: string;
@@ -52,6 +53,7 @@ export class StudentService {
 
     return entity;
   }
+<<<<<<< HEAD
 
   getStudents(): Observable<Student[]> {
     return this.http.get<StudentDto[]>(`${this.URL}/getRecords`).map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
@@ -63,6 +65,24 @@ export class StudentService {
 
   setStudent(student: Student, otherInfo: OtherDtoInfo): Observable<any> {
     return this.http.post(`${this.URL}/insertData`, StudentService.parseStudent(student, otherInfo));
+=======
+
+  constructor(private http: HttpClient) {
+  }
+
+  getStudents(): Observable<Student[]> {
+    return this.http.get<StudentDto[]>(`${this.URL}/getRecords`)
+      .map(studentDtoArr => studentDtoArr.map(StudentService.toStudent));
+  }
+
+  getStudent(id: number): Observable<Student> {
+    return this.http.get<StudentDto>(`${this.URL}/getRecords/${id}`)
+      .map(StudentService.toStudent);
+  }
+
+  setStudent(student: Student): Observable<any> {
+    return this.http.post(`${this.URL}/insertData`, StudentService.parseStudent(student));
+>>>>>>> b62a714b8cf7ad6514f97f87d238e40d9a72bef1
   }
 
   /** setStudent input data example
@@ -83,3 +103,5 @@ export class StudentService {
    */
 
 }
+
+const log = LoggerFactory.create(StudentService);

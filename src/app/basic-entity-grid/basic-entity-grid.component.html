@@ -5,11 +5,9 @@
       <th *ngFor="let col of columnsArray">{{col}}</th>
     </tr>
   </thead>
-  <app-student-detail [student]="selectedStudent"></app-student-detail>
   <tbody>
     <tr *ngFor="let tableItem of tableArray"
-        [class.selected]="student === selectedStudent"
-        (dblclick)="onSelect(student)">
+        (dblclick)="onSelect(tableItem)">
       <td *ngFor="let item of tableItem">{{item}}</td>
       <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
       <td><i class="fa fa-times" aria-hidden="true"></i></td>

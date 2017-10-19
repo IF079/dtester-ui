@@ -12,10 +12,10 @@ table.entity-grid{
     tbody{
         tr{
             box-shadow: $basic-box-shadow;
-            display: table-row;
             background-color: #fff;
             &:hover{
                 cursor: pointer;
+                background-color: rgba(0,0,0,.075);
             }
             td{
                 i.fa{

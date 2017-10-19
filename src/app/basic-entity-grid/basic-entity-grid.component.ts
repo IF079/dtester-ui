@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Student} from '../shared/entities/student';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-basic-entity-grid',
@@ -12,8 +13,9 @@ export class BasicEntityGridComponent implements OnInit, OnChanges {
   tableArray: any[];
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
+  @Input() detailUrl: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.columnsArray.push('', '');
@@ -33,6 +35,10 @@ export class BasicEntityGridComponent implements OnInit, OnChanges {
       // console.log(newArr);
       this.tableArray = newArr;
     }
+  }
+
+  onSelect(item: any[]) {
+    this.router.navigate([this.detailUrl, item[0]]);
   }
 
 }

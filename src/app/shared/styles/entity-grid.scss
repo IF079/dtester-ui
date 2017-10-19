@@ -1,0 +1,39 @@
+@import '../../../_variables';
+
+table.entity-grid{
+    margin-top: 50px;
+    font-size: 15px;
+    thead{
+        tr{
+            background: #f5f5f5;
+            box-shadow: $basic-box-shadow;
+        }
+    }
+    tbody{
+        tr{
+            box-shadow: $basic-box-shadow;
+            display: table-row;
+            background-color: #fff;
+            &:hover{
+                cursor: pointer;
+            }
+            td{
+                i.fa{
+                    cursor: pointer;
+                    &.fa-pencil{
+                        color: green;
+                        &:hover{
+                            color: rgb(0, 97, 0);
+                        }
+                    }
+                    &.fa-times{
+                        color: rgb(218, 5, 5);
+                        &:hover{
+                            color: rgb(187, 1, 1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

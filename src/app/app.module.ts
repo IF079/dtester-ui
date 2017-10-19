@@ -28,6 +28,7 @@ import {TimeTableComponent} from './time-table/time-table.component';
 import {HttpSpinnerComponent} from './http-spinner/http-spinner.component';
 import {SpinnerTasksTrackerService} from './shared/services/spinner.service';
 import {SpinnerInterceptor} from './shared/interceptors/spinner.interceptor';
+import { BasicEntityGridComponent } from './basic-entity-grid/basic-entity-grid.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {SpinnerInterceptor} from './shared/interceptors/spinner.interceptor';
     ModalComponent,
     PaginationComponent,
     TimeTableComponent,
-    HttpSpinnerComponent
+    HttpSpinnerComponent,
+    BasicEntityGridComponent
   ],
   imports: [
     BrowserModule,

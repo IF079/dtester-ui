@@ -11,9 +11,10 @@ import {BasicErrorHandler} from './shared/basic-error-handler';
 import {MainModule} from './main/main.module';
 
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

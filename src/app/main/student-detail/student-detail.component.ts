@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Student} from '../../shared/entities/student';
+import {Student} from '../shared/entities/student';
 
 @Component({
   selector: 'app-student-detail',
@@ -9,6 +9,4 @@ import {Student} from '../../shared/entities/student';
 
 export class StudentDetailComponent {
   @Input() student: Student;
-
-
 }

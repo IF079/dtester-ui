@@ -1,24 +1,24 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {TimeTable} from './../entities/time-table';
+import {Faculty} from '../../entities/faculty';
 
 @Injectable()
-export class TimeTableService {
-  URL = '/TimeTable';
+export class FacultyService {
+  URL = '/Faculty';
 
   constructor(private http: HttpClient) {
   }
 
-  getTimeTables(): Observable<TimeTable[]> {
+  getFaculties(): Observable<Faculty[]> {
     return this.http.get(`${this.URL}/getRecords`);
   }
 
-  getTimeTable(id: number): Observable<TimeTable> {
+  getFaculty(id: number): Observable<Faculty> {
     return this.http.get(`${this.URL}/getRecords/${id}`);
   }
 
-  addTimeTable(data): Observable<any> {
+  addFaculty(data): Observable<any> {
     return this.http.post(`${this.URL}/insertData`, data);
   }
 

@@ -1,32 +1,35 @@
-<form class="login-form" (ngSubmit)="login()" method="post">
-  <mat-card>
-    <h1>Authorization</h1>
+<div class="login-container">
+  <form class="login-form" (ngSubmit)="login()" method="post">
+    <mat-card>
+      <h1>Authorization</h1>
 
-    <mat-form-field>
-      <input matInput [formControl]="username" [(ngModel)]="credentials.username" placeholder="Username">
-      <mat-error *ngIf="username.invalid">
-        <div *ngIf="username.hasError('required')">{{getRequiredMsg()}}</div>
-        <div *ngIf="username.hasError('minlength')">{{getInsufficientLengthErrorMsg(username.getError('minlength'))}}
-        </div>
-        <div *ngIf="username.hasError('maxlength')">{{getExceedingLengthErrorMsg(username.getError('maxlength'))}}</div>
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput [formControl]="password" [(ngModel)]="credentials.password" type="password"
-             placeholder="Password">
-      <mat-error *ngIf="password.invalid">
-        <div *ngIf="password.hasError('required')">{{getRequiredMsg()}}</div>
-        <div *ngIf="password.hasError('minlength')">{{getInsufficientLengthErrorMsg(password.getError('minlength'))}}
-        </div>
-        <div *ngIf="password.hasError('maxlength')">{{getExceedingLengthErrorMsg(password.getError('maxlength'))}}</div>
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput [formControl]="username" [(ngModel)]="credentials.username" placeholder="Username">
+        <mat-error *ngIf="username.invalid">
+          <div *ngIf="username.hasError('required')">{{getRequiredMsg()}}</div>
+          <div *ngIf="username.hasError('minlength')">{{getInsufficientLengthErrorMsg(username.getError('minlength'))}}
+          </div>
+          <div *ngIf="username.hasError('maxlength')">{{getExceedingLengthErrorMsg(username.getError('maxlength'))}}
+          </div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [formControl]="password" [(ngModel)]="credentials.password" type="password"
+               placeholder="Password">
+        <mat-error *ngIf="password.invalid">
+          <div *ngIf="password.hasError('required')">{{getRequiredMsg()}}</div>
+          <div *ngIf="password.hasError('minlength')">{{getInsufficientLengthErrorMsg(password.getError('minlength'))}}
+          </div>
+          <div *ngIf="password.hasError('maxlength')">{{getExceedingLengthErrorMsg(password.getError('maxlength'))}}
+          </div>
+        </mat-error>
+      </mat-form-field>
 
-    <div *ngIf="isBadCredentialsError" class="server-error mat-error">Bad credentials</div>
+      <div *ngIf="isBadCredentialsError" class="server-error mat-error">Bad credentials</div>
 
 
-    <button mat-raised-button="" color="primary">Login</button>
+      <button mat-raised-button="" color="primary">Login</button>
 
-  </mat-card>
-</form>
-
+    </mat-card>
+  </form>
+</div>

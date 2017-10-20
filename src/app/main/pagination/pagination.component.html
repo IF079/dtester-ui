@@ -1,7 +1,7 @@
 <mat-card *ngIf="numberOfRecords > 0">
   <div class="pagination-functionality">
     <button mat-raised-button (click)="onPrev()" [disabled]="currentPage === 1 || isLoading">&lt;&lt;</button>
-    <button  mat-raised-button *ngFor="let pageNumber of getButtonNumbers()"
+    <button mat-raised-button *ngFor="let pageNumber of getButtonNumbers()"
             (click)="onPage(pageNumber)"
             [class.active]=" pageNumber === currentPage"
             [routerLinkActive]= "['active']">

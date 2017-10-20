@@ -1,38 +1,39 @@
 .wrapper {
-            position: absolute;
-            top: 30%;
-            left: 20%;
-            width: 60%;
-            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-            border-radius: 20px;
-            padding: 20px;
-            background-color: white;
-          }
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  width: 60%;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  border-radius: 20px;
+  padding: 20px;
+  background-color: white;
+}
+
 button {
-            float: right;
-            margin-right: -40px;
-            background-color: white;
-            border:none;
-              &:hover{
-                      cursor: pointer;
-                      }
-        }
+  float: right;
+  margin-right: -40px;
+  background-color: white;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .imagin {
-            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-            border-radius: 20px;
-            background-color: lightgrey;
-        }
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  border-radius: 20px;
+  background-color: lightgrey;
+}
+
 .fa-times {
-            color: red;
-                &:hover{
-                  color: black;
-                }
-          }
-h4     {
-          &:hover{
-              color: grey;
-              }
-        }
+  color: red;
+  &:hover {
+    color: black;
+  }
+}
 
-
-
+h4 {
+  &:hover {
+    color: grey;
+  }
+}

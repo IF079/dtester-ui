@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TimeTableService} from '../../shared/services/time-table.service';
-import {TimeTable} from '../../shared/entities/time-table';
+import {TimeTableService} from '../shared/services/crud/time-table.service';
+import {TimeTable} from '../shared/entities/time-table';
 
 
 @Component({
@@ -16,7 +16,9 @@ export class TimeTableComponent implements OnInit {
   timetables: TimeTable[];
   displayedColumns = ['Id:', 'Група', 'Предмет', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення', '', ''];
 
-  constructor(private timeTableService: TimeTableService ){ }
+  constructor(private timeTableService: TimeTableService) {
+  }
+
   ngOnInit() {
 
     this.timeTableService.getTimeTables().subscribe(data => {

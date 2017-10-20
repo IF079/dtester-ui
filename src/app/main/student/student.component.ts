@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {StudentService} from '../../shared/services/student.service';
-import {Student} from '../../shared/entities/student';
+import {StudentService} from '../shared/services/crud/student.service';
+import {Student} from '../shared/entities/student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 @Component({
@@ -15,12 +15,12 @@ export class StudentComponent implements OnInit {
   tableColumns = ['ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'Gradebook ID', 'ID групи', '', ''];
 
   selectedStudent: Student;
-  onSelect(student: Student): void {
-    this.selectedStudent = student;
-   }
-
 
   constructor(private studentService: StudentService) {
+  }
+
+  onSelect(student: Student): void {
+    this.selectedStudent = student;
   }
 
   ngOnInit() {

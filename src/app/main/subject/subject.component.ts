@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {SubjectService} from '../../shared/services/subject.service';
-import {Subject} from '../../shared/entities/subject';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
 import { Observable  } from 'rxjs/Observable';
+import {SubjectService} from '../shared/services/crud/subject.service';
+import {Subject} from '../shared/entities/subject';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
+
+
 @Component({
   selector: 'app-subjects',
   templateUrl: './subject.component.html',
@@ -17,7 +17,7 @@ export class SubjectComponent implements OnInit {
   subjects: Subject[];
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;
-  linkForRouting = 'subject';
+  routeSubj = 'subject';
 
   /*********************************** Pagination things ***************************************/
   currentOffset = 0;
@@ -39,6 +39,8 @@ export class SubjectComponent implements OnInit {
     });
   }
 
+
+
   getNumberOfPages(): number {
     return Math.ceil(this.numOfRecords / this.currLimit) || 0;
   }
@@ -58,12 +60,10 @@ export class SubjectComponent implements OnInit {
     this.currentOffset = (this.currPage * this.currLimit) - this.currLimit;
     this.getSubjects();
   }
-
   isLastPage(): boolean {
     const arrOfPages = this.getButtonNumbers();
     return this.currPage === Math.max(...arrOfPages);
   }
-
   goToPreviousPage(): void {
     this.currentOffset -= this.currLimit;
     this.getSubjects();

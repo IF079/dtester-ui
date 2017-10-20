@@ -1,9 +1,9 @@
-<div class = "wrapper" *ngIf="student" [hidden]="student.hideElement">
+<div class="wrapper" *ngIf="student" [hidden]="student.hideElement">
   <div class="row">
     <div class="col-sm-5 imagin">
       <img src="{{student.photo}}">
     </div>
-    <div class = "col-sm-6">
+    <div class="col-sm-6">
       <button><i class="fa fa-times" (click)="student.hideElement=!student.hideElement"></i></button>
       <h4><strong>ID:</strong> {{student.userId}}</h4>
       <h4><strong>Логін:</strong> {{student.username}}</h4>
@@ -16,4 +16,3 @@
     </div>
   </div>
 </div>
-

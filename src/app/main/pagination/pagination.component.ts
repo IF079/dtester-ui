@@ -1,7 +1,9 @@
-import {Component, Input, EventEmitter, Output, OnInit} from '@angular/core';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import {Component, Input, EventEmitter, Output, OnInit} from '@angular/core';
+
+
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
@@ -56,13 +58,12 @@ export class PaginationComponent implements OnInit {
 
   onNext(): void {
     this.currentPage += 1;
-    this.router.navigate([this.linkForRouting,  this.currentPage]);
+    this.router.navigate([this.linkForRouting, this.currentPage]);
     this.goToNextPage.emit(true);
   }
 
   ngOnInit() {
-
-
+    this.router.navigate([this.linkForRouting, this.currentPage]);
 
   }
 

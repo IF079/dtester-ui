@@ -32,12 +32,13 @@
 
 </table>
 
-<app-pagination (goToPage)="goToPage($event)"
-                (goToPrevPage)="goToPreviousPage()"
-                (goToNextPage)="goToNextPage()"
-                [isLoading]="isLoading"
-                [currentPage]="currPage"
-                [currentLimitPerPage]="currLimit"
-                [numberOfRecords]="numOfRecords"
+<app-pagination (goPage)="goPage($event)"
+                (goPrev)="goPrev()"
+                (goNext)="goNext()"
+                [count]="pages"
+                [page]="page"
+                [loading]="loading"
+                [perPage]="perPage"
+                [pagesToShow]="3"
                 [errWithCounting]="errWithCountingRecords"></app-pagination>
 

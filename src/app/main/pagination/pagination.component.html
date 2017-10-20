@@ -1,18 +1,21 @@
-<mat-card *ngIf="numberOfRecords > 0">
+<mat-card *ngIf="count > 0">
   <div class="pagination-functionality">
-    <button mat-raised-button (click)="onPrev()" [disabled]="currentPage === 1 || isLoading">&lt;&lt;</button>
-    <button mat-raised-button *ngFor="let pageNumber of getButtonNumbers()"
+    <button mat-raised-button (click)="onPrev()"
+            [disabled]="page === 1 || loading"
+    >&lt;&lt;</button>
+    <button mat-raised-button *ngFor="let pageNumber of getPages()"
             (click)="onPage(pageNumber)"
-            [class.active]=" pageNumber === currentPage"
+            [class.active]=" pageNumber === page"
             [routerLinkActive]="['active']">
       {{pageNumber}}
     </button>
-    <button mat-raised-button (click)="onNext()" [disabled]="isLastPage() || isLoading"> &gt;&gt;</button>
+    <button mat-raised-button (click)="onNext()"
+            [disabled]="lastPage() || loading"
+    >&gt;&gt;</button>
   </div>
   <div class="pagination-description">
-    <div>{{currentPage}} cторінка із {{getNumberOfPages()}}</div>
-    <div>Кількість предметів: {{numberOfRecords}}</div>
+    <div>{{page}} cторінка із {{totalPages()}}</div>
+    <div>Кількість предметів: {{count}}</div>
     <div *ngIf="errWithCounting">{{errWithCounting}}</div>
   </div>
-
 </mat-card>

@@ -9,50 +9,56 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 export class PaginationComponent implements OnInit {
 
   @Input() errWithCounting: string;
-  @Input() currentPage: number;
-  @Input() numberOfRecords: number;
-  @Input() currentLimitPerPage: number;
-  @Input() isLoading: boolean;
-  @Output() goToPrevPage = new EventEmitter<boolean>();
-  @Output() goToNextPage = new EventEmitter<boolean>();
-  @Output() goToPage = new EventEmitter<number>();
+  @Input() page: number;
+  @Input() count: number;
+  @Input() perPage: number;
+  @Input() pagesToShow: number;
+  @Input() loading: boolean;
+  @Output() goPrev = new EventEmitter<boolean>();
+  @Output() goNext = new EventEmitter<boolean>();
+  @Output() goPage = new EventEmitter<number>();
 
   constructor() {
   }
-
-  getNumberOfPages(): number {
-    return Math.ceil(this.numberOfRecords / this.currentLimitPerPage) || 0;
-  }
-
-  getButtonNumbers(): number[] {
-    const numberOfPages = this.getNumberOfPages();
-    const arrOfButtonNumbers = [];
-    for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
-      arrOfButtonNumbers.push(pageNumber);
-    }
-    return arrOfButtonNumbers;
-  }
-
   onPage(n: number): void {
-    this.goToPage.emit(n);
+    this.goPage.emit(n);
   }
-
-  isLastPage(): boolean {
-    const arrOfPages = this.getButtonNumbers();
-    return this.currentPage === Math.max(...arrOfPages);
-  }
-
-  onPrev(): void {
-    this.goToPrevPage.emit(true);
-  }
-
   onNext(): void {
-    this.goToNextPage.emit(true);
+    this.goNext.emit();
   }
-
+  onPrev(): void {
+    this.goPrev.emit();
+  }
+  totalPages(): number {
+    return Math.ceil(this.count / this.perPage) || 0;
+  }
+  lastPage(): boolean {
+    return this.perPage * this.page >= this.count;
+  }
+  getPages(): number[] {
+    const c = this.totalPages();
+    const p = this.page;
+    const pagesToShow = this.pagesToShow || 9;
+    const pages: number[] = [];
+    pages.push(p);
+    const times = pagesToShow - 1;
+    for (let i = 0; i < times; i++) {
+      if (pages.length < pagesToShow) {
+        if (Math.min.apply(null, pages) > 1) {
+          pages.push(Math.min.apply(null, pages) - 1);
+        }
+      }
+      if (pages.length < pagesToShow) {
+        if (Math.max.apply(null, pages) < c) {
+          pages.push(Math.max.apply(null, pages) + 1);
+        }
+      }
+    }
+    pages.sort((a, b) => a - b);
+    return pages;
+  }
   ngOnInit() {
   }
-
 }
 
 const log = LoggerFactory.create(PaginationComponent);

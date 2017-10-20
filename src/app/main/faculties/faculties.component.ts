@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FacultyService} from './../shared/services/faculty.service';
-import {Faculty} from './../shared/entities/faculty';
+import {FacultyService} from '../../shared/services/faculty.service';
+import {Faculty} from '../../shared/entities/faculty';
 
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TimeTableService} from './../shared/services/time-table.service';
-import {TimeTable} from './../shared/entities/time-table';
+import {TimeTableService} from '../../shared/services/time-table.service';
+import {TimeTable} from '../../shared/entities/time-table';
 
 
 @Component({

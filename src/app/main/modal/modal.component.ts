@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoggerFactory} from '../shared/logger/logger.factory';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 @Component({
   selector: 'app-modal',

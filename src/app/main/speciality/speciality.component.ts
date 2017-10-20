@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SpecialityService} from '../shared/services/speciality.service';
-import {Speciality} from '../shared/entities/speciality';
-import {LoggerFactory} from '../shared/logger/logger.factory';
+import {SpecialityService} from '../../shared/services/speciality.service';
+import {Speciality} from '../../shared/entities/speciality';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 @Component({
   selector: 'app-speciality',

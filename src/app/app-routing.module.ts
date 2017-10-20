@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {WelcomeComponent} from './welcome/welcome.component';
-import {StudentComponent} from './student/student.component';
+import {WelcomeComponent} from './main/welcome/welcome.component';
+import {StudentComponent} from './main/student/student.component';
 
-import {SpecialityComponent} from './speciality/speciality.component';
+import {SpecialityComponent} from './main/speciality/speciality.component';
 
-import {SubjectComponent} from './subject/subject.component';
+import {SubjectComponent} from './main/subject/subject.component';
 
-import {FacultiesComponent} from './faculties/faculties.component';
-import {TimeTableComponent} from './time-table/time-table.component';
+import {FacultiesComponent} from './main/faculties/faculties.component';
+import {TimeTableComponent} from './main/time-table/time-table.component';
 
 
 const appRoutes = [

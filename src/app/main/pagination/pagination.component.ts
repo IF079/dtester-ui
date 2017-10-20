@@ -1,5 +1,5 @@
 import {Component, Input, EventEmitter, Output, OnInit} from '@angular/core';
-import {LoggerFactory} from '../shared/logger/logger.factory';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 @Component({

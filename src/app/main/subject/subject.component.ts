@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SubjectService} from '../shared/services/subject.service';
-import {Subject} from '../shared/entities/subject';
-import {LoggerFactory} from '../shared/logger/logger.factory';
+import {SubjectService} from '../../shared/services/subject.service';
+import {Subject} from '../../shared/entities/subject';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

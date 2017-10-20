@@ -1,0 +1,19 @@
+<div class = "wrapper" *ngIf="student" [hidden]="student.hideElement">
+  <div class="row">
+    <div class="col-sm-5 imagin">
+      <img src="{{student.photo}}">
+    </div>
+    <div class = "col-sm-6">
+      <button><i class="fa fa-times" (click)="student.hideElement=!student.hideElement"></i></button>
+      <h4><strong>ID:</strong> {{student.userId}}</h4>
+      <h4><strong>Логін:</strong> {{student.username}}</h4>
+      <h4><strong>Пароль:</strong> {{student.plainPassword}}</h4>
+      <h4><strong>Прізвище:</strong> {{student.studentSurname}}</h4>
+      <h4><strong>Ім'я:</strong> {{student.studentName}}</h4>
+      <h4><strong>По-батькові:</strong> {{student.studentFname}}</h4>
+      <h4><strong>Номер залікової книжки:</strong> {{student.gradebookId}}</h4>
+      <h4><strong>Номер групи:</strong> {{student.groupId}}</h4>
+    </div>
+  </div>
+</div>
+

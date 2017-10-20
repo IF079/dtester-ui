@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {StudentService} from '../shared/services/student.service';
-import {Student} from '../shared/entities/student';
-import {LoggerFactory} from '../shared/logger/logger.factory';
+import {StudentService} from '../../shared/services/student.service';
+import {Student} from '../../shared/entities/student';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 @Component({
   selector: 'app-students',

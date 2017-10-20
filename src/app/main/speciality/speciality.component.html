@@ -12,3 +12,12 @@
     <td><i class="fa fa-times" aria-hidden="true"></i></td>
   </tr>
 </table>
+<app-pagination (goPage)="goPage($event)"
+                (goPrev)="goPrev()"
+                (goNext)="goNext()"
+                [numberOfRecords]="pages"
+                [currentPage]="page"
+                [isLoading]="loading"
+                [limitPerPage]="perPage"
+                [numberOfPagesToShow]="3"
+                [errWithCounting]="errWithCountingRecords"></app-pagination>

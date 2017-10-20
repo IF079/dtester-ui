@@ -1,8 +1,6 @@
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import {ActivatedRoute, Router, ParamMap} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import {Component, Input, EventEmitter, Output, OnInit} from '@angular/core';
-
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -11,62 +9,69 @@ import {Component, Input, EventEmitter, Output, OnInit} from '@angular/core';
 })
 export class PaginationComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-
-  }
-
-  @Input() errWithCounting: string;
   @Input() linkForRouting: string;
+  @Input() errWithCounting: string;
   @Input() currentPage: number;
   @Input() numberOfRecords: number;
-  @Input() currentLimitPerPage: number;
+  @Input() limitPerPage: number;
+  @Input() numberOfPagesToShow: number;
   @Input() isLoading: boolean;
+  @Output() goPrev = new EventEmitter<boolean>();
+  @Output() goNext = new EventEmitter<boolean>();
+  @Output() goPage = new EventEmitter<number>();
 
-  @Output() goToPrevPage = new EventEmitter<boolean>();
-  @Output() goToNextPage = new EventEmitter<boolean>();
-  @Output() goToPage = new EventEmitter<number>();
-
-  getNumberOfPages(): number {
-    return Math.ceil(this.numberOfRecords / this.currentLimitPerPage) || 0;
-  }
-
-  getButtonNumbers(): number[] {
-    const numberOfPages = this.getNumberOfPages();
-    const arrOfButtonNumbers = [];
-    for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
-      arrOfButtonNumbers.push(pageNumber);
-    }
-    return arrOfButtonNumbers;
+  constructor(private router: Router) {
   }
 
   onPage(n: number): void {
     this.currentPage = n;
     this.router.navigate([this.linkForRouting, this.currentPage]);
-    this.goToPage.emit(this.currentPage);
-  }
-
-  isLastPage(): boolean {
-    const arrOfPages = this.getButtonNumbers();
-    return this.currentPage === Math.max(...arrOfPages);
-  }
-
-  onPrev(): void {
-    this.currentPage -= 1;
-    this.router.navigate([this.linkForRouting, this.currentPage]);
-    this.goToPrevPage.emit(true);
+    this.goPage.emit(n);
   }
 
   onNext(): void {
     this.currentPage += 1;
     this.router.navigate([this.linkForRouting, this.currentPage]);
-    this.goToNextPage.emit(true);
+    this.goNext.emit();
+  }
+
+  onPrev(): void {
+    this.currentPage -= 1;
+    this.router.navigate([this.linkForRouting, this.currentPage]);
+    this.goPrev.emit();
+  }
+
+  getTotalNumberOfPages(): number {
+    return Math.ceil(this.numberOfRecords / this.limitPerPage) || 0;
+  }
+
+  isLastPage(): boolean {
+    return this.limitPerPage * this.currentPage >= this.numberOfRecords;
+  }
+
+  getPages(): number[] {
+    const numberOfPages = this.getTotalNumberOfPages();
+    const currentPage = this.currentPage;
+    const defaultNumberOfPagesToShow = 9;
+    const numberOfPagesToShow = this.numberOfPagesToShow || defaultNumberOfPagesToShow;
+    const generatedPages: number[] = [];
+    generatedPages.push(currentPage);
+    for (let i = 1; i <= numberOfPagesToShow; i++) {
+      if (generatedPages.length < numberOfPagesToShow) {
+        if (Math.min(...generatedPages) > 1) {
+          generatedPages.push(Math.min(...generatedPages) - 1);
+        }
+        if (Math.max(...generatedPages) < numberOfPages) {
+          generatedPages.push(Math.max(...generatedPages) + 1);
+        }
+      }
+    }
+    generatedPages.sort((a, b) => a - b);
+    return generatedPages;
   }
 
   ngOnInit() {
-    this.router.navigate([this.linkForRouting, this.currentPage]);
-
   }
-
 }
 
 const log = LoggerFactory.create(PaginationComponent);

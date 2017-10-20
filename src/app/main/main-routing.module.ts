@@ -23,6 +23,7 @@ const mainRoutes = [
           {path: 'welcome', component: WelcomeComponent},
           {path: 'students', component: StudentComponent},
           {path: 'speciality', component: SpecialityComponent},
+          {path: 'speciality/:currentPage', component: SpecialityComponent},
           {path: 'subject', component: SubjectComponent},
           {path: 'subject/:currentPage', component: SubjectComponent},
           {path: 'faculties', component: FacultiesComponent},

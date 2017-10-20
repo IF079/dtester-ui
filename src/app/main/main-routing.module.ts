@@ -27,8 +27,7 @@ const mainRoutes = [
           {path: 'subject/:currPage', component: SubjectComponent},
           {path: 'faculties', component: FacultiesComponent},
           {path: 'groups', component: GroupsComponent},
-          {path: 'timetable', component: TimeTableComponent},
-          {path: 'tests', component: TestsComponent}
+          {path: 'timetable', component: TimeTableComponent}
         ]
       }
     ]

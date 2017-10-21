@@ -68,7 +68,6 @@ export class SubjectComponent implements OnInit {
       });
   }
   ngOnInit() {
-    this.router.navigate([this.linkForRouting, this.currentPage]);
     this.getSubjects();
     this.countRecords();
   }

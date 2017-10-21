@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -20,24 +20,26 @@ export class PaginationComponent implements OnInit {
   @Output() goNext = new EventEmitter<boolean>();
   @Output() goPage = new EventEmitter<number>();
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute ) {
   }
 
   onPage(n: number): void {
     this.currentPage = n;
-    this.router.navigate([this.linkForRouting, this.currentPage]);
+    this.router.navigate(['../', this.currentPage], {relativeTo: this.route});
     this.goPage.emit(n);
   }
 
   onNext(): void {
     this.currentPage += 1;
-    this.router.navigate([this.linkForRouting, this.currentPage]);
+    this.router.navigate(['../', this.currentPage], {relativeTo: this.route});
+
     this.goNext.emit();
   }
 
   onPrev(): void {
     this.currentPage -= 1;
-    this.router.navigate([this.linkForRouting, this.currentPage]);
+    this.router.navigate(['../', this.currentPage], {relativeTo: this.route});
+
     this.goPrev.emit();
   }
 

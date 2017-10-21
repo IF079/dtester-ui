@@ -9,6 +9,7 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
+import {TestsComponent} from './tests/tests.component';
 
 
 const mainRoutes = [
@@ -24,11 +25,11 @@ const mainRoutes = [
           {path: 'students', component: StudentComponent},
           {path: 'students/:id', component: StudentDetailComponent},
           {path: 'speciality', component: SpecialityComponent},
+          {path: 'speciality/:currentPage', component: SpecialityComponent},
           {path: 'subject', component: SubjectComponent},
-          {path: 'subject/:currPage', component: SubjectComponent},
+          {path: 'subject/:currentPage', component: SubjectComponent},
           {path: 'faculties', component: FacultiesComponent},
           {path: 'groups', component: GroupsComponent},
-
           {path: 'timetable', component: TimeTableComponent}
         ]
       }

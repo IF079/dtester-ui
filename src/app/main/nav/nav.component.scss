@@ -1,3 +1,15 @@
 .login {
   margin-left: auto;
 }
+.navActiveClass .cdk-mouse-focused {
+  background-color: white;
+  &:active {
+    background-color: white !important;
+  }
+}
+.navActiveClass .cdk-focused {
+  background-color: white;
+  &:active {
+    background-color: white !important;
+  }
+}

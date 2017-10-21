@@ -23,6 +23,8 @@ import {GroupsService} from './shared/services/crud/groups.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
 import {BasicEntityGridComponent} from './basic-entity-grid/basic-entity-grid.component'
+import {TestsComponent} from './tests/tests.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import {BasicEntityGridComponent} from './basic-entity-grid/basic-entity-grid.co
     SubjectComponent,
     TimeTableComponent,
     WelcomeComponent,
-    BasicEntityGridComponent
+    BasicEntityGridComponent,
+    TestsComponent
   ],
   imports: [
     CommonModule,

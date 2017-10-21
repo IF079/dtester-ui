@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Speciality} from '../../entities/speciality';
 import {Observable} from 'rxjs/Observable';
 import {SpecialityDto} from './dto/speciality-dto';
+import {RecordsCount} from '../../entities/recordsCount';
 
 @Injectable()
 export class SpecialityService {
@@ -27,8 +28,11 @@ export class SpecialityService {
     return entity;
   }
 
-  getSpeciality(): Observable<Speciality[]> {
-    return this.http.get<SpecialityDto[]>(`${this.URL}/getRecords`)
+  getSpeciality(limit: number, offset: number): Observable<Speciality[]> {
+    return this.http.get<SpecialityDto[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`)
       .map(specialityDtoArr => specialityDtoArr.map(SpecialityService.toSpeciality));
+  }
+  countSpeciality(): Observable<RecordsCount> {
+    return this.http.get(`${this.URL}/countRecords`);
   }
 }

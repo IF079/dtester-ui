@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SpecialityService} from '../shared/services/crud/speciality.service';
 import {Speciality} from '../shared/entities/speciality';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-speciality',
@@ -19,7 +19,6 @@ export class SpecialityComponent implements OnInit {
   pages: number;
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;
-  linkForRouting = 'speciality';
   constructor(private specialityService: SpecialityService, private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe(params => {
       if (!params['currentPage']) {
@@ -33,7 +32,10 @@ export class SpecialityComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.navigate([this.linkForRouting, this.page]);
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.page = +params.get('currentPage');
+      this.goPage(this.page);
+    });
     this.getSpeciality();
     this.countSpeciality();
   }

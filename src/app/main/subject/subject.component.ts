@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SubjectService} from '../shared/services/crud/subject.service';
 import {Subject} from '../shared/entities/subject';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 
@@ -11,11 +11,10 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
   styleUrls: ['./subject.component.scss']
 })
 export class SubjectComponent implements OnInit {
-  displayedColumns = ['Id:', 'Назва', 'Опис', 'Ред', 'Bид'];
+  displayedColumns = ['Id:', 'Назва', 'Опис', '', ''];
   subjects: Subject[];
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;
-  linkForRouting = 'subject';
   /*********************************** Pagination things ***************************************/
   offset = 0;
   currentPage = 1;
@@ -24,15 +23,7 @@ export class SubjectComponent implements OnInit {
   isLoading = false;
 
   constructor(private subjectService: SubjectService, private route: ActivatedRoute, private router: Router) {
-    this.route.params.subscribe(params => {
-      if (!params['currentPage']) {
-        this.currentPage = 1;
-        this.goPage(this.currentPage);
-      } else {
-        this.currentPage = +params['currentPage'];
-        this.goPage(this.currentPage);
-      }
-    });
+
   }
   goPage(n: number): void {
     this.offset = (this.limitPerPage * this.currentPage) - this.limitPerPage;
@@ -68,7 +59,10 @@ export class SubjectComponent implements OnInit {
       });
   }
   ngOnInit() {
-    this.router.navigate([this.linkForRouting, this.currentPage]);
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.currentPage = +params.get('currentPage');
+      this.goPage(this.currentPage);
+    });
     this.getSubjects();
     this.countRecords();
   }

@@ -3,11 +3,13 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Student} from '../../entities/student';
 import {StudentDto} from './dto/student-dto';
+import {LoggerFactory} from '../logger/logger.factory';
 
 class OtherDtoInfo {
   password: string;
   passwordConfirm: string;
   email: string;
+  username: string;
 }
 
 @Injectable()
@@ -27,8 +29,8 @@ export class StudentService {
     dto.student_fname = student.studentFname;
     dto.group_id = student.groupId;
     dto.photo = student.photo;
-    dto.username = student.username;
 
+    dto.username = otherDtoInfo.username;
     dto.password = otherDtoInfo.password;
     dto.password_confirm = otherDtoInfo.passwordConfirm;
     dto.plain_password = otherDtoInfo.password;
@@ -41,7 +43,6 @@ export class StudentService {
     const entity = new Student();
 
     entity.userId = studentDto.user_id;
-    entity.username = studentDto.username;
     entity.gradebookId = studentDto.gradebook_id;
     entity.studentSurname = studentDto.student_surname;
     entity.studentName = studentDto.student_name;
@@ -54,11 +55,13 @@ export class StudentService {
   }
 
   getStudents(): Observable<Student[]> {
-    return this.http.get<StudentDto[]>(`${this.URL}/getRecords`).map(studentDtoArr => studentDtoArr.map(StudentService.toStudent));
+    return this.http.get<StudentDto[]>(`${this.URL}/getRecords`)
+      .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
   }
 
   getStudent(id: number): Observable<Student[]> {
-    return this.http.get<StudentDto[]>(`${this.URL}/getRecords/${id}`).map(studentDtoArr => studentDtoArr.map(StudentService.toStudent));
+    return this.http.get<StudentDto[]>(`${this.URL}/getRecords/${id}`)
+      .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
   }
 
   setStudent(student: Student, otherInfo: OtherDtoInfo): Observable<any> {
@@ -83,3 +86,5 @@ export class StudentService {
    */
 
 }
+
+const log = LoggerFactory.create(StudentService);

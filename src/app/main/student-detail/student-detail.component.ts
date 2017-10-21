@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Student} from '../shared/entities/student';
-import {StudentService} from '../shared/services/student.service';
+import {StudentService} from '../shared/services/crud/student.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

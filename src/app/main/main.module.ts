@@ -22,6 +22,7 @@ import {SpinnerTasksTrackerService} from './shared/services/spinner.service';
 import {GroupsService} from './shared/services/crud/groups.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
+import {BasicEntityGridComponent} from './basic-entity-grid/basic-entity-grid.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
     StudentDetailComponent,
     SubjectComponent,
     TimeTableComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    BasicEntityGridComponent
   ],
   imports: [
     CommonModule,

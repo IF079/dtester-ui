@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Student} from '../../entities/student';
 import {StudentDto} from './dto/student-dto';
-import {LoggerFactory} from '../logger/logger.factory';
+import {LoggerFactory} from '../../../../shared/logger/logger.factory';
 
 class OtherDtoInfo {
   password: string;

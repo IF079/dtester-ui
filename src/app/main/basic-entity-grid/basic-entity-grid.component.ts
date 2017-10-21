@@ -1,21 +1,29 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Student} from '../shared/entities/student';
 import {Router} from '@angular/router';
+import {ModalComponent} from '../modal/modal.component';
+import {BasicEntityGridService} from './basic-entity-grid.service';
+
 
 @Component({
   selector: 'app-basic-entity-grid',
   templateUrl: './basic-entity-grid.component.html',
-  styleUrls: ['./basic-entity-grid.component.scss']
+  styleUrls: ['./basic-entity-grid.component.scss'],
+  providers: [ModalComponent]
 })
 export class BasicEntityGridComponent implements OnInit, OnChanges {
 
   tableArray: any[];
+  @Input() entityName: string;
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private gridService: BasicEntityGridService
+  ) {
+  }
 
   ngOnInit() {
     this.columnsArray.push('', '');
@@ -32,13 +40,34 @@ export class BasicEntityGridComponent implements OnInit, OnChanges {
         }
         newArr.push(minArr);
       }
-      // console.log(newArr);
       this.tableArray = newArr;
     }
   }
 
   onSelect(item: any[]) {
     this.router.navigate([this.detailUrl, item[0]]);
+  }
+
+  remove(item: any[], entityName) {
+    const itemId = item[0];
+
+    // DANGER!!! FROM DATABASE
+    /*this.gridService.deleteElement(itemId, entityName).subscribe(data => {
+      if (data.response === 'ok') {
+        this.tableArray.forEach((elem, index) => {
+          if (elem[0] === itemId) {
+            this.tableArray.splice(index, 1);
+          }
+        });
+      }
+    });*/
+
+    // ONLY FROM TABLE
+    this.tableArray.forEach((elem, index) => {
+      if (elem[0] === itemId) {
+        this.tableArray.splice(index, 1);
+      }
+    });
   }
 
 }

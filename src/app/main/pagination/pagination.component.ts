@@ -9,7 +9,6 @@ import { Router, ActivatedRoute} from '@angular/router';
 })
 export class PaginationComponent implements OnInit {
 
-  @Input() linkForRouting: string;
   @Input() errWithCounting: string;
   @Input() currentPage: number;
   @Input() numberOfRecords: number;
@@ -21,6 +20,7 @@ export class PaginationComponent implements OnInit {
   @Output() goPage = new EventEmitter<number>();
 
   constructor(private router: Router, private route: ActivatedRoute ) {
+
   }
 
   onPage(n: number): void {
@@ -73,6 +73,7 @@ export class PaginationComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 }
 

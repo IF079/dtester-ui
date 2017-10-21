@@ -20,6 +20,6 @@
   <div class="pagination-description">
     <div>{{currentPage}} cторінка із {{getTotalNumberOfPages()}}</div>
     <div>Кількість предметів: {{numberOfRecords}}</div>
-    <div *ngIf="errWithCounting">{{errWithCounting}}</div>
+    <div *ngIf="errWithCounting" class="mat-error">{{errWithCounting}}</div>
   </div>
 </mat-card>

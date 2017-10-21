@@ -1,4 +1,4 @@
-<div *ngIf="errWithDisplayingSubjects">{{errWithDisplayingSubjects}}</div>
+<div *ngIf="errWithDisplayingSubjects" class="mat-error">{{errWithDisplayingSubjects}}</div>
 
 <table class="table mat-typography table-responsive table-hover">
   <thead>
@@ -21,7 +21,7 @@
       {{subject.description}}
     </td>
     <td>
-      <i class="fa fa-pencil" aria-hidden="true"></i>
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 
     </td>
     <td>
@@ -39,6 +39,5 @@
                 [currentPage]="currentPage"
                 [isLoading]="isLoading"
                 [limitPerPage]="limitPerPage"
-                [linkForRouting]="linkForRouting"
                 [numberOfPagesToShow]="3"
                 [errWithCounting]="errWithCountingRecords"></app-pagination>

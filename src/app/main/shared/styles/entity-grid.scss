@@ -20,10 +20,11 @@ table.entity-grid{
             td{
                 i.fa{
                     cursor: pointer;
+                    font-size: 17px;
                     &.fa-pencil{
                         color: green;
                         &:hover{
-                            color: rgb(0, 97, 0);
+                            color: rgb(0, 97, 0); 
                         }
                     }
                     &.fa-times{

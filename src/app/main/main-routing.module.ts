@@ -23,7 +23,7 @@ const mainRoutes = [
           {path: '', redirectTo: 'welcome', pathMatch: 'full'},
           {path: 'welcome', component: WelcomeComponent},
           {path: 'students', component: StudentComponent},
-          {path: 'students/:id', component: StudentDetailComponent},
+          {path: 'student/:id', component: StudentDetailComponent},
           {path: 'speciality', component: SpecialityComponent},
           {path: 'speciality/:currentPage', component: SpecialityComponent},
           {path: 'subject', component: SubjectComponent},

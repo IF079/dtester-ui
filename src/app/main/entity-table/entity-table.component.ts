@@ -2,11 +2,7 @@ import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core'
 import {Student} from '../shared/entities/student';
 import {Router} from '@angular/router';
 import {ModalComponent} from '../modal/modal.component';
-<<<<<<< HEAD:src/app/main/entity-table/entity-table.component.ts
-import {BasicEntityGridService} from './entity-table.service';
-=======
 import {EntityTableService} from './entity-table.service';
->>>>>>> development:src/app/main/entity-table/entity-table.component.ts
 
 
 @Component({
@@ -25,7 +21,7 @@ export class EntityTableComponent implements OnInit, OnChanges {
 
   constructor(
     private router: Router,
-    private gridService: BasicEntityGridService
+    private gridService: EntityTableService
   ) {
   }
 

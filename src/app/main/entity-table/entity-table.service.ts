@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 
 
 @Injectable()
-export class BasicEntityGridService {
+export class EntityTableService {
 
   constructor(private http: HttpClient) {
   }

@@ -24,7 +24,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {TestsComponent} from './tests/tests.component';
-import {BasicEntityGridService} from './entity-table/entity-table.service';
+import {EntityTableService} from './entity-table/entity-table.service';
 
 
 @NgModule({
@@ -57,7 +57,7 @@ import {BasicEntityGridService} from './entity-table/entity-table.service';
     GroupsService,
     SubjectService,
     SpinnerTasksTrackerService,
-    BasicEntityGridService
+    EntityTableService
   ]
 })
 export class MainModule {

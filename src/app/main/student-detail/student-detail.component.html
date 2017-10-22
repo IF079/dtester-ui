@@ -1,8 +1,7 @@
  <div class = "wrapper" *ngIf="student" >
   <div class="row">
     <div class="col-sm-5 imagin">
-      <i class="fa fa-user fa-5x" aria-hidden="true"></i>
-      <img src="data:image/png;base64, {{student.photo}}">
+       <img src="data:image/png;base64,{{student.photo}}" alt="Photo">
     </div>
     <div class = "col-sm-6">
       <h1><strong>Ідентифікатор(ID) студента:</strong> {{student.userId}}</h1>

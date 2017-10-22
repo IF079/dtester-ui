@@ -1,6 +1,19 @@
 <div *ngIf="errWithDisplayingSubjects" class="mat-error">{{errWithDisplayingSubjects}}</div>
-
-<table class="table mat-typography table-responsive table-hover">
+<button mat-raised-button (click)="modal.openDialogue()">Додати предмет</button>
+<app-modal #modal>
+  <form method="post">
+    <mat-card>
+      <mat-form-field>
+        <input #subjectName matInput placeholder="Назва предмету">
+      </mat-form-field>
+      <mat-form-field class="text-area-container">
+        <textarea #subjectDescription matInput placeholder="Опис предмету"></textarea>
+      </mat-form-field>
+      <button mat-raised-button >Додати предмет</button>
+    </mat-card>
+  </form>
+</app-modal>
+<table class="table table-responsive table-hover">
   <thead>
   <tr>
     <th *ngFor="let col of displayedColumns">
@@ -22,16 +35,12 @@
     </td>
     <td>
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-
     </td>
     <td>
       <i class="fa fa-times" aria-hidden="true"></i>
     </td>
-
   </tr>
-
 </table>
-
 <app-pagination (goPage)="goPage($event)"
                 (goPrev)="goPrev()"
                 (goNext)="goNext()"

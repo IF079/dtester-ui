@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -54,8 +54,7 @@ export class PaginationComponent implements OnInit {
   getPages(): number[] {
     const numberOfPages = this.getTotalNumberOfPages();
     const currentPage = this.currentPage;
-    const defaultNumberOfPagesToShow = 9;
-    const numberOfPagesToShow = this.numberOfPagesToShow || defaultNumberOfPagesToShow;
+    const numberOfPagesToShow = this.numberOfPagesToShow;
     const generatedPages: number[] = [];
     generatedPages.push(currentPage);
     for (let i = 1; i <= numberOfPagesToShow; i++) {
@@ -73,7 +72,10 @@ export class PaginationComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.currentPage = +params.get('currentPage');
+      this.goPage.emit(this.currentPage);
+    });
   }
 }
 

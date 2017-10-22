@@ -14,7 +14,6 @@ export class SubjectService {
 
   static toSubjectDto(subject: Subject): SubjectDto {
     const dto = new SubjectDto();
-    dto.subject_id = subject.id;
     dto.subject_name = subject.name;
     dto.subject_description = subject.description;
     return dto;

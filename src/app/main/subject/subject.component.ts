@@ -26,7 +26,7 @@ export class SubjectComponent implements OnInit {
 
   }
   goPage(n: number): void {
-    this.offset = (this.limitPerPage * this.currentPage) - this.limitPerPage;
+    this.offset = (this.limitPerPage * n) - this.limitPerPage;
     this.getSubjects();
   }
   goPrev(): void {
@@ -49,6 +49,7 @@ export class SubjectComponent implements OnInit {
         this.errWithDisplayingSubjects = 'Something is wrong with displaying data. Please try again.';
       });
   }
+
   countRecords(): void {
     this.subjectService.countSubjects().subscribe((data) => {
         this.numberOfRecords = parseInt(data.numberOfRecords, 10);
@@ -59,10 +60,7 @@ export class SubjectComponent implements OnInit {
       });
   }
   ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.currentPage = +params.get('currentPage');
-      this.goPage(this.currentPage);
-    });
+
     this.getSubjects();
     this.countRecords();
   }

@@ -1,19 +1,18 @@
-<!-- <div class = "wrapper" *ngIf="student" [hidden]="student.hideElement">
+ <div class = "wrapper" *ngIf="student" >
   <div class="row">
     <div class="col-sm-5 imagin">
+      <i class="fa fa-user fa-5x" aria-hidden="true"></i>
       <img src="{{student.photo}}">
     </div>
     <div class = "col-sm-6">
-      <button><i class="fa fa-times" (click)="student.hideElement=!student.hideElement"></i></button>
-      <h4><strong>ID:</strong> {{student.userId}}</h4>
-      <h4><strong>Логін:</strong> {{student.username}}</h4>
-      <h4><strong>Пароль:</strong> {{student.plainPassword}}</h4>
-      <h4><strong>Прізвище:</strong> {{student.studentSurname}}</h4>
-      <h4><strong>Ім'я:</strong> {{student.studentName}}</h4>
-      <h4><strong>По-батькові:</strong> {{student.studentFname}}</h4>
-      <h4><strong>Номер залікової книжки:</strong> {{student.gradebookId}}</h4>
-      <h4><strong>Номер групи:</strong> {{student.groupId}}</h4>
+      <h1><strong>Ідентифікатор(ID) студента:</strong> {{student.userId}}</h1>
+      <h1><strong>Прізвище:</strong> {{student.studentSurname}}</h1>
+      <h1><strong>Ім'я:</strong> {{student.studentName}}</h1>
+      <h1><strong>По-батькові:</strong> {{student.studentFname}}</h1>
+      <h1><strong>Номер(ID) залікової книжки:</strong> {{student.gradebookId}}</h1>
+      <h1><strong>Ідентифікатор(ID) групи:</strong> {{student.groupId}}</h1>
+      <h1><strong>Пароль:</strong> {{student.plainPassword}}</h1>
     </div>
   </div>
+   <button mat-button="" color="primary"(click)="goBack()"><h2>&#171;Назад до таблиці</h2></button>
 </div>
- -->

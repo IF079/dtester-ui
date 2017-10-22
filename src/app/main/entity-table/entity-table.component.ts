@@ -2,16 +2,16 @@ import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core'
 import {Student} from '../shared/entities/student';
 import {Router} from '@angular/router';
 import {ModalComponent} from '../modal/modal.component';
-import {BasicEntityGridService} from './basic-entity-grid.service';
+import {BasicEntityGridService} from './entity-table.service';
 
 
 @Component({
-  selector: 'app-basic-entity-grid',
-  templateUrl: './basic-entity-grid.component.html',
-  styleUrls: ['./basic-entity-grid.component.scss'],
+  selector: 'app-entity-table',
+  templateUrl: './entity-table.component.html',
+  styleUrls: ['./entity-table.component.scss'],
   providers: [ModalComponent]
 })
-export class BasicEntityGridComponent implements OnInit, OnChanges {
+export class EntityTableComponent implements OnInit, OnChanges {
 
   tableArray: any[];
   @Input() entityName: string;
@@ -54,7 +54,7 @@ export class BasicEntityGridComponent implements OnInit, OnChanges {
     const itemId = item[0];
 
     // DANGER!!! FROM DATABASE
-    /*this.gridService.deleteElement(itemId, entityName).subscribe(data => {
+    this.gridService.deleteElement(itemId, entityName).subscribe(data => {
       if (data.response === 'ok') {
         this.tableArray.forEach((elem, index) => {
           if (elem[0] === itemId) {
@@ -62,7 +62,7 @@ export class BasicEntityGridComponent implements OnInit, OnChanges {
           }
         });
       }
-    });*/
+    });
 
     // ONLY FROM TABLE
     this.tableArray.forEach((elem, index) => {

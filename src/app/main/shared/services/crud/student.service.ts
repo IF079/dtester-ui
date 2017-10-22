@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Student} from '../../entities/student';
 import {StudentDto} from './dto/student-dto';
+import {RecordsCount} from '../../entities/recordsCount';
 import {LoggerFactory} from '../../../../shared/logger/logger.factory';
 
 class OtherDtoInfo {
@@ -54,14 +55,18 @@ export class StudentService {
     return entity;
   }
 
-  getStudents(): Observable<Student[]> {
-    return this.http.get<StudentDto[]>(`${this.URL}/getRecords`)
+  getStudents(limit: number, offset: number): Observable<Student[]> {
+    return this.http.get<StudentDto[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`)
       .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
   }
 
   getStudent(id: number): Observable<Student[]> {
     return this.http.get<StudentDto[]>(`${this.URL}/getRecords/${id}`)
       .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
+  }
+
+  countSubjects(): Observable<RecordsCount> {
+    return this.http.get(`${this.URL}/countRecords`);
   }
 
   setStudent(student: Student, otherInfo: OtherDtoInfo): Observable<any> {

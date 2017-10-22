@@ -1,1 +1,11 @@
-<app-basic-entity-grid [entityName]="entityName" [entityArray]="students" [columnsArray]='tableColumns' [detailUrl]='path'></app-basic-entity-grid>
+<app-entity-table [entityName]="entityName" [entityArray]="students" [columnsArray]='tableColumns' [detailUrl]='path'></app-entity-table>
+
+<app-pagination (goPage)="goPage($event)"
+                (goPrev)="goPrev()"
+                (goNext)="goNext()"
+                [numberOfRecords]="numberOfRecords"
+                [currentPage]="currentPage"
+                [isLoading]="isLoading"
+                [limitPerPage]="limitPerPage"
+                [numberOfPagesToShow]="3"
+                [errWithCounting]="errWithCountingRecords"></app-pagination>

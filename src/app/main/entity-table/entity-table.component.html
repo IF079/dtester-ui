@@ -1,18 +1,18 @@
 <app-modal>TEST TEST TEST</app-modal>
 <div class="col-md-12">
-<table class="entity-grid table table-responsive table-hover">
-  <thead>
+  <table class="entity-grid table table-responsive table-hover">
+    <thead>
     <tr>
       <th *ngFor="let col of columnsArray">{{col}}</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr *ngFor="let tableItem of tableArray"
         (dblclick)="onSelect(tableItem)">
       <td *ngFor="let item of tableItem">{{item}}</td>
-      <td><i class="fa fa-pencil"></i></td>
+      <td><i class="fa fa-pencil-square-o"></i></td>
       <td (click)="remove(tableItem, entityName)"><i class="fa fa-times"></i></td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 </div>

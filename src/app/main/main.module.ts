@@ -22,9 +22,9 @@ import {SpinnerTasksTrackerService} from './shared/services/spinner.service';
 import {GroupsService} from './shared/services/crud/groups.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
-import {BasicEntityGridComponent} from './basic-entity-grid/basic-entity-grid.component';
+import {EntityTableComponent} from './entity-table/entity-table.component';
 import {TestsComponent} from './tests/tests.component';
-import {BasicEntityGridService} from './basic-entity-grid/basic-entity-grid.service';
+import {EntityTableService} from './entity-table/entity-table.service';
 
 
 @NgModule({
@@ -42,7 +42,7 @@ import {BasicEntityGridService} from './basic-entity-grid/basic-entity-grid.serv
     SubjectComponent,
     TimeTableComponent,
     WelcomeComponent,
-    BasicEntityGridComponent,
+    EntityTableComponent,
     TestsComponent
   ],
   imports: [
@@ -57,7 +57,7 @@ import {BasicEntityGridService} from './basic-entity-grid/basic-entity-grid.serv
     GroupsService,
     SubjectService,
     SpinnerTasksTrackerService,
-    BasicEntityGridService
+    EntityTableService
   ]
 })
 export class MainModule {

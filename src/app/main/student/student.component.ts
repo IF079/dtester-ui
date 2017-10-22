@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StudentService} from '../shared/services/crud/student.service';
 import {Student} from '../shared/entities/student';
+import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 @Component({
@@ -16,39 +17,86 @@ export class StudentComponent implements OnInit {
   tableColumns = ['ID', 'Gradebook ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
   path = '/student';
 
+  errWithDisplayingStudents: string;
+  errWithCountingStudents: string;
+
+  /**
+   * For Pagination
+   */
+  offset = 0;
+  currentPage = 1;
+  limitPerPage = 10;
+  numberOfRecords: number;
+  isLoading = false;
+
   selectedStudent: Student;
 
   constructor(private studentService: StudentService) {
   }
 
-    ngOnInit() {
+  onSelect(student: Student): void {
+    this.selectedStudent = student;
+  }
 
-    this.studentService.getStudents().subscribe(data => {
+  /*FOR PAGINATION*/
+  goPage(n: number): void {
+    this.offset = (this.limitPerPage * n) - this.limitPerPage;
+    this.getStudents();
+  }
+  goPrev(): void {
+    this.offset -= this.limitPerPage;
+
+    this.getStudents();
+  }
+  goNext(): void {
+    this.offset += this.limitPerPage;
+    this.getStudents();
+  }
+  /*///////////////*/
+
+  getStudents(): void {
+    this.isLoading = true;
+    this.studentService.getStudents(this.limitPerPage, this.offset).subscribe(data => {
       this.students = data;
       this.students.forEach(item => {
         delete item.photo;
         delete item.plainPassword;
       });
-      // console.log(this.students);
+      this.isLoading = false;
+    },
+    err => {
+      console.log(err);
+      this.errWithDisplayingStudents = 'Something is wrong with displaying data. Please try again.';
     });
+  }
 
-    this.studentService.getStudent(16).subscribe(data => {
-      this.student = data[0];
-      // console.log(this.student);
-    });
+  countRecords(): void {
+    this.studentService.countSubjects().subscribe(data => {
+        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
+      },
+      err => {
+        console.log(err);
+        this.errWithCountingStudents = 'Something is wrong with displaying the number of subjects';
+      });
+  }
+
+  ngOnInit() {
+
+    this.getStudents();
+    this.countRecords();
 
     /*this.studentService.setStudent({
-      gradebookId : 'WR-9999384',
-      studentSurname : 'Вацик',
-      studentName : 'Дмитро',
-      studentFname : 'Станіславович',
+      gradebookId : 'WR-44941114',
+      studentSurname : 'Гриченко',
+      studentName : 'Іван',
+      studentFname : 'Степанович',
       groupId : '10',
       photo: 'base64-img'
     }, {
-      username: 'hell_demon_666',
+      username: 'griha666',
       password: '1qaz2wsx3edc',
       passwordConfirm: '1qaz2wsx3edc',
-      email: 'hell_demon_666@gmail.com',
+      email: 'griha666@gmail.com',
     }).subscribe(data => {
       console.log(data);
     });*/

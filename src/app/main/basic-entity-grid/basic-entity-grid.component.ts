@@ -45,7 +45,9 @@ export class BasicEntityGridComponent implements OnInit, OnChanges {
   }
 
   onSelect(item: any[]) {
-    this.router.navigate([this.detailUrl, item[0]]);
+    if (this.detailUrl) {
+      this.router.navigate([this.detailUrl, item[0]]);
+    }
   }
 
   remove(item: any[], entityName) {

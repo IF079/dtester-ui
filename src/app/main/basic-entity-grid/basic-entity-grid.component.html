@@ -10,8 +10,8 @@
     <tr *ngFor="let tableItem of tableArray"
         (dblclick)="onSelect(tableItem)">
       <td *ngFor="let item of tableItem">{{item}}</td>
-      <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
-      <td (click)="remove(tableItem, entityName)"><i class="fa fa-times" aria-hidden="true"></i></td>
+      <td><i class="fa fa-pencil"></i></td>
+      <td (click)="remove(tableItem, entityName)"><i class="fa fa-times"></i></td>
     </tr>
   </tbody>
 </table>

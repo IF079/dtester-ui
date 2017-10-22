@@ -11,7 +11,7 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
   styleUrls: ['./subject.component.scss']
 })
 export class SubjectComponent implements OnInit {
-  displayedColumns = ['Id:', 'Назва', 'Опис', '', ''];
+  headingColumnsOfTable = ['Id:', 'Назва', 'Опис'];
   subjects: Subject[];
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;

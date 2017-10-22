@@ -1,9 +1,7 @@
-@import '../../../variables';
 @import '../../../mixins';
 .active {
   @include indigo-grey($app-light-theme);
-  color: white;
-  font-weight: bold;
+
 }
 mat-card {
   text-align: center;

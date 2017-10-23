@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SubjectService} from '../shared/services/crud/subject.service';
 import {Subject} from '../shared/entities/subject';
-import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 
@@ -15,29 +14,32 @@ export class SubjectComponent implements OnInit {
   subjects: Subject[];
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;
-  /*********************************** Pagination things ***************************************/
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;
   numberOfRecords: number;
   isLoading = false;
 
-  constructor(private subjectService: SubjectService, private route: ActivatedRoute, private router: Router) {
+  constructor(private subjectService: SubjectService) {
 
   }
+
   goPage(n: number): void {
     this.offset = (this.limitPerPage * n) - this.limitPerPage;
     this.getSubjects();
   }
+
   goPrev(): void {
     this.offset -= this.limitPerPage;
 
     this.getSubjects();
   }
+
   goNext(): void {
     this.offset += this.limitPerPage;
     this.getSubjects();
   }
+
   getSubjects(): void {
     this.isLoading = true;
     this.subjectService.getSubjects(this.limitPerPage, this.offset).subscribe((data) => {
@@ -51,7 +53,7 @@ export class SubjectComponent implements OnInit {
   }
 
   countRecords(): void {
-    this.subjectService.countSubjects().subscribe((data) => {
+      this.subjectService.countSubjects().subscribe((data) => {
         this.numberOfRecords = parseInt(data.numberOfRecords, 10);
       },
       err => {
@@ -59,9 +61,11 @@ export class SubjectComponent implements OnInit {
         this.errWithCountingRecords = 'Something is wrong with displaying the number of subjects';
       });
   }
+
   ngOnInit() {
     this.getSubjects();
     this.countRecords();
   }
 }
+
 const log = LoggerFactory.create(SubjectComponent);

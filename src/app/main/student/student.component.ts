@@ -13,8 +13,7 @@ export class StudentComponent implements OnInit {
 
   students: Student[];
   student: Student = new Student();
-  entityName = 'student';
-  tableColumns = ['ID', 'Gradebook ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
+  headingColumnsOfTable = ['ID', 'Gradebook ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
   path = '/student';
 
   errWithDisplayingStudents: string;
@@ -43,31 +42,33 @@ export class StudentComponent implements OnInit {
     this.offset = (this.limitPerPage * n) - this.limitPerPage;
     this.getStudents();
   }
+
   goPrev(): void {
     this.offset -= this.limitPerPage;
-
     this.getStudents();
   }
+
   goNext(): void {
     this.offset += this.limitPerPage;
     this.getStudents();
   }
+
   /*///////////////*/
 
   getStudents(): void {
     this.isLoading = true;
     this.studentService.getStudents(this.limitPerPage, this.offset).subscribe(data => {
-      this.students = data;
-      this.students.forEach(item => {
-        delete item.photo;
-        delete item.plainPassword;
+        this.students = data;
+        this.students.forEach(item => {
+          delete item.photo;
+          delete item.plainPassword;
+        });
+        this.isLoading = false;
+      },
+      err => {
+        console.log(err);
+        this.errWithDisplayingStudents = 'Something is wrong with displaying data. Please try again.';
       });
-      this.isLoading = false;
-    },
-    err => {
-      console.log(err);
-      this.errWithDisplayingStudents = 'Something is wrong with displaying data. Please try again.';
-    });
   }
 
   countRecords(): void {
@@ -76,31 +77,13 @@ export class StudentComponent implements OnInit {
       },
       err => {
         console.log(err);
-        this.errWithCountingStudents = 'Something is wrong with displaying the number of subjects';
+        this.errWithCountingStudents = 'Something is wrong with displaying the number of students';
       });
   }
 
   ngOnInit() {
-
     this.getStudents();
     this.countRecords();
-
-    /*this.studentService.setStudent({
-      gradebookId : 'WR-44941114',
-      studentSurname : 'Гриченко',
-      studentName : 'Іван',
-      studentFname : 'Степанович',
-      groupId : '10',
-      photo: 'base64-img'
-    }, {
-      username: 'griha666',
-      password: '1qaz2wsx3edc',
-      passwordConfirm: '1qaz2wsx3edc',
-      email: 'griha666@gmail.com',
-    }).subscribe(data => {
-      console.log(data);
-    });*/
-
   }
 }
 

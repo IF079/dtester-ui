@@ -24,11 +24,11 @@ const mainRoutes = [
           {path: 'welcome', component: WelcomeComponent},
           {path: 'students/:currentPage', component: StudentComponent},
           {path: 'student/:id', component: StudentDetailComponent},
-          {path: 'speciality/:currentPage', component: SpecialityComponent},
-          {path: 'subject/:currentPage', component: SubjectComponent},
-          {path: 'faculties', component: FacultiesComponent},
-          {path: 'groups', component: GroupsComponent},
-          {path: 'timetable', component: TimeTableComponent}
+          {path: 'specialities/:currentPage', component: SpecialityComponent},
+          {path: 'subjects/:currentPage', component: SubjectComponent},
+          {path: 'faculties/:currentPage', component: FacultiesComponent},
+          {path: 'groups/:currentPage', component: GroupsComponent},
+          {path: 'timetable/:currentPage', component: TimeTableComponent}
         ]
       }
     ]

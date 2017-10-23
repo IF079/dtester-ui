@@ -10,41 +10,30 @@ import {ActivatedRoute, Router, ParamMap} from '@angular/router';
   styleUrls: ['./speciality.component.scss']
 })
 export class SpecialityComponent implements OnInit {
-  speciality: Speciality[];
-  Row = ['ID', 'Код', 'Назва', '', ''];
-  page = 1;
+  specialities: Speciality[];
+  headingColumnsOfTable = ['ID', 'Код', 'Назва'];
+  currentPage = 1;
   offset = 0;
-  perPage = 10;
-  loading = false;
-  pages: number;
+  limitPerPage = 10;
+  isLoading = false;
+  numberOfRecords: number;
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;
   constructor(private specialityService: SpecialityService, private route: ActivatedRoute, private router: Router) {
-    this.route.params.subscribe(params => {
-      if (!params['currentPage']) {
-        this.page = 1;
-        this.goPage(this.page);
-      } else {
-        this.page = +params['currentPage'];
-        this.goPage(this.page);
-      }
-    });
+
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.page = +params.get('currentPage');
-      this.goPage(this.page);
-    });
-    this.getSpeciality();
-    this.countSpeciality();
+
+    this.getSpecialities();
+    this.countSpecialities();
   }
 
-  getSpeciality(): void {
-    this.specialityService.getSpeciality(this.perPage, this.offset).subscribe(
+  getSpecialities(): void {
+    this.specialityService.getSpeciality(this.limitPerPage, this.offset).subscribe(
       data => {
-        this.speciality = data;
-        this.loading = false;
+        this.specialities = data;
+        this.isLoading = false;
       },
       err => {
         console.log(err);
@@ -53,10 +42,10 @@ export class SpecialityComponent implements OnInit {
     );
   }
 
-  countSpeciality(): void {
+  countSpecialities(): void {
     this.specialityService.countSpeciality().subscribe(
       data => {
-        this.pages = parseInt(data.numberOfRecords, 10);
+        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
       },
     err => {
       console.log(err);
@@ -66,21 +55,18 @@ export class SpecialityComponent implements OnInit {
   }
 
   goPage(n: number): void {
-
-    this.offset = (n * this.perPage) - this.perPage;
-    this.getSpeciality();
+    this.offset = (n * this.limitPerPage) - this.limitPerPage;
+    this.getSpecialities();
   }
 
   goNext(): void {
-    this.offset += this.perPage;
-
-    this.getSpeciality();
+    this.offset += this.limitPerPage;
+    this.getSpecialities();
   }
 
   goPrev(): void {
-
-    this.offset -= this.perPage;
-    this.getSpeciality();
+    this.offset -= this.limitPerPage;
+    this.getSpecialities();
   }
 }
 const log = LoggerFactory.create(SpecialityComponent);

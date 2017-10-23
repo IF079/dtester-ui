@@ -1,12 +1,12 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {SpinnerTasksTrackerService} from '../../main/shared/services/spinner.service';
+import {SpinnerService} from '../../main/shared/services/spinner.service';
 
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
 
-  constructor(private spinner: SpinnerTasksTrackerService) {
+  constructor(private spinner: SpinnerService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

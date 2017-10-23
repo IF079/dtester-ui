@@ -18,7 +18,7 @@ import {MainMaterialModule} from './main-material.module';
 import {StudentService} from './shared/services/crud/student.service';
 import {SpecialityService} from './shared/services/crud/speciality.service';
 import {SubjectService} from './shared/services/crud/subject.service';
-import {SpinnerTasksTrackerService} from './shared/services/spinner.service';
+import {SpinnerService} from './shared/services/spinner.service';
 import {GroupsService} from './shared/services/crud/groups.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
@@ -56,7 +56,7 @@ import {EntityTableService} from './entity-table/entity-table.service';
     SpecialityService,
     GroupsService,
     SubjectService,
-    SpinnerTasksTrackerService,
+    SpinnerService,
     EntityTableService
   ]
 })

@@ -3,7 +3,7 @@ import {LoggerFactory} from '../../../shared/logger/logger.factory';
 import {spinnerDefaultConfig} from '../config/spinner.default.config';
 
 @Injectable()
-export class SpinnerTasksTrackerService {
+export class SpinnerService {
 
   private timeout = spinnerDefaultConfig.timeout;
 
@@ -41,4 +41,4 @@ export class SpinnerTasksTrackerService {
   }
 }
 
-const log = LoggerFactory.create(SpinnerTasksTrackerService);
+const log = LoggerFactory.create(SpinnerService);

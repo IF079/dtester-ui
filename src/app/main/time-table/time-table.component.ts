@@ -12,7 +12,7 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 export class TimeTableComponent implements OnInit {
 
   timetables: TimeTable[];
-  headingColumnsOfTable = ['Id:', 'Назва', 'Опис'];
+  headingColumnsOfTable = ['Id:', 'Назва', 'Опис', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
   errWithDisplayingTimeTables: string;
   errWithCountingRecords: string;
   offset = 0;

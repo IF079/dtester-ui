@@ -1,17 +1,17 @@
- <div class = "wrapper" *ngIf="student" >
+<div class="wrapper" *ngIf="student">
   <div class="row">
     <div class="col-sm-5 imagin">
-       <img src="data:image/png;base64,{{student.photo}}" alt="Photo">
+      <img src="data:image/png;base64,{{student.photo}}" alt="Photo">
     </div>
-    <div class = "col-sm-6">
-      <h1><strong>Ідентифікатор(ID) студента:</strong> {{student.userId}}</h1>
-      <h1><strong>Прізвище:</strong> {{student.studentSurname}}</h1>
-      <h1><strong>Ім'я:</strong> {{student.studentName}}</h1>
-      <h1><strong>По-батькові:</strong> {{student.studentFname}}</h1>
-      <h1><strong>Номер(ID) залікової книжки:</strong> {{student.gradebookId}}</h1>
-      <h1><strong>Ідентифікатор(ID) групи:</strong> {{student.groupId}}</h1>
-      <h1><strong>Пароль:</strong> {{student.plainPassword}}</h1>
+    <div class="col-sm-6">
+      <p><strong>Ідентифікатор(ID) студента:</strong> {{student.userId}}</p>
+      <p><strong>Прізвище:</strong> {{student.studentSurname}}</p>
+      <p><strong>Ім'я:</strong> {{student.studentName}}</p>
+      <p><strong>По-батькові:</strong> {{student.studentFname}}</p>
+      <p><strong>Номер(ID) залікової книжки:</strong> {{student.gradebookId}}</p>
+      <p><strong>Ідентифікатор(ID) групи:</strong> {{student.groupId}}</p>
+      <p><strong>Пароль:</strong> {{student.plainPassword}}</p>
     </div>
   </div>
-   <button mat-button="" color="primary"(click)="goBack()"><h2>&#171;Назад до таблиці</h2></button>
+  <button mat-button="" color="primary" (click)="goBack()"><p>&#171;Назад до таблиці</p></button>
 </div>

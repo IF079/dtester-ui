@@ -10,6 +10,7 @@
   padding: 20px;
   animation-name: incoming;
   animation-duration: 2s;
+  font-size: 2rem;
   @keyframes incoming {
     from {
           left: -100%;
@@ -37,15 +38,19 @@ button {
     }
   }
 }
-.imagin {
-  box-shadow: $basic-box-shadow;
-  border-radius: 20px;
-  background-color: lightgrey;
-}
+
 .imagin img {
-  width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100%;
+  &:hover {
+    box-shadow: $basic-box-shadow;
+  }
 }
-h1 {
+
+p {
+  font-size: 2rem;
   &:hover {
     color: rgb(51, 51, 204);
     text-decoration: underline;

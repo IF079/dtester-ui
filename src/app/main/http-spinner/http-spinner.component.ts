@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SpinnerTasksTrackerService} from '../shared/services/spinner.service';
+import {SpinnerService} from '../shared/services/spinner.service';
 
 @Component({
   selector: 'app-http-spinner',
@@ -8,7 +8,7 @@ import {SpinnerTasksTrackerService} from '../shared/services/spinner.service';
 })
 export class HttpSpinnerComponent implements OnInit {
 
-  constructor(public spinner: SpinnerTasksTrackerService) {
+  constructor(public spinner: SpinnerService) {
   }
 
   ngOnInit() {

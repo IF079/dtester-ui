@@ -1,15 +1,15 @@
 import {inject, TestBed} from '@angular/core/testing';
 
-import {SpinnerTasksTrackerService} from './spinner.service';
+import {SpinnerService} from './spinner.service';
 
-describe('SpinnerTasksTrackerService', () => {
+describe('SpinnerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SpinnerTasksTrackerService]
+      providers: [SpinnerService]
     });
   });
 
-  it('should be created', inject([SpinnerTasksTrackerService], (service: SpinnerTasksTrackerService) => {
+  it('should be created', inject([SpinnerService], (service: SpinnerService) => {
     expect(service).toBeTruthy();
   }));
 });

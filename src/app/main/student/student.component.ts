@@ -19,9 +19,7 @@ export class StudentComponent implements OnInit {
   errWithDisplayingStudents: string;
   errWithCountingStudents: string;
 
-  /**
-   * For Pagination
-   */
+  // For Pagination
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;

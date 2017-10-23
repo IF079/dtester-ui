@@ -11,7 +11,7 @@ import {Faculty} from '../shared/entities/faculty';
 export class FacultiesComponent implements OnInit {
 
   faculties: Faculty[];
-  headingColumnsOfTable = ['Id:', 'Назва', 'Опис'];
+  headingColumnsOfTable = ['ID', 'Назва', 'Опис'];
   errWithDisplayingFaculties: string;
   errWithCountingRecords: string;
   offset = 0;

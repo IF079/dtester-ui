@@ -13,7 +13,7 @@ export class StudentComponent implements OnInit {
 
   students: Student[];
   student: Student = new Student();
-  headingColumnsOfTable = ['ID', 'Gradebook ID', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
+  headingColumnsOfTable = ['ID', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
   path = '/student';
 
   errWithDisplayingStudents: string;

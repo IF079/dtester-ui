@@ -19,7 +19,7 @@ export class GroupsComponent implements OnInit {
   limitPerPage = 10;
   numberOfRecords: number;
   isLoading = false;
-  headingColumnsOfTable = ['Id:', 'Name', 'Faculty id', 'Speciality id'];
+  headingColumnsOfTable = ['ID', 'Назва', 'ID Факультету', 'ID Спеціальності'];
 
   constructor(private groupsService: GroupsService) {
   }

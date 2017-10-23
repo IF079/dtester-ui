@@ -1,7 +1,7 @@
 <mat-toolbar>
 
   <a mat-raised-button [routerLink]="['/']" color="primary" [routerLinkActive]="navActiveClass"
-     [routerLinkActiveOptions]="{exact: true}">Home</a>
+     [routerLinkActiveOptions]="{exact: true}"><i class="fa fa-home fa-lg"></i></a>
   <a class="login" *ngIf="!loginService.user.isLogged()" mat-raised-button color="primary" [routerLink]="['/login']"
      [routerLinkActive]="navActiveClass">Увійти</a>
   <a class="login" *ngIf="loginService.user.isLogged()" mat-raised-button color="primary" [routerLink]="['/logout']"

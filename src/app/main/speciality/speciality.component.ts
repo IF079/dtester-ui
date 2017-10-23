@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {SpecialityService} from '../shared/services/crud/speciality.service';
 import {Speciality} from '../shared/entities/speciality';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-speciality',
@@ -19,12 +18,9 @@ export class SpecialityComponent implements OnInit {
   numberOfRecords: number;
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;
-  constructor(private specialityService: SpecialityService, private route: ActivatedRoute, private router: Router) {
-
-  }
+  constructor(private specialityService: SpecialityService) { }
 
   ngOnInit(): void {
-
     this.getSpecialities();
     this.countSpecialities();
   }

@@ -1,21 +1,11 @@
-@import '../../../variables';
-
-td {
-  font-weight: $primary-font-weight;
+.addButton {
+  float: right;
+  margin: 15px 0;
 }
-thead {
-  background: #f5f5f5;
+.modal-button {
+  margin-top: 30px;
 }
-
-i.fa {
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.4);
-  }
-  &.fa-pencil-square-o {
-    color: #148038;
-  }
-  &.fa-times {
-    color: rgb(218, 5, 5);
-  }
+mat-form-field {
+  display: block;
+  min-width: 30%;
 }

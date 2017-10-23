@@ -9,6 +9,9 @@ table {
   td {
     font-weight: $primary-font-weight;
   }
+  th {
+    border: none;
+  }
   i.fa {
     cursor: pointer;
     &:hover {

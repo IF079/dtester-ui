@@ -1,3 +1,42 @@
+<div *ngIf="errWithDisplayingStudents" class="mat-error">{{errWithDisplayingStudents}}</div>
+<button mat-raised-button (click)="addModal.openDialogue()">Додати студента</button>
+<app-modal #addModal>
+    <mat-card>
+        <mat-form-field>
+            <input matInput placeholder="Прізвище">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Ім'я">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="По-батькові">
+        </mat-form-field>
+    </mat-card>
+    <mat-card>
+            <mat-form-field>
+                <input matInput placeholder="ID групи">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Greedbook ID">
+            </mat-form-field>
+            Фото: <input type="file">
+        </mat-card>
+        <mat-card>
+                <mat-form-field>
+                    <input matInput placeholder="Username">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Email">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Пароль">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Підтвердження паролю">
+                </mat-form-field>
+
+            </mat-card>
+</app-modal>
 <app-entity-table [entityName]="'Student'" [entityArray]="students" [columnsArray]="headingColumnsOfTable" [detailUrl]='path'></app-entity-table>
 
 <app-pagination (goPage)="goPage($event)"

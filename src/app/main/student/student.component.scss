@@ -1,0 +1,12 @@
+mat-card{
+    margin-bottom: 30px;
+    float: left;
+    mat-form-field{
+        input{
+            margin-right: 15px;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+}

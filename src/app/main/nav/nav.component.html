@@ -1,17 +1,23 @@
 <mat-toolbar>
 
-  <a mat-raised-button [routerLink]="['/']"  color="primary"  [routerLinkActive]="navActiveClass"
+  <a mat-raised-button [routerLink]="['/']" color="primary" [routerLinkActive]="navActiveClass"
      [routerLinkActiveOptions]="{exact: true}">Home</a>
+
   <a class="login" *ngIf="!loginService.user.isLogged()" mat-raised-button color="primary" [routerLink]="['/login']"
      [routerLinkActive]="navActiveClass">Увійти</a>
-  <a class="login" *ngIf="loginService.user.isLogged()" mat-raised-button  color="primary"  [routerLink]="['/logout']"
-     [routerLinkActive]="navActiveClass">Вийти</a>
-  <mat-toolbar-row   *ngIf="loginService.user.isAdmin()">
-    <a mat-raised-button  [routerLink]="['/students/1']" [routerLinkActive]="navActiveClass">Студенти</a>
-    <a  mat-raised-button   [routerLink]="['/speciality/1']" [routerLinkActive]="navActiveClass">Спеціальності</a>
-    <a  mat-raised-button  [routerLink]="['/subject/1']" [routerLinkActive]="navActiveClass">Предмети</a>
+
+  <div class="login" *ngIf="loginService.user.isLogged()">
+    <label style="align-self: flex-end" >{{loginService.user.username}}</label>
+    <a class="login" mat-raised-button color="primary" [routerLink]="['/logout']"
+       [routerLinkActive]="navActiveClass">Вийти</a>
+  </div>
+
+  <mat-toolbar-row *ngIf="loginService.user.isAdmin()">
+    <a mat-raised-button [routerLink]="['/students/1']" [routerLinkActive]="navActiveClass">Студенти</a>
+    <a mat-raised-button [routerLink]="['/speciality/1']" [routerLinkActive]="navActiveClass">Спеціальності</a>
+    <a mat-raised-button [routerLink]="['/subject/1']" [routerLinkActive]="navActiveClass">Предмети</a>
     <a mat-raised-button [routerLink]="['/faculties']" [routerLinkActive]="navActiveClass">Факультети</a>
-    <a  mat-raised-button [routerLink]="['/timetable']" [routerLinkActive]="navActiveClass">Розклад</a>
+    <a mat-raised-button [routerLink]="['/timetable']" [routerLinkActive]="navActiveClass">Розклад</a>
   </mat-toolbar-row>
 
 </mat-toolbar>

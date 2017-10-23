@@ -2,7 +2,7 @@
 <div class="col-md-12">
   <table class="entity-grid table table-responsive table-hover">
     <thead>
-    <tr>
+    <tr class="heading-row">
       <th *ngFor="let col of columnsArray">{{col}}</th>
     </tr>
     </thead>
@@ -11,7 +11,7 @@
         (dblclick)="onSelect(tableItem)">
       <td *ngFor="let item of tableItem">{{item}}</td>
       <td><i class="fa fa-pencil-square-o"></i></td>
-      <td (click)="remove(tableItem, entityName)"><i class="fa fa-times"></i></td>
+      <td><i class="fa fa-times"></i></td>
     </tr>
     </tbody>
   </table>

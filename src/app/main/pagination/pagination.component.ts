@@ -39,7 +39,6 @@ export class PaginationComponent implements OnInit {
   onPrev(): void {
     this.currentPage -= 1;
     this.router.navigate(['../', this.currentPage], {relativeTo: this.route});
-
     this.goPrev.emit();
   }
 

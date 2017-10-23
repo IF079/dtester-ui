@@ -1,18 +1,12 @@
-<table class="table table-hover table-bordered">
-  <thead>
-  <tr>
-    <th *ngFor="let col of displayedColumns">{{col}}</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let group of groups">
-    <td>{{groups.groups_id}}</td>
-    <td>{{groups.groups_name}}</td>
-    <td>{{groups.faculty_id}}</td>
-    <td>{{groups.speciality_id}}</td>
-    <td><i class="gr fa-pencil-square-o"></i></td>
-    <td><i class="gr fa-times"></i></td>
-  </tr>
-  </tbody>
-</table>
+<div *ngIf="errWithDisplayingFaculties" class="mat-error">{{errWithDisplayingFaculties}}</div>
 
+<app-entity-table [entityName]="'Group'" [columnsArray]="headingColumnsOfTable" [entityArray]="groups"> </app-entity-table>
+<app-pagination (goPage)="goPage($event)"
+                (goPrev)="goPrev()"
+                (goNext)="goNext()"
+                [numberOfRecords]="numberOfRecords"
+                [currentPage]="currentPage"
+                [isLoading]="isLoading"
+                [limitPerPage]="limitPerPage"
+                [numberOfPagesToShow]="3"
+                [errWithCounting]="errWithCountingRecords"></app-pagination>

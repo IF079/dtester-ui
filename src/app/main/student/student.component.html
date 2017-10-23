@@ -1,4 +1,4 @@
-<app-entity-table [entityName]="entityName" [entityArray]="students" [columnsArray]='tableColumns' [detailUrl]='path'></app-entity-table>
+<app-entity-table [entityName]="'Student'" [entityArray]="students" [columnsArray]="headingColumnsOfTable" [detailUrl]='path'></app-entity-table>
 
 <app-pagination (goPage)="goPage($event)"
                 (goPrev)="goPrev()"

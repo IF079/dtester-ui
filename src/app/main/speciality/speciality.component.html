@@ -1,23 +1,11 @@
-<table class="table table-responsive table-hover">
-  <thead>
-  <tr>
-    <th *ngFor="let row of Row">{{row}}</th>
-  </tr>
-  </thead>
-  <tr *ngFor="let speciality of speciality">
-    <td>{{speciality.specialityId}}</td>
-    <td>{{speciality.specialityCode}}</td>
-    <td>{{speciality.specialityName}}</td>
-    <td><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
-    <td><i class="fa fa-times" aria-hidden="true"></i></td>
-  </tr>
-</table>
+<app-entity-table [entityName]="'Speciality'" [columnsArray]="headingColumnsOfTable" [entityArray]="specialities"> </app-entity-table>
+
 <app-pagination (goPage)="goPage($event)"
                 (goPrev)="goPrev()"
                 (goNext)="goNext()"
-                [numberOfRecords]="pages"
-                [currentPage]="page"
-                [isLoading]="loading"
-                [limitPerPage]="perPage"
+                [numberOfRecords]="numberOfRecords"
+                [currentPage]="currentPage"
+                [isLoading]="isLoading"
+                [limitPerPage]="limitPerPage"
                 [numberOfPagesToShow]="3"
                 [errWithCounting]="errWithCountingRecords"></app-pagination>

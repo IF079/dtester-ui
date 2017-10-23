@@ -2,22 +2,17 @@
 
   <a mat-raised-button [routerLink]="['/']" color="primary" [routerLinkActive]="navActiveClass"
      [routerLinkActiveOptions]="{exact: true}">Home</a>
-
   <a class="login" *ngIf="!loginService.user.isLogged()" mat-raised-button color="primary" [routerLink]="['/login']"
      [routerLinkActive]="navActiveClass">Увійти</a>
-
-  <div class="login" *ngIf="loginService.user.isLogged()">
-    <label style="align-self: flex-end" >{{loginService.user.username}}</label>
-    <a class="login" mat-raised-button color="primary" [routerLink]="['/logout']"
-       [routerLinkActive]="navActiveClass">Вийти</a>
-  </div>
-
+  <a class="login" *ngIf="loginService.user.isLogged()" mat-raised-button color="primary" [routerLink]="['/logout']"
+     [routerLinkActive]="navActiveClass">Вийти</a>
   <mat-toolbar-row *ngIf="loginService.user.isAdmin()">
-    <a mat-raised-button [routerLink]="['/students/1']" [routerLinkActive]="navActiveClass">Студенти</a>
-    <a mat-raised-button [routerLink]="['/speciality/1']" [routerLinkActive]="navActiveClass">Спеціальності</a>
-    <a mat-raised-button [routerLink]="['/subject/1']" [routerLinkActive]="navActiveClass">Предмети</a>
-    <a mat-raised-button [routerLink]="['/faculties']" [routerLinkActive]="navActiveClass">Факультети</a>
-    <a mat-raised-button [routerLink]="['/timetable']" [routerLinkActive]="navActiveClass">Розклад</a>
+    <a mat-button color="primary" [routerLink]="['/students/1']" [routerLinkActive]="navActiveClass">Студенти</a>
+    <a mat-button color="primary" [routerLink]="['/specialities/1']" [routerLinkActive]="navActiveClass">Спеціальності</a>
+    <a mat-button color="primary" [routerLink]="['/subjects/1']" [routerLinkActive]="navActiveClass">Предмети</a>
+    <a mat-button color="primary" [routerLink]="['/faculties/1']" [routerLinkActive]="navActiveClass">Факультети</a>
+    <a mat-button color="primary" [routerLink]="['/timetable/1']" [routerLinkActive]="navActiveClass">Розклад</a>
+    <a mat-button color="primary" [routerLink]="['/groups/1']" [routerLinkActive]="navActiveClass">Групи</a>
   </mat-toolbar-row>
 
 </mat-toolbar>

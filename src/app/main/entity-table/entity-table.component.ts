@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Student} from '../shared/entities/student';
 import {Router} from '@angular/router';
-import {EntityTableService} from './entity-table.service';
+import {ModalComponent} from '../modal/modal.component';
 
 
 @Component({
@@ -17,10 +17,7 @@ export class EntityTableComponent implements OnInit, OnChanges {
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
 
-  constructor(
-    private router: Router,
-    private gridService: EntityTableService
-  ) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -43,26 +40,6 @@ export class EntityTableComponent implements OnInit, OnChanges {
     }
   }
 
-  remove(item: any[], entityName) {
-    const itemId = item[0];
-
-    // DANGER!!! FROM DATABASE
-    /*this.gridService.deleteElement(itemId, entityName).subscribe(data => {
-      if (data.response === 'ok') {
-        this.tableArray.forEach((elem, index) => {
-          if (elem[0] === itemId) {
-            this.tableArray.splice(index, 1);
-          }
-        });
-      }
-    });*/
-
-    // ONLY FROM TABLE
-    this.tableArray.forEach((elem, index) => {
-      if (elem[0] === itemId) {
-        this.tableArray.splice(index, 1);
-      }
-    });
-  }
-
 }
+
+

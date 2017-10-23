@@ -24,8 +24,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {TestsComponent} from './tests/tests.component';
-import {EntityTableService} from './entity-table/entity-table.service';
-
+import {FacultyService} from './shared/services/crud/faculty.service';
+import {TimeTableService} from './shared/services/crud/time-table.service';
 
 @NgModule({
   declarations: [
@@ -56,8 +56,9 @@ import {EntityTableService} from './entity-table/entity-table.service';
     SpecialityService,
     GroupsService,
     SubjectService,
-    SpinnerService,
-    EntityTableService
+    FacultyService,
+    TimeTableService,
+    SpinnerService
   ]
 })
 export class MainModule {

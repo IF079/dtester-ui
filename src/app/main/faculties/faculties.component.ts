@@ -2,16 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {FacultyService} from '../shared/services/crud/faculty.service';
 import {Faculty} from '../shared/entities/faculty';
 
-
 @Component({
   selector: 'app-faculties',
   templateUrl: './faculties.component.html',
   styleUrls: ['./faculties.component.scss']
 })
-export class FacultiesComponent implements OnInit {
 
+export class FacultiesComponent implements OnInit {
   faculties: Faculty[];
-  headingColumnsOfTable = ['ID', 'Назва', 'Опис'];
+  headingColumnsOfTable = ['№', 'Назва', 'Опис'];
   errWithDisplayingFaculties: string;
   errWithCountingRecords: string;
   offset = 0;
@@ -42,11 +41,9 @@ export class FacultiesComponent implements OnInit {
     this.isLoading = true;
     this.facultyService.getFaculties(this.limitPerPage, this.offset).subscribe(data => {
         this.faculties = data;
-        console.log(this.faculties);
         this.isLoading = false;
       },
       err => {
-        console.log(err);
         this.errWithDisplayingFaculties = 'Something is wrong with displaying data. Please try again.';
       });
   }
@@ -56,7 +53,6 @@ export class FacultiesComponent implements OnInit {
         this.numberOfRecords = parseInt(data.numberOfRecords, 10);
       },
       err => {
-        console.log(err);
         this.errWithCountingRecords = 'Something is wrong with displaying the number of  records';
       });
   }

@@ -23,7 +23,6 @@ import {GroupsService} from './shared/services/crud/groups.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
-import {TestsComponent} from './tests/tests.component';
 import {FacultyService} from './shared/services/crud/faculty.service';
 import {TimeTableService} from './shared/services/crud/time-table.service';
 
@@ -43,7 +42,6 @@ import {TimeTableService} from './shared/services/crud/time-table.service';
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent,
-    TestsComponent
   ],
   imports: [
     CommonModule,

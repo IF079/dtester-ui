@@ -9,7 +9,7 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
-import {TestsComponent} from './tests/tests.component';
+
 
 
 const mainRoutes = [

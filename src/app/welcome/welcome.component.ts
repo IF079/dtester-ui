@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from '../../login/services/login.service';
-import {User} from '../../login/services/entities/user';
+import {LoginService} from '../login/services/login.service';
+import {User} from '../login/services/entities/user';
 
 @Component({
   selector: 'app-welcome',
@@ -9,7 +9,7 @@ import {User} from '../../login/services/entities/user';
 })
 export class WelcomeComponent implements OnInit {
 
-  private anonymousUserUsername = 'анонімний користувач';
+  private anonymousUserUsername = 'Anonym';
 
   constructor(private loginService: LoginService) {
   }
@@ -32,7 +32,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   private applyWelcomeTemplate(username: string) {
-    return 'Ласкаво просимо, ' + username + '!';
+    return 'Welcome, ' + username + '!';
   }
 
 }

@@ -1,10 +1,2 @@
-
-// version 4
-@import '_variables.scss';
-@import '../node_modules/bootstrap/scss/bootstrap';
-
-
-@include mat-core();
-
-@include angular-material-theme($app-light-theme);
-
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";

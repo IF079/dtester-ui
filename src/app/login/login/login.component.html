@@ -2,7 +2,6 @@
   <form class="login-form" (ngSubmit)="login()" method="post">
     <mat-card>
       <h1>Authorization</h1>
-
       <mat-form-field>
         <input matInput [formControl]="username" [(ngModel)]="credentials.username" placeholder="Username">
         <mat-error *ngIf="username.invalid">

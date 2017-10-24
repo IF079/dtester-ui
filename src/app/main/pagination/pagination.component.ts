@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import { Router, ActivatedRoute, ParamMap} from '@angular/router';
-
+import {StudentService} from '../shared/dto/'
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',

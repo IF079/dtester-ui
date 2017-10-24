@@ -1,0 +1,26 @@
+<div *ngIf="errWithDisplayingSubjects" class="mat-error">{{errWithDisplayingSubjects}}</div>
+<button mat-raised-button (click)="modal.openDialogue()">Додати предмет</button>
+<app-modal #modal>
+  <form method="post">
+    <mat-card>
+      <mat-form-field>
+        <input  matInput placeholder="Назва предмету">
+      </mat-form-field>
+      <mat-form-field class="text-area-container">
+        <textarea  matInput placeholder="Опис предмету"></textarea>
+      </mat-form-field>
+      <button mat-raised-button >Додати предмет</button>
+    </mat-card>
+  </form>
+</app-modal>
+<app-entity-table [entityName]="'Subject'" [columnsArray]="headingColumnsOfTable" [entityArray]="subjects"> </app-entity-table>
+
+<app-pagination (goPage)="goPage($event)"
+                (goPrev)="goPrev()"
+                (goNext)="goNext()"
+                [numberOfRecords]="numberOfRecords"
+                [currentPage]="currentPage"
+                [isLoading]="isLoading"
+                [limitPerPage]="limitPerPage"
+                [numberOfPagesToShow]="3"
+                [errWithCounting]="errWithCountingRecords"></app-pagination>

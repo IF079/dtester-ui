@@ -1,0 +1,14 @@
+
+<div *ngIf="errWithDisplayingFaculties" class="mat-error">{{errWithDisplayingFaculties}}</div>
+
+<app-entity-table [entityName]="'Faculty'" [columnsArray]="headingColumnsOfTable" [entityArray]="faculties"> </app-entity-table>
+
+<app-pagination (goPage)="goPage($event)"
+                (goPrev)="goPrev()"
+                (goNext)="goNext()"
+                [numberOfRecords]="numberOfRecords"
+                [currentPage]="currentPage"
+                [isLoading]="isLoading"
+                [limitPerPage]="limitPerPage"
+                [numberOfPagesToShow]="3"
+                [errWithCounting]="errWithCountingRecords"></app-pagination>

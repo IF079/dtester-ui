@@ -1,0 +1,10 @@
+@import '_variables.scss';
+
+@mixin indigo-grey($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  background-color: mat-color($primary);
+  color: white;
+  font-weight: bold;
+}

@@ -5,7 +5,6 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
-import {HttpSpinnerComponent} from './http-spinner/http-spinner.component';
 import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {ModalComponent} from './modal/modal.component';
@@ -32,7 +31,6 @@ import {TestsComponent} from './tests/tests.component';
   declarations: [
     MainComponent,
     NavComponent,
-    HttpSpinnerComponent,
     FacultiesComponent,
     GroupsComponent,
     ModalComponent,

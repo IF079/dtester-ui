@@ -1,5 +1,7 @@
 <div class="main-frame">
   <app-nav></app-nav>
-  <app-http-spinner></app-http-spinner>
+  <div [style.visibility]="spinner.needsSpinner() ? 'visible' : 'hidden'">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
   <router-outlet></router-outlet>
 </div>

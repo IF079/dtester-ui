@@ -5,25 +5,25 @@ import 'rxjs/add/observable/forkJoin';
 
 import {Group} from '../../entities/group';
 import {RecordsCount} from '../../entities/recordsCount';
+import {urlConstants} from '../../constants/url-constants';
 
 @Injectable()
 
 export class GroupsService {
-  URL = '/Group';
   constructor(private http: HttpClient) {
   }
   getGroups(limit: number, offset: number): Observable<any[]> {
     return Observable.forkJoin(
-      this.http.get<Group[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`),
-      this.http.get<Group>(`${this.URL}/countRecords`)
+      this.http.get<Group[]>(`${urlConstants.groupUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`),
+      this.http.get<RecordsCount>(`${urlConstants.groupUrl}${urlConstants.getCount}`)
     );
   }
 
   get(id: number): Observable<Group> {
-    return this.http.get(`${this.URL}/getRecords/${id}`);
+    return this.http.get(`${urlConstants.groupUrl}${urlConstants.getRecords}/${id}`);
   }
 
   addGroup(data): Observable<any> {
-    return this.http.post(`${this.URL}/insertData`, data);
+    return this.http.post(`${urlConstants.groupUrl}${urlConstants.insertData}`, data);
   }
 }

@@ -6,11 +6,11 @@ import 'rxjs/add/observable/forkJoin';
 import {Subject} from '../../entities/subject';
 import {SubjectDto} from './dto/subject-dto';
 import {RecordsCount} from '../../entities/recordsCount';
+import {urlConstants} from '../../constants/url-constants';
 
 @Injectable()
 
 export class SubjectService {
-  URL = '/Subject';
   constructor(private http: HttpClient) {
   }
 
@@ -31,18 +31,18 @@ export class SubjectService {
 
   getSubjects(limit: number, offset: number): Observable<any[]> {
     return Observable.forkJoin(
-      this.http.get<SubjectDto[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`)
+      this.http.get<SubjectDto[]>(`${urlConstants.subjectUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
         .map(subjectDtoArr => subjectDtoArr.map(SubjectService.toSubjectEntity)),
-      this.http.get<RecordsCount>(`${this.URL}/countRecords`)
+      this.http.get<RecordsCount>(`${urlConstants.subjectUrl}${urlConstants.getCount}`)
     );
   }
 
   getSubject(id: number): Observable<Subject[]> {
-    return this.http.get<SubjectDto[]>(`${this.URL}/getRecords/${id}`)
+    return this.http.get<SubjectDto[]>(`${urlConstants.subjectUrl}${urlConstants.getRecords}${id}`)
       .map(subjectDtoArr => subjectDtoArr.map(SubjectService.toSubjectEntity));
   }
 
   addSubject(subject: Subject): Observable<SubjectDto> {
-    return this.http.post(`${this.URL}/insertData`, SubjectService.toSubjectDto(subject));
+    return this.http.post(`${urlConstants.subjectUrl}${urlConstants.insertData}`, SubjectService.toSubjectDto(subject));
   }
 }

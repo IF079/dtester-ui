@@ -12,6 +12,11 @@ import {Speciality} from '../shared/entities/speciality';
 export class SpecialityComponent implements OnInit {
   specialities: Speciality[];
   headingColumnsOfTable = ['№', 'Код', 'Назва'];
+  btnAdd = 'Додати';
+  btnClose = 'Закрити';
+  btnAddItem = 'Додати Спеціальність';
+  phCode = 'Код Спеціальності';
+  phName = 'Назва Спеціальності';
   currentPage = 1;
   offset = 0;
   limitPerPage = 10;

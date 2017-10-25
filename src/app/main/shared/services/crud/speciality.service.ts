@@ -6,7 +6,7 @@ import 'rxjs/add/observable/forkJoin';
 import {Speciality} from '../../entities/speciality';
 import {SpecialityDto} from './dto/speciality-dto';
 import {RecordsCount} from '../../entities/recordsCount';
-import {getSpecialityUrl, getRecordsRange, getCount} from '../../constants/url-constants';
+import {urlConstants} from '../../constants/url-constants';
 
 @Injectable()
 
@@ -32,9 +32,9 @@ export class SpecialityService {
 
   getSpeciality(limit: number, offset: number): Observable<any[]> {
     return Observable.forkJoin(
-      this.http.get<SpecialityDto[]>(`${getSpecialityUrl}${getRecordsRange}/${limit}/${offset}`)
+      this.http.get<SpecialityDto[]>(`${urlConstants.specialityUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
         .map(specialityDtoArr => specialityDtoArr.map(SpecialityService.toSpeciality)),
-      this.http.get<RecordsCount>(`${getSpecialityUrl}${getCount}`)
+      this.http.get<RecordsCount>(`${urlConstants.specialityUrl}${urlConstants.getCount}`)
     );
   }
 }

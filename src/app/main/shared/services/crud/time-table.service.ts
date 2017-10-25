@@ -5,25 +5,25 @@ import 'rxjs/add/observable/forkJoin';
 
 import {TimeTable} from '../../entities/time-table';
 import {RecordsCount} from '../../entities/recordsCount';
+import {urlConstants} from '../../constants/url-constants';
 
 @Injectable()
 
 export class TimeTableService {
-  URL = '/TimeTable';
   constructor(private http: HttpClient) {
   }
   getTimeTables(limit: number, offset: number): Observable<any[]> {
     return Observable.forkJoin(
-      this.http.get<TimeTable[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`),
-      this.http.get<RecordsCount>(`${this.URL}/countRecords`)
+      this.http.get<TimeTable[]>(`${urlConstants.timeTableUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`),
+      this.http.get<RecordsCount>(`${urlConstants.timeTableUrl}${urlConstants.getCount}`)
     );
   }
 
   getTimeTable(id: number): Observable<TimeTable> {
-    return this.http.get(`${this.URL}/getRecords/${id}`);
+    return this.http.get(`${urlConstants.timeTableUrl}${urlConstants.getRecords}${id}`);
   }
 
   addTimeTable(data): Observable<any> {
-    return this.http.post(`${this.URL}/insertData`, data);
+    return this.http.post(`${urlConstants.timeTableUrl}${urlConstants.insertData}`, data);
   }
 }

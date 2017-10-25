@@ -7,6 +7,7 @@ import {Student} from '../../entities/student';
 import {StudentDto} from './dto/student-dto';
 import {RecordsCount} from '../../entities/recordsCount';
 import {LoggerFactory} from '../../../../shared/logger/logger.factory';
+import {urlConstants} from '../../constants/url-constants';
 
 class OtherDtoInfo {
   password: string;
@@ -18,7 +19,6 @@ class OtherDtoInfo {
 @Injectable()
 
 export class StudentService {
-  URL = '/Student';
   constructor(private http: HttpClient) {
   }
 
@@ -53,19 +53,19 @@ export class StudentService {
 
   getStudents(limit: number, offset: number): Observable<any[]> {
     return Observable.forkJoin(
-      this.http.get<StudentDto[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`)
+      this.http.get<StudentDto[]>(`${urlConstants.studentUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
         .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent)),
-      this.http.get<RecordsCount>(`${this.URL}/countRecords`)
+      this.http.get<RecordsCount>(`${urlConstants.studentUrl}${urlConstants.getCount}`)
     );
   }
 
   getStudent(id: number): Observable<Student[]> {
-    return this.http.get<StudentDto[]>(`${this.URL}/getRecords/${id}`)
+    return this.http.get<StudentDto[]>(`${urlConstants.studentUrl}${urlConstants.getRecords}/${id}`)
       .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
   }
 
   setStudent(student: Student, otherInfo: OtherDtoInfo): Observable<any> {
-    return this.http.post(`${this.URL}/insertData`, StudentService.parseStudent(student, otherInfo));
+    return this.http.post(`${urlConstants.studentUrl}${urlConstants.insertData}`, StudentService.parseStudent(student, otherInfo));
   }
 }
 

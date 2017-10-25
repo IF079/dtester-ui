@@ -1,22 +1,22 @@
 <button mat-raised-button=""
         color="primary"
         (click)="modal.openDialogue()"
-        class="addButton">Додати спеціальність</button>
+        class="addButton">{{btnAddItem}}</button>
 <app-modal #modal>
   <mat-card>
     <mat-form-field>
-      <input matInput placeholder="Код Спеціальності">
+      <input matInput placeholder="{{phCode}}">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Назва Спеціальності">
+      <input matInput placeholder="{{phName}}">
     </mat-form-field>
     <button class="modal-button"
             mat-raised-button=""
-            color="primary">Додати</button>
+            color="primary">{{btnAdd}}</button>
     <button class="modal-button"
             mat-raised-button=""
             color="primary"
-            (click)="modal.closeDialogue()">Закрити</button>
+            (click)="modal.closeDialogue()">{{btnClose}}</button>
   </mat-card>
 </app-modal>
 <app-entity-table [entityName]="'Speciality'"

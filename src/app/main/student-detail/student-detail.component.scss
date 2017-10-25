@@ -13,18 +13,17 @@
   font-size: 2rem;
   @keyframes incoming {
     from {
-      left: -100%;
+          left: -100%;
     }
     to {
-      left: 5%;
+         left: 5%;
     }
   }
 }
-
 button {
   margin: 10px;
   border-radius: 15px;
-  &:hover {
+     &:hover {
     cursor: pointer;
     transform: scale(1.1);
   }
@@ -39,17 +38,15 @@ button {
     }
   }
 }
-
 .imagin img {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
-  width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100%;
   &:hover {
     box-shadow: $basic-box-shadow;
   }
 }
-
 p {
   font-size: 2rem;
   &:hover {

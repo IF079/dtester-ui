@@ -26,10 +26,6 @@ export class StudentComponent implements OnInit {
   constructor(private studentService: StudentService) {
   }
 
-  onSelect(student: Student): void {
-    this.selectedStudent = student;
-  }
-
   goPage(n: number): void {
     this.offset = (this.limitPerPage * n) - this.limitPerPage;
     this.getStudents();

@@ -8,14 +8,9 @@ export class LoggerFactory {
   static create(forClass: Function): Logger<any> {
     const logger = Log.create(forClass.name);
     const classType = forClass.name.split(/(?=[A-Z])/).pop();
-    logger.color = correspondingColor(classType);
+    logger.color = loggerColors[classType.toLowerCase()];
     log.color = logger.color;
     log.info(forClass.name, {type: classType, forClass: forClass});
     return logger;
   }
 }
-
-const correspondingColor = (classType: string) => {
-  return loggerColors[classType.toLowerCase()];
-};
-

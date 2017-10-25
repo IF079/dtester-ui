@@ -22,7 +22,7 @@ import {SpecialityService} from './shared/services/crud/speciality.service';
 import {SubjectService} from './shared/services/crud/subject.service';
 import {SpinnerService} from './shared/services/spinner.service';
 import {GroupsService} from './shared/services/crud/groups.service';
-import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
+import {SpinnerInterceptor} from './shared/interceptors/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {FacultyService} from './shared/services/crud/faculty.service';
 import {TimeTableService} from './shared/services/crud/time-table.service';

@@ -4,9 +4,9 @@ import {SPINNER_DEFAULT_CONFIG} from '../config/spinner.default.config';
 
 @Injectable()
 export class SpinnerService {
-  private timeout = SPINNER_DEFAULT_CONFIG.TIMEOUT;
   private tasksCounter = 0;
   private takesTooMuchTime = false;
+
   constructor() {
   }
 
@@ -16,7 +16,7 @@ export class SpinnerService {
       if (this.hasTasks()) {
         this.takesTooMuchTime = true;
       }
-    }, this.timeout);
+    }, SPINNER_DEFAULT_CONFIG.TIMEOUT);
   }
 
   removeTask(): void {

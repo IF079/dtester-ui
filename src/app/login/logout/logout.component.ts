@@ -6,7 +6,7 @@ import {LoginService} from '../services/login.service';
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.scss']
+  styles: [],
 })
 
 export class LogoutComponent implements OnInit {

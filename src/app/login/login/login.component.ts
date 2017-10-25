@@ -4,7 +4,7 @@ import {FormControl, Validators} from '@angular/forms';
 
 import {Credentials} from '../services/entities/credentials';
 import {LoginService} from '../services/login.service';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
+import {LOGIN_FORM_DEFAULT_CONFIG} from './config/login-form.default.config';
 
 @Component({
   selector: 'app-login',
@@ -13,23 +13,19 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 })
 
 export class LoginComponent {
-  USERNAME_MIN_LENGTH = 3;
-  USERNAME_MAX_LENGTH = 16;
   username: FormControl = new FormControl('username', [
     Validators.required,
-    Validators.minLength(this.USERNAME_MIN_LENGTH),
-    Validators.maxLength(this.USERNAME_MAX_LENGTH)
+    Validators.minLength(LOGIN_FORM_DEFAULT_CONFIG.USERNAME.MIN_LENGTH),
+    Validators.maxLength(LOGIN_FORM_DEFAULT_CONFIG.USERNAME.MAX_LENGTH)
   ]);
-  PASSWORD_MIN_LENGTH = 3;
-  PASSWORD_MAX_LENGTH = 16;
   password: FormControl = new FormControl('password', [
     Validators.required,
-    Validators.minLength(this.PASSWORD_MIN_LENGTH),
-    Validators.maxLength(this.PASSWORD_MAX_LENGTH)
+    Validators.minLength(LOGIN_FORM_DEFAULT_CONFIG.PASSWORD.MIN_LENGTH),
+    Validators.maxLength(LOGIN_FORM_DEFAULT_CONFIG.PASSWORD.MAX_LENGTH)
   ]);
   credentials: Credentials = {
-    username: 'admin',
-    password: 'dtapi_admin'
+    username: '',
+    password: ''
   };
   isBadCredentialsError = false;
   constructor(private loginService: LoginService) {
@@ -71,6 +67,4 @@ export class LoginComponent {
   private isFormValid(): boolean {
     return this.username.valid && this.password.valid;
   }
-
 }
-const log = LoggerFactory.create(LoginComponent);

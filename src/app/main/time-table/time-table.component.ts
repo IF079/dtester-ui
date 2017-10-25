@@ -42,11 +42,9 @@ export class TimeTableComponent implements OnInit {
     this.isLoading = true;
     this.timeTableService.getTimeTables(this.limitPerPage, this.offset).subscribe(data => {
         this.timetables = data;
-        console.log(this.timetables);
         this.isLoading = false;
       },
       err => {
-        console.log(err);
         this.errWithDisplayingTimeTables = 'Something is wrong with displaying data. Please try again.';
       });
   }
@@ -56,7 +54,6 @@ export class TimeTableComponent implements OnInit {
         this.numberOfRecords = parseInt(data.numberOfRecords, 10);
       },
       err => {
-        console.log(err);
         this.errWithCountingRecords = 'Something is wrong with displaying the number of timetable records';
       });
   }

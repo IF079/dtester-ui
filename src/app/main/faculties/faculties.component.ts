@@ -41,11 +41,9 @@ export class FacultiesComponent implements OnInit {
     this.isLoading = true;
     this.facultyService.getFaculties(this.limitPerPage, this.offset).subscribe(data => {
         this.faculties = data;
-        console.log(this.faculties);
         this.isLoading = false;
       },
       err => {
-        console.log(err);
         this.errWithDisplayingFaculties = 'Something is wrong with displaying data. Please try again.';
       });
   }
@@ -55,7 +53,6 @@ export class FacultiesComponent implements OnInit {
         this.numberOfRecords = parseInt(data.numberOfRecords, 10);
       },
       err => {
-        console.log(err);
         this.errWithCountingRecords = 'Something is wrong with displaying the number of  records';
       });
   }

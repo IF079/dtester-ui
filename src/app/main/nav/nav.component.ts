@@ -8,7 +8,7 @@ import {LoginService} from '../../login/services/login.service';
   styleUrls: ['./nav.component.scss']
 })
 
-export class NavComponent  {
+export class NavComponent {
   navActiveClass = 'mat-accent';
   constructor(public loginService: LoginService) {
   }

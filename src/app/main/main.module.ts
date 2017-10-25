@@ -25,7 +25,6 @@ import {SpinnerInterceptor} from './shared/interceptors/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {FacultyService} from './shared/services/crud/faculty.service';
 import {TimeTableService} from './shared/services/crud/time-table.service';
-import {TestsComponent} from './tests/tests.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +40,7 @@ import {TestsComponent} from './tests/tests.component';
     SubjectComponent,
     TimeTableComponent,
     WelcomeComponent,
-    EntityTableComponent,
-    TestsComponent
+    EntityTableComponent
   ],
   imports: [
     CommonModule,

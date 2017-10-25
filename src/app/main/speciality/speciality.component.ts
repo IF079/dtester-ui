@@ -1,16 +1,17 @@
 import {Component, OnInit} from '@angular/core';
+
 import {SpecialityService} from '../shared/services/crud/speciality.service';
 import {Speciality} from '../shared/entities/speciality';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 @Component({
   selector: 'app-speciality',
   templateUrl: './speciality.component.html',
   styleUrls: ['./speciality.component.scss']
 })
+
 export class SpecialityComponent implements OnInit {
   specialities: Speciality[];
-  headingColumnsOfTable = ['ID', 'Код', 'Назва'];
+  headingColumnsOfTable = ['№', 'Код', 'Назва'];
   currentPage = 1;
   offset = 0;
   limitPerPage = 10;
@@ -65,4 +66,3 @@ export class SpecialityComponent implements OnInit {
     this.getSpecialities();
   }
 }
-const log = LoggerFactory.create(SpecialityComponent);

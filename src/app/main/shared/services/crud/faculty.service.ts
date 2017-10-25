@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+
 import {Faculty} from '../../entities/faculty';
 import {RecordsCount} from '../../entities/recordsCount';
 
 @Injectable()
+
 export class FacultyService {
   URL = '/Faculty';
-
   constructor(private http: HttpClient) {
   }
 

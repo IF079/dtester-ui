@@ -1,8 +1,9 @@
 @import '../../../mixins';
+
 .active {
   @include indigo-grey($app-light-theme);
-
 }
+
 mat-card {
   text-align: center;
 }

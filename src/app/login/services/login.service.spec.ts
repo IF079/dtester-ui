@@ -1,9 +1,9 @@
 import {TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Observable} from 'rxjs/Observable';
 
 import {LoginService} from './login.service';
 import {LoginModule} from '../login.module';
-import {RouterTestingModule} from '@angular/router/testing';
-import {Observable} from 'rxjs/Observable';
 import {User} from './entities/user';
 import {AuthService} from './auth.service';
 

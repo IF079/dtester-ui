@@ -1,31 +1,28 @@
 import {Injectable, Optional} from '@angular/core';
-import {Credentials} from './entities/credentials';
-import {User} from './entities/user';
-import 'rxjs/add/operator/map';
-import {AuthService} from './auth.service';
-import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/publish';
+import {Observable} from 'rxjs/Observable';
+
+import {Credentials} from './entities/credentials';
+import {User} from './entities/user';
+import {AuthService} from './auth.service';
 import {ConnectableObservable} from 'rxjs/Rx';
 import {UrlUtils} from '../utils/url-utils';
 import {LoginUrlConfig} from '../config/login-url.config';
 import {defaultLoginUrlConfig} from '../config/login-url.default.config';
 
 @Injectable()
+
 export class LoginService {
-
   public user: User = new User();
-
   public redirectAfterLogin: string = null;
-
   private isLoggedInConnectable: ConnectableObservable<User> = null;
   private logoutInConnectable: ConnectableObservable<User> = null;
-
   private initialized = false;
-
   constructor(private auth: AuthService, private router: Router,
               @Optional() private urlConfig: LoginUrlConfig) {
     if (!urlConfig) {

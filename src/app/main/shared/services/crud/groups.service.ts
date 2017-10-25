@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+
 import {Group} from '../../entities/group';
 import {RecordsCount} from '../../entities/recordsCount';
 
 @Injectable()
+
 export class GroupsService {
   URL = '/Group';
-
   constructor(private http: HttpClient) {
   }
   getGroups(limit: number, offset: number): Observable<Group[]> {
@@ -24,5 +25,4 @@ export class GroupsService {
   countGroups(): Observable<RecordsCount> {
     return this.http.get(`${this.URL}/countRecords`);
   }
-
 }

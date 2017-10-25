@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
+
 import {GroupsService} from '../shared/services/crud/groups.service';
 import {Group} from '../shared/entities/group';
-
 
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss']
-
 })
-export class GroupsComponent implements OnInit {
 
+export class GroupsComponent implements OnInit {
   groups: Group[];
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;
@@ -19,8 +18,7 @@ export class GroupsComponent implements OnInit {
   limitPerPage = 10;
   numberOfRecords: number;
   isLoading = false;
-  headingColumnsOfTable = ['ID', 'Назва', 'ID Факультету', 'ID Спеціальності'];
-
+  headingColumnsOfTable = ['№', 'Назва', '№ Факультету', '№ Спеціальності'];
   constructor(private groupsService: GroupsService) {
   }
   getGroups() {
@@ -65,6 +63,4 @@ export class GroupsComponent implements OnInit {
     this.getGroups();
     this.countRecords();
   }
-
-
 }

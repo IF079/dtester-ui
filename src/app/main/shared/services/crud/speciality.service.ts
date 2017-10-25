@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Speciality} from '../../entities/speciality';
 import {Observable} from 'rxjs/Observable';
+
+import {Speciality} from '../../entities/speciality';
 import {SpecialityDto} from './dto/speciality-dto';
 import {RecordsCount} from '../../entities/recordsCount';
+import {getSpecialityUrl, getRecordsRange, getCount} from '../../constants/url-constants';
 
 @Injectable()
-export class SpecialityService {
-  URL = '/Speciality';
 
+export class SpecialityService {
   constructor(private http: HttpClient) {
   }
 
@@ -29,10 +30,10 @@ export class SpecialityService {
   }
 
   getSpeciality(limit: number, offset: number): Observable<Speciality[]> {
-    return this.http.get<SpecialityDto[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`)
+    return this.http.get<SpecialityDto[]>(`${getSpecialityUrl}${getRecordsRange}/${limit}/${offset}`)
       .map(specialityDtoArr => specialityDtoArr.map(SpecialityService.toSpeciality));
   }
   countSpeciality(): Observable<RecordsCount> {
-    return this.http.get(`${this.URL}/countRecords`);
+    return this.http.get(`${getSpecialityUrl}${getCount}`);
   }
 }

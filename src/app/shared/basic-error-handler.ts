@@ -1,6 +1,7 @@
 import {ErrorHandler} from '@angular/core';
-import {LoggerFactory} from './logger/logger.factory';
 import {HttpErrorResponse} from '@angular/common/http';
+
+import {LoggerFactory} from './logger/logger.factory';
 
 export class BasicErrorHandler extends ErrorHandler {
 

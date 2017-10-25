@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BasicEntityGridComponent } from './basic-entity-grid.component';
+import { EntityTableComponent } from './entity-table.component';
 
 describe('BasicEntityGridComponent', () => {
-  let component: BasicEntityGridComponent;
-  let fixture: ComponentFixture<BasicEntityGridComponent>;
+  let component: EntityTableComponent;
+  let fixture: ComponentFixture<EntityTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BasicEntityGridComponent ]
+      declarations: [ EntityTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BasicEntityGridComponent);
+    fixture = TestBed.createComponent(EntityTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

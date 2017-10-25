@@ -1,15 +1,14 @@
 import {Injectable} from '@angular/core';
+
 import {LoggerFactory} from '../../../shared/logger/logger.factory';
 import {spinnerDefaultConfig} from '../config/spinner.default.config';
 
 @Injectable()
+
 export class SpinnerService {
-
   private timeout = spinnerDefaultConfig.timeout;
-
   private tasksCounter = 0;
   private takesTooMuchTime = false;
-
   constructor() {
   }
 
@@ -40,5 +39,4 @@ export class SpinnerService {
     return this.tasksCounter > 0;
   }
 }
-
 const log = LoggerFactory.create(SpinnerService);

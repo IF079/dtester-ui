@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+
 import {StudentService} from '../shared/services/crud/student.service';
 import {Student} from '../shared/entities/student';
-import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 @Component({
@@ -9,25 +9,20 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.scss']
 })
-export class StudentComponent implements OnInit {
 
+export class StudentComponent implements OnInit {
   students: Student[];
   student: Student = new Student();
-  headingColumnsOfTable = ['ID', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
+  headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
   path = '/student';
-
   errWithDisplayingStudents: string;
   errWithCountingStudents: string;
-
-  // For Pagination
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;
   numberOfRecords: number;
   isLoading = false;
-
   selectedStudent: Student;
-
   constructor(private studentService: StudentService) {
   }
 
@@ -35,7 +30,6 @@ export class StudentComponent implements OnInit {
     this.selectedStudent = student;
   }
 
-  /*FOR PAGINATION*/
   goPage(n: number): void {
     this.offset = (this.limitPerPage * n) - this.limitPerPage;
     this.getStudents();
@@ -50,8 +44,6 @@ export class StudentComponent implements OnInit {
     this.offset += this.limitPerPage;
     this.getStudents();
   }
-
-  /*///////////////*/
 
   getStudents(): void {
     this.isLoading = true;
@@ -84,5 +76,4 @@ export class StudentComponent implements OnInit {
     this.countRecords();
   }
 }
-
 const log = LoggerFactory.create(StudentComponent);

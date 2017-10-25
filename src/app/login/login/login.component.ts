@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+import {HttpErrorResponse} from '@angular/common/http';
+import {FormControl, Validators} from '@angular/forms';
+
 import {Credentials} from '../services/entities/credentials';
 import {LoginService} from '../services/login.service';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import {HttpErrorResponse} from '@angular/common/http';
-import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
 
+export class LoginComponent {
   USERNAME_MIN_LENGTH = 3;
   USERNAME_MAX_LENGTH = 16;
   username: FormControl = new FormControl('username', [
@@ -31,11 +32,7 @@ export class LoginComponent implements OnInit {
     password: 'dtapi_admin'
   };
   isBadCredentialsError = false;
-
   constructor(private loginService: LoginService) {
-  }
-
-  ngOnInit() {
   }
 
   login() {
@@ -76,5 +73,4 @@ export class LoginComponent implements OnInit {
   }
 
 }
-
 const log = LoggerFactory.create(LoginComponent);

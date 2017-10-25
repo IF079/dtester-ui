@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+
 import {SubjectService} from '../shared/services/crud/subject.service';
 import {Subject} from '../shared/entities/subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
@@ -9,8 +10,9 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
   templateUrl: './subject.component.html',
   styleUrls: ['./subject.component.scss']
 })
+
 export class SubjectComponent implements OnInit {
-  headingColumnsOfTable = ['ID', 'Назва', 'Опис'];
+  headingColumnsOfTable = ['№', 'Назва', 'Опис'];
   subjects: Subject[];
   errWithDisplayingSubjects: string;
   errWithCountingRecords: string;

@@ -1,18 +1,17 @@
 import {Component, OnInit} from '@angular/core';
+
 import {TimeTableService} from '../shared/services/crud/time-table.service';
 import {TimeTable} from '../shared/entities/time-table';
-
-import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 @Component({
   selector: 'app-time-table',
   templateUrl: './time-table.component.html',
   styleUrls: ['./time-table.component.scss']
 })
-export class TimeTableComponent implements OnInit {
 
+export class TimeTableComponent implements OnInit {
   timetables: TimeTable[];
-  headingColumnsOfTable = ['ID', 'Назва', 'Опис', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
+  headingColumnsOfTable = ['№', 'Назва', 'Опис', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
   errWithDisplayingTimeTables: string;
   errWithCountingRecords: string;
   offset = 0;
@@ -66,6 +65,4 @@ export class TimeTableComponent implements OnInit {
     this.getTimeTables();
     this.countRecords();
   }
-
-
 }

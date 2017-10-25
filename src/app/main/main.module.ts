@@ -1,5 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
@@ -20,7 +22,6 @@ import {SpecialityService} from './shared/services/crud/speciality.service';
 import {SubjectService} from './shared/services/crud/subject.service';
 import {SpinnerService} from './shared/services/spinner.service';
 import {GroupsService} from './shared/services/crud/groups.service';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {TestsComponent} from './tests/tests.component';

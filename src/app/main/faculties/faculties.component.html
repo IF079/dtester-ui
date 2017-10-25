@@ -1,8 +1,6 @@
-
 <div *ngIf="errWithDisplayingFaculties" class="mat-error">{{errWithDisplayingFaculties}}</div>
-
-<app-entity-table [entityName]="'Faculty'" [columnsArray]="headingColumnsOfTable" [entityArray]="faculties"> </app-entity-table>
-
+<app-entity-table [entityName]="'Faculty'" [columnsArray]="headingColumnsOfTable"
+                  [entityArray]="faculties"></app-entity-table>
 <app-pagination (goPage)="goPage($event)"
                 (goPrev)="goPrev()"
                 (goNext)="goNext()"

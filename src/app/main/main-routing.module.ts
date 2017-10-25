@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
+
 import {WelcomeComponent} from './welcome/welcome.component';
 import {StudentComponent} from './student/student.component';
 import {SpecialityComponent} from './speciality/speciality.component';
@@ -9,8 +10,6 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
-import {TestsComponent} from './tests/tests.component';
-
 
 const mainRoutes = [
   {

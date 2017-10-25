@@ -1,22 +1,18 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {Student} from '../shared/entities/student';
 import {Router} from '@angular/router';
-import {ModalComponent} from '../modal/modal.component';
-
 
 @Component({
   selector: 'app-entity-table',
   templateUrl: './entity-table.component.html',
   styleUrls: ['./entity-table.component.scss']
 })
-export class EntityTableComponent implements OnInit, OnChanges {
 
+export class EntityTableComponent implements OnInit, OnChanges {
   tableArray: any[];
   @Input() entityName: string;
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
-
   constructor(private router: Router) {
   }
 
@@ -39,7 +35,4 @@ export class EntityTableComponent implements OnInit, OnChanges {
       this.router.navigate([this.detailUrl, item[0]]);
     }
   }
-
 }
-
-

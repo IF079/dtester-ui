@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+
 import {Subject} from '../../entities/subject';
 import {SubjectDto} from './dto/subject-dto';
 import {RecordsCount} from '../../entities/recordsCount';
 
 @Injectable()
+
 export class SubjectService {
   URL = '/Subject';
-
   constructor(private http: HttpClient) {
   }
 
@@ -44,5 +45,4 @@ export class SubjectService {
   countSubjects(): Observable<RecordsCount> {
     return this.http.get(`${this.URL}/countRecords`);
   }
-
 }

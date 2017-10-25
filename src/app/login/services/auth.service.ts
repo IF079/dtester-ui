@@ -1,21 +1,22 @@
 import {Injectable, Optional} from '@angular/core';
-import {LoginSuccess} from './entities/login-success';
-import {User} from './entities/user';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Credentials} from './entities/credentials';
 import 'rxjs/add/operator/timeout';
+
+
+import {LoginSuccess} from './entities/login-success';
+import {User} from './entities/user';
+import {Credentials} from './entities/credentials';
 import {AuthConfig} from '../config/auth.config';
 import {defaultAuthConfig} from '../config/auth.default.config';
 import {RequestParams} from './params/request-params';
 
 @Injectable()
-export class AuthService {
 
+export class AuthService {
   private isLoggedInParams: RequestParams;
   private loginParams: RequestParams;
   private logoutParams: RequestParams;
-
   constructor(private http: HttpClient,
               @Optional() authConfig: AuthConfig) {
     if (!authConfig) {

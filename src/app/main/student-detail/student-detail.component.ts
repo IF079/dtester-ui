@@ -1,8 +1,9 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Student} from '../shared/entities/student';
-import {StudentService} from '../shared/services/crud/student.service';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+
+import {Student} from '../shared/entities/student';
+import {StudentService} from '../shared/services/crud/student.service';
 
 @Component({
   selector: 'app-student-detail',
@@ -12,7 +13,6 @@ import {Location} from '@angular/common';
 
 export class StudentDetailComponent implements OnInit {
   student: Student;
-
   constructor(
     private studentService: StudentService,
     private route: ActivatedRoute,

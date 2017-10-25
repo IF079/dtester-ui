@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 @Component({
@@ -6,9 +7,9 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
+
 export class ModalComponent implements OnInit {
   isHidden = true;
-
   constructor() {
     log.info('constructor()');
   }
@@ -26,7 +27,5 @@ export class ModalComponent implements OnInit {
     log.info('closeDialogue()');
     this.isHidden = true;
   }
-
 }
-
 const log = LoggerFactory.create(ModalComponent);

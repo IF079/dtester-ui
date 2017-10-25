@@ -2,7 +2,6 @@
   <form class="login-form" (ngSubmit)="login()" method="post">
     <mat-card>
       <h1>Authorization</h1>
-
       <mat-form-field>
         <input matInput [formControl]="username" [(ngModel)]="credentials.username" placeholder="Username">
         <mat-error *ngIf="username.invalid">
@@ -24,12 +23,8 @@
           </div>
         </mat-error>
       </mat-form-field>
-
       <div *ngIf="isBadCredentialsError" class="server-error mat-error">Bad credentials</div>
-
-
       <button mat-raised-button="" color="primary">Login</button>
-
     </mat-card>
   </form>
 </div>

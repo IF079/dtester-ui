@@ -1,14 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import { Router, ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
 
+export class PaginationComponent implements OnInit {
   @Input() errWithCounting: string;
   @Input() currentPage: number;
   @Input() numberOfRecords: number;
@@ -18,9 +19,7 @@ export class PaginationComponent implements OnInit {
   @Output() goPrev = new EventEmitter<boolean>();
   @Output() goNext = new EventEmitter<boolean>();
   @Output() goPage = new EventEmitter<number>();
-
   constructor(private router: Router, private route: ActivatedRoute ) {
-
   }
 
   onPage(n: number): void {
@@ -77,5 +76,4 @@ export class PaginationComponent implements OnInit {
     });
   }
 }
-
 const log = LoggerFactory.create(PaginationComponent);

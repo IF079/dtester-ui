@@ -24,9 +24,9 @@
 
 .close {
   color: #aaaaaa;
-  float: right;
+  text-align: right;
   font-size: 28px;
-  text-align: bold;
+  font-weight: bold;
 
   &:hover, &:focus {
     color: #000;

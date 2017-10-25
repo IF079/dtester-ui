@@ -1,3 +1,3 @@
-export const spinnerDefaultConfig = {
-  timeout: 50 // ms
+export const SPINNER_DEFAULT_CONFIG = {
+  TIMEOUT: 50 // ms
 };

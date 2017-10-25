@@ -1,6 +1,6 @@
 import {LoginUrlConfig} from './login-url.config';
 
-export const defaultLoginUrlConfig: LoginUrlConfig = {
+export const DEFAULT_LOGIN_URL_CONFIG: LoginUrlConfig = {
   login: 'login',
   logout: 'logout'
 };

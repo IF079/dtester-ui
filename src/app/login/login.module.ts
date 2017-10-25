@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
-import {LoginRoutingModule} from './login-routing.module';
-import {LoginComponent} from './login/login.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AuthService} from './services/auth.service';
-import {LogoutComponent} from './logout/logout.component';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {LoginService} from './services/login.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import {AuthService} from './services/auth.service';
+import {LoginComponent} from './login/login.component';
+import {LogoutComponent} from './logout/logout.component';
 import {LoginMaterialModule} from './login-material.module';
+import {LoginRoutingModule} from './login-routing.module';
+import {LoginService} from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,8 @@ import {LoginMaterialModule} from './login-material.module';
     FormsModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
-    LoginRoutingModule,
-    LoginMaterialModule
+    LoginMaterialModule,
+    LoginRoutingModule
   ],
   providers: [
     AuthService,

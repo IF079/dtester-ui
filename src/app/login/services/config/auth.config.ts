@@ -1,4 +1,4 @@
-import {RequestParams} from '../services/params/request-params';
+import {RequestParams} from '../params/request-params';
 
 export class AuthConfig {
   isLoggedIn: RequestParams;

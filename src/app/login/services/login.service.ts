@@ -1,35 +1,32 @@
 import {Injectable, Optional} from '@angular/core';
 import {Credentials} from './entities/credentials';
 import {User} from './entities/user';
-import 'rxjs/add/operator/map';
 import {AuthService} from './auth.service';
-import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
+import {UrlUtils} from '../utils/url-utils';
+import {LoginUrlConfig} from './config/login-url.config';
+import {DEFAULT_LOGIN_URL_CONFIG} from './config/login-url.default.config';
+import {Observable} from 'rxjs/Observable';
+import {ConnectableObservable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/publish';
-import {ConnectableObservable} from 'rxjs/Rx';
-import {UrlUtils} from '../utils/url-utils';
-import {LoginUrlConfig} from '../config/login-url.config';
-import {defaultLoginUrlConfig} from '../config/login-url.default.config';
 
 @Injectable()
 export class LoginService {
-
   public user: User = new User();
-
   public redirectAfterLogin: string = null;
 
   private isLoggedInConnectable: ConnectableObservable<User> = null;
   private logoutInConnectable: ConnectableObservable<User> = null;
-
   private initialized = false;
 
   constructor(private auth: AuthService, private router: Router,
               @Optional() private urlConfig: LoginUrlConfig) {
     if (!urlConfig) {
-      this.urlConfig = defaultLoginUrlConfig;
+      this.urlConfig = DEFAULT_LOGIN_URL_CONFIG;
     }
     this.initialize();
   }
@@ -43,9 +40,7 @@ export class LoginService {
 
   login(credentials: Credentials): Observable<User> {
     return this.auth.login(credentials)
-      .do(user => {
-        return this.setupUser(user);
-      })
+      .do(user => this.setupUser(user))
       .do(() => this.router.navigate([this.getRedirectionUrl()]));
   }
 
@@ -61,9 +56,10 @@ export class LoginService {
   }
 
   private getRedirectionUrl(): string {
-    return UrlUtils.trimRedirectionUrl(
-      UrlUtils.adornRedirectionUrl(this.redirectAfterLogin),
-      [this.urlConfig.login, this.urlConfig.logout], '/');
+    return UrlUtils.filterRedirectionUrl(
+      UrlUtils.completeRedirectionUrl(this.redirectAfterLogin),
+      ['/' + this.urlConfig.login, '/' + this.urlConfig.logout]
+    );
   }
 
   private establishHotConnectionForIsLoggedIn(): ConnectableObservable<User> {
@@ -85,13 +81,12 @@ export class LoginService {
     return this.logoutInConnectable;
   }
 
-  private setupUser(user: User): User {
+  private setupUser(user: User): void {
     if (user) {
       this.user.id = user.id;
       this.user.username = user.username;
       this.user.roles = user.roles;
     }
-    return user;
   }
 
   private dropUser(): User {
@@ -102,5 +97,4 @@ export class LoginService {
     this.user.roles = emptyUser.roles;
     return droppedUser;
   }
-
 }

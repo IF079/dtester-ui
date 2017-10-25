@@ -1,3 +1,5 @@
+import {ROLES_DEFAULT_CONFIG} from '../config/roles.default.config';
+
 export class User {
   id: string;
   username: string;
@@ -18,11 +20,7 @@ export class User {
   }
 
   isAdmin(): boolean {
-    return this.hasRole('admin');
-  }
-
-  isUser(): boolean {
-    return this.hasRole('admin');
+    return this.hasRole(ROLES_DEFAULT_CONFIG.ROLE_ADMIN);
   }
 
   hasRole(expectedRole: string): boolean {

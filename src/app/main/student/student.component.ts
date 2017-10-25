@@ -13,10 +13,13 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 export class StudentComponent implements OnInit {
   students: Student[];
   student: Student = new Student();
-  headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
+  headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', '№ групи'];
   path = '/student';
   errWithDisplayingStudents: string;
   errWithCountingStudents: string;
+  placeholders = ['Прізвище', 'Ім\'я', 'По-батькові',
+                  '№ групи', '№ залікової книжки', 'Фото',
+                  'Username', 'Email', 'Пароль', 'Підтвердження паролю'];
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;
@@ -44,7 +47,8 @@ export class StudentComponent implements OnInit {
   getStudents(): void {
     this.isLoading = true;
     this.studentService.getStudents(this.limitPerPage, this.offset).subscribe(data => {
-        this.students = data;
+        this.students = data[0];
+        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
         this.students.forEach(item => {
           delete item.photo;
           delete item.plainPassword;
@@ -52,24 +56,14 @@ export class StudentComponent implements OnInit {
         this.isLoading = false;
       },
       err => {
-        console.log(err);
+        log.error(err);
         this.errWithDisplayingStudents = 'Something is wrong with displaying data. Please try again.';
-      });
-  }
-
-  countRecords(): void {
-    this.studentService.countSubjects().subscribe(data => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-      err => {
-        console.log(err);
-        this.errWithCountingStudents = 'Something is wrong with displaying the number of students';
       });
   }
 
   ngOnInit() {
     this.getStudents();
-    this.countRecords();
   }
 }
+
 const log = LoggerFactory.create(StudentComponent);

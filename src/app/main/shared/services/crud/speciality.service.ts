@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 import {Speciality} from '../../entities/speciality';
 import {SpecialityDto} from './dto/speciality-dto';
@@ -29,11 +30,11 @@ export class SpecialityService {
     return entity;
   }
 
-  getSpeciality(limit: number, offset: number): Observable<Speciality[]> {
-    return this.http.get<SpecialityDto[]>(`${getSpecialityUrl}${getRecordsRange}/${limit}/${offset}`)
-      .map(specialityDtoArr => specialityDtoArr.map(SpecialityService.toSpeciality));
-  }
-  countSpeciality(): Observable<RecordsCount> {
-    return this.http.get(`${getSpecialityUrl}${getCount}`);
+  getSpeciality(limit: number, offset: number): Observable<any[]> {
+    return Observable.forkJoin(
+      this.http.get<SpecialityDto[]>(`${getSpecialityUrl}${getRecordsRange}/${limit}/${offset}`)
+        .map(specialityDtoArr => specialityDtoArr.map(SpecialityService.toSpeciality)),
+      this.http.get<RecordsCount>(`${getSpecialityUrl}${getCount}`)
+    );
   }
 }

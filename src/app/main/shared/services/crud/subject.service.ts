@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 import {Subject} from '../../entities/subject';
 import {SubjectDto} from './dto/subject-dto';
@@ -28,9 +29,12 @@ export class SubjectService {
     return entity;
   }
 
-  getSubjects(limit: number, offset: number): Observable<Subject[]> {
-    return this.http.get<SubjectDto[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`)
-      .map(subjectDtoArr => subjectDtoArr.map(SubjectService.toSubjectEntity));
+  getSubjects(limit: number, offset: number): Observable<any[]> {
+    return Observable.forkJoin(
+      this.http.get<SubjectDto[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`)
+        .map(subjectDtoArr => subjectDtoArr.map(SubjectService.toSubjectEntity)),
+      this.http.get<RecordsCount>(`${this.URL}/countRecords`)
+    );
   }
 
   getSubject(id: number): Observable<Subject[]> {
@@ -40,9 +44,5 @@ export class SubjectService {
 
   addSubject(subject: Subject): Observable<SubjectDto> {
     return this.http.post(`${this.URL}/insertData`, SubjectService.toSubjectDto(subject));
-  }
-
-  countSubjects(): Observable<RecordsCount> {
-    return this.http.get(`${this.URL}/countRecords`);
   }
 }

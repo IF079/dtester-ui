@@ -41,7 +41,8 @@ export class TimeTableComponent implements OnInit {
   getTimeTables() {
     this.isLoading = true;
     this.timeTableService.getTimeTables(this.limitPerPage, this.offset).subscribe(data => {
-        this.timetables = data;
+        this.timetables = data[0];
+        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
         this.isLoading = false;
       },
       err => {
@@ -49,17 +50,7 @@ export class TimeTableComponent implements OnInit {
       });
   }
 
-  countRecords(): void {
-    this.timeTableService.countTimeTableRecords().subscribe((data) => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-      err => {
-        this.errWithCountingRecords = 'Something is wrong with displaying the number of timetable records';
-      });
-  }
-
   ngOnInit() {
     this.getTimeTables();
-    this.countRecords();
   }
 }

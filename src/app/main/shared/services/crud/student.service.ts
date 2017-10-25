@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 import {Student} from '../../entities/student';
 import {StudentDto} from './dto/student-dto';
@@ -50,9 +51,12 @@ export class StudentService {
     return entity;
   }
 
-  getStudents(limit: number, offset: number): Observable<Student[]> {
-    return this.http.get<StudentDto[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`)
-      .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
+  getStudents(limit: number, offset: number): Observable<any[]> {
+    return Observable.forkJoin(
+      this.http.get<StudentDto[]>(`${this.URL}/getRecordsRange/${limit}/${offset}`)
+        .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent)),
+      this.http.get<RecordsCount>(`${this.URL}/countRecords`)
+    );
   }
 
   getStudent(id: number): Observable<Student[]> {
@@ -60,28 +64,9 @@ export class StudentService {
       .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent));
   }
 
-  countSubjects(): Observable<RecordsCount> {
-    return this.http.get(`${this.URL}/countRecords`);
-  }
-
   setStudent(student: Student, otherInfo: OtherDtoInfo): Observable<any> {
     return this.http.post(`${this.URL}/insertData`, StudentService.parseStudent(student, otherInfo));
   }
-  /** setStudent input data example
-   *
-   * {
-      username: 'username',
-      password: 'password',
-      password_confirm: 'password_confirm',
-      email: 'email@gmail.com',
-      gradebook_id : 'AU-4309358',
-      student_name : 'student_name',
-      student_fname : 'student_fname',
-      student_surname : 'student_surname',
-      group_id : '1',
-      plain_password : 'plain_password',
-      photo: ''
-    }
-   */
 }
+
 const log = LoggerFactory.create(StudentService);

@@ -40,7 +40,8 @@ export class FacultiesComponent implements OnInit {
   getFaculties() {
     this.isLoading = true;
     this.facultyService.getFaculties(this.limitPerPage, this.offset).subscribe(data => {
-        this.faculties = data;
+        this.faculties = data[0];
+        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
         this.isLoading = false;
       },
       err => {
@@ -48,17 +49,7 @@ export class FacultiesComponent implements OnInit {
       });
   }
 
-  countRecords() {
-    this.facultyService.countFaculties().subscribe((data) => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-      err => {
-        this.errWithCountingRecords = 'Something is wrong with displaying the number of  records';
-      });
-  }
-
   ngOnInit() {
     this.getFaculties();
-    this.countRecords();
   }
 }

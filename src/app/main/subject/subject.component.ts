@@ -45,7 +45,8 @@ export class SubjectComponent implements OnInit {
   getSubjects(): void {
     this.isLoading = true;
     this.subjectService.getSubjects(this.limitPerPage, this.offset).subscribe((data) => {
-        this.subjects = data;
+        this.subjects = data[0];
+        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
         this.isLoading = false;
       },
       err => {
@@ -54,19 +55,8 @@ export class SubjectComponent implements OnInit {
       });
   }
 
-  countRecords(): void {
-      this.subjectService.countSubjects().subscribe((data) => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-      err => {
-        console.log(err);
-        this.errWithCountingRecords = 'Something is wrong with displaying the number of subjects';
-      });
-  }
-
   ngOnInit() {
     this.getSubjects();
-    this.countRecords();
   }
 }
 

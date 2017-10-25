@@ -23,30 +23,18 @@ export class SpecialityComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSpecialities();
-    this.countSpecialities();
   }
 
   getSpecialities(): void {
     this.specialityService.getSpeciality(this.limitPerPage, this.offset).subscribe(
       data => {
-        this.specialities = data;
+        this.specialities = data[0];
+        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
         this.isLoading = false;
       },
       err => {
         console.log(err);
         this.errWithDisplayingSubjects = 'Something is wrong with displaying data. Please try again.';
-      }
-    );
-  }
-
-  countSpecialities(): void {
-    this.specialityService.countSpeciality().subscribe(
-      data => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-    err => {
-      console.log(err);
-      this.errWithCountingRecords = 'Something is wrong with displaying the number of specialities';
       }
     );
   }

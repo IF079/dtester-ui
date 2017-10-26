@@ -15,9 +15,18 @@ export class StudentComponent implements OnInit {
   student: Student = new Student();
   headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', '№ групи'];
   errWithDisplayingStudents: string;
-  placeholders = ['Прізвище', 'Ім\'я', 'По-батькові',
-                  '№ групи', '№ залікової книжки', 'Фото',
-                  'Username', 'Email', 'Пароль', 'Підтвердження паролю'];
+  placeholders = {
+    sname: 'Прізвище',
+    name: 'Ім\'я',
+    fname: 'По-батькові',
+    groupId: '№ групи',
+    gradebookId: '№ залікової книжки',
+    photo: 'Фото',
+    username: 'Username',
+    email: 'Email',
+    password: 'Пароль',
+    confirmPassword: 'Підтвердження паролю'
+  };
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;

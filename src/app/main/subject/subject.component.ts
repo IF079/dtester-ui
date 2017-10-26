@@ -15,7 +15,6 @@ export class SubjectComponent implements OnInit {
   headingColumnsOfTable = ['№', 'Назва', 'Опис'];
   subjects: Subject[];
   errWithDisplayingSubjects: string;
-  errWithCountingRecords: string;
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;

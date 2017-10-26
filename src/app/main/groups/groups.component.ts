@@ -12,7 +12,6 @@ import {Group} from '../shared/entities/group';
 export class GroupsComponent implements OnInit {
   groups: Group[];
   errWithDisplayingSubjects: string;
-  errWithCountingRecords: string;
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;

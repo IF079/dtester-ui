@@ -13,7 +13,6 @@ export class FacultiesComponent implements OnInit {
   faculties: Faculty[];
   headingColumnsOfTable = ['№', 'Назва', 'Опис'];
   errWithDisplayingFaculties: string;
-  errWithCountingRecords: string;
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;

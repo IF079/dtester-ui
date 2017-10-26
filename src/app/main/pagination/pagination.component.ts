@@ -10,7 +10,6 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 })
 
 export class PaginationComponent implements OnInit {
-  @Input() errWithCounting: string;
   @Input() currentPage: number;
   @Input() numberOfRecords: number;
   @Input() limitPerPage: number;

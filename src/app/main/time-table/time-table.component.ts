@@ -13,7 +13,6 @@ export class TimeTableComponent implements OnInit {
   timetables: TimeTable[];
   headingColumnsOfTable = ['№', 'Назва', 'Опис', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
   errWithDisplayingTimeTables: string;
-  errWithCountingRecords: string;
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;

@@ -11,8 +11,7 @@
       <button mat-raised-button>Додати предмет</button>
     </mat-card>
 </app-modal>
-<app-entity-table [entityName]="'Subject'" [columnsArray]="headingColumnsOfTable"
-                  [entityArray]="subjects"></app-entity-table>
+<app-entity-table [columnsArray]="headingColumnsOfTable" [entityArray]="subjects"></app-entity-table>
 
 <app-pagination (goPage)="goPage($event)"
                 (goPrev)="goPrev()"

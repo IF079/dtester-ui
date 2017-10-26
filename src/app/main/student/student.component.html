@@ -54,8 +54,8 @@
             color="primary">Додати</button>
   </mat-card>
 </app-modal>
-<app-entity-table [entityName]="'Student'" [entityArray]="students" [columnsArray]="headingColumnsOfTable"
-                  [detailUrl]='path'></app-entity-table>
+<app-entity-table [entityArray]="students" [columnsArray]="headingColumnsOfTable"
+                  [detailUrl]="'/student'"></app-entity-table>
 <app-pagination (goPage)="goPage($event)"
                 (goPrev)="goPrev()"
                 (goNext)="goNext()"

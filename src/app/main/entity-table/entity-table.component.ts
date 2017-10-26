@@ -9,7 +9,6 @@ import {Router} from '@angular/router';
 
 export class EntityTableComponent implements OnInit, OnChanges {
   tableArray: any[];
-  @Input() entityName: string;
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;

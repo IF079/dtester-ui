@@ -14,7 +14,6 @@ export class StudentComponent implements OnInit {
   students: Student[];
   student: Student = new Student();
   headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', '№ групи'];
-  path = '/student';
   errWithDisplayingStudents: string;
   errWithCountingStudents: string;
   placeholders = ['Прізвище', 'Ім\'я', 'По-батькові',

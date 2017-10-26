@@ -19,9 +19,7 @@
             (click)="modal.closeDialogue()">{{btnClose}}</button>
   </mat-card>
 </app-modal>
-<app-entity-table [entityName]="'Speciality'"
-                  [columnsArray]="headingColumnsOfTable"
-                  [entityArray]="specialities"></app-entity-table>
+<app-entity-table [columnsArray]="headingColumnsOfTable" [entityArray]="specialities"></app-entity-table>
 <app-pagination (goPage)="goPage($event)"
                 (goPrev)="goPrev()"
                 (goNext)="goNext()"

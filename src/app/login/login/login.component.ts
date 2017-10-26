@@ -27,7 +27,8 @@ export class LoginComponent {
     username: '',
     password: ''
   };
-  isBadCredentialsError = false;
+  hasBadCredentialsError = false;
+
   constructor(private loginService: LoginService) {
   }
 
@@ -40,7 +41,7 @@ export class LoginComponent {
           err => {
             if (err instanceof HttpErrorResponse) {
               if (err.status === 400) {
-                this.setupBadCredentialsError(err);
+                this.hasBadCredentialsError = true;
               }
             }
           }
@@ -58,10 +59,6 @@ export class LoginComponent {
 
   getExceedingLengthErrorMsg(maxLengthError: any): string {
     return `Should be shorter than ${maxLengthError.requiredLength} symbols, currently ${maxLengthError.actualLength}`;
-  }
-
-  private setupBadCredentialsError(err: HttpErrorResponse): void {
-    this.isBadCredentialsError = true;
   }
 
   private isFormValid(): boolean {

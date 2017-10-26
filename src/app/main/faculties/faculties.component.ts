@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {FacultyService} from '../shared/services/crud/faculty.service';
 import {Faculty} from '../shared/entities/faculty';
+import {generalConst} from '../shared/constants/general-constants';
 
 @Component({
   selector: 'app-faculties',
@@ -44,7 +45,7 @@ export class FacultiesComponent implements OnInit {
         this.isLoading = false;
       },
       err => {
-        this.errWithDisplayingFaculties = 'Something is wrong with displaying data. Please try again.';
+        this.errWithDisplayingFaculties = generalConst.errorWithDisplayData;
       });
   }
 

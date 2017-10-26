@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {SpecialityService} from '../shared/services/crud/speciality.service';
 import {Speciality} from '../shared/entities/speciality';
+import {generalConst} from '../shared/constants/general-constants';
 
 @Component({
   selector: 'app-speciality',
@@ -11,12 +12,14 @@ import {Speciality} from '../shared/entities/speciality';
 
 export class SpecialityComponent implements OnInit {
   specialities: Speciality[];
-  headingColumnsOfTable = ['№', 'Код', 'Назва'];
-  btnAdd = 'Додати';
-  btnClose = 'Закрити';
-  btnAddItem = 'Додати Спеціальність';
-  phCode = 'Код Спеціальності';
-  phName = 'Назва Спеціальності';
+  headingColumnsOfTable = ['№', 'Код', 'Назва', '', ''];
+  modalInfo = {
+  btnAdd: 'Додати',
+  btnClose: 'Закрити',
+  btnAddSpeciality: 'Додати Спеціальність',
+  placeholderCode: 'Код Спеціальності',
+  placeholderName: 'Назва Спеціальності',
+  };
   currentPage = 1;
   offset = 0;
   limitPerPage = 10;
@@ -31,14 +34,13 @@ export class SpecialityComponent implements OnInit {
 
   getSpecialities(): void {
     this.specialityService.getSpeciality(this.limitPerPage, this.offset).subscribe(
-      data => {
-        this.specialities = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
+      specialityData => {
+        this.specialities = specialityData[0];
+        this.numberOfRecords = parseInt(specialityData[1].numberOfRecords, 10);
         this.isLoading = false;
       },
       err => {
-        console.log(err);
-        this.errWithDisplayingSpeciality = 'Something is wrong with displaying data. Please try again.';
+        this.errWithDisplayingSpeciality = generalConst.errorWithDisplayData;
       }
     );
   }

@@ -1,4 +1,4 @@
-<div *ngIf="errWithDisplayingFaculties" class="mat-error">{{errWithDisplayingFaculties}}</div>
+<div *ngIf="errWithDisplayingGroups" class="mat-error">{{errWithDisplayingGroups}}</div>
 <app-entity-table [columnsArray]="headingColumnsOfTable" [entityArray]="groups"></app-entity-table>
 <app-pagination (goPage)="goPage($event)"
                 (goPrev)="goPrev()"

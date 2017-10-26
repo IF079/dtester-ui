@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {GroupsService} from '../shared/services/crud/groups.service';
 import {Group} from '../shared/entities/group';
+import {generalConst} from '../shared/constants/general-constants';
 
 @Component({
   selector: 'app-groups',
@@ -11,13 +12,13 @@ import {Group} from '../shared/entities/group';
 
 export class GroupsComponent implements OnInit {
   groups: Group[];
-  errWithDisplayingSubjects: string;
+  errWithDisplayingGroups: string;
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;
   numberOfRecords: number;
   isLoading = false;
-  headingColumnsOfTable = ['№', 'Назва', '№ Факультету', '№ Спеціальності'];
+  headingColumnsOfTable = ['№', 'Назва', '№ Факультету', '№ Спеціальності', '', ''];
   constructor(private groupsService: GroupsService) {
   }
   getGroups() {
@@ -29,7 +30,7 @@ export class GroupsComponent implements OnInit {
       },
       err => {
         console.log(err);
-        this.errWithDisplayingSubjects = 'Something is wrong with displaying data. Please try again.';
+        this.errWithDisplayingGroups = generalConst.errorWithDisplayData;
       });
   }
 

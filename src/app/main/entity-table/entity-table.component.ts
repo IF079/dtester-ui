@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -7,16 +7,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./entity-table.component.scss']
 })
 
-export class EntityTableComponent implements OnInit, OnChanges {
+export class EntityTableComponent implements OnChanges {
   tableArray: any[];
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
   constructor(private router: Router) {
-  }
-
-  ngOnInit() {
-    this.columnsArray.push('', '');
   }
 
   ngOnChanges(changes: SimpleChanges) {

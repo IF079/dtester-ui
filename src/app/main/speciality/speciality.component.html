@@ -2,22 +2,22 @@
 <button mat-raised-button
         color="primary"
         (click)="modal.openDialogue()"
-        class="addButton">{{btnAddItem}}</button>
+        class="addButton">{{modalInfo.btnAddSpeciality}}</button>
 <app-modal #modal>
   <mat-card>
     <mat-form-field>
-      <input matInput placeholder="{{phCode}}">
+      <input matInput placeholder="{{modalInfo.placeholderCode}}">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="{{phName}}">
+      <input matInput placeholder="{{modalInfo.placeholderName}}">
     </mat-form-field>
     <button class="modal-button"
-            mat-raised-button=""
-            color="primary">{{btnAdd}}</button>
+            mat-raised-button
+            color="primary">{{modalInfo.btnAdd}}</button>
     <button class="modal-button"
-            mat-raised-button=""
+            mat-raised-button
             color="primary"
-            (click)="modal.closeDialogue()">{{btnClose}}</button>
+            (click)="modal.closeDialogue()">{{modalInfo.btnClose}}</button>
   </mat-card>
 </app-modal>
 <app-entity-table [columnsArray]="headingColumnsOfTable" [entityArray]="specialities"></app-entity-table>

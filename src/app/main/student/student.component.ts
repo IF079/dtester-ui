@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {StudentService} from '../shared/services/crud/student.service';
 import {Student} from '../shared/entities/student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
+import {generalConst} from '../shared/constants/general-constants';
 
 @Component({
   selector: 'app-students',
@@ -13,7 +14,7 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 export class StudentComponent implements OnInit {
   students: Student[];
   student: Student = new Student();
-  headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', '№ групи'];
+  headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', '№ групи' , '', ''];
   errWithDisplayingStudents: string;
   placeholders = {
     sname: 'Прізвище',
@@ -64,7 +65,7 @@ export class StudentComponent implements OnInit {
       },
       err => {
         log.error(err);
-        this.errWithDisplayingStudents = 'Something is wrong with displaying data. Please try again.';
+        this.errWithDisplayingStudents = generalConst.errorWithDisplayData;
       });
   }
 

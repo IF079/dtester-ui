@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {SubjectService} from '../shared/services/crud/subject.service';
 import {Subject} from '../shared/entities/subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
+import {generalConst} from '../shared/constants/general-constants';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 })
 
 export class SubjectComponent implements OnInit {
-  headingColumnsOfTable = ['№', 'Назва', 'Опис'];
+  headingColumnsOfTable = ['№', 'Назва', 'Опис', '', ''];
   placeholders = {
     name: 'Назва предмету',
     description: 'Опис предмету'
@@ -55,7 +56,7 @@ export class SubjectComponent implements OnInit {
       },
       err => {
         log.error(err);
-        this.errWithDisplayingSubjects = 'Something is wrong with displaying data. Please try again.';
+        this.errWithDisplayingSubjects = generalConst.errorWithDisplayData;
       });
   }
 

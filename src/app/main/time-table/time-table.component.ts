@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {TimeTableService} from '../shared/services/crud/time-table.service';
 import {TimeTable} from '../shared/entities/time-table';
+import {generalConst} from '../shared/constants/general-constants';
 
 @Component({
   selector: 'app-time-table',
@@ -11,7 +12,7 @@ import {TimeTable} from '../shared/entities/time-table';
 
 export class TimeTableComponent implements OnInit {
   timetables: TimeTable[];
-  headingColumnsOfTable = ['№', 'Назва', 'Опис', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
+  headingColumnsOfTable = ['№', 'Назва', 'Опис', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення', '', ''];
   errWithDisplayingTimeTables: string;
   offset = 0;
   currentPage = 1;
@@ -45,7 +46,7 @@ export class TimeTableComponent implements OnInit {
         this.isLoading = false;
       },
       err => {
-        this.errWithDisplayingTimeTables = 'Something is wrong with displaying data. Please try again.';
+        this.errWithDisplayingTimeTables = generalConst.errorWithDisplayData;
       });
   }
 

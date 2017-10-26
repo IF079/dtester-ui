@@ -12,7 +12,12 @@ import {generalConst} from '../shared/constants/general-constants';
 
 export class FacultiesComponent implements OnInit {
   faculties: Faculty[];
-  headingColumnsOfTable = ['№', 'Назва', 'Опис'];
+  headingColumnsOfTable = ['№', 'Назва', 'Опис', '', ''];
+  placeholders = {
+    name: 'Назва факультету',
+    description: 'Опис факультету'
+  };
+  btnAdd = 'Додати факультет';
   errWithDisplayingFaculties: string;
   offset = 0;
   currentPage = 1;

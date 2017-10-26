@@ -1,3 +1,4 @@
+<div *ngIf="errWithDisplayingSpeciality" class="mat-error">{{errWithDisplayingSpeciality}}</div>
 <button mat-raised-button=""
         color="primary"
         (click)="modal.openDialogue()"
@@ -27,5 +28,4 @@
                 [currentPage]="currentPage"
                 [isLoading]="isLoading"
                 [limitPerPage]="limitPerPage"
-                [numberOfPagesToShow]="3"
-                [errWithCounting]="errWithCountingRecords"></app-pagination>
+                [numberOfPagesToShow]="3"></app-pagination>

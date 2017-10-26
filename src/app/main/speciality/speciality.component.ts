@@ -22,8 +22,7 @@ export class SpecialityComponent implements OnInit {
   limitPerPage = 10;
   isLoading = false;
   numberOfRecords: number;
-  errWithDisplayingSubjects: string;
-  errWithCountingRecords: string;
+  errWithDisplayingSpeciality: string;
   constructor(private specialityService: SpecialityService) { }
 
   ngOnInit(): void {
@@ -39,7 +38,7 @@ export class SpecialityComponent implements OnInit {
       },
       err => {
         console.log(err);
-        this.errWithDisplayingSubjects = 'Something is wrong with displaying data. Please try again.';
+        this.errWithDisplayingSpeciality = 'Something is wrong with displaying data. Please try again.';
       }
     );
   }

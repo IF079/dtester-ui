@@ -51,7 +51,7 @@ export class StudentService {
     return entity;
   }
 
-  getStudents(limit: number, offset: number): Observable<any[]> {
+  getStudents(limit: number, offset: number): Observable<[Student[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<StudentDto[]>(`${urlConstants.studentUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
         .map( studentDtoArr => studentDtoArr.map(StudentService.toStudent)),

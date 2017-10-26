@@ -12,7 +12,7 @@ import {urlConstants} from '../../constants/url-constants';
 export class TimeTableService {
   constructor(private http: HttpClient) {
   }
-  getTimeTables(limit: number, offset: number): Observable<any[]> {
+  getTimeTables(limit: number, offset: number): Observable<[TimeTable[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<TimeTable[]>(`${urlConstants.timeTableUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`),
       this.http.get<RecordsCount>(`${urlConstants.timeTableUrl}${urlConstants.getCount}`)

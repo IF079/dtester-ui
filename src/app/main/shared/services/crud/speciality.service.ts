@@ -30,7 +30,7 @@ export class SpecialityService {
     return entity;
   }
 
-  getSpeciality(limit: number, offset: number): Observable<any[]> {
+  getSpeciality(limit: number, offset: number): Observable<[Speciality[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<SpecialityDto[]>(`${urlConstants.specialityUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
         .map(specialityDtoArr => specialityDtoArr.map(SpecialityService.toSpeciality)),

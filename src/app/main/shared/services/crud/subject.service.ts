@@ -29,7 +29,7 @@ export class SubjectService {
     return entity;
   }
 
-  getSubjects(limit: number, offset: number): Observable<any[]> {
+  getSubjects(limit: number, offset: number): Observable<[Subject[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<SubjectDto[]>(`${urlConstants.subjectUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
         .map(subjectDtoArr => subjectDtoArr.map(SubjectService.toSubjectEntity)),

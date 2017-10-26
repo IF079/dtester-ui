@@ -12,7 +12,7 @@ import {urlConstants} from '../../constants/url-constants';
 export class GroupsService {
   constructor(private http: HttpClient) {
   }
-  getGroups(limit: number, offset: number): Observable<any[]> {
+  getGroups(limit: number, offset: number): Observable<[Group[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<Group[]>(`${urlConstants.groupUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`),
       this.http.get<RecordsCount>(`${urlConstants.groupUrl}${urlConstants.getCount}`)

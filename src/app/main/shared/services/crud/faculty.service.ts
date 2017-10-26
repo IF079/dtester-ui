@@ -13,7 +13,7 @@ export class FacultyService {
   constructor(private http: HttpClient) {
   }
 
-  getFaculties(limit: number, offset: number): Observable<any[]> {
+  getFaculties(limit: number, offset: number): Observable<[Faculty[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<Faculty[]>(`${urlConstants.facultyUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`),
       this.http.get<RecordsCount>(`${urlConstants.facultyUrl}${urlConstants.getCount}`)

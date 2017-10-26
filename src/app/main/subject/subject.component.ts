@@ -13,6 +13,11 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 
 export class SubjectComponent implements OnInit {
   headingColumnsOfTable = ['№', 'Назва', 'Опис'];
+  placeholders = {
+    name: 'Назва предмету',
+    description: 'Опис предмету'
+  };
+  btnAdd = 'Додати предмет';
   subjects: Subject[];
   errWithDisplayingSubjects: string;
   offset = 0;
@@ -49,7 +54,7 @@ export class SubjectComponent implements OnInit {
         this.isLoading = false;
       },
       err => {
-        console.log(err);
+        log.error(err);
         this.errWithDisplayingSubjects = 'Something is wrong with displaying data. Please try again.';
       });
   }

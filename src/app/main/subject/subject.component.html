@@ -1,15 +1,15 @@
 <div *ngIf="errWithDisplayingSubjects" class="mat-error">{{errWithDisplayingSubjects}}</div>
-<button mat-raised-button (click)="modal.openDialogue()">Додати предмет</button>
+<button  class="addButton" mat-raised-button color="primary" (click)="modal.openDialogue()">{{btnAdd}}</button>
 <app-modal #modal>
-    <mat-card>
-      <mat-form-field>
-        <input matInput placeholder="Назва предмету">
-      </mat-form-field>
-      <mat-form-field class="text-area-container">
-        <textarea matInput placeholder="Опис предмету"></textarea>
-      </mat-form-field>
-      <button mat-raised-button>Додати предмет</button>
-    </mat-card>
+  <mat-card>
+    <mat-form-field>
+      <input matInput placeholder="{{placeholders.name}}">
+    </mat-form-field>
+    <mat-form-field class="text-area-container">
+      <textarea matInput placeholder="{{placeholders.description}}"></textarea>
+    </mat-form-field>
+    <button class="modal-button" mat-raised-button color="primary">{{btnAdd}}</button>
+  </mat-card>
 </app-modal>
 <app-entity-table [columnsArray]="headingColumnsOfTable" [entityArray]="subjects"></app-entity-table>
 

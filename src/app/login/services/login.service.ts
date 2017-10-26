@@ -16,13 +16,13 @@ import {LoginUrlConfig} from './config/login-url.config';
 import {DEFAULT_LOGIN_URL_CONFIG} from './config/login-url.default.config';
 
 @Injectable()
-
 export class LoginService {
   public user: User = new User();
   public redirectAfterLogin: string = null;
   private isLoggedInConnectable: ConnectableObservable<User> = null;
-  private logoutInConnectable: ConnectableObservable<User> = null;
+  private logoutConnectable: ConnectableObservable<User> = null;
   private initialized = false;
+
   constructor(private auth: AuthService, private router: Router,
               @Optional() private urlConfig: LoginUrlConfig) {
     if (!urlConfig) {
@@ -45,7 +45,7 @@ export class LoginService {
   }
 
   logout(): Observable<User> {
-    return this.logoutInConnectable || this.establishHotConnectionForIsLogout();
+    return this.logoutConnectable || this.establishHotConnectionForIsLogout();
   }
 
   private initialize() {
@@ -73,12 +73,13 @@ export class LoginService {
   }
 
   private establishHotConnectionForIsLogout(): ConnectableObservable<User> {
-    this.logoutInConnectable = this.auth.logout()
-      .map((response) => this.dropUser())
-      .finally(() => this.logoutInConnectable = null)
+    const obs = this.auth.logout()
+      .map(() => this.dropUser())
+      .finally(() => this.logoutConnectable = null)
       .publish();
-    this.logoutInConnectable.connect();
-    return this.logoutInConnectable;
+    this.logoutConnectable = obs;
+    obs.connect();
+    return obs;
   }
 
   private setupUser(user: User): void {

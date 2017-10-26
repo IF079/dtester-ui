@@ -11,7 +11,7 @@ import 'rxjs/add/operator/publish';
 import {Credentials} from './entities/credentials';
 import {User} from './entities/user';
 import {AuthService} from './auth.service';
-import {UrlUtils} from '../utils/url-utils';
+import {UrlUtils} from './utils/url-utils';
 import {LoginUrlConfig} from './config/login-url.config';
 import {DEFAULT_LOGIN_URL_CONFIG} from './config/login-url.default.config';
 

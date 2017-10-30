@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
+import {SubjectModalComponent} from '../subject-modal/subject-modal.component';
 import {SubjectService} from '../shared/services/crud/subject.service';
 import {Subject} from '../shared/entities/subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
@@ -14,10 +16,6 @@ import {generalConst} from '../shared/constants/general-constants';
 
 export class SubjectComponent implements OnInit {
   headingColumnsOfTable = ['№', 'Назва', 'Опис', '', ''];
-  placeholders = {
-    name: 'Назва предмету',
-    description: 'Опис предмету'
-  };
   btnAdd = 'Додати предмет';
   subjects: Subject[];
   errWithDisplayingSubjects: string;
@@ -27,8 +25,18 @@ export class SubjectComponent implements OnInit {
   numberOfRecords: number;
   isLoading = false;
 
-  constructor(private subjectService: SubjectService) {
+  constructor(private subjectService: SubjectService, public dialog: MatDialog) {
 
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(SubjectModalComponent, {
+      height: '350px',
+      width: '1000px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   goPage(n: number): void {

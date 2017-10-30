@@ -13,6 +13,7 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {SubjectComponent} from './subject/subject.component';
+import {SubjectModalComponent} from './subject-modal/subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {MainMaterialModule} from './main-material.module';
@@ -38,6 +39,7 @@ import {TimeTableService} from './shared/services/crud/time-table.service';
     StudentComponent,
     StudentDetailComponent,
     SubjectComponent,
+    SubjectModalComponent,
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent
@@ -46,6 +48,9 @@ import {TimeTableService} from './shared/services/crud/time-table.service';
     CommonModule,
     MainRoutingModule,
     MainMaterialModule
+  ],
+  entryComponents: [
+    SubjectModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

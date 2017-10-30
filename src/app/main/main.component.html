@@ -1,9 +1,10 @@
 <div class="container">
   <div class="main-frame">
-    <app-nav></app-nav>
-    <div [style.visibility]="spinner.needsSpinner() ? 'visible' : 'hidden'">
+    <!--<div [style.visibility]="spinner.needsSpinner() ? 'visible' : 'hidden'">
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
+    </div>-->
+    <ng-progress [showSpinner]="false" [color]="'#3f51b5'"></ng-progress>
+    <app-nav></app-nav>
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {NgProgressModule, NgProgressInterceptor} from 'ngx-progressbar';
 
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
@@ -45,10 +46,13 @@ import {TimeTableService} from './shared/services/crud/time-table.service';
   imports: [
     CommonModule,
     MainRoutingModule,
-    MainMaterialModule
+    MainMaterialModule,
+    HttpClientModule,
+    NgProgressModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
+    /*{provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},*/
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
     StudentService,
     SpecialityService,
     GroupsService,

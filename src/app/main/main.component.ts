@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+
 import {SpinnerService} from './shared/services/spinner.service';
 
 @Component({
@@ -8,6 +9,7 @@ import {SpinnerService} from './shared/services/spinner.service';
 })
 
 export class MainComponent {
-  constructor(public spinner: SpinnerService) {
-  }
+  /*constructor(public spinner: SpinnerService) {
+  }*/
+
 }

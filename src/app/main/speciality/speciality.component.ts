@@ -20,10 +20,7 @@ export class SpecialityComponent implements OnInit {
   placeholderCode: 'Код Спеціальності',
   placeholderName: 'Назва Спеціальності',
   };
-  currentPage = 1;
-  offset = 0;
-  limitPerPage = 10;
-  isLoading = false;
+
   numberOfRecords: number;
   errWithDisplayingSpeciality: string;
   constructor(private specialityService: SpecialityService) { }
@@ -33,11 +30,10 @@ export class SpecialityComponent implements OnInit {
   }
 
   getSpecialities(): void {
-    this.specialityService.getSpeciality(this.limitPerPage, this.offset).subscribe(
+    this.specialityService.getSpeciality(10, 0).subscribe(
       specialityData => {
         this.specialities = specialityData[0];
         this.numberOfRecords = parseInt(specialityData[1].numberOfRecords, 10);
-        this.isLoading = false;
       },
       err => {
         this.errWithDisplayingSpeciality = generalConst.errorWithDisplayData;
@@ -45,18 +41,5 @@ export class SpecialityComponent implements OnInit {
     );
   }
 
-  goPage(n: number): void {
-    this.offset = (n * this.limitPerPage) - this.limitPerPage;
-    this.getSpecialities();
-  }
 
-  goNext(): void {
-    this.offset += this.limitPerPage;
-    this.getSpecialities();
-  }
-
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-    this.getSpecialities();
-  }
 }

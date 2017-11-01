@@ -8,7 +8,6 @@ import {NavComponent} from './nav/nav.component';
 import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {ModalComponent} from './modal/modal.component';
-import {PaginationComponent} from './pagination/pagination.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
@@ -34,7 +33,6 @@ import {TimeTableService} from './shared/services/crud/time-table.service';
     FacultiesComponent,
     GroupsComponent,
     ModalComponent,
-    PaginationComponent,
     SpecialityComponent,
     StudentComponent,
     StudentDetailComponent,

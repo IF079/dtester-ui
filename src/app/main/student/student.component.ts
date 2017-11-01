@@ -28,40 +28,20 @@ export class StudentComponent implements OnInit {
     password: 'Пароль',
     confirmPassword: 'Підтвердження паролю'
   };
-  offset = 0;
-  currentPage = 1;
-  limitPerPage = 10;
+
   numberOfRecords: number;
-  isLoading = false;
   selectedStudent: Student;
   constructor(private studentService: StudentService) {
   }
 
-  goPage(n: number): void {
-    this.offset = (this.limitPerPage * n) - this.limitPerPage;
-    this.getStudents();
-  }
-
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-    this.getStudents();
-  }
-
-  goNext(): void {
-    this.offset += this.limitPerPage;
-    this.getStudents();
-  }
-
   getStudents(): void {
-    this.isLoading = true;
-    this.studentService.getStudents(this.limitPerPage, this.offset).subscribe(data => {
+    this.studentService.getStudents(10, 0).subscribe(data => {
         this.students = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
         this.students.forEach(item => {
           delete item.photo;
           delete item.plainPassword;
         });
-        this.isLoading = false;
       },
       err => {
         log.error(err);

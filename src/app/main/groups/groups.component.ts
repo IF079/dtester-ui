@@ -13,20 +13,14 @@ import {generalConst} from '../shared/constants/general-constants';
 export class GroupsComponent implements OnInit {
   groups: Group[];
   errWithDisplayingGroups: string;
-  offset = 0;
-  currentPage = 1;
-  limitPerPage = 10;
   numberOfRecords: number;
-  isLoading = false;
   headingColumnsOfTable = ['№', 'Назва', '№ Факультету', '№ Спеціальності', '', ''];
   constructor(private groupsService: GroupsService) {
   }
   getGroups() {
-    this.isLoading = true;
-    this.groupsService.getGroups(this.limitPerPage, this.offset).subscribe(data => {
+    this.groupsService.getGroups(10, 0).subscribe(data => {
         this.groups = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
-        this.isLoading = false;
       },
       err => {
         console.log(err);
@@ -34,21 +28,6 @@ export class GroupsComponent implements OnInit {
       });
   }
 
-  goPage(n: number): void {
-    this.offset = (this.limitPerPage * n) - this.limitPerPage;
-    this.getGroups();
-  }
-
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-
-    this.getGroups();
-  }
-
-  goNext(): void {
-    this.offset += this.limitPerPage;
-    this.getGroups();
-  }
 
   ngOnInit() {
     this.getGroups();

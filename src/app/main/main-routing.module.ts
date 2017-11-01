@@ -21,13 +21,13 @@ const mainRoutes = [
         children: [
           {path: '', redirectTo: 'welcome', pathMatch: 'full'},
           {path: 'welcome', component: WelcomeComponent},
-          {path: 'students/:currentPage', component: StudentComponent},
+          {path: 'students', component: StudentComponent},
           {path: 'student/:id', component: StudentDetailComponent},
-          {path: 'specialities/:currentPage', component: SpecialityComponent},
-          {path: 'subjects/:currentPage', component: SubjectComponent},
-          {path: 'faculties/:currentPage', component: FacultiesComponent},
-          {path: 'groups/:currentPage', component: GroupsComponent},
-          {path: 'timetable/:currentPage', component: TimeTableComponent}
+          {path: 'specialities', component: SpecialityComponent},
+          {path: 'subjects', component: SubjectComponent},
+          {path: 'faculties', component: FacultiesComponent},
+          {path: 'groups', component: GroupsComponent},
+          {path: 'timetable', component: TimeTableComponent}
         ]
       }
     ]

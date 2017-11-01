@@ -3,11 +3,4 @@
 
 <app-entity-table [columnsArray]="headingColumnsOfTable" [entityArray]="subjects"></app-entity-table>
 
-<app-pagination (goPage)="goPage($event)"
-                (goPrev)="goPrev()"
-                (goNext)="goNext()"
-                [numberOfRecords]="numberOfRecords"
-                [currentPage]="currentPage"
-                [isLoading]="isLoading"
-                [limitPerPage]="limitPerPage"
-                [numberOfPagesToShow]="5"></app-pagination>
+

@@ -19,12 +19,7 @@ export class SubjectComponent implements OnInit {
   btnAdd = 'Додати предмет';
   subjects: Subject[];
   errWithDisplayingSubjects: string;
-  offset = 0;
-  currentPage = 1;
-  limitPerPage = 10;
   numberOfRecords: number;
-  isLoading = false;
-
   constructor(private subjectService: SubjectService, public dialog: MatDialog) {
 
   }
@@ -39,28 +34,12 @@ export class SubjectComponent implements OnInit {
     });
   }
 
-  goPage(n: number): void {
-    this.offset = (this.limitPerPage * n) - this.limitPerPage;
-    this.getSubjects();
-  }
 
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-
-    this.getSubjects();
-  }
-
-  goNext(): void {
-    this.offset += this.limitPerPage;
-    this.getSubjects();
-  }
 
   getSubjects(): void {
-    this.isLoading = true;
-    this.subjectService.getSubjects(this.limitPerPage, this.offset).subscribe((data) => {
+    this.subjectService.getSubjects(10, 0).subscribe((data) => {
         this.subjects = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
-        this.isLoading = false;
       },
       err => {
         log.error(err);

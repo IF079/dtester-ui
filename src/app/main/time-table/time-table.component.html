@@ -1,11 +1,4 @@
 <div *ngIf="errWithDisplayingTimeTables" class="mat-error">{{errWithDisplayingTimeTables}}</div>
 <app-entity-table [columnsArray]="headingColumnsOfTable" [entityArray]="timetables"></app-entity-table>
-<app-pagination (goPage)="goPage($event)"
-                (goPrev)="goPrev()"
-                (goNext)="goNext()"
-                [numberOfRecords]="numberOfRecords"
-                [currentPage]="currentPage"
-                [isLoading]="isLoading"
-                [limitPerPage]="limitPerPage"
-                [numberOfPagesToShow]="3"></app-pagination>
+
 

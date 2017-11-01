@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {SPINNER_DEFAULT_CONFIG} from '../config/spinner.default.config';
+import {SPINNER_DEFAULT_CONFIG} from './spinner.default.config';
 
 @Injectable()
 export class SpinnerService {

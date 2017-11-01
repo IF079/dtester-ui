@@ -24,7 +24,7 @@ import {GroupsService} from './groups/groups.service';
 import {SpinnerInterceptor} from './spinner/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {FacultyService} from './faculties/faculty.service';
-import {TimeTableService} from './shared/services/crud/time-table.service';
+import {TimeTableService} from './time-table/time-table.service';
 
 @NgModule({
   declarations: [

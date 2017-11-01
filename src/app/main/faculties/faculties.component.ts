@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {FacultyService} from '../shared/services/crud/faculty.service';
+import {FacultyService} from './faculty.service';
 import {Faculty} from '../shared/entities/faculty';
 import {generalConst} from '../shared/constants/general-constants';
 

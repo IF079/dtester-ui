@@ -3,9 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
-import {Faculty} from '../../entities/faculty';
-import {RecordsCount} from '../../entities/recordsCount';
-import {urlConstants} from '../../constants/url-constants';
+import {Faculty} from '../shared/entities/faculty';
+import {RecordsCount} from '../shared/entities/recordsCount';
+import {urlConstants} from '../shared/constants/url-constants';
 
 @Injectable()
 

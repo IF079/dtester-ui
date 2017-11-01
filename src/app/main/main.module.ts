@@ -23,7 +23,7 @@ import {SpinnerService} from './spinner/spinner.service';
 import {GroupsService} from './groups/groups.service';
 import {SpinnerInterceptor} from './spinner/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
-import {FacultyService} from './shared/services/crud/faculty.service';
+import {FacultyService} from './faculties/faculty.service';
 import {TimeTableService} from './shared/services/crud/time-table.service';
 
 @NgModule({

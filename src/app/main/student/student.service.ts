@@ -3,11 +3,11 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
-import {Student} from '../../entities/student';
-import {StudentDto} from './dto/student-dto';
-import {RecordsCount} from '../../entities/recordsCount';
-import {LoggerFactory} from '../../../../shared/logger/logger.factory';
-import {urlConstants} from '../../constants/url-constants';
+import {Student} from './student';
+import {StudentDto} from './student-dto';
+import {RecordsCount} from '../shared/entities/recordsCount';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
+import {urlConstants} from '../shared/constants/url-constants';
 
 class OtherDtoInfo {
   password: string;

@@ -16,7 +16,7 @@ import {SubjectModalComponent} from './subject-modal/subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {MainMaterialModule} from './main-material.module';
-import {StudentService} from './shared/services/crud/student.service';
+import {StudentService} from './student/student.service';
 import {SpecialityService} from './speciality/speciality.service';
 import {SubjectService} from './shared/services/crud/subject.service';
 import {SpinnerService} from './spinner/spinner.service';

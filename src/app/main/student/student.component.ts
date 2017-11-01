@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {StudentService} from '../shared/services/crud/student.service';
-import {Student} from '../shared/entities/student';
+import {StudentService} from './student.service';
+import {Student} from './student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 

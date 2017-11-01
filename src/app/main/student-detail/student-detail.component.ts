@@ -4,8 +4,8 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 
 import 'rxjs/add/operator/mergeMap';
 
-import {Student} from '../shared/entities/student';
-import {StudentService} from '../shared/services/crud/student.service';
+import {Student} from '../student/student';
+import {StudentService} from '../student/student.service';
 
 
 @Component({

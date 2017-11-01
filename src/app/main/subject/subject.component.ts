@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog} from '@angular/material';
 
 import {SubjectModalComponent} from '../subject-modal/subject-modal.component';
-import {SubjectService} from '../shared/services/crud/subject.service';
-import {Subject} from '../shared/entities/subject';
+import {SubjectService} from './subject.service';
+import {Subject} from './subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 

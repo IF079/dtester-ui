@@ -1,9 +1,21 @@
+import {TestDto} from '../services/crud/dto/test-dto';
+
 export class Test {
-  test_id: number;
-  test_name: string;
-  subject_id: number;
+  testId?: number;
+  testName: string;
+  subjectId: number;
   tasks: number;
-  time_for_test: string;
+  timeForTest: string;
   enabled: string;
-  attemps: string;
+  attempts: string;
+
+  constructor(testDto: TestDto){
+    this.testId = testDto.test_id;
+    this.testName = testDto.test_name;
+    this.subjectId = testDto.subject_id;
+    this.tasks = testDto.tasks;
+    this.timeForTest = testDto.time_for_test;
+    this.enabled = testDto.enabled;
+    this.attempts = testDto.attempts;
+  }
 }

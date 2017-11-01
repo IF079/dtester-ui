@@ -1,0 +1,34 @@
+<div class="col-md-12">
+  <div class="col-md-8 mx-auto">
+    <mat-card class="row info-block" id="topInfo">
+      <mat-card-title>Загальна інформація</mat-card-title>
+      <mat-card-content class="row">
+        <div class="col-md-5" id="photoBlock">
+          <ng4-files-drop (filesSelect)="filesSelect($event)" [configId]="'image-config'">
+            <ng4-files-click (filesSelect)="filesSelect($event)" [configId]="'image-config'">
+              <div *ngIf="dropPhoto; else emptyPhoto" id="profPhoto" [ngStyle]="{'background-image' : 'url(' + dropPhoto + ')'}">
+                <div id="fa-plus-block">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+              </div>
+              <ng-template #emptyPhoto>
+                <div id="emptyPhoto">Click or Drag'n'Drop your photo here</div>
+              </ng-template>
+            </ng4-files-click>
+          </ng4-files-drop>
+        </div>
+        <div class="col-md-7" id="fioBlock">
+          <mat-form-field>
+            <input matInput placeholder="{{placeholders.sname}}">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="{{placeholders.name}}">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="{{placeholders.fname}}">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

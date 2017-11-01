@@ -10,6 +10,7 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
+import {TestComponent} from './test/test.component';
 
 const mainRoutes = [
   {
@@ -43,4 +44,5 @@ const mainRoutes = [
   ]
 })
 export class MainRoutingModule {
+}
 }

@@ -4,6 +4,7 @@ import {StudentService} from './student.service';
 import {Student} from './student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
+import {StudentAddModalComponent} from './add-modal/add-modal.component';
 
 @Component({
   selector: 'app-students',
@@ -13,7 +14,7 @@ import {generalConst} from '../shared/constants/general-constants';
 
 export class StudentComponent implements OnInit {
   students: Student[];
-  student: Student = new Student();
+  student: Student;
   headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', '№ групи' , '', ''];
   errWithDisplayingStudents: string;
   placeholders = {

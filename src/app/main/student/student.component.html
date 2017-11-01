@@ -4,55 +4,7 @@
         (click)="addModal.openDialogue()"
         class="addButton">Додати студента</button>
 <app-modal #addModal>
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="parts">
-          <mat-form-field>
-            <input matInput placeholder="{{placeholders.sname}}">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="{{placeholders.name}}">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="{{placeholders.fname}}">
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="parts">
-          <mat-form-field>
-            <input matInput placeholder="{{placeholders.groupId}}">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="{{placeholders.gradebookId}}">
-          </mat-form-field>
-          <div id="inputFile">{{placeholders.photo}}<input type="file"></div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="parts">
-          <mat-form-field>
-            <input matInput placeholder="{{placeholders.username}}">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="{{placeholders.email}}">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="{{placeholders.password}}">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="{{placeholders.confirmPassword}}">
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-  </div>
-  <mat-card>
-    <button class="modal-button"
-            mat-raised-button=""
-            color="primary">Додати</button>
-  </mat-card>
+  <app-add-modal></app-add-modal>
 </app-modal>
 <app-entity-table [entityArray]="students" [columnsArray]="headingColumnsOfTable"
                   [detailUrl]="'/student'"></app-entity-table>

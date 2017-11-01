@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {Ng4FilesModule} from 'angular4-files-upload';
 
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
@@ -40,12 +41,19 @@ import {TimeTableService} from './time-table/time-table.service';
     SubjectModalComponent,
     TimeTableComponent,
     WelcomeComponent,
-    EntityTableComponent
+    EntityTableComponent,
+    StudentAddModalComponent,
+    TestComponent,
+    TestDetailComponent
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
-    MainMaterialModule
+    MainMaterialModule,
+    Ng4FilesModule
+  ],
+  entryComponents: [
+    SubjectModalComponent
   ],
   entryComponents: [
     SubjectModalComponent
@@ -58,6 +66,8 @@ import {TimeTableService} from './time-table/time-table.service';
     SubjectService,
     FacultyService,
     TimeTableService,
+    TestService,
+    TestDetailService,
     SpinnerService
   ]
 })

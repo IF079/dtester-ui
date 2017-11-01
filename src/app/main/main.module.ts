@@ -9,28 +9,23 @@ import {NavComponent} from './nav/nav.component';
 import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {ModalComponent} from './modal/modal.component';
-import {PaginationComponent} from './pagination/pagination.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {SubjectComponent} from './subject/subject.component';
+import {SubjectModalComponent} from './subject-modal/subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {MainMaterialModule} from './main-material.module';
-import {StudentService} from './shared/services/crud/student.service';
-import {SpecialityService} from './shared/services/crud/speciality.service';
-import {SubjectService} from './shared/services/crud/subject.service';
-import {SpinnerService} from './shared/services/spinner.service';
-import {GroupsService} from './shared/services/crud/groups.service';
-import {SpinnerInterceptor} from './shared/interceptors/spinner.interceptor';
+import {StudentService} from './student/student.service';
+import {SpecialityService} from './speciality/speciality.service';
+import {SubjectService} from './subject/subject.service';
+import {SpinnerService} from './spinner/spinner.service';
+import {GroupsService} from './groups/groups.service';
+import {SpinnerInterceptor} from './spinner/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
-import {FacultyService} from './shared/services/crud/faculty.service';
-import {TimeTableService} from './shared/services/crud/time-table.service';
-import {StudentAddModalComponent} from './student/add-modal/add-modal.component';
-import {TestComponent} from './test/test.component';
-import {TestDetailComponent} from './test-detail/test-detail.component';
-import {TestService} from './shared/services/crud/test.service';
-import {TestDetailService} from './shared/services/crud/test-detail.service';
+import {FacultyService} from './faculties/faculty.service';
+import {TimeTableService} from './time-table/time-table.service';
 
 @NgModule({
   declarations: [
@@ -39,11 +34,11 @@ import {TestDetailService} from './shared/services/crud/test-detail.service';
     FacultiesComponent,
     GroupsComponent,
     ModalComponent,
-    PaginationComponent,
     SpecialityComponent,
     StudentComponent,
     StudentDetailComponent,
     SubjectComponent,
+    SubjectModalComponent,
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent,
@@ -56,6 +51,9 @@ import {TestDetailService} from './shared/services/crud/test-detail.service';
     MainRoutingModule,
     MainMaterialModule,
     Ng4FilesModule
+  ],
+  entryComponents: [
+    SubjectModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

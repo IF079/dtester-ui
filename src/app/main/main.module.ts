@@ -20,7 +20,7 @@ import {StudentService} from './shared/services/crud/student.service';
 import {SpecialityService} from './speciality/speciality.service';
 import {SubjectService} from './shared/services/crud/subject.service';
 import {SpinnerService} from './spinner/spinner.service';
-import {GroupsService} from './shared/services/crud/groups.service';
+import {GroupsService} from './groups/groups.service';
 import {SpinnerInterceptor} from './spinner/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {FacultyService} from './shared/services/crud/faculty.service';

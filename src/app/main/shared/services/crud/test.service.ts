@@ -4,23 +4,36 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
 import {Test} from '../../entities/test';
+import {TestDto} from '../crud/dto/test-dto';
+import {RecordsCount} from '../../entities/recordsCount';
+import {LoggerFactory} from '../../../../shared/logger/logger.factory';
+import {urlConstants} from '../../constants/url-constants';
 
 @Injectable()
 
 export class TestService {
-  URL = '/Test';
   constructor(private http: HttpClient) {
   }
 
-  getTests(): Observable<Test[]> {
-    return this.http.get(`${this.URL}/getRecords`);
+  getTests(limit: number, offset: number): Observable<[Test[], RecordsCount]> {
+    return Observable.forkJoin(
+      this.http.get<TestDto[]>(`${urlConstants.testUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
+        .map( testDtoArr => testDtoArr.map( testDto => new Test(testDto))),
+      this.http.get<RecordsCount>(`${urlConstants.testUrl}${urlConstants.getCount}`)
+    );
   }
 
-  getTest(id: number): Observable<Test> {
-    return this.http.get(`${this.URL}/getRecords/${id}`);
+  getTestsBySubject(subjectId: number): Observable<Test[]>{
+    return this.http.get<TestDto[]>(`${urlConstants.testUrl}${urlConstants.getTestsBySubject}/${subjectId}`)
+      .map( testDtoArr => testDtoArr.map( testDto => new Test(testDto)));
   }
 
-  addTest(data): Observable<any> {
-    return this.http.post(`${this.URL}/insertData`, data);
+  getTest(id: number): Observable<Test[]> {
+    return this.http.get<TestDto[]>(`${urlConstants.testUrl}${urlConstants.getRecords}/${id}`)
+      .map( testDtoArr => testDtoArr.map( testDto => new Test(testDto)));
+  }
+
+  addTest(test: Test): Observable<any> {
+    return this.http.post(`${urlConstants.testUrl}${urlConstants.getRecords}`, new TestDto(test));
   }
 }

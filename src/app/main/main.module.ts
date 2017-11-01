@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {Ng4FilesModule} from 'angular4-files-upload';
 
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
@@ -25,6 +26,11 @@ import {SpinnerInterceptor} from './shared/interceptors/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {FacultyService} from './shared/services/crud/faculty.service';
 import {TimeTableService} from './shared/services/crud/time-table.service';
+import {StudentAddModalComponent} from './student/add-modal/add-modal.component';
+import {TestComponent} from './test/test.component';
+import {TestDetailComponent} from './test-detail/test-detail.component';
+import {TestService} from './shared/services/crud/test.service';
+import {TestDetailService} from './shared/services/crud/test-detail.service';
 
 @NgModule({
   declarations: [
@@ -40,12 +46,16 @@ import {TimeTableService} from './shared/services/crud/time-table.service';
     SubjectComponent,
     TimeTableComponent,
     WelcomeComponent,
-    EntityTableComponent
+    EntityTableComponent,
+    StudentAddModalComponent,
+    TestComponent,
+    TestDetailComponent
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
-    MainMaterialModule
+    MainMaterialModule,
+    Ng4FilesModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
@@ -55,6 +65,8 @@ import {TimeTableService} from './shared/services/crud/time-table.service';
     SubjectService,
     FacultyService,
     TimeTableService,
+    TestService,
+    TestDetailService,
     SpinnerService
   ]
 })

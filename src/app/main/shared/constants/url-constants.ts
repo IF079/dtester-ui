@@ -5,8 +5,11 @@ export const urlConstants = {
   facultyUrl: '/Faculty',
   timeTableUrl: '/TimeTable',
   groupUrl: '/Group',
+  testUrl: '/Test',
+  testDetailUrl: '/TestDetail',
   getCount: '/countRecords',
   getRecordsRange: '/getRecordsRange',
   getRecords: '/getRecords',
-  insertData: '/insertData'
+  insertData: '/insertData',
+  getTestsBySubject: '/getTestsBySubject'
 };

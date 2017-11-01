@@ -4,12 +4,14 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatProgressBarModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatCardModule,
+  MatDialogModule
 } from '@angular/material';
 
 @NgModule({
-  imports: [MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatProgressBarModule],
-  exports: [MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatProgressBarModule]
+  imports: [MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatCardModule, MatDialogModule],
+  exports: [MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatCardModule, MatDialogModule]
 })
 export class MainMaterialModule {
 }

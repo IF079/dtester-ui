@@ -4,6 +4,7 @@ import {StudentService} from '../shared/services/crud/student.service';
 import {Student} from '../shared/entities/student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
+import {StudentAddModalComponent} from './add-modal/add-modal.component';
 
 @Component({
   selector: 'app-students',
@@ -13,27 +14,14 @@ import {generalConst} from '../shared/constants/general-constants';
 
 export class StudentComponent implements OnInit {
   students: Student[];
-  student: Student = new Student();
+  student: Student;
   headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', '№ групи' , '', ''];
   errWithDisplayingStudents: string;
-  placeholders = {
-    sname: 'Прізвище',
-    name: 'Ім\'я',
-    fname: 'По-батькові',
-    groupId: '№ групи',
-    gradebookId: '№ залікової книжки',
-    photo: 'Фото',
-    username: 'Username',
-    email: 'Email',
-    password: 'Пароль',
-    confirmPassword: 'Підтвердження паролю'
-  };
   offset = 0;
   currentPage = 1;
   limitPerPage = 10;
   numberOfRecords: number;
   isLoading = false;
-  selectedStudent: Student;
   constructor(private studentService: StudentService) {
   }
 

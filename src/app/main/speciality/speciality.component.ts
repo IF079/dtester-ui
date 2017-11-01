@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {SpecialityService} from '../shared/services/crud/speciality.service';
-import {Speciality} from '../shared/entities/speciality';
+import {SpecialityService} from './speciality.service';
+import {Speciality} from './speciality';
 import {generalConst} from '../shared/constants/general-constants';
 
 @Component({

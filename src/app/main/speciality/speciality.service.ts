@@ -3,10 +3,10 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
-import {Speciality} from '../../entities/speciality';
-import {SpecialityDto} from './dto/speciality-dto';
-import {RecordsCount} from '../../entities/recordsCount';
-import {urlConstants} from '../../constants/url-constants';
+import {Speciality} from './speciality';
+import {SpecialityDto} from './speciality-dto';
+import {RecordsCount} from '../shared/entities/recordsCount';
+import {urlConstants} from '../shared/constants/url-constants';
 
 @Injectable()
 

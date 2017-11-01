@@ -17,7 +17,7 @@ import {TimeTableComponent} from './time-table/time-table.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {MainMaterialModule} from './main-material.module';
 import {StudentService} from './shared/services/crud/student.service';
-import {SpecialityService} from './shared/services/crud/speciality.service';
+import {SpecialityService} from './speciality/speciality.service';
 import {SubjectService} from './shared/services/crud/subject.service';
 import {SpinnerService} from './spinner/spinner.service';
 import {GroupsService} from './shared/services/crud/groups.service';

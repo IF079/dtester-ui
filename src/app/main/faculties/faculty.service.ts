@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
-import {Faculty} from '../shared/entities/faculty';
+import {Faculty} from './faculty';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {urlConstants} from '../shared/constants/url-constants';
 

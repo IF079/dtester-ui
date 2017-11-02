@@ -1,4 +1,4 @@
-import {TestDetailDto} from '../services/crud/dto/test-detail-dto';
+import {TestDetailDto} from './test-detail-dto';
 
 export class TestDetail {
   id?: number;

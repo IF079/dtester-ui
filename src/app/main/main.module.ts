@@ -26,6 +26,11 @@ import {SpinnerInterceptor} from './spinner/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {FacultyService} from './faculties/faculty.service';
 import {TimeTableService} from './time-table/time-table.service';
+import {StudentAddModalComponent} from './student/add-modal/add-modal.component';
+import {TestComponent} from './test/test.component';
+import {TestDetailComponent} from './test-detail/test-detail.component';
+import {TestService} from './test/test.service';
+import {TestDetailService} from './test-detail/test-detail.service';
 
 @NgModule({
   declarations: [
@@ -51,9 +56,6 @@ import {TimeTableService} from './time-table/time-table.service';
     MainRoutingModule,
     MainMaterialModule,
     Ng4FilesModule
-  ],
-  entryComponents: [
-    SubjectModalComponent
   ],
   entryComponents: [
     SubjectModalComponent

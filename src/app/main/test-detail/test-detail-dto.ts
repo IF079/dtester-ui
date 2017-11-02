@@ -1,4 +1,4 @@
-import { TestDetail } from '../../../entities/test-detail';
+import {TestDetail} from './test-detail';
 
 export class TestDetailDto {
   id?: number;

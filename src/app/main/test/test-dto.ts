@@ -1,4 +1,4 @@
-import {Test} from '../../../entities/test';
+import {Test} from './test';
 
 export class TestDto {
   test_id?: number;

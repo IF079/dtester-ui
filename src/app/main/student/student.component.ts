@@ -17,21 +17,11 @@ export class StudentComponent implements OnInit {
   student: Student;
   headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', '№ групи' , '', ''];
   errWithDisplayingStudents: string;
-  placeholders = {
-    sname: 'Прізвище',
-    name: 'Ім\'я',
-    fname: 'По-батькові',
-    groupId: '№ групи',
-    gradebookId: '№ залікової книжки',
-    photo: 'Фото',
-    username: 'Username',
-    email: 'Email',
-    password: 'Пароль',
-    confirmPassword: 'Підтвердження паролю'
-  };
-
+  offset = 0;
+  currentPage = 1;
+  limitPerPage = 10;
   numberOfRecords: number;
-  selectedStudent: Student;
+  isLoading = false;
   constructor(private studentService: StudentService) {
   }
 

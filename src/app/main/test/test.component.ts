@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {TestService} from '../shared/services/crud/test.service';
-import {Test} from '../shared/entities/test';
+import {TestService} from './test.service';
+import {Test} from './test';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 
@@ -19,8 +19,20 @@ export class TestComponent implements OnInit {
   constructor(private testService: TestService) {
   }
 
-  getTests() {
-    this.testService.getTests(10, 0).subscribe(data => {
+  getTests(): void {
+    this.testService.getTests().subscribe(data => {
+      this.tests = data[0];
+      this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
+      console.log(data[0]);
+    },
+    err => {
+      log.error(err);
+      this.errWithDisplayingStudents = generalConst.errorWithDisplayData;
+    });
+  }
+
+  getTestsRange(): void {
+    this.testService.getTestsRange(5, 0).subscribe(data => {
         this.tests = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },
@@ -31,8 +43,7 @@ export class TestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTests();
-    this.testService.getTestsBySubject(1).subscribe(data => console.log(data));
+
   }
 
 }

@@ -11,5 +11,6 @@ export const urlConstants = {
   getRecordsRange: '/getRecordsRange',
   getRecords: '/getRecords',
   insertData: '/insertData',
-  getTestsBySubject: '/getTestsBySubject'
+  getTestsBySubject: '/getTestsBySubject',
+  getTestDetailsByTest: '/getTestDetailsByTest'
 };

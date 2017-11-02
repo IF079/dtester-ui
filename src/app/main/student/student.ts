@@ -1,4 +1,4 @@
-import {StudentDto} from '../../shared/services/crud/dto/student-dto';
+import {StudentDto} from './student-dto';
 
 export class Student {
   userId?: number;

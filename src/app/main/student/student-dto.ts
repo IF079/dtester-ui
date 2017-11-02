@@ -1,4 +1,4 @@
-import {Student} from '../../../entities/student';
+import {Student} from './student';
 
 export class StudentDto {
   user_id: number;

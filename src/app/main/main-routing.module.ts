@@ -10,7 +10,7 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
-import {TestComponent} from './test/test.component';
+import {TestDetailComponent} from './test-detail/test-detail.component';
 
 const mainRoutes = [
   {
@@ -28,7 +28,8 @@ const mainRoutes = [
           {path: 'subjects', component: SubjectComponent},
           {path: 'faculties', component: FacultiesComponent},
           {path: 'groups', component: GroupsComponent},
-          {path: 'timetable', component: TimeTableComponent}
+          {path: 'timetable', component: TimeTableComponent},
+          {path: 'test', component: TestDetailComponent}
         ]
       }
     ]
@@ -44,5 +45,4 @@ const mainRoutes = [
   ]
 })
 export class MainRoutingModule {
-}
 }

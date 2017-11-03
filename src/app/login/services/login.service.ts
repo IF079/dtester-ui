@@ -1,30 +1,28 @@
 import {Injectable, Optional} from '@angular/core';
 import {Router} from '@angular/router';
 import {ConnectableObservable} from 'rxjs/Rx';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/publish';
 
-import {Credentials} from './entities/credentials';
-import {User} from './entities/user';
+import {Credentials} from '../entities/credentials';
+import {User} from '../entities/user';
 import {AuthService} from './auth.service';
-import {UrlUtils} from './utils/url-utils';
-import {LoginUrlConfig} from './config/login-url.config';
-import {DEFAULT_LOGIN_URL_CONFIG} from './config/login-url.default.config';
+import {LoginUrl} from '../entities/login-url';
+import {DEFAULT_LOGIN_URL_CONFIG} from '../config/login-url.default.config';
 
 @Injectable()
 export class LoginService {
   public user: User = new User();
-  public redirectAfterLogin: string = null;
   private isLoggedInConnectable: ConnectableObservable<User> = null;
   private logoutConnectable: ConnectableObservable<User> = null;
   private initialized = false;
 
   constructor(private auth: AuthService, private router: Router,
-              @Optional() private urlConfig: LoginUrlConfig) {
+              @Optional() private urlConfig: LoginUrl) {
     if (!urlConfig) {
       this.urlConfig = DEFAULT_LOGIN_URL_CONFIG;
     }
@@ -40,11 +38,12 @@ export class LoginService {
 
   login(credentials: Credentials): Observable<User> {
     return this.auth.login(credentials)
-      .do(user => this.setupUser(user))
-      .do(() => this.router.navigate([this.getRedirectionUrl()]));
+      .do(user => this.setupUser(user));
+
   }
 
   logout(): Observable<User> {
+    this.router.navigate(['']);
     return this.logoutConnectable || this.establishHotConnectionForIsLogout();
   }
 
@@ -53,13 +52,6 @@ export class LoginService {
       .finally(() => this.initialized = true)
       .subscribe();
 
-  }
-
-  private getRedirectionUrl(): string {
-    return UrlUtils.filterRedirectionUrl(
-      UrlUtils.completeRedirectionUrl(this.redirectAfterLogin),
-      ['/' + this.urlConfig.login, '/' + this.urlConfig.logout]
-    );
   }
 
   private establishHotConnectionForIsLoggedIn(): ConnectableObservable<User> {

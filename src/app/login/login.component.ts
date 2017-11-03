@@ -2,9 +2,10 @@ import {Component} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 import {FormControl, Validators} from '@angular/forms';
 
-import {Credentials} from '../services/entities/credentials';
-import {LoginService} from '../services/login.service';
+import {Credentials} from './entities/credentials';
+import {LoginService} from './services/login.service';
 import {LOGIN_FORM_DEFAULT_CONFIG} from './config/login-form.default.config';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -28,8 +29,11 @@ export class LoginComponent {
     password: ''
   };
   hasBadCredentialsError = false;
+  returnUrl: string;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   login() {
@@ -37,6 +41,7 @@ export class LoginComponent {
       this.loginService.login(this.credentials)
         .subscribe(
           () => {
+              this.router.navigate([this.getReturnUrl()]);
           },
           err => {
             if (err instanceof HttpErrorResponse) {
@@ -49,16 +54,20 @@ export class LoginComponent {
     }
   }
 
+  getReturnUrl() {
+    return this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
   getRequiredMsg(): string {
-    return 'Required';
+    return 'Поле повинно бути заповненим';
   }
 
   getInsufficientLengthErrorMsg(minLengthError: any): string {
-    return `Should be longer than ${minLengthError.requiredLength} symbols, currently ${minLengthError.actualLength}`;
+    return `Кількість символів повинна бути більша ніж ${minLengthError.requiredLength} , зараз ${minLengthError.actualLength}`;
   }
 
   getExceedingLengthErrorMsg(maxLengthError: any): string {
-    return `Should be shorter than ${maxLengthError.requiredLength} symbols, currently ${maxLengthError.actualLength}`;
+    return `Кількість символів повинна бути менша ніж ${maxLengthError.requiredLength} , зараз ${maxLengthError.actualLength}`;
   }
 
   private isFormValid(): boolean {

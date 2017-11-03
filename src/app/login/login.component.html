@@ -1,9 +1,9 @@
 <div class="login-container">
   <form class="login-form" (ngSubmit)="login()" method="post">
     <mat-card>
-      <h1>Authorization</h1>
+      <h1>Авторизація</h1>
       <mat-form-field>
-        <input matInput [formControl]="username" [(ngModel)]="credentials.username" placeholder="Username">
+        <input matInput [formControl]="username" [(ngModel)]="credentials.username" placeholder="Ім'я">
         <mat-error *ngIf="username.invalid">
           <div *ngIf="username.hasError('required')">{{getRequiredMsg()}}</div>
           <div *ngIf="username.hasError('minlength')">{{getInsufficientLengthErrorMsg(username.getError('minlength'))}}
@@ -14,7 +14,7 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput [formControl]="password" [(ngModel)]="credentials.password" type="password"
-               placeholder="Password">
+               placeholder="Пароль">
         <mat-error *ngIf="password.invalid">
           <div *ngIf="password.hasError('required')">{{getRequiredMsg()}}</div>
           <div *ngIf="password.hasError('minlength')">{{getInsufficientLengthErrorMsg(password.getError('minlength'))}}
@@ -23,8 +23,8 @@
           </div>
         </mat-error>
       </mat-form-field>
-      <div *ngIf="hasBadCredentialsError" class="server-error mat-error">Bad credentials</div>
-      <button mat-raised-button color="primary">Login</button>
+      <div *ngIf="hasBadCredentialsError" class="server-error mat-error">Дані ввелені неправильно</div>
+      <button mat-raised-button color="primary">Увійти</button>
     </mat-card>
   </form>
 </div>

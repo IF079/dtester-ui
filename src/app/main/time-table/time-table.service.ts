@@ -19,7 +19,7 @@ export class TimeTableService {
     );
   }
 
-  getTimeTable(id: number): Observable<TimeTable> {
+  getTimeTable(id: number): Observable<any> {
     return this.http.get(`${urlConstants.timeTableUrl}${urlConstants.getRecords}${id}`);
   }
 

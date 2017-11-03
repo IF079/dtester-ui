@@ -42,7 +42,7 @@ export class SubjectService {
       .map(subjectDtoArr => subjectDtoArr.map(SubjectService.toSubjectEntity));
   }
 
-  addSubject(subject: Subject): Observable<SubjectDto> {
+  addSubject(subject: Subject): Observable<any> {
     return this.http.post(`${urlConstants.subjectUrl}${urlConstants.insertData}`, SubjectService.toSubjectDto(subject));
   }
 }

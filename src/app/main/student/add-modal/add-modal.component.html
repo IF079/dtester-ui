@@ -4,18 +4,7 @@
       <mat-card-title>Загальна інформація</mat-card-title>
       <mat-card-content class="row">
         <div class="col-md-5" id="photoBlock">
-          <ng4-files-drop (filesSelect)="filesSelect($event)" [configId]="'image-config'">
-            <ng4-files-click (filesSelect)="filesSelect($event)" [configId]="'image-config'">
-              <div *ngIf="dropPhoto; else emptyPhoto" id="profPhoto" [ngStyle]="{'background-image' : 'url(' + dropPhoto + ')'}">
-                <div id="fa-plus-block">
-                  <i class="fa fa-plus" aria-hidden="true"></i>
-                </div>
-              </div>
-              <ng-template #emptyPhoto>
-                <div id="emptyPhoto">Click or Drag'n'Drop your photo here</div>
-              </ng-template>
-            </ng4-files-click>
-          </ng4-files-drop>
+       
         </div>
         <div class="col-md-7" id="fioBlock">
           <mat-form-field>

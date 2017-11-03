@@ -19,7 +19,7 @@ export class GroupsService {
     );
   }
 
-  get(id: number): Observable<Group> {
+  get(id: number): Observable<any> {
     return this.http.get(`${urlConstants.groupUrl}${urlConstants.getRecords}/${id}`);
   }
 

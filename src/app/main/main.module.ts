@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {Ng4FilesModule} from 'angular4-files-upload';
 
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
@@ -54,8 +53,7 @@ import {TestDetailService} from './test-detail/test-detail.service';
   imports: [
     CommonModule,
     MainRoutingModule,
-    MainMaterialModule,
-    Ng4FilesModule
+    MainMaterialModule
   ],
   entryComponents: [
     SubjectModalComponent

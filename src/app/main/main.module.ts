@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms'
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Ng4FilesModule} from 'angular4-files-upload';
 
@@ -13,10 +14,12 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {SubjectComponent} from './subject/subject.component';
-import {SubjectModalComponent} from './subject-modal/subject-modal.component';
+import {SubjectModalComponent} from './subject/subject-modal/subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {WelcomeComponent} from './welcome/welcome.component';
+
 import {MainMaterialModule} from './main-material.module';
+
 import {StudentService} from './student/student.service';
 import {SpecialityService} from './speciality/speciality.service';
 import {SubjectService} from './subject/subject.service';
@@ -53,6 +56,7 @@ import {TestDetailService} from './test-detail/test-detail.service';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MainRoutingModule,
     MainMaterialModule,
     Ng4FilesModule

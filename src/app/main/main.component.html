@@ -1,9 +1,15 @@
+<div class="spinnerContainer" [class.shim]="spinner.tasksCounter">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-2">
+      <div [style.visibility]="spinner.needsSpinner() ? 'visible' : 'hidden'">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
   <div class="main-frame">
     <app-nav></app-nav>
-    <div [style.visibility]="spinner.needsSpinner() ? 'visible' : 'hidden'">
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
     <router-outlet></router-outlet>
   </div>
 </div>

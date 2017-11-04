@@ -1,6 +1,6 @@
 <div *ngIf="errWithDisplayingSubjects" class="mat-error">{{errWithDisplayingSubjects}}</div>
 <button  class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
 
-<app-entity-table [columnsArray]="headingColumnsOfTable" [entityArray]="subjects"></app-entity-table>
+<app-entity-table [entityName]="'Subject'" [columnsArray]="headingColumnsOfTable" [entityArray]="subjects"></app-entity-table>
 
 

@@ -37,7 +37,7 @@ export class SubjectComponent implements OnInit {
 
 
   getSubjects(): void {
-    this.subjectService.getSubjects(10, 0).subscribe((data) => {
+    this.subjectService.getSubjects(20, 15).subscribe((data) => {
         this.subjects = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },

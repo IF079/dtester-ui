@@ -1,4 +1,4 @@
-export const urlConstants = {
+export const url = {
   specialityUrl: '/speciality',
   studentUrl: '/Student',
   subjectUrl: '/Subject',
@@ -11,6 +11,8 @@ export const urlConstants = {
   getRecordsRange: '/getRecordsRange',
   getRecords: '/getRecords',
   insertData: '/insertData',
+  update: '/update',
+  delete: '/del',
   getTestsBySubject: '/getTestsBySubject',
   getTestDetailsByTest: '/getTestDetailsByTest'
 };

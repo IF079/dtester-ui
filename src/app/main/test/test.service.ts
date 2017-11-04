@@ -7,7 +7,7 @@ import {Test} from './test';
 import {TestDto} from './test-dto';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import {urlConstants} from '../shared/constants/url-constants';
+import {url} from '../shared/constants/url-constants';
 
 @Injectable()
 
@@ -17,31 +17,31 @@ export class TestService {
 
   getTests(): Observable<[Test[], RecordsCount]> {
     return Observable.forkJoin(
-      this.http.get<TestDto[]>(`${urlConstants.testUrl}${urlConstants.getRecords}`)
+      this.http.get<TestDto[]>(`${url.testUrl}${url.getRecords}`)
         .map( testDtoArr => testDtoArr.map( testDto => new Test(testDto))),
-      this.http.get<RecordsCount>(`${urlConstants.testUrl}${urlConstants.getCount}`)
+      this.http.get<RecordsCount>(`${url.testUrl}${url.getCount}`)
     );
   }
 
   getTestsRange(limit: number, offset: number): Observable<[Test[], RecordsCount]> {
     return Observable.forkJoin(
-      this.http.get<TestDto[]>(`${urlConstants.testUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
+      this.http.get<TestDto[]>(`${url.testUrl}${url.getRecordsRange}/${limit}/${offset}`)
         .map( testDtoArr => testDtoArr.map( testDto => new Test(testDto))),
-      this.http.get<RecordsCount>(`${urlConstants.testUrl}${urlConstants.getCount}`)
+      this.http.get<RecordsCount>(`${url.testUrl}${url.getCount}`)
     );
   }
 
   getTestsBySubjectId(subjectId: number): Observable<Test[]>{
-    return this.http.get<TestDto[]>(`${urlConstants.testUrl}${urlConstants.getTestsBySubject}/${subjectId}`)
+    return this.http.get<TestDto[]>(`${url.testUrl}${url.getTestsBySubject}/${subjectId}`)
       .map( testDtoArr => testDtoArr.map( testDto => new Test(testDto)));
   }
 
   getTest(id: number): Observable<Test[]> {
-    return this.http.get<TestDto[]>(`${urlConstants.testUrl}${urlConstants.getRecords}/${id}`)
+    return this.http.get<TestDto[]>(`${url.testUrl}${url.getRecords}/${id}`)
       .map( testDtoArr => testDtoArr.map( testDto => new Test(testDto)));
   }
 
   addTest(test: Test): Observable<any> {
-    return this.http.post(`${urlConstants.testUrl}${urlConstants.insertData}`, new TestDto(test));
+    return this.http.post(`${url.testUrl}${url.insertData}`, new TestDto(test));
   }
 }

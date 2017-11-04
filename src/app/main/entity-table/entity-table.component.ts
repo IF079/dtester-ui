@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Router} from '@angular/router';
+import {UpdateDeleteEntityService} from './update-delete-entity.service';
 
 @Component({
   selector: 'app-entity-table',
@@ -8,11 +9,13 @@ import {Router} from '@angular/router';
 })
 
 export class EntityTableComponent implements OnChanges {
-  tableArray: any[];
+  tableRowArr: any[];
+  @Input() entityName: string;
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
-  constructor(private router: Router) {
+
+  constructor(private router: Router, private delUpdateService: UpdateDeleteEntityService) {
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -21,8 +24,19 @@ export class EntityTableComponent implements OnChanges {
       for (const item of this.entityArray) {
         localArray.push(Object.values(item));
       }
-      this.tableArray = localArray;
+      this.tableRowArr = localArray;
     }
+  }
+
+  deleteItem(item) {
+    console.log(item);
+    this.delUpdateService.deleteEntity(item[0], this.entityName).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.tableRowArr = this.tableRowArr.filter(i => item !== i);
+      },
+      (err) => console.log(err)
+    );
   }
 
   onSelect(item: any[]) {

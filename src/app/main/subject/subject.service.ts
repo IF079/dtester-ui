@@ -6,7 +6,7 @@ import 'rxjs/add/observable/forkJoin';
 import {Subject} from './subject';
 import {SubjectDto} from './subject-dto';
 import {RecordsCount} from '../shared/entities/recordsCount';
-import {urlConstants} from '../shared/constants/url-constants';
+import {url} from '../shared/constants/url-constants';
 
 @Injectable()
 
@@ -17,18 +17,18 @@ export class SubjectService {
 
   getSubjects(limit: number, offset: number): Observable<[Subject[], RecordsCount]> {
     return Observable.forkJoin(
-      this.http.get<SubjectDto[]>(`${urlConstants.subjectUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
+      this.http.get<SubjectDto[]>(`${url.subjectUrl}${url.getRecordsRange}/${limit}/${offset}`)
         .map(subjectDtoArr => subjectDtoArr.map(subjectDto => new Subject(subjectDto))),
-      this.http.get<RecordsCount>(`${urlConstants.subjectUrl}${urlConstants.getCount}`)
+      this.http.get<RecordsCount>(`${url.subjectUrl}${url.getCount}`)
     );
   }
 
   getSubject(id: number): Observable<Subject[]> {
-    return this.http.get<SubjectDto[]>(`${urlConstants.subjectUrl}${urlConstants.getRecords}${id}`)
+    return this.http.get<SubjectDto[]>(`${url.subjectUrl}${url.getRecords}${id}`)
       .map(subjectDtoArr => subjectDtoArr.map(subjectDto => new Subject(subjectDto)));
   }
 
   addSubject(subject: any): Observable<SubjectDto> {
-    return this.http.post(`${urlConstants.subjectUrl}${urlConstants.insertData}`, subject);
+    return this.http.post(`${url.subjectUrl}${url.insertData}`, subject);
   }
 }

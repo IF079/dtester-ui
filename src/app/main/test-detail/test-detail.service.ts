@@ -7,7 +7,7 @@ import {TestDetail} from './test-detail';
 import {TestDetailDto} from './test-detail-dto';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import {urlConstants} from '../shared/constants/url-constants';
+import {url} from '../shared/constants/url-constants';
 
 @Injectable()
 
@@ -17,31 +17,31 @@ export class TestDetailService {
 
   getTestDetails(): Observable<[TestDetail[], RecordsCount]> {
     return Observable.forkJoin(
-      this.http.get<TestDetailDto[]>(`${urlConstants.testDetailUrl}${urlConstants.getRecords}`)
+      this.http.get<TestDetailDto[]>(`${url.testDetailUrl}${url.getRecords}`)
         .map( testDetailDtoArr => testDetailDtoArr.map( testDetailDto => new TestDetail(testDetailDto))),
-      this.http.get<RecordsCount>(`${urlConstants.testDetailUrl}${urlConstants.getCount}`)
+      this.http.get<RecordsCount>(`${url.testDetailUrl}${url.getCount}`)
     );
   }
 
   getTestDetailsRange(limit: number, offset: number): Observable<[TestDetail[], RecordsCount]> {
     return Observable.forkJoin(
-      this.http.get<TestDetailDto[]>(`${urlConstants.testDetailUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`)
+      this.http.get<TestDetailDto[]>(`${url.testDetailUrl}${url.getRecordsRange}/${limit}/${offset}`)
         .map( testDetailDtoArr => testDetailDtoArr.map( testDetailDto => new TestDetail(testDetailDto))),
-      this.http.get<RecordsCount>(`${urlConstants.testDetailUrl}${urlConstants.getCount}`)
+      this.http.get<RecordsCount>(`${url.testDetailUrl}${url.getCount}`)
     );
   }
 
   getTestDetailsByTestId(testId: number): Observable<TestDetail[]> {
-    return this.http.get<TestDetailDto[]>(`${urlConstants.testDetailUrl}${urlConstants.getTestDetailsByTest}/${testId}`)
+    return this.http.get<TestDetailDto[]>(`${url.testDetailUrl}${url.getTestDetailsByTest}/${testId}`)
       .map( testDetailDtoArr => testDetailDtoArr.map( testDetailDto => new TestDetail(testDetailDto)));
   }
 
   getTestDetail(id: number): Observable<TestDetail[]> {
-    return this.http.get<TestDetailDto[]>(`${urlConstants.testDetailUrl}${urlConstants.getRecords}/${id}`)
+    return this.http.get<TestDetailDto[]>(`${url.testDetailUrl}${url.getRecords}/${id}`)
       .map( testDetailDtoArr => testDetailDtoArr.map( testDetailDto => new TestDetail(testDetailDto)));
   }
 
   addTestDetail(testDetail: TestDetail): Observable<any> {
-    return this.http.post(`${urlConstants.testDetailUrl}${urlConstants.insertData}`, new TestDetailDto(testDetail));
+    return this.http.post(`${url.testDetailUrl}${url.insertData}`, new TestDetailDto(testDetail));
   }
 }

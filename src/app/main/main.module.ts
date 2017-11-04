@@ -34,6 +34,7 @@ import {TestComponent} from './test/test.component';
 import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
 import {TestDetailService} from './test-detail/test-detail.service';
+import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.service';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import {TestDetailService} from './test-detail/test-detail.service';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
+    UpdateDeleteEntityService,
     StudentService,
     SpecialityService,
     GroupsService,

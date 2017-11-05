@@ -8,11 +8,12 @@ export class UpdateDeleteEntityService {
   constructor(private http: HttpClient) {
 
   }
-  updateEntity (id: number, dto) {
 
+  updateEntity(id: number, entity: string, dto: any): Observable<any> {
+    return this.http.post(`/${entity}${url.update}/${id}`, dto);
   }
 
   deleteEntity(id: number, entity: string): Observable<any> {
-      return this.http.get(`/${entity}${url.delete}/${id}`);
+    return this.http.get(`/${entity}${url.delete}/${id}`);
   }
 }

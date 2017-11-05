@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {SubjectService} from '../subject.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
+
+import {SubjectService} from '../subject.service';
 
 @Component({
   selector: 'app-subject-modal',
@@ -32,9 +33,6 @@ export class SubjectModalComponent {
   addSubject() {
     const name = this.subjectForm.get('name').value;
     const description = this.subjectForm.get('description').value;
-
-    console.log(name);
-    console.log(description);
     this.subjectService.addSubject({subject_name: name, subject_description: description}).subscribe(subject => {
         console.log(subject);
       },

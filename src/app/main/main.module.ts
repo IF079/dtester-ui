@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Ng4FilesModule} from 'angular4-files-upload';
 
+import {EditEntityModalComponent} from './entity-table/edit-entity-modal/edit-entity-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
@@ -51,6 +52,7 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent,
+    EditEntityModalComponent,
     StudentAddModalComponent,
     TestComponent,
     TestDetailComponent
@@ -63,7 +65,8 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
     Ng4FilesModule
   ],
   entryComponents: [
-    SubjectModalComponent
+    SubjectModalComponent,
+    EditEntityModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

@@ -1,5 +1,8 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+
+import {EditEntityModalComponent} from './edit-entity-modal/edit-entity-modal.component';
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 
 @Component({
@@ -15,7 +18,19 @@ export class EntityTableComponent implements OnChanges {
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
 
-  constructor(private router: Router, private delUpdateService: UpdateDeleteEntityService) {
+  constructor(private router: Router, private delUpdateService: UpdateDeleteEntityService, public dialog: MatDialog) {
+  }
+
+  openDialogAndPassDataToIt(item: any) {
+    const dialogRef = this.dialog.open(EditEntityModalComponent, {
+      height: '350px',
+      width: '1000px',
+      data: item
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -28,9 +43,9 @@ export class EntityTableComponent implements OnChanges {
     }
   }
 
-  deleteItem(item) {
-    console.log(item);
-    this.delUpdateService.deleteEntity(item[0], this.entityName).subscribe(
+  deleteItem(item: any) {
+    const id = item[0];
+    this.delUpdateService.deleteEntity(id, this.entityName).subscribe(
       (resp) => {
         console.log(resp);
         this.tableRowArr = this.tableRowArr.filter(i => item !== i);

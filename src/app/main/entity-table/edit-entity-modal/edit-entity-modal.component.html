@@ -1,5 +1,5 @@
-<form [formGroup]="editEntityForm">
-  <h2 mat-dialog-title>Додайте предмет</h2>
+<form [formGroup]="editEntityForm" (ngSubmit)="editEntityRecord()">
+  <h2 mat-dialog-title>Відредагуйте запис</h2>
   <mat-dialog-content>
     <mat-card>
       <mat-form-field>

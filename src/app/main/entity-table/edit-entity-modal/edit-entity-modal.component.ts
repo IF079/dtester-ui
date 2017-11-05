@@ -10,6 +10,7 @@ import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 
 export class EditEntityModalComponent {
   editEntityForm: FormGroup;
+  dataForUpdate: any;
   placeholders = {
     name: 'Назва предмету',
     description: 'Опис предмету'

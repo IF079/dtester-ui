@@ -18,7 +18,7 @@ export class GroupsComponent implements OnInit {
   constructor(private groupsService: GroupsService) {
   }
   getGroups() {
-    this.groupsService.getGroups(10, 0).subscribe(data => {
+    this.groupsService.getGroupsRange(10, 0).subscribe(data => {
         this.groups = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },

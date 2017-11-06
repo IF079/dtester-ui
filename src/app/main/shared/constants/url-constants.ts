@@ -13,6 +13,7 @@ export const url = {
   insertData: '/insertData',
   update: '/update',
   delete: '/del',
+  getRecordsBySearch: '/getRecordsBySearch',
   getTestsBySubject: '/getTestsBySubject',
   getTestDetailsByTest: '/getTestDetailsByTest'
 };

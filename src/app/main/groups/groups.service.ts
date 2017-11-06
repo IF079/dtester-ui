@@ -12,15 +12,27 @@ import {url} from '../shared/constants/url-constants';
 export class GroupsService {
   constructor(private http: HttpClient) {
   }
-  getGroups(limit: number, offset: number): Observable<[Group[], RecordsCount]> {
+
+  getGroups(): Observable<[Group[], RecordsCount]> {
+    return Observable.forkJoin(
+      this.http.get<Group[]>(`${url.groupUrl}${url.getRecords}`),
+      this.http.get<RecordsCount>(`${url.groupUrl}${url.getCount}`)
+    );
+  }
+
+  getGroupsRange(limit: number, offset: number): Observable<[Group[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<Group[]>(`${url.groupUrl}${url.getRecordsRange}/${limit}/${offset}`),
       this.http.get<RecordsCount>(`${url.groupUrl}${url.getCount}`)
     );
   }
 
-  get(id: number): Observable<Group> {
+  getGroupById(id: number): Observable<Group> {
     return this.http.get(`${url.groupUrl}${url.getRecords}/${id}`);
+  }
+
+  getGroupByName(name: string): Observable<Group> {
+    return this.http.get(`${url.groupUrl}${url.getRecordsBySearch}/${name}`);
   }
 
   addGroup(data): Observable<any> {

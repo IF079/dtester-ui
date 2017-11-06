@@ -30,7 +30,7 @@ export class StudentDto {
   }
 }
 
-class OtherDtoInfo {
+export class OtherDtoInfo {
   password: string;
   passwordConfirm: string;
   email: string;

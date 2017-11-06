@@ -4,17 +4,17 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
 import {Student} from './student';
-import {StudentDto} from './student-dto';
+import {StudentDto, OtherDtoInfo} from './student-dto';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {url} from '../shared/constants/url-constants';
 
-class OtherDtoInfo {
-  password: string;
-  passwordConfirm: string;
-  email: string;
-  username: string;
-}
+// class OtherDtoInfo {
+//   password: string;
+//   passwordConfirm: string;
+//   email: string;
+//   username: string;
+// }
 
 @Injectable()
 

@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {
+  MatTableModule,
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
@@ -10,8 +11,10 @@ import {
 } from '@angular/material';
 
 @NgModule({
-  imports: [MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule],
-  exports: [MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule]
+  imports: [MatToolbarModule, MatButtonModule, MatFormFieldModule,
+    MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatTableModule],
+  exports: [MatToolbarModule, MatButtonModule, MatFormFieldModule,
+    MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatTableModule]
 })
 export class MainMaterialModule {
 }

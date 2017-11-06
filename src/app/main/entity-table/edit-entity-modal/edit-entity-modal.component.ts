@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, OnChanges} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
@@ -8,7 +8,7 @@ import {UpdateDeleteEntityService} from '../update-delete-entity.service';
   templateUrl: './edit-entity-modal.component.html'
 })
 
-export class EditEntityModalComponent {
+export class EditEntityModalComponent implements OnChanges {
   editEntityForm: FormGroup;
   dataForUpdate: any;
   placeholders = {
@@ -24,23 +24,28 @@ export class EditEntityModalComponent {
   }
 
   createForm(): void {
-    this.editEntityForm = this.formBuilder.group({
-      name: this.data[1],
-      description: this.data[2]
-    });
+    const name = this.data[1];
+    const description = this.data[2];
+    this.editEntityForm = this.formBuilder.group({name, description});
+  }
+
+  ngOnChanges() {
+
   }
 
   editEntityRecord() {
     const id = this.data[0];
     const name = this.editEntityForm.get('name').value;
     const description = this.editEntityForm.get('description').value;
-    this.delUpdateService.updateEntity(id, 'Subject',
+    this.dataForUpdate = 'Something';
+    /*this.delUpdateService.updateEntity(id, 'Subject',
       {
         subject_name: name,
         subject_description: description
       }).subscribe(response => {
         console.log(response);
+        this.data = {id, name, description};
       },
-      err => console.log(err));
+      err => console.log(err));*/
   }
 }

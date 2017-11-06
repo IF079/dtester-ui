@@ -14,7 +14,6 @@ export class EntityTableComponent implements OnChanges {
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
-
   constructor(private router: Router, private delUpdateService: UpdateDeleteEntityService) {
   }
 
@@ -29,14 +28,19 @@ export class EntityTableComponent implements OnChanges {
   }
 
   deleteItem(item) {
-    console.log(item);
-    this.delUpdateService.deleteEntity(item[0], this.entityName).subscribe(
-      (resp) => {
-        console.log(resp);
-        this.tableRowArr = this.tableRowArr.filter(i => item !== i);
-      },
-      (err) => console.log(err)
-    );
+    if (confirm('Вы подтверждаете удаление?')) {
+      console.log(item);
+      this.delUpdateService.deleteEntity(item[0], this.entityName).subscribe(
+        (resp) => {
+          console.log(resp);
+          this.tableRowArr = this.tableRowArr.filter(i => item !== i);
+          alert('Сущность была удалена');
+        },
+        (err) => console.log(err)
+      );
+    } else {
+      alert('Ну как хотите...');
+    }
   }
 
   onSelect(item: any[]) {

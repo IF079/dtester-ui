@@ -1,5 +1,8 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {EditEntityModalComponent} from './edit-entity-modal/edit-entity-modal.component';
 import {Router} from '@angular/router';
+import {UpdateDeleteEntityService} from './update-delete-entity.service';
 
 @Component({
   selector: 'app-entity-table',
@@ -8,20 +11,47 @@ import {Router} from '@angular/router';
 })
 
 export class EntityTableComponent implements OnChanges {
-  tableArray: any[];
+  tableRowArr: any[];
+  @Input() entityName: string;
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
-  constructor(private router: Router) {
+  constructor(public dialog: MatDialog,  private router: Router, private delUpdateService: UpdateDeleteEntityService) {
   }
+  openDialogAndPassDataToIt(rowItem): void {
+    const dialogRef = this.dialog.open(EditEntityModalComponent, {
+      height: '350px',
+      width: '1000px',
+      data: rowItem
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
   ngOnChanges(changes: SimpleChanges) {
     if (changes.entityArray.currentValue) {
       const localArray = [];
       for (const item of this.entityArray) {
         localArray.push(Object.values(item));
       }
-      this.tableArray = localArray;
+      this.tableRowArr = localArray;
+    }
+  }
+
+  deleteItem(item) {
+    if (confirm('Вы подтверждаете удаление?')) {
+      console.log(item);
+      this.delUpdateService.deleteEntity(item[0], this.entityName).subscribe(
+        (resp) => {
+          console.log(resp);
+          this.tableRowArr = this.tableRowArr.filter(i => item !== i);
+          alert('Сущность была удалена');
+        },
+        (err) => console.log(err)
+      );
+    } else {
+      alert('Ну как хотите...');
     }
   }
 

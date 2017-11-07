@@ -5,7 +5,7 @@ import 'rxjs/add/observable/forkJoin';
 
 import {TimeTable} from './time-table';
 import {RecordsCount} from '../shared/entities/recordsCount';
-import {urlConstants} from '../shared/constants/url-constants';
+import {url} from '../shared/constants/url-constants';
 
 @Injectable()
 
@@ -14,16 +14,16 @@ export class TimeTableService {
   }
   getTimeTables(limit: number, offset: number): Observable<[TimeTable[], RecordsCount]> {
     return Observable.forkJoin(
-      this.http.get<TimeTable[]>(`${urlConstants.timeTableUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`),
-      this.http.get<RecordsCount>(`${urlConstants.timeTableUrl}${urlConstants.getCount}`)
+      this.http.get<TimeTable[]>(`${url.timeTableUrl}${url.getRecordsRange}/${limit}/${offset}`),
+      this.http.get<RecordsCount>(`${url.timeTableUrl}${url.getCount}`)
     );
   }
 
-  getTimeTable(id: number): Observable<any> {
-    return this.http.get(`${urlConstants.timeTableUrl}${urlConstants.getRecords}${id}`);
+  getTimeTable(id: number): Observable<TimeTable> {
+    return this.http.get(`${url.timeTableUrl}${url.getRecords}${id}`);
   }
 
   addTimeTable(data): Observable<any> {
-    return this.http.post(`${urlConstants.timeTableUrl}${urlConstants.insertData}`, data);
+    return this.http.post(`${url.timeTableUrl}${url.insertData}`, data);
   }
 }

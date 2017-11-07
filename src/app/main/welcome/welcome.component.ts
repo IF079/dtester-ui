@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 import {LoginService} from '../../login/services/login.service';
-import {User} from '../../login/services/entities/user';
+import {User} from '../../login/entities/user';
 
 @Component({
   selector: 'app-welcome',

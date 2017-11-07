@@ -5,7 +5,7 @@ import 'rxjs/add/observable/forkJoin';
 
 import {Faculty} from './faculty';
 import {RecordsCount} from '../shared/entities/recordsCount';
-import {urlConstants} from '../shared/constants/url-constants';
+import {url} from '../shared/constants/url-constants';
 
 @Injectable()
 
@@ -15,16 +15,16 @@ export class FacultyService {
 
   getFaculties(limit: number, offset: number): Observable<[Faculty[], RecordsCount]> {
     return Observable.forkJoin(
-      this.http.get<Faculty[]>(`${urlConstants.facultyUrl}${urlConstants.getRecordsRange}/${limit}/${offset}`),
-      this.http.get<RecordsCount>(`${urlConstants.facultyUrl}${urlConstants.getCount}`)
+      this.http.get<Faculty[]>(`${url.facultyUrl}${url.getRecordsRange}/${limit}/${offset}`),
+      this.http.get<RecordsCount>(`${url.facultyUrl}${url.getCount}`)
     );
   }
 
-  getFaculty(id: number): Observable<any> {
-    return this.http.get(`${urlConstants.facultyUrl}${urlConstants.getRecords}${id}`);
+  getFaculty(id: number): Observable<Faculty> {
+    return this.http.get(`${url.facultyUrl}${url.getRecords}${id}`);
   }
 
   addFaculty(data): Observable<any> {
-    return this.http.post(`${urlConstants.facultyUrl}${urlConstants.insertData}`, data);
+    return this.http.post(`${url.facultyUrl}${url.insertData}`, data);
   }
 }

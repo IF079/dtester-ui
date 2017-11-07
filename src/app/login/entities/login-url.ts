@@ -1,4 +1,4 @@
-export class LoginUrlConfig {
+export class LoginUrl {
   login: string;
   logout: string;
 }

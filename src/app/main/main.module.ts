@@ -1,7 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms'
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
+import {EditEntityModalComponent} from './entity-table/edit-entity-modal/edit-entity-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
@@ -12,10 +14,12 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {SubjectComponent} from './subject/subject.component';
-import {SubjectModalComponent} from './subject-modal/subject-modal.component';
+import {SubjectModalComponent} from './subject/subject-modal/subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {WelcomeComponent} from './welcome/welcome.component';
+
 import {MainMaterialModule} from './main-material.module';
+
 import {StudentService} from './student/student.service';
 import {SpecialityService} from './speciality/speciality.service';
 import {SubjectService} from './subject/subject.service';
@@ -30,6 +34,7 @@ import {TestComponent} from './test/test.component';
 import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
 import {TestDetailService} from './test-detail/test-detail.service';
+import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.service';
 
 @NgModule({
   declarations: [
@@ -46,20 +51,24 @@ import {TestDetailService} from './test-detail/test-detail.service';
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent,
+    EditEntityModalComponent,
     StudentAddModalComponent,
     TestComponent,
     TestDetailComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MainRoutingModule,
     MainMaterialModule
   ],
   entryComponents: [
-    SubjectModalComponent
+    SubjectModalComponent,
+    EditEntityModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
+    UpdateDeleteEntityService,
     StudentService,
     SpecialityService,
     GroupsService,

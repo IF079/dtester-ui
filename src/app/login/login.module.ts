@@ -4,16 +4,14 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AuthService} from './services/auth.service';
-import {LoginComponent} from './login/login.component';
-import {LogoutComponent} from './logout/logout.component';
+import {LoginComponent} from './login.component';
 import {LoginMaterialModule} from './login-material.module';
 import {LoginRoutingModule} from './login-routing.module';
 import {LoginService} from './services/login.service';
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    LogoutComponent
+    LoginComponent
   ],
   imports: [
     HttpClientModule,

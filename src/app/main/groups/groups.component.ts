@@ -17,8 +17,8 @@ export class GroupsComponent implements OnInit {
   headingColumnsOfTable = ['№', 'Назва', '№ Факультету', '№ Спеціальності', '', ''];
   constructor(private groupsService: GroupsService) {
   }
-  getGroups() {
-    this.groupsService.getGroups(10, 0).subscribe(data => {
+  getGroupsRange() {
+    this.groupsService.getGroupsRange(10, 0).subscribe(data => {
         this.groups = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },
@@ -30,6 +30,6 @@ export class GroupsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getGroups();
+    this.getGroupsRange();
   }
 }

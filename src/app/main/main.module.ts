@@ -1,7 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms'
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Ng4FilesModule} from 'angular4-files-upload';
+
 
 import {EditEntityModalComponent} from './entity-table/edit-entity-modal/edit-entity-modal.component';
 import {MainComponent} from './main.component';
@@ -30,6 +32,7 @@ import {EntityTableComponent} from './entity-table/entity-table.component';
 import {FacultyService} from './faculties/faculty.service';
 import {TimeTableService} from './time-table/time-table.service';
 import {StudentAddModalComponent} from './student/add-modal/add-modal.component';
+import {InfoModalComponent} from './student/info-modal/info-modal.component';
 import {TestComponent} from './test/test.component';
 import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
@@ -53,6 +56,7 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
     EntityTableComponent,
     EditEntityModalComponent,
     StudentAddModalComponent,
+    InfoModalComponent,
     TestComponent,
     TestDetailComponent
   ],
@@ -60,11 +64,15 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
     CommonModule,
     ReactiveFormsModule,
     MainRoutingModule,
-    MainMaterialModule
+    MainMaterialModule,
+    FormsModule,
+    Ng4FilesModule
   ],
   entryComponents: [
+    EditEntityModalComponent,
     SubjectModalComponent,
-    EditEntityModalComponent
+    StudentAddModalComponent,
+    InfoModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

@@ -2,7 +2,7 @@
   <div class="wrapper" *ngIf="student">
     <div class="row">
       <div class="col-md-5 imagin">
-        <img src="data:image/png;base64,{{student.photo}}" alt="Photo">
+        <img src="{{student.photo}}" alt="Photo">
       </div>
       <div class="col-md-7">
         <p><strong>Номер(ID) студента:</strong> {{student.userId}}</p>

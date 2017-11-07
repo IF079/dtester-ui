@@ -10,14 +10,16 @@ import {
   MatProgressSpinnerModule,
   MatToolbarModule,
   MatCardModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSelectModule
 } from '@angular/material';
 
 @NgModule({
-  imports: [MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule,
-    MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule],
-  exports: [MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule,
-    MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule]
+  imports: [MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
+    MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule],
+  exports: [MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
+    MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule]
 })
+
 export class MainMaterialModule {
 }

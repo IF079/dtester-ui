@@ -24,9 +24,12 @@ export class EditEntityModalComponent implements OnChanges {
   }
 
   createForm(): void {
+    console.log(this.data);
     const name = this.data[1];
+    console.log(this.data[1]);
     const description = this.data[2];
-    this.editEntityForm = this.formBuilder.group({name, description});
+    this.editEntityForm = this.formBuilder.group({name
+      , description});
   }
 
   ngOnChanges() {
@@ -35,10 +38,11 @@ export class EditEntityModalComponent implements OnChanges {
 
   editEntityRecord() {
     const id = this.data[0];
+    console.log(this.data[0]);
     const name = this.editEntityForm.get('name').value;
     const description = this.editEntityForm.get('description').value;
     this.dataForUpdate = 'Something';
-    /*this.delUpdateService.updateEntity(id, 'Subject',
+    this.delUpdateService.updateEntity(id, 'Subject',
       {
         subject_name: name,
         subject_description: description
@@ -46,6 +50,6 @@ export class EditEntityModalComponent implements OnChanges {
         console.log(response);
         this.data = {id, name, description};
       },
-      err => console.log(err));*/
+      err => console.log(err));
   }
 }

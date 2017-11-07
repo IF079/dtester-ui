@@ -1,5 +1,8 @@
 import {NgModule} from '@angular/core';
+import {CdkTableModule} from '@angular/cdk/table';
+
 import {
+  MatPaginatorModule,
   MatTableModule,
   MatButtonModule,
   MatFormFieldModule,
@@ -11,10 +14,10 @@ import {
 } from '@angular/material';
 
 @NgModule({
-  imports: [MatToolbarModule, MatButtonModule, MatFormFieldModule,
-    MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatTableModule],
-  exports: [MatToolbarModule, MatButtonModule, MatFormFieldModule,
-    MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatTableModule]
+  imports: [MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule,
+    MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule],
+  exports: [MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule,
+    MatInputModule, MatProgressSpinnerModule, MatCardModule, MatDialogModule]
 })
 export class MainMaterialModule {
 }

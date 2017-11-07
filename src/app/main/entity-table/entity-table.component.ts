@@ -1,4 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {EditEntityModalComponent} from './edit-entity-modal/edit-entity-modal.component';
 import {Router} from '@angular/router';
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 
@@ -14,9 +16,19 @@ export class EntityTableComponent implements OnChanges {
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
-  constructor(private router: Router, private delUpdateService: UpdateDeleteEntityService) {
+  constructor(public dialog: MatDialog,  private router: Router, private delUpdateService: UpdateDeleteEntityService) {
   }
+  openDialogAndPassDataToIt(rowItem): void {
+    const dialogRef = this.dialog.open(EditEntityModalComponent, {
+      height: '350px',
+      width: '1000px',
+      data: rowItem
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
   ngOnChanges(changes: SimpleChanges) {
     if (changes.entityArray.currentValue) {
       const localArray = [];

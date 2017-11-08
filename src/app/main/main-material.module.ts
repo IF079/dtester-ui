@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CdkTableModule} from '@angular/cdk/table';
 
 import {
+  MatSortModule,
   MatPaginatorModule,
   MatTableModule,
   MatButtonModule,
@@ -15,9 +16,9 @@ import {
 } from '@angular/material';
 
 @NgModule({
-  imports: [MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
+  imports: [MatSortModule, MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
     MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule],
-  exports: [MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
+  exports: [MatSortModule, MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
     MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule]
 })
 

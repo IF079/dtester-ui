@@ -29,6 +29,8 @@ export class StudentAddModalComponent implements OnInit {
   btnAdd = 'Додати';
   dropPhoto: string;
   groups = this.data.groups;
+  groupId = this.data.groupId;
+  selectDefaultGroup = this.groups.find(group => +group.value === this.groupId).text;
   form: FormGroup;
   student: any;
   errorEmptyInput = 'Заповніть поле!';
@@ -66,7 +68,7 @@ export class StudentAddModalComponent implements OnInit {
       'sname': [null, Validators.required],
       'name': [null, Validators.required],
       'fname': [null, Validators.required],
-      'group': [null, Validators.required],
+      'group': [null],
       'gradebookId': [null, Validators.compose([Validators.required, Validators.pattern(/[A-Z]{2}-\d{7}/)])],
       'username': [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(16)])],
       'email': [null, Validators.compose([Validators.required, Validators.email])],
@@ -98,7 +100,7 @@ export class StudentAddModalComponent implements OnInit {
       studentSurname: student.sname,
       studentName: student.name,
       studentFname: student.fname,
-      groupId: student.group,
+      groupId: student.group || this.groupId,
       gradebookId: student.gradebookId,
       photo: this.dropPhoto || ''
     }, {

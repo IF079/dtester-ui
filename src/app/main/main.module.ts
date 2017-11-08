@@ -36,6 +36,8 @@ import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
 import {TestDetailService} from './test-detail/test-detail.service';
 import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.service';
+import {AnswerService} from './test/answer/answer.service';
+import {QuestionService} from './test/question/question.service';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,9 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
     TimeTableService,
     TestService,
     TestDetailService,
-    SpinnerService
+    SpinnerService,
+    AnswerService,
+    QuestionService
   ]
 })
 export class MainModule {

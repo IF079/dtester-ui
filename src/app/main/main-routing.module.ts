@@ -21,14 +21,15 @@ const mainRoutes = [
         path: '',
         children: [
           {path: 'welcome', component: WelcomeComponent},
-          {path: 'students', component: StudentComponent, canActivate: [AdminGuard]},
+          {path: 'students/:groupId', component: StudentComponent, canActivate: [AdminGuard]},
+          {path: 'students', redirectTo: '/groups', pathMatch: 'full'},
           {path: 'student/:id', component: StudentDetailComponent, canActivate: [AdminGuard]},
           {path: 'specialities', component: SpecialityComponent, canActivate: [AdminGuard]},
           {path: 'subjects', component: SubjectComponent, canActivate: [AdminGuard]},
           {path: 'faculties', component: FacultiesComponent, canActivate: [AdminGuard]},
           {path: 'groups', component: GroupsComponent, canActivate: [AdminGuard]},
           {path: 'timetable', component: TimeTableComponent, canActivate: [AdminGuard]},
-          {path: '**', redirectTo: 'welcome', pathMath: 'full'}
+          {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
         ]
       }
     ]

@@ -9,6 +9,9 @@ mat-card.info-block {
   mat-card-content {
     display: flex;
     padding: 24px;
+    mat-form-field{
+      margin: 5px 0;
+    }
   }
 }
 mat-card.info-block#topInfo{

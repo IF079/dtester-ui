@@ -1,6 +1,10 @@
 <div *ngIf="errWithDisplayingStudents" class="mat-error">{{errWithDisplayingStudents}}</div>
 <button mat-raised-button
         color="primary"
+        (click)="goBack()"
+        class="fa fa-long-arrow-left backButton"></button>
+<button mat-raised-button
+        color="primary"
         (click)="openAddDialog()"
         class="addButton">Додати студента</button>
 <app-entity-table [entityArray]="students" [entityName]="'Student'" [columnsArray]="headingColumnsOfTable"

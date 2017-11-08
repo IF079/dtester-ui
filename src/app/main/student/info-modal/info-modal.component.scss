@@ -1,5 +1,19 @@
+h2{
+    text-align: center;
+    color: white;
+}
 mat-dialog-actions{
     button{
         margin: 0 auto;
+    }
+}
+.error{
+    h2{
+        background-color: red;
+    }
+}
+.info{
+    h2{
+        background-color: rgb(44, 165, 44); 
     }
 }

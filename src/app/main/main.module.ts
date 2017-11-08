@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Ng4FilesModule} from 'angular4-files-upload';
 
 
 import {EditEntityModalComponent} from './entity-table/edit-entity-modal/edit-entity-modal.component';
@@ -65,8 +64,7 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
     ReactiveFormsModule,
     MainRoutingModule,
     MainMaterialModule,
-    FormsModule,
-    Ng4FilesModule
+    FormsModule
   ],
   entryComponents: [
     EditEntityModalComponent,

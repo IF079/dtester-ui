@@ -28,7 +28,7 @@ export class SubjectService {
       .map(subjectDtoArr => subjectDtoArr.map(subjectDto => new Subject(subjectDto)));
   }
 
-  addSubject(subject: any): Observable<SubjectDto> {
+  addSubject(subject: any): Observable<any> {
     return this.http.post(`${url.subjectUrl}${url.insertData}`, subject);
   }
 }

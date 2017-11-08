@@ -27,11 +27,11 @@ export class GroupsService {
     );
   }
 
-  getGroupById(id: number): Observable<Group> {
+  getGroupById(id: number): Observable<any> {
     return this.http.get(`${url.groupUrl}${url.getRecords}/${id}`);
   }
 
-  getGroupByName(name: string): Observable<Group> {
+  getGroupByName(name: string): Observable<any> {
     return this.http.get(`${url.groupUrl}${url.getRecordsBySearch}/${name}`);
   }
 

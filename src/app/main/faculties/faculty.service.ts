@@ -20,7 +20,7 @@ export class FacultyService {
     );
   }
 
-  getFaculty(id: number): Observable<Faculty> {
+  getFaculty(id: number): Observable<any> {
     return this.http.get(`${url.facultyUrl}${url.getRecords}${id}`);
   }
 

@@ -7,6 +7,7 @@ import {Subject} from './subject';
 import {SubjectDto} from './subject-dto';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {urlConstants} from '../shared/constants/url-constants';
+import {TestPlayerComponent} from "../test-player/test-player.component";
 
 @Injectable()
 

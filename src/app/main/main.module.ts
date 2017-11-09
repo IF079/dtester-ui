@@ -34,6 +34,8 @@ import {TestComponent} from './test/test.component';
 import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
 import {TestDetailService} from './test-detail/test-detail.service';
+import {TestPlayerComponent} from "./test-player/test-player.component";
+import {TestPlayerService} from "./test-player/test-player.service";
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {TestDetailService} from './test-detail/test-detail.service';
     EntityTableComponent,
     StudentAddModalComponent,
     TestComponent,
-    TestDetailComponent
+    TestDetailComponent,
+    TestPlayerComponent
   ],
   imports: [
     CommonModule,
@@ -74,7 +77,9 @@ import {TestDetailService} from './test-detail/test-detail.service';
     TimeTableService,
     TestService,
     TestDetailService,
-    SpinnerService
+    SpinnerService,
+    TestPlayerService
+
   ]
 })
 export class MainModule {

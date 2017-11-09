@@ -6,6 +6,7 @@ import {SubjectService} from './subject.service';
 import {Subject} from './subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
+import {TestPlayerComponent} from "../test-player/test-player.component";
 
 
 @Component({

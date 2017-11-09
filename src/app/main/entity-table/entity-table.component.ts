@@ -16,8 +16,19 @@ export class EntityTableComponent implements OnChanges {
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
-  constructor(public dialog: MatDialog,  private router: Router, private delUpdateService: UpdateDeleteEntityService) {
+
+  constructor(public dialog: MatDialog, private router: Router, private delUpdateService: UpdateDeleteEntityService) {
+    this.delUpdateService.recordUpdated$.subscribe(res => {
+      const id = 0;
+      for (let i = 0; i < this.tableRowArr.length; i++) {
+        if (this.tableRowArr[i][id] === res[0].subject_id) {
+          this.tableRowArr[i] = Object.values(res[0]);
+          break;
+        }
+      }
+    });
   }
+
   openDialogAndPassDataToIt(rowItem): void {
     const dialogRef = this.dialog.open(EditEntityModalComponent, {
       height: '350px',
@@ -29,6 +40,7 @@ export class EntityTableComponent implements OnChanges {
       console.log('The dialog was closed');
     });
   }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.entityArray.currentValue) {
       const localArray = [];

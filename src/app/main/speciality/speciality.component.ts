@@ -23,7 +23,7 @@ export class SpecialityComponent implements OnInit {
   numberOfRecords: number;
   specialities: Speciality[];
   pageEvent: PageEvent;
-  headingColumnsOfTable = ['№', 'Код', 'Назва', 'edit', 'delete'];
+  headingColumnsOfTable = ['№', 'Код', 'Назва', '', ''];
   modalInfo = {
     btnAdd: 'Додати',
     btnClose: 'Закрити',

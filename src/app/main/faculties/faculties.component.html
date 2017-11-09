@@ -17,5 +17,9 @@
 </app-modal>
 
 <app-entity-table [entityName]="'Faculty'"  [columnsArray]="headingColumnsOfTable" [entityArray]="faculties"></app-entity-table>
-
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>
 

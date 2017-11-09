@@ -1,28 +1,25 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
 import {SpecialityService} from './speciality.service';
 import {Speciality} from './speciality';
 import {generalConst} from '../shared/constants/general-constants';
-import {MatDialog} from '@angular/material';
-
-import {RecordsCount} from '../shared/entities/recordsCount';
-import {PageEvent} from '@angular/material';
-
+import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 
 @Component({
   selector: 'app-speciality',
   templateUrl: './speciality.component.html',
-  styleUrls: ['./speciality.component.scss']
+  styleUrls: ['./speciality.component.scss'],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
 
 export class SpecialityComponent implements OnInit {
   limit = 10;
-  pageSizeOptions = [5, 10, 25, 100];
   offset = 0;
+  pageSizeOptions = [5, 10, 25, 100];
   errWithDisplayingSubjects: string;
   numberOfRecords: number;
   specialities: Speciality[];
-  pageEvent: PageEvent;
   headingColumnsOfTable = ['№', 'Код', 'Назва', 'edit', 'delete'];
   modalInfo = {
     btnAdd: 'Додати',

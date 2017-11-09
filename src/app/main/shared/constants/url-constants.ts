@@ -28,4 +28,5 @@ export const url = {
   checkUserName: '/checkUserName',
   checkEmailAddress: '/checkEmailAddress',
   adminUser: '/AdminUser'
+
 };

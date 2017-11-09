@@ -37,6 +37,7 @@ import {TestComponent} from './test/test.component';
 import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
 import {TestDetailService} from './test-detail/test-detail.service';
+
 import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.service';
 import {AnswerService} from './test/answer/answer.service';
 import {QuestionService} from './test/question/question.service';
@@ -50,6 +51,10 @@ import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal
 import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from './entity-table/edit-student-modal/edit-student-modal.component';
 import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/edit-timetable-modal.component';
+
+import {TestPlayerComponent} from "./test-player/test-player.component";
+import {TestPlayerService} from "./test-player/test-player.service";
+
 
 @NgModule({
   declarations: [
@@ -82,7 +87,8 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     EditSpecialityModalComponent,
     EditFacultyModalComponent,
     EditStudentModalComponent,
-    EditTimetableModalComponent
+    EditTimetableModalComponent,
+
 
   ],
   imports: [
@@ -123,10 +129,14 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     TestService,
     TestDetailService,
     SpinnerService,
+
     AnswerService,
     QuestionService,
     InfoModalService,
-    ResultService
+    ResultService,
+    TestPlayerService
+
+
   ]
 })
 export class MainModule {

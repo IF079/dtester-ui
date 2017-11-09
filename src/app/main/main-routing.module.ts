@@ -10,6 +10,9 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
+import {TestDetailComponent} from './test-detail/test-detail.component';
+import {TestPlayerComponent} from "./test-player/test-player.component";
+
 import {AdminGuard} from './admin.guard';
 
 const mainRoutes = [

@@ -1,11 +1,11 @@
 <div *ngIf="errWithDisplayingSpeciality" class="mat-error">{{errWithDisplayingSpeciality}}</div>
-<!--<div class="toRight">
+<div class="toRight">
   <button mat-raised-button
           color="primary"
           (click)="modal.openDialogue()"
           class="addButton">{{modalInfo.btnAddSpeciality}}
   </button>
-</div>-->
+</div>
 <app-modal #modal>
   <mat-card>
     <mat-form-field>
@@ -25,48 +25,12 @@
     </button>
   </mat-card>
 </app-modal>
-<!--<app-entity-table [entityName]="'Speciality'"-->
-<!--[columnsArray]="headingColumnsOfTable"-->
-<!--[entityArray]="specialities"></app-entity-table>-->
-<div class="container">
-  <mat-table #table [dataSource]="dataSource">
+<app-entity-table [entityName]="'Speciality'" [columnsArray]="headingColumnsOfTable" [entityArray]="specialities"></app-entity-table>
 
-    <ng-container matColumnDef="№">
-      <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
-      <mat-cell *matCellDef="let specialitydata">{{specialitydata.specialityId}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="Код">
-      <mat-header-cell *matHeaderCellDef>Код</mat-header-cell>
-      <mat-cell *matCellDef="let specialitydata">{{specialitydata.specialityCode}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="Назва">
-      <mat-header-cell *matHeaderCellDef>Назва</mat-header-cell>
-      <mat-cell *matCellDef="let specialitydata">{{specialitydata.specialityName}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="edit">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let specialitydata"><i class="fa fa-pencil-square-o"></i></mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="delete">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let specialitydata"><i  class="fa fa-times"></i></mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="headingColumnsOfTable"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: headingColumnsOfTable"> </mat-row>
-
-  </mat-table>
-
-  <mat-paginator #paginator
-                 [length]="dataSource.resultsLength"
-                 [pageSize]="10"
-                 (page)="pageEvent = $event"
-                 >
-  </mat-paginator>
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>
 
 
-</div>

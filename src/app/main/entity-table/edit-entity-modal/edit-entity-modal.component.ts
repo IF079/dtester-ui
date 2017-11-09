@@ -42,7 +42,7 @@ export class EditEntityModalComponent implements OnChanges {
     this.delUpdateService.updateEntity(id, 'Subject',
       {subject_name, subject_description}).subscribe(response => {
         this.delUpdateService.passUpdated(response);
-
+        this.dialogRef.close();
       },
       err => console.log(err)
     );

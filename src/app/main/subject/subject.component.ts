@@ -1,17 +1,18 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, PageEvent} from '@angular/material';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
 import {SubjectModalComponent} from './subject-modal/subject-modal.component';
 import {SubjectService} from './subject.service';
 import {Subject} from './subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
-
+import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 
 @Component({
   selector: 'app-subjects',
   templateUrl: './subject.component.html',
-  styleUrls: ['./subject.component.scss']
+  styleUrls: ['./subject.component.scss'],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
 
 export class SubjectComponent implements OnInit {

@@ -9,8 +9,9 @@ import {Student} from './student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {StudentAddModalComponent} from './add-modal/add-modal.component';
-import {InfoModalComponent} from './info-modal/info-modal.component';
+import {InfoModalComponent} from '../info-modal/info-modal.component';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
+import {InfoModalService} from '../info-modal/info-modal.service';
 
 @Component({
   selector: 'app-students',
@@ -34,6 +35,7 @@ export class StudentComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private groupsService: GroupsService,
+    private infoModal: InfoModalService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private location: Location
@@ -52,42 +54,13 @@ export class StudentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.response === 'ok') {
-        this.openInfoDialog();
+        this.infoModal.openInfoDialog('Вітаю, Ви успішно додали нового студента!');
       } else if (result && result.response !== 'ok') {
-        this.openErrorDialog();
+        this.infoModal.openErrorDialog();
       }
     });
   }
 
-  openErrorDialog(text = 'Щось пішло не так. Повторіть, будь ласка, спробу пізніше.') {
-    const dialogRef = this.dialog.open(InfoModalComponent, {
-      height: '',
-      width: '250px',
-      data: {
-        type: 'error',
-        title: 'Помилка',
-        text: text
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
-
-  openInfoDialog() {
-    const dialogRef = this.dialog.open(InfoModalComponent, {
-      height: '',
-      width: '250px',
-      data: {
-        type: 'info',
-        title: 'Успіх',
-        text: 'Вітаю, Ви успішно додали нового студента!'
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
   parseGroups(): void {
     this.groupsService.getGroups().subscribe(data => {
       let localArr = [];
@@ -111,7 +84,9 @@ export class StudentComponent implements OnInit {
       });
     },
     err => {
-      this.openErrorDialog('На даний момент немає даних, які відносяться до цієї групи.');
+      this.infoModal.openErrorDialog('На даний момент немає даних, які відносяться до цієї групи.', () => {
+        this.location.back();
+      });
     });
   }
 
@@ -126,7 +101,7 @@ export class StudentComponent implements OnInit {
       },
       err => {
         log.error(err);
-        this.openErrorDialog();
+        this.infoModal.openErrorDialog();
       });
   }
 

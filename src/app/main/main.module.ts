@@ -31,7 +31,7 @@ import {EntityTableComponent} from './entity-table/entity-table.component';
 import {FacultyService} from './faculties/faculty.service';
 import {TimeTableService} from './time-table/time-table.service';
 import {StudentAddModalComponent} from './student/add-modal/add-modal.component';
-import {InfoModalComponent} from './student/info-modal/info-modal.component';
+import {InfoModalComponent} from './info-modal/info-modal.component';
 import {TestComponent} from './test/test.component';
 import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
@@ -39,6 +39,7 @@ import {TestDetailService} from './test-detail/test-detail.service';
 import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.service';
 import {AnswerService} from './test/answer/answer.service';
 import {QuestionService} from './test/question/question.service';
+import {InfoModalService} from './info-modal/info-modal.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import {QuestionService} from './test/question/question.service';
     TestDetailService,
     SpinnerService,
     AnswerService,
-    QuestionService
+    QuestionService,
+    InfoModalService
   ]
 })
 export class MainModule {

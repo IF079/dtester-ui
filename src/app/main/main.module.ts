@@ -17,6 +17,7 @@ import {StudentDetailComponent} from './student-detail/student-detail.component'
 import {SubjectComponent} from './subject/subject.component';
 import {SubjectModalComponent} from './subject/subject-modal/subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
+import {TimeTableModalComponent} from './time-table/timetable-modal/time-table-modal.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 
 import {MainMaterialModule} from './main-material.module';
@@ -40,6 +41,7 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
 import {AnswerService} from './test/answer/answer.service';
 import {QuestionService} from './test/question/question.service';
 import {InfoModalService} from './info-modal/info-modal.service';
+import {SpecialityModalComponent} from './speciality/speciality-modal/speciality-modal.component';
 
 @NgModule({
   declarations: [
@@ -58,9 +60,11 @@ import {InfoModalService} from './info-modal/info-modal.service';
     EntityTableComponent,
     EditEntityModalComponent,
     StudentAddModalComponent,
+    SpecialityModalComponent,
     InfoModalComponent,
     TestComponent,
-    TestDetailComponent
+    TestDetailComponent,
+    TimeTableModalComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +77,9 @@ import {InfoModalService} from './info-modal/info-modal.service';
     EditEntityModalComponent,
     SubjectModalComponent,
     StudentAddModalComponent,
-    InfoModalComponent
+    SpecialityModalComponent,
+    InfoModalComponent,
+    TimeTableModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

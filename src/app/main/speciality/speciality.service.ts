@@ -21,4 +21,8 @@ export class SpecialityService {
       this.http.get<RecordsCount>(`${url.specialityUrl}${url.getCount}`)
     );
   }
+
+  addSpeciality(speciality): Observable<SpecialityDto> {
+    return this.http.post<SpecialityDto>(`${url.specialityUrl}${url.insertData}`, new SpecialityDto(speciality));
+  }
 }

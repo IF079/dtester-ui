@@ -35,9 +35,6 @@ export class SubjectComponent implements OnInit {
       width: '1000px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
   goPage(pageEvent: PageEvent) {

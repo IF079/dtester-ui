@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {Credentials} from './entities/credentials';
 import {LoginService} from './services/login.service';
 import {LOGIN_FORM_DEFAULT_CONFIG} from './config/login-form.default.config';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -14,31 +13,33 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 
 export class LoginComponent {
-  username: FormControl = new FormControl('username', [
+  loginForm: FormGroup;
+  username: FormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(LOGIN_FORM_DEFAULT_CONFIG.USERNAME.MIN_LENGTH),
     Validators.maxLength(LOGIN_FORM_DEFAULT_CONFIG.USERNAME.MAX_LENGTH)
   ]);
-  password: FormControl = new FormControl('password', [
+  password: FormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(LOGIN_FORM_DEFAULT_CONFIG.PASSWORD.MIN_LENGTH),
     Validators.maxLength(LOGIN_FORM_DEFAULT_CONFIG.PASSWORD.MAX_LENGTH)
   ]);
-  credentials: Credentials = {
-    username: '',
-    password: ''
-  };
   hasBadCredentialsError = false;
   returnUrl: string;
 
   constructor(private loginService: LoginService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private fb: FormBuilder) {
+  this.loginForm = this.fb.group({
+    username: this.username,
+    password: this.password
+  });
   }
 
   login() {
     if (this.isFormValid()) {
-      this.loginService.login(this.credentials)
+      this.loginService.login(this.loginForm.value)
         .subscribe(
           () => {
               this.router.navigate([this.getReturnUrl()]);
@@ -71,6 +72,6 @@ export class LoginComponent {
   }
 
   private isFormValid(): boolean {
-    return this.username.valid && this.password.valid;
+    return this.loginForm.valid;
   }
 }

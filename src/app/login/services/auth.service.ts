@@ -4,7 +4,6 @@ import {Observable} from 'rxjs/Observable';
 
 import {LoginSuccess} from '../entities/login-success';
 import {User} from '../entities/user';
-import {Credentials} from '../entities/credentials';
 import {Authorization} from '../entities/auth';
 import {DEFAULT_AUTH_CONFIG} from '../config/auth.default.config';
 
@@ -30,7 +29,7 @@ export class AuthService {
       .map(LoginSuccess.toUser);
   }
 
-  login(credentials: Credentials): Observable<User> {
+  login(credentials: string): Observable<User> {
     return this.http.post<LoginSuccess>(this.loginParams, credentials)
       .map(LoginSuccess.toUser);
   }

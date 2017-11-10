@@ -7,7 +7,7 @@ import {Group} from './group';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {url} from '../shared/constants/url-constants';
 import {Faculty} from '../faculties/faculty';
-import {Speciality} from '../speciality/speciality';
+import {SpecialityDto} from '../speciality/speciality-dto';
 
 @Injectable()
 
@@ -22,11 +22,11 @@ export class GroupsService {
     );
   }
 
-  getGroupsRange(limit: number, offset: number): Observable<[Group[], Faculty[], Speciality[], RecordsCount]> {
+  getGroupsRange(limit: number, offset: number): Observable<[Group[], Faculty[], SpecialityDto[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<Group[]>(`${url.groupUrl}${url.getRecordsRange}/${limit}/${offset}`),
       this.http.get<Faculty[]>(`${url.facultyUrl}${url.getRecords}`),
-      this.http.get<Speciality[]>(`${url.specialityUrl}${url.getRecords}`),
+      this.http.get<SpecialityDto[]>(`${url.specialityUrl}${url.getRecords}`),
       this.http.get<RecordsCount>(`${url.groupUrl}${url.getCount}`)
     );
   }

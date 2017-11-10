@@ -8,7 +8,6 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/publish';
 
-import {Credentials} from '../entities/credentials';
 import {User} from '../entities/user';
 import {AuthService} from './auth.service';
 import {LoginUrl} from '../entities/login-url';
@@ -36,7 +35,7 @@ export class LoginService {
     return this.isLoggedInConnectable || this.establishHotConnectionForIsLoggedIn();
   }
 
-  login(credentials: Credentials): Observable<User> {
+  login(credentials: string): Observable<User> {
     return this.auth.login(credentials)
       .do(user => this.setupUser(user));
 

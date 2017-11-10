@@ -38,7 +38,7 @@ export class GroupsComponent implements OnInit {
         this.groups = data[0];
         data[1].forEach(item => this.facArr[item.faculty_id] = item.faculty_name);
         console.log(this.facArr);
-        data[2].forEach(item => this.specArr[item.speciality_id] = item.speciality_name);
+        data[2].forEach(item => this.specArr[item.specialityId] = item.specialityName);
         console.log(this.specArr);
         data[0].forEach(item => {
             item.faculty_id = this.facArr[item.faculty_id];

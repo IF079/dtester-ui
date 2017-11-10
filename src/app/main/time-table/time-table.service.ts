@@ -3,6 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
+import {Subject} from  '../subject/subject';
+import {SubjectDto} from '../subject/subject-dto';
+
 import {TimeTable} from './time-table';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {url} from '../shared/constants/url-constants';
@@ -12,10 +15,11 @@ import {url} from '../shared/constants/url-constants';
 export class TimeTableService {
   constructor(private http: HttpClient) {
   }
-  getTimeTables(limit: number, offset: number): Observable<[TimeTable[], RecordsCount]> {
+  getTimeTablesRange (limit: number, offset: number): Observable<[TimeTable[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<TimeTable[]>(`${url.timeTableUrl}${url.getRecordsRange}/${limit}/${offset}`),
-      this.http.get<RecordsCount>(`${url.timeTableUrl}${url.getCount}`)
+      this.http.get<RecordsCount>(`${url.timeTableUrl}${url.getCount}`),
+
     );
   }
 

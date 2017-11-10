@@ -32,7 +32,7 @@ export class TimeTableComponent implements OnInit {
   }
 
   getTimeTables() {
-    this.timeTableService.getTimeTables(this.limit, this.offset).subscribe(data => {
+    this.timeTableService.getTimeTablesRange(this.limit, this.offset).subscribe(data => {
         this.timetables = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },

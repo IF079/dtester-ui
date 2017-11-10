@@ -22,11 +22,22 @@ export class TimeTableComponent implements OnInit {
   headingColumnsOfTable = ['№', 'Назва групи', 'Назва предмету', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
   errWithDisplayingTimeTables: string;
   numberOfRecords: number;
-  subjectArr = [];
-  groupsArr = [];
-  constructor(private timeTableService: TimeTableService) {
+  subjectDictionary = {};
+  groupDictionary = {};
+  btnAdd = 'Додати розклад';
+
+  constructor(private timeTableService: TimeTableService, public dialog: MatDialog) {
   }
 
+
+  openDialog() {
+    const dialogRef = this.dialog.open(TimeTableModalComponent, {
+      height: '350px',
+      width: '1000px',
+      data: {groupsArr: this.groupDictionary, subjectArr: this.subjectDictionary }
+    });
+
+  }
   goPage(pageEvent: PageEvent) {
     this.limit = pageEvent.pageSize;
     this.offset = ((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize;
@@ -36,12 +47,13 @@ export class TimeTableComponent implements OnInit {
   getTimeTables() {
     this.timeTableService.getTimeTablesRange(this.limit, this.offset).subscribe(data => {
         this.timetables = data[0];
-        data[1].forEach(item => this.groupsArr[item.group_id] = item.group_name);
-        data[2].forEach(item => this.subjectArr[item.id] = item.name);
-        this.timetables.forEach(item => {
-          item.group_id = this.groupsArr[item.group_id];
-          item.subject_id =  this.subjectArr[item.subject_id];
+        data[1].forEach(item => this.groupDictionary[item.group_id] = item.group_name);
+        data[2].forEach(item => this.subjectDictionary[item.id] = item.name);
+        this.timetables.forEach((item, i) => {
+          item.group_id = this.groupDictionary[item.group_id];
+          item.subject_id =  this.subjectDictionary[item.subject_id];
         });
+        console.log(this.subjectDictionary);
         this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
       },
       err => {

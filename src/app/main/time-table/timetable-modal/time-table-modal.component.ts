@@ -20,6 +20,7 @@ export class TimeTableModalComponent {
   constructor(public dialogRef: MatDialogRef<TimeTableModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private timeTableService: TimeTableService, private formBuilder: FormBuilder) {
     this.createForm();
+    console.log(this.data);
   }
 
   createForm(): void {

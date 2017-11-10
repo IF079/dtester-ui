@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Ng4FilesModule} from 'angular4-files-upload';
 
 
 import {EditEntityModalComponent} from './entity-table/edit-entity-modal/edit-entity-modal.component';
@@ -38,6 +37,8 @@ import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
 import {TestDetailService} from './test-detail/test-detail.service';
 import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.service';
+import {AnswerService} from './test/answer/answer.service';
+import {QuestionService} from './test/question/question.service';
 
 @NgModule({
   declarations: [
@@ -65,8 +66,7 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
     ReactiveFormsModule,
     MainRoutingModule,
     MainMaterialModule,
-    FormsModule,
-    Ng4FilesModule
+    FormsModule
   ],
   entryComponents: [
     EditEntityModalComponent,
@@ -85,7 +85,9 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
     TimeTableService,
     TestService,
     TestDetailService,
-    SpinnerService
+    SpinnerService,
+    AnswerService,
+    QuestionService
   ]
 })
 export class MainModule {

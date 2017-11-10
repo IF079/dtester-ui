@@ -37,10 +37,8 @@ export class GroupsComponent implements OnInit {
     this.groupsService.getGroupsRange(this.limit, this.offset).subscribe(data => {
         this.groups = data[0];
         data[1].forEach(item => this.facArr[item.faculty_id] = item.faculty_name);
-        console.log(this.facArr);
         data[2].forEach(item => this.specArr[item.specialityId] = item.specialityName);
-        console.log(this.specArr);
-        data[0].forEach(item => {
+        this.groups.forEach(item => {
           item.faculty_id = this.facArr[item.faculty_id];
           item.speciality_id = this.specArr[item.speciality_id];
         });

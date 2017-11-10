@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/form
 
 import {StudentService} from '../student.service';
 import {StudentDto} from '../student-dto';
-import {InfoModalComponent} from '../info-modal/info-modal.component';
 
 @Component({
   selector: 'app-add-modal',

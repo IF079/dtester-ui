@@ -1,8 +1,11 @@
 <div *ngIf="errWithDisplayingSpeciality" class="mat-error">{{errWithDisplayingSpeciality}}</div>
-<button mat-raised-button
-        color="primary"
-        (click)="modal.openDialogue()"
-        class="addButton">{{modalInfo.btnAddSpeciality}}</button>
+<div class="toRight">
+  <button mat-raised-button
+          color="primary"
+          (click)="modal.openDialogue()"
+          class="addButton">{{modalInfo.btnAddSpeciality}}
+  </button>
+</div>
 <app-modal #modal>
   <mat-card>
     <mat-form-field>
@@ -13,12 +16,21 @@
     </mat-form-field>
     <button class="modal-button"
             mat-raised-button
-            color="primary">{{modalInfo.btnAdd}}</button>
+            color="primary">{{modalInfo.btnAdd}}
+    </button>
     <button class="modal-button"
             mat-raised-button
             color="primary"
-            (click)="modal.closeDialogue()">{{modalInfo.btnClose}}</button>
+            (click)="modal.closeDialogue()">{{modalInfo.btnClose}}
+    </button>
   </mat-card>
 </app-modal>
 <app-entity-table [entityName]="'Speciality'" [columnsArray]="headingColumnsOfTable" [entityArray]="specialities"></app-entity-table>
+
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>
+
 

@@ -58,7 +58,7 @@ export class StudentAddModalComponent implements OnInit {
       'sname': [null, Validators.required],
       'name': [null, Validators.required],
       'fname': [null, Validators.required],
-      'group': [null, Validators.required],
+      'group': [null],
       'gradebookId': [null, Validators.compose([Validators.required, Validators.pattern(/[A-Z]{2}-\d{7}/)])],
       'username': [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(16)])],
       'email': [null, Validators.compose([Validators.required, Validators.email])],

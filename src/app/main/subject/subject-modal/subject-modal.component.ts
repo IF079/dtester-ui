@@ -31,9 +31,9 @@ export class SubjectModalComponent {
   }
 
   addSubject() {
-    const name = this.subjectForm.get('name').value;
-    const description = this.subjectForm.get('description').value;
-    this.subjectService.addSubject({subject_name: name, subject_description: description}).subscribe(subject => {
+    const subject_name = this.subjectForm.get('name').value;
+    const subject_description = this.subjectForm.get('description').value;
+    this.subjectService.addSubject({subject_name,  subject_description}).subscribe(subject => {
         console.log(subject);
       },
       err => console.log(err)

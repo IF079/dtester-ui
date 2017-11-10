@@ -19,14 +19,12 @@ export class EditEntityModalComponent implements OnChanges {
 
   constructor(public dialogRef: MatDialogRef<EditEntityModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private delUpdateService: UpdateDeleteEntityService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder, ) {
     this.createForm();
   }
 
   createForm(): void {
-    console.log(this.data);
     const name = this.data[1];
-    console.log(this.data[1]);
     const description = this.data[2];
     this.editEntityForm = this.formBuilder.group({name
       , description});
@@ -38,18 +36,15 @@ export class EditEntityModalComponent implements OnChanges {
 
   editEntityRecord() {
     const id = this.data[0];
-    console.log(this.data[0]);
-    const name = this.editEntityForm.get('name').value;
-    const description = this.editEntityForm.get('description').value;
+    const subject_name = this.editEntityForm.get('name').value;
+    const subject_description = this.editEntityForm.get('description').value;
     this.dataForUpdate = 'Something';
     this.delUpdateService.updateEntity(id, 'Subject',
-      {
-        subject_name: name,
-        subject_description: description
-      }).subscribe(response => {
-        console.log(response);
-        this.data = {id, name, description};
+      {subject_name, subject_description}).subscribe(response => {
+        this.delUpdateService.passUpdated(response);
+        this.dialogRef.close();
       },
-      err => console.log(err));
+      err => console.log(err)
+    );
   }
 }

@@ -9,5 +9,9 @@
         class="addButton">Додати студента</button>
 <app-entity-table [entityArray]="students" [entityName]="'Student'" [columnsArray]="headingColumnsOfTable"
                   [detailUrl]="'/student'"></app-entity-table>
-
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>
 

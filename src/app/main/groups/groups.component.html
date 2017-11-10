@@ -2,3 +2,8 @@
 <app-entity-table [entityName]="'Group'" [columnsArray]="headingColumnsOfTable"
                 [entityArray]="groups" [detailUrl]="'/students'"></app-entity-table>
 
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>

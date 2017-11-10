@@ -41,6 +41,7 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
 import {AnswerService} from './test/answer/answer.service';
 import {QuestionService} from './test/question/question.service';
 import {InfoModalService} from './info-modal/info-modal.service';
+import {ResponseHandlerInterceptor} from './shared/interceptors/response-handler.interceptor';
 import {SpecialityModalComponent} from './speciality/speciality-modal/speciality-modal.component';
 
 @NgModule({

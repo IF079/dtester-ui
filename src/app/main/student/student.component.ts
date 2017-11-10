@@ -72,6 +72,7 @@ export class StudentComponent implements OnInit {
   getStudentsByGroup(groupId: number): void {
     this.studentService.getStudentsByGroup(groupId).subscribe(data => {
       this.students = data;
+      this.numberOfRecords = data.length;
       this.students.forEach(student => {
         delete student.photo;
         delete student.plainPassword;
@@ -83,7 +84,6 @@ export class StudentComponent implements OnInit {
   getStudents(): void {
     this.studentService.getStudentsRange(this.limit, this.offset).subscribe(data => {
         this.students = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
         this.students.forEach(item => {
           delete item.photo;
           delete item.plainPassword;

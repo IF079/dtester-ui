@@ -1,9 +1,10 @@
 import {Component, Inject} from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
 import {StudentService} from '../student.service';
 import {StudentDto} from '../student-dto';
+import {InfoModalService} from '../../info-modal/info-modal.service'
 
 @Component({
   selector: 'app-add-modal',
@@ -50,6 +51,7 @@ export class StudentAddModalComponent {
   constructor(
     private studentService: StudentService,
     private formBuilder: FormBuilder,
+    private modalService: InfoModalService,
     public dialogRef: MatDialogRef<StudentAddModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -98,6 +100,13 @@ export class StudentAddModalComponent {
       email: student.email,
       password: student.passwords.password,
       passwordConfirm: student.passwords.passwordConfirm
+    }).subscribe(res => {
+      this.dialogRef.close(res);
+      if (res.response !== 'ok') {
+        this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
+      } else if (res.response === 'ok') {
+        this.modalService.openInfoDialog('Запис успішно добавлено!');
+      }
     });
   }
 

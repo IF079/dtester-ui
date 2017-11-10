@@ -39,10 +39,10 @@ export class EditEntityModalComponent implements OnChanges {
     const subject_name = this.editEntityForm.get('name').value;
     const subject_description = this.editEntityForm.get('description').value;
     this.dataForUpdate = 'Something';
-    this.dialogRef.close();
     this.delUpdateService.updateEntity(id, 'Subject',
       {subject_name, subject_description}).subscribe(response => {
         this.delUpdateService.passUpdated(response);
+        this.dialogRef.close();
       },
       err => console.log(err)
     );

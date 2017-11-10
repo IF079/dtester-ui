@@ -5,6 +5,7 @@ import {TimeTableService} from './time-table.service';
 import {TimeTable} from './time-table';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
+import {TimeTableModalComponent} from './timetable-modal/time-table-modal.component';
 
 @Component({
   selector: 'app-time-table',
@@ -18,10 +19,11 @@ export class TimeTableComponent implements OnInit {
   offset = 0;
   pageSizeOptions = [5, 10, 25, 100];
   timetables: TimeTable[];
-  headingColumnsOfTable = ['№', 'Назва', 'Опис', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
+  headingColumnsOfTable = ['№', 'Назва групи', 'Назва предмету', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
   errWithDisplayingTimeTables: string;
   numberOfRecords: number;
-
+  subjectArr = [];
+  groupsArr = [];
   constructor(private timeTableService: TimeTableService) {
   }
 
@@ -34,7 +36,13 @@ export class TimeTableComponent implements OnInit {
   getTimeTables() {
     this.timeTableService.getTimeTablesRange(this.limit, this.offset).subscribe(data => {
         this.timetables = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
+        data[1].forEach(item => this.groupsArr[item.group_id] = item.group_name);
+        data[2].forEach(item => this.subjectArr[item.id] = item.name);
+        this.timetables.forEach(item => {
+          item.group_id = this.groupsArr[item.group_id];
+          item.subject_id =  this.subjectArr[item.subject_id];
+        });
+        this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
       },
       err => {
         this.errWithDisplayingTimeTables = generalConst.errorWithDisplayData;

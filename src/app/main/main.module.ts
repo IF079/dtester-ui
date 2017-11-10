@@ -17,6 +17,7 @@ import {StudentDetailComponent} from './student-detail/student-detail.component'
 import {SubjectComponent} from './subject/subject.component';
 import {SubjectModalComponent} from './subject/subject-modal/subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
+import {TimeTableModalComponent} from './time-table/timetable-modal/time-table-modal.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 
 import {MainMaterialModule} from './main-material.module';
@@ -62,7 +63,8 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     SpecialityModalComponent,
     InfoModalComponent,
     TestComponent,
-    TestDetailComponent
+    TestDetailComponent,
+    TimeTableModalComponent
   ],
   imports: [
     CommonModule,
@@ -75,8 +77,9 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     EditEntityModalComponent,
     SubjectModalComponent,
     StudentAddModalComponent,
+    SpecialityModalComponent,
     InfoModalComponent,
-    SpecialityModalComponent
+    TimeTableModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

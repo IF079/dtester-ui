@@ -39,6 +39,4 @@ export class SubjectModalComponent {
       err => console.log(err)
     );
   }
-
-
 }

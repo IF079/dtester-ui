@@ -5,6 +5,7 @@ import {TimeTableService} from './time-table.service';
 import {TimeTable} from './time-table';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
+import {TimeTableModalComponent} from './timetable-modal/time-table-modal.component';
 
 @Component({
   selector: 'app-time-table',

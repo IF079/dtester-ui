@@ -20,7 +20,9 @@ export class GroupsComponent implements OnInit {
   groups: Group[];
   errWithDisplayingGroups: string;
   numberOfRecords: number;
-  headingColumnsOfTable = ['№', 'Назва', '№ Факультету', '№ Спеціальності'];
+  headingColumnsOfTable = ['№', 'Назва', '№ Спеціальності', '№ Факультету'];
+  faculties= [];
+  facArr = [];
 
   constructor(private groupsService: GroupsService) {
   }
@@ -34,7 +36,15 @@ export class GroupsComponent implements OnInit {
   getGroupsRange() {
     this.groupsService.getGroupsRange(this.limit, this.offset).subscribe(data => {
         this.groups = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
+        data[1].forEach(item => this.facArr[item.faculty_id] = item.faculty_name);
+        console.log(this.facArr);
+        data[0].forEach(item => {
+            item.faculty_id = this.facArr[item.faculty_id];
+          this.faculties.push(Object.values(item));
+        });
+        // console.log(this.faculties);
+        this.numberOfRecords = parseInt(data[2].numberOfRecords, 10);
+
       },
       err => {
         console.log(err);

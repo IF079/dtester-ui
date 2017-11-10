@@ -22,5 +22,6 @@ export const url = {
   getStudentsByGroup: '/getStudentsByGroup',
   getQuestionIdsByLevelRand: '/getQuestionIdsByLevelRand',
   getRecordsRangeByTest: '/getRecordsRangeByTest',
-  countRecordsByTest: '/countRecordsByTest'
+  countRecordsByTest: '/countRecordsByTest',
+  getEntityValues: '/getEntityValues'
 };

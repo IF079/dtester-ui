@@ -9,10 +9,10 @@
        (click)="loginService.logout()">Вийти</a>
   </div>
   <mat-toolbar-row *ngIf="loginService.user.isAdmin()">
-    <a mat-button color="primary" [routerLink]="['/specialities']" [routerLinkActive]="navActiveClass">Спеціальності</a>
-    <a mat-button color="primary" [routerLink]="['/subjects']" [routerLinkActive]="navActiveClass">Предмети</a>
     <a mat-button color="primary" [routerLink]="['/faculties']" [routerLinkActive]="navActiveClass">Факультети</a>
-    <a mat-button color="primary" [routerLink]="['/timetable']" [routerLinkActive]="navActiveClass">Розклад</a>
+    <a mat-button color="primary" [routerLink]="['/specialities']" [routerLinkActive]="navActiveClass">Спеціальності</a>
     <a mat-button color="primary" [routerLink]="['/groups']" [routerLinkActive]="navActiveClass">Групи</a>
+    <a mat-button color="primary" [routerLink]="['/subjects']" [routerLinkActive]="navActiveClass">Предмети</a>
+    <a mat-button color="primary" [routerLink]="['/timetable']" [routerLinkActive]="navActiveClass">Розклад</a>
   </mat-toolbar-row>
 </mat-toolbar>

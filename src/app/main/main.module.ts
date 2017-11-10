@@ -40,6 +40,7 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
 import {AnswerService} from './test/answer/answer.service';
 import {QuestionService} from './test/question/question.service';
 import {InfoModalService} from './info-modal/info-modal.service';
+import {SpecialityModalComponent} from './speciality/speciality-modal/speciality-modal.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {InfoModalService} from './info-modal/info-modal.service';
     EntityTableComponent,
     EditEntityModalComponent,
     StudentAddModalComponent,
+    SpecialityModalComponent,
     InfoModalComponent,
     TestComponent,
     TestDetailComponent
@@ -73,7 +75,8 @@ import {InfoModalService} from './info-modal/info-modal.service';
     EditEntityModalComponent,
     SubjectModalComponent,
     StudentAddModalComponent,
-    InfoModalComponent
+    InfoModalComponent,
+    SpecialityModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

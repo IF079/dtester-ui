@@ -1,0 +1,24 @@
+<form [formGroup]="specialityForm" (ngSubmit)="addSpeciality(specialityForm.value)" >
+  <h2 mat-dialog-title>Додати спеціальність</h2>
+  <mat-dialog-content>
+      <mat-form-field>
+        <input [formControl]="specialityForm.controls['code']"  matInput placeholder="{{placeholders.code}}">
+        <mat-error>
+          <div *ngIf="specialityForm.controls['code'].hasError('required')">{{errorRequired}}</div>
+          <div *ngIf="specialityForm.controls['code'].hasError('pattern')">{{errorCodePattern}}</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [formControl]="specialityForm.controls['name']" matInput placeholder="{{placeholders.name}}">
+        <mat-error>
+          <div *ngIf="specialityForm.controls['name'].hasError('required')">{{errorRequired}}</div>
+        </mat-error>
+      </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="btn-center">
+    <button [disabled]="!specialityForm.valid" type="submit" class="modal-button" mat-raised-button color="primary">{{btnAdd}}</button>
+    <button mat-button mat-dialog-close>Відмінити</button>
+    </div>
+  </mat-dialog-actions>
+</form>

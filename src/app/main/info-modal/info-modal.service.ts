@@ -12,6 +12,7 @@ export class InfoModalService {
   }
 
   openErrorDialog(text: string = 'Щось пішло не так. Повторіть, будь ласка, спробу пізніше.', callback: Function = null) {
+    this.dialog.closeAll();
     const dialogRef = this.dialog.open(InfoModalComponent, {
       width: '350px',
       data: {
@@ -29,6 +30,7 @@ export class InfoModalService {
   }
 
   openInfoDialog(text: string, callback: Function = null) {
+    this.dialog.closeAll();
     const dialogRef = this.dialog.open(InfoModalComponent, {
       width: '350px',
       data: {

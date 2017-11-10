@@ -53,11 +53,6 @@ export class StudentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.response === 'ok') {
-        this.infoModal.openInfoDialog('Вітаю, Ви успішно додали нового студента!');
-      } else if (result && result.response !== 'ok') {
-        this.infoModal.openErrorDialog();
-      }
     });
   }
 
@@ -82,11 +77,6 @@ export class StudentComponent implements OnInit {
         delete student.plainPassword;
         delete student.groupId;
       });
-    },
-    err => {
-      this.infoModal.openErrorDialog('На даний момент немає даних, які відносяться до цієї групи.', () => {
-        this.location.back();
-      });
     });
   }
 
@@ -101,7 +91,6 @@ export class StudentComponent implements OnInit {
       },
       err => {
         log.error(err);
-        this.infoModal.openErrorDialog();
       });
   }
 

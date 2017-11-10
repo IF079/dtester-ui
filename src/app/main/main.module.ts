@@ -77,6 +77,7 @@ import {InfoModalService} from './info-modal/info-modal.service';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ResponseHandlerInterceptor, multi: true},
     UpdateDeleteEntityService,
     StudentService,
     SpecialityService,

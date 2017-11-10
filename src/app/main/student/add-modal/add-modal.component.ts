@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
@@ -10,7 +10,7 @@ import {StudentDto} from '../student-dto';
   templateUrl: './add-modal.component.html',
   styleUrls: ['./add-modal.component.scss']
 })
-export class StudentAddModalComponent implements OnInit {
+export class StudentAddModalComponent {
   passwordVisible = false;
   placeholders = {
     sname: 'Прізвище',
@@ -85,11 +85,12 @@ export class StudentAddModalComponent implements OnInit {
   }
 
   onSubmit(student) {
+    this.dialogRef.close();
     this.studentService.setStudent({
       studentSurname: student.sname,
       studentName: student.name,
       studentFname: student.fname,
-      groupId: student.group || this.selectDefaultGroup,
+      groupId: student.group || this.groupId,
       gradebookId: student.gradebookId,
       photo: this.dropPhoto || ''
     }, {
@@ -97,12 +98,7 @@ export class StudentAddModalComponent implements OnInit {
       email: student.email,
       password: student.passwords.password,
       passwordConfirm: student.passwords.passwordConfirm
-    }).subscribe(data => {
-      this.dialogRef.close(data);
     });
-  }
-
-  ngOnInit() {
   }
 
 }

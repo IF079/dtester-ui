@@ -11,7 +11,7 @@ import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
 import {TestDetailComponent} from './test-detail/test-detail.component';
-import {TestPlayerComponent} from "./test-player/test-player.component";
+import {TestPlayerComponent} from './test-player/test-player.component';
 import {AdminGuard} from './admin.guard';
 
 const mainRoutes = [
@@ -31,6 +31,7 @@ const mainRoutes = [
           {path: 'groups', component: GroupsComponent, canActivate: [AdminGuard]},
           {path: 'timetable', component: TimeTableComponent, canActivate: [AdminGuard]},
           {path: 'test', component: TestDetailComponent, canActivate: [AdminGuard]},
+          {path: 'test-player', component: TestPlayerComponent, canActivate: [AdminGuard]},
           {path: '**', redirectTo: 'welcome', pathMath: 'full'}
         ]
       }

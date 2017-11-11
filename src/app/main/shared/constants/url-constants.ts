@@ -13,4 +13,6 @@ export const urlConstants = {
   insertData: '/insertData',
   getTestsBySubject: '/getTestsBySubject',
   getTestDetailsByTest: '/getTestDetailsByTest',
+  question: '/question',
+  getQuestionIdsByLevelRand: 'getQuestionIdsByLevelRand',
 };

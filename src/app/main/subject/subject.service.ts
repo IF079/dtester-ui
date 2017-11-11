@@ -11,6 +11,9 @@ import {url} from '../shared/constants/url-constants';
 import {TestPlayerComponent} from "../test-player/test-player.component";
 
 
+
+
+
 @Injectable()
 
 export class SubjectService {
@@ -41,4 +44,9 @@ export class SubjectService {
   addSubject(subject: SubjectDto): Observable<SubjectDto> {
     return this.http.post<SubjectDto>(`${url.subjectUrl}${url.insertData}`, subject);
   }
+  getQuestionIdsByLevelRand(id: number, level: any, tasks: any): Observable<any> {
+    return this.http.post(`${url.question}${url.getQuestionIdsByLevelRand}`, id, level);
+  }
+
 }
+

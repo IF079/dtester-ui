@@ -27,6 +27,8 @@ export const url = {
   getEntityValues: '/getEntityValues',
   checkUserName: '/checkUserName',
   checkEmailAddress: '/checkEmailAddress',
-  adminUser: '/AdminUser'
+  adminUser: '/AdminUser',
+  question: '/question',
+
 
 };

@@ -1,37 +1,38 @@
-import {Component, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
-import {SubjectService} from "../subject/subject.service";
-import {TestPlayerService} from "./test-player.service";
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {SubjectService} from '../subject/subject.service';
+import {TestPlayerService} from './test-player.service';
+import {TestDetailService} from '../test-detail/test-detail.service';
 
-
- @Component({
-  templateUrl: "test-player.component.html",
-  styleUrls: ["test-player.component.css"]
+@Component({
+  templateUrl: 'test-player.component.html',
+  styleUrls: ['test-player.component.css']
 })
 
 export class TestPlayerComponent implements OnInit {
 
 
-  private testId: number = 13;
+   testId: number;
 
   private navButtons: any[];
 
-  private activeQuestion: number = 0;
+  private activeQuestion = 0;
   private questions: any[] = [];
-  private tasksCount: number = 0;
-  private questionCount: number = 0;
-  private show: boolean = false;
+  private tasksCount = 0;
+  private questionCount = 0;
+  private show = false;
   private testDetails: any[];
-  private maxUserRate: number = 0;
+  private maxUserRate  = 0;
 
   constructor(private router: Router,
               private subjectService: SubjectService,
               private testPlayerService: TestPlayerService,
-              private modalService: NgbModal) {
+             private testDetailService: TestDetailService
+             /* private modalService: NgbModal*/) {
   }
 
   ngOnInit() {
-    this.subjectService.getTestDetailsByTest(this.testId)
+    this.testDetailService.getTestDetailsByTestId(this.testId)
       .subscribe(testDetails => {
         this.testDetails = testDetails;
         testDetails.forEach((data) => {
@@ -39,14 +40,13 @@ export class TestPlayerComponent implements OnInit {
           this.maxUserRate += +data.tasks * +data.rate;
         });
         testDetails.forEach((item) => {
-          this.subjectService.getQuestionsByLevelRand(item.test_id, item.level, item.tasks)
-            .subscribe(response => {
-              this.questionCount += +item.tasks;
+          this.subjectService.getQuestionIdsByLevelRand(item.id, item.level, item.tasks)
+              .subscribe(response => {              /*this.questionCount += +item.tasks;
               response.forEach(question => {
                 question.chosenAnswer = {};
                 question.rate = item.rate;
                 this.questions.push(question);
-              });
+              });*/
               if (this.questionCount === this.tasksCount) {
                 this.questions.sort((a, b) => {
                   return Math.random() > 0.5 ? +a.question_id - +b.question_id : +b.question_id - +a.question_id;
@@ -68,8 +68,7 @@ export class TestPlayerComponent implements OnInit {
             });
         });
       });
-  };
-
+  }
   skipQuestion(numberOfQuestion: number) {
     if (numberOfQuestion === this.questions.length) {
       for (let i = 0; i < this.navButtons.length; i++) {
@@ -78,28 +77,23 @@ export class TestPlayerComponent implements OnInit {
           break;
         }
       }
+    } else {
+      this.changeActiveQuestion(this.activeQuestion + 1);
     }
-    else this.changeActiveQuestion(this.activeQuestion + 1);
-  };
+  }
 
   answerQuestion() {
     this.navButtons[this.activeQuestion].answered = true;
-    let finishTest = this.navButtons.some((question) => {
+    const finishTest = this.navButtons.some((question) => {
       return question.answered === false;
     });
     if (!finishTest) {
       this.testPlayerService.checkSAnswers(this.questions)
         .subscribe(results => {
-          let userRate = this.testPlayerService.getUserRate(results, this.questions);
-         /* this.modalInfoConfig.title = "Результат тестування!";
-          this.modalInfoConfig.action = "info";
-          this.modalInfoConfig.infoString = `Кількість набраних Вами балів становить: ${userRate} з ${this.maxUserRate} максимально можливих`;
-          let modalRef = this.modalService.open(InfoModalComponent, {size: "sm"});
-          modalRef.componentInstance.config = this.modalInfoConfig;*/
-        });
-    }
+          const userRate = this.testPlayerService.getUserRate(results, this.questions);
 
-    else {
+        });
+    } else {
       if (this.activeQuestion === this.questions.length - 1) {
         for (let i = 0; i < this.navButtons.length; i++) {
           if (this.navButtons[i].answered === false) {
@@ -111,15 +105,16 @@ export class TestPlayerComponent implements OnInit {
         this.changeActiveQuestion(this.activeQuestion + 1);
       }
     }
-  };
+  }
 
   changeActiveQuestion(num: number) {
-    if (num === this.activeQuestion) return;
-    this.navButtons[this.activeQuestion].answered ?
-      this.navButtons[this.activeQuestion].className = "btn btn-success nom-qua" :
-      this.navButtons[this.activeQuestion].className = "btn btn-primary nom-qua";
+    if (num === this.activeQuestion) {
+      return; }
+      this.navButtons[this.activeQuestion].answered ?
+      this.navButtons[this.activeQuestion].className = 'btn btn-success nom-qua' :
+      this.navButtons[this.activeQuestion].className = 'btn btn-primary nom-qua';
     this.activeQuestion = num;
-    this.navButtons[this.activeQuestion].className = "btn btn-warning nom-qua";
+    this.navButtons[this.activeQuestion].className = 'btn btn-warning nom-qua';
   }
 
   toggleAnswer(event: any, answerId: number, numberOfQuestion: number) {

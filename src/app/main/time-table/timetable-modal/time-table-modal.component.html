@@ -2,8 +2,32 @@
   <h2 mat-dialog-title>Додайте запис</h2>
   <mat-dialog-content>
     <mat-card>
-
-
+      <mat-form-field >
+        <mat-select  formControlName="groupName"   placeholder="{{placeholders.groupName}}"  >
+          <mat-option *ngFor="let group of groupValues" [value]="group">
+           {{group}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select  formControlName="subjectName"    placeholder="{{placeholders.subjectName}}">
+          <mat-option *ngFor="let subject of subjectValues" [value]="subject">
+            {{subject}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="dateOfStart"  matInput placeholder="{{placeholders.dateOfStart}}">
+      </mat-form-field>
+      <mat-form-field >
+        <input formControlName="timeOfStart" matInput placeholder="{{placeholders.timeOfStart}}">
+      </mat-form-field>
+      <mat-form-field class="date-of-end">
+        <input  formControlName="dateOfEnd" matInput placeholder="{{placeholders.dateOfEnd}}">
+      </mat-form-field>
+      <mat-form-field class="time-of-end" >
+        <input  formControlName="timeOfEnd" matInput placeholder="{{placeholders.timeOfEnd}}">
+      </mat-form-field>
     </mat-card>
   </mat-dialog-content>
   <mat-dialog-actions>

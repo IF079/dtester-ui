@@ -34,7 +34,7 @@ export class TimeTableComponent implements OnInit {
     const dialogRef = this.dialog.open(TimeTableModalComponent, {
       height: '350px',
       width: '1000px',
-      data: {groupsArr: this.groupDictionary, subjectArr: this.subjectDictionary }
+      data: {groupDictionary: this.groupDictionary, subjectDictionary: this.subjectDictionary }
     });
 
   }
@@ -49,11 +49,10 @@ export class TimeTableComponent implements OnInit {
         this.timetables = data[0];
         data[1].forEach(item => this.groupDictionary[item.group_id] = item.group_name);
         data[2].forEach(item => this.subjectDictionary[item.id] = item.name);
-        this.timetables.forEach((item, i) => {
+        this.timetables.forEach((item) => {
           item.group_id = this.groupDictionary[item.group_id];
           item.subject_id =  this.subjectDictionary[item.subject_id];
         });
-        console.log(this.subjectDictionary);
         this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
       },
       err => {

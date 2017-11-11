@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-
+import {DeleteConfirmModalComponent} from './entity-table/delete-confirm-modal/delete-confirm-modal.component';
 import {EditEntityModalComponent} from './entity-table/edit-entity-modal/edit-entity-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
@@ -59,6 +59,7 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     WelcomeComponent,
     EntityTableComponent,
     EditEntityModalComponent,
+    DeleteConfirmModalComponent,
     StudentAddModalComponent,
     SpecialityModalComponent,
     InfoModalComponent,
@@ -74,6 +75,7 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     FormsModule
   ],
   entryComponents: [
+    DeleteConfirmModalComponent,
     EditEntityModalComponent,
     SubjectModalComponent,
     StudentAddModalComponent,

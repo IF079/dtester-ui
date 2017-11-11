@@ -7,12 +7,13 @@ import {Subject} from './subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
+import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'app-subjects',
   templateUrl: './subject.component.html',
   styleUrls: ['./subject.component.scss'],
-  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
+  providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
 
 export class SubjectComponent implements OnInit {
@@ -25,8 +26,11 @@ export class SubjectComponent implements OnInit {
   errWithDisplayingSubjects: string;
   numberOfRecords: number;
 
-  constructor(private subjectService: SubjectService, public dialog: MatDialog) {
-
+  constructor(private delUpdateService: UpdateDeleteEntityService, private subjectService: SubjectService, public dialog: MatDialog) {
+    this.delUpdateService.recordDeleted$.subscribe((res) => {
+        this.numberOfRecords -= 1;
+      },
+      err => console.log(err));
   }
 
   openDialog() {
@@ -49,7 +53,6 @@ export class SubjectComponent implements OnInit {
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },
       err => {
-
         this.errWithDisplayingSubjects = generalConst.errorWithDisplayData;
       });
   }

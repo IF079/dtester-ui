@@ -1,16 +1,14 @@
-import {Injectable} from "@angular/core";
-import {Http, Response, Headers} from "@angular/http";
-import {Router} from "@angular/router";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {Http, Response, Headers} from '@angular/http';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 
 @Injectable()
 export class TestPlayerService {
-
-  private hostUrlBase: string = baseUrl;
   private getAnswersByQuestionUrl: string = getAnswersByQuestionTestPlayerUrl;
   private checkSAnswerUrl: string = checkSAnswerUrl;
-  private headersCheckSAnswer = new Headers({"content-type": "application/json"});
+  private headersCheckSAnswer = new Headers({'content-type': 'application/json'});
 
   constructor(private http: Http,
               private router: Router) {
@@ -18,10 +16,10 @@ export class TestPlayerService {
 
   private handleError = (error: any) => {
     let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : "Server error";
+      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     if (error.status === 403) {
-      sessionStorage.removeItem("userRole");
-      this.router.navigate(["/login"]);
+      sessionStorage.removeItem('userRole');
+      this.router.navigate(['/login']);
     }
     return Observable.throw(errMsg);
   };
@@ -45,12 +43,12 @@ export class TestPlayerService {
 
   createButtons(countOfButtons: number) {
     let navButtons: any[] = [
-      {answered: false, name: "01", active: true, className: "btn btn-warning nom-qua"}];
+      {answered: false, name: '01', active: true, className: 'btn btn-warning nom-qua'}];
     for (let i = 1; i < countOfButtons; i++) {
       navButtons.push({});
       navButtons[i].answered = false;
       navButtons[i].name = i + 1 < 10 ? `0${i + 1}` : i + 1;
-      navButtons[i].className = "btn btn-primary nom-qua";
+      navButtons[i].className = 'btn btn-primary nom-qua';
       navButtons[i].active = false;
     }
     return navButtons;
@@ -81,7 +79,7 @@ export class TestPlayerService {
       bodyCheck.push(data);
     });
     return bodyCheck;
-  };
+  }
 }
 
 

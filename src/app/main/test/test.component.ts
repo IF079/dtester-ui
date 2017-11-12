@@ -34,7 +34,7 @@ export class TestComponent implements OnInit {
   getTestsRange(): void {
     this.testService.getTestsRange(5, 0).subscribe(data => {
         this.tests = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
+        this.numberOfRecords = parseInt(data[1].numberOfRecords);
       },
       err => {
         log.error(err);

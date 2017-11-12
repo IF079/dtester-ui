@@ -50,7 +50,7 @@ export class SubjectComponent implements OnInit {
   getSubjects(): void {
     this.subjectService.getSubjects(this.limit, this.offset).subscribe((data) => {
         this.subjects = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
+        this.numberOfRecords = parseInt(data[1].numberOfRecords);
       },
       err => {
         this.errWithDisplayingSubjects = generalConst.errorWithDisplayData;

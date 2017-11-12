@@ -29,17 +29,7 @@ export class FacultyModalComponent {
     });
   }
 
-  /*addFaculty(faculty) {
-    this.facultyService.addFaculty( {
-      facultyName: faculty.name,
-      facultyDescription: faculty.description
-    }).subscribe((facultyData) => {
-      this.dialogRef.close(facultyData);
-    });
-
-  }
-}*/
-addFaculty() {
+  addFaculty() {
   const faculty_name = this.facultyForm.get('name').value;
   const faculty_description = this.facultyForm.get('description').value;
   this.facultyService.addFaculty({faculty_name,  faculty_description}).subscribe(faculty => {

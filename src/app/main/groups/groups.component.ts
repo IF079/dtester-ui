@@ -42,7 +42,7 @@ export class GroupsComponent implements OnInit {
           item.faculty_id = this.facultyDictionary[item.faculty_id];
           item.speciality_id = this.specialityDictionary[item.speciality_id];
         });
-        this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
+        this.numberOfRecords = parseInt(data[3].numberOfRecords);
       },
       err => {
         console.log(err);

@@ -61,6 +61,7 @@ export class EntityTableComponent implements OnChanges {
     }
     this.updateItemInDom();
     this.deleteItemInDom();
+
   }
 
   openDeleteDialogAndPassItemToDelete (item) {

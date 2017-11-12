@@ -1,4 +1,5 @@
 <div *ngIf="errWithDisplayingGroups" class="mat-error">{{errWithDisplayingGroups}}</div>
+<button  class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
 <app-entity-table [entityName]="'Group'" [columnsArray]="headingColumnsOfTable"
                 [entityArray]="groups" [detailUrl]="'/students'"></app-entity-table>
 

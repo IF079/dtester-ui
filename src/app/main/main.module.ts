@@ -89,7 +89,8 @@ import {QuestionAddModalComponent} from './test/question/question-add-modal/ques
     InfoModalComponent,
     FacultyModalComponent,
     TimeTableModalComponent,
-    GroupsModalComponent
+    GroupsModalComponent,
+    QuestionAddModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

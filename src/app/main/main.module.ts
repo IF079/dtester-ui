@@ -9,6 +9,7 @@ import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
 import {FacultiesComponent} from './faculties/faculties.component';
+import {FacultyModalComponent} from './faculties/faculty-modal/faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
 import {ModalComponent} from './modal/modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
@@ -48,6 +49,7 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     MainComponent,
     NavComponent,
     FacultiesComponent,
+    FacultyModalComponent,
     GroupsComponent,
     ModalComponent,
     SpecialityComponent,
@@ -81,6 +83,7 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     StudentAddModalComponent,
     SpecialityModalComponent,
     InfoModalComponent,
+    FacultyModalComponent,
     TimeTableModalComponent
   ],
   providers: [

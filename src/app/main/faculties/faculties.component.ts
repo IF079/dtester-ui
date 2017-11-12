@@ -1,10 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
+import {FacultyModalComponent} from './faculty-modal/faculty-modal.component';
 import {FacultyService} from './faculty.service';
 import {Faculty} from './faculty';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
+import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'app-faculties',
@@ -26,7 +29,18 @@ export class FacultiesComponent implements OnInit {
   btnAdd = 'Додати факультет';
   errWithDisplayingFaculties: string;
   numberOfRecords: number;
-  constructor(private facultyService: FacultyService) {
+
+ constructor(private delUpdateService: UpdateDeleteEntityService,
+             private facultyService: FacultyService,
+             public dialog: MatDialog) {
+    this.delUpdateService.recordDeleted$.subscribe((res) => {
+        this.numberOfRecords -= 1;
+      },
+      err => console.log(err));
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(FacultyModalComponent);
   }
 
   goPage(pageEvent: PageEvent) {
@@ -38,7 +52,7 @@ export class FacultiesComponent implements OnInit {
   getFaculties() {
     this.facultyService.getFaculties(this.limit, this.offset).subscribe(data => {
         this.faculties = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
+        this.numberOfRecords = parseInt(data[1].numberOfRecords);
       },
       err => {
         this.errWithDisplayingFaculties = generalConst.errorWithDisplayData;
@@ -49,3 +63,5 @@ export class FacultiesComponent implements OnInit {
     this.getFaculties();
   }
 }
+
+const log = LoggerFactory.create(FacultiesComponent);

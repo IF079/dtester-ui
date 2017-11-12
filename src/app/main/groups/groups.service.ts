@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import {Subject} from 'rxjs/Subject';
 
 import {Group} from './group';
 import {RecordsCount} from '../shared/entities/recordsCount';
@@ -15,6 +16,16 @@ import {SpecialityDto} from '../speciality/speciality-dto';
 export class GroupsService {
   constructor(private http: HttpClient) {
   }
+
+  private groupAddedSource = new Subject<Group>();
+
+  groupAdded$ = this.groupAddedSource.asObservable();
+
+  passAdded(item: Group) {
+    this.groupAddedSource.next(item);
+  }
+
+
 
   getGroups(): Observable<[Group[], RecordsCount]> {
     return Observable.forkJoin(

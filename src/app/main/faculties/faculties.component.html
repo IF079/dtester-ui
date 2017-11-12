@@ -1,22 +1,8 @@
 <div *ngIf="errWithDisplayingFaculties" class="mat-error">{{errWithDisplayingFaculties}}</div>
-
-<button  mat-raised-button
-         class="addButton"
-         color="primary"
-         (click)="modal.openDialogue()">{{btnAdd}}</button>
-<app-modal #modal>
-  <mat-card>
-    <mat-form-field>
-      <input matInput placeholder="{{placeholders.name}}">
-    </mat-form-field>
-    <mat-form-field class="text-area-container">
-      <textarea matInput placeholder="{{placeholders.description}}"></textarea>
-    </mat-form-field>
-    <button class="modal-button" mat-raised-button color="primary">{{btnAdd}}</button>
-  </mat-card>
-</app-modal>
+<button  class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
 
 <app-entity-table [entityName]="'Faculty'"  [columnsArray]="headingColumnsOfTable" [entityArray]="faculties"></app-entity-table>
+
 <mat-paginator [length]="numberOfRecords"
                [pageSize]="limit"
                [pageSizeOptions]="pageSizeOptions"

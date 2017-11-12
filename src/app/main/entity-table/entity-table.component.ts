@@ -1,7 +1,9 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {EditEntityModalComponent} from './edit-entity-modal/edit-entity-modal.component';
 import {Router} from '@angular/router';
+
+import {DeleteConfirmModalComponent} from './delete-confirm-modal/delete-confirm-modal.component';
+import {EditEntityModalComponent} from './edit-entity-modal/edit-entity-modal.component';
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 
 @Component({
@@ -18,6 +20,10 @@ export class EntityTableComponent implements OnChanges {
   @Input() detailUrl: string;
 
   constructor(public dialog: MatDialog, private router: Router, private delUpdateService: UpdateDeleteEntityService) {
+
+  }
+
+  updateItemInDom() {
     this.delUpdateService.recordUpdated$.subscribe(res => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
@@ -29,6 +35,12 @@ export class EntityTableComponent implements OnChanges {
     });
   }
 
+  deleteItemInDom() {
+    this.delUpdateService.recordDeleted$.subscribe(res => {
+      console.log(res);
+      this.tableRowArr = this.tableRowArr.filter(item => item !== res);
+    });
+  }
   openDialogAndPassDataToIt(rowItem): void {
     const dialogRef = this.dialog.open(EditEntityModalComponent, {
       height: '350px',
@@ -36,9 +48,7 @@ export class EntityTableComponent implements OnChanges {
       data: rowItem
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -49,22 +59,18 @@ export class EntityTableComponent implements OnChanges {
       }
       this.tableRowArr = localArray;
     }
+    this.updateItemInDom();
+    this.deleteItemInDom();
+
   }
 
-  deleteItem(item) {
-    if (confirm('Вы подтверждаете удаление?')) {
-      console.log(item);
-      this.delUpdateService.deleteEntity(item[0], this.entityName).subscribe(
-        (resp) => {
-          console.log(resp);
-          this.tableRowArr = this.tableRowArr.filter(i => item !== i);
-          alert('Сущность была удалена');
-        },
-        (err) => console.log(err)
-      );
-    } else {
-      alert('Ну как хотите...');
-    }
+  openDeleteDialogAndPassItemToDelete (item) {
+    const dialogRef = this.dialog.open(DeleteConfirmModalComponent, {
+      height: '350px',
+      data: {item: item, entityName: this.entityName}
+    });
+
+
   }
 
   onSelect(item: any[]) {

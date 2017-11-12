@@ -8,7 +8,7 @@ import {UpdateDeleteEntityService} from '../update-delete-entity.service';
   templateUrl: './edit-entity-modal.component.html'
 })
 
-export class EditEntityModalComponent implements OnChanges {
+export class EditEntityModalComponent {
   editEntityForm: FormGroup;
   dataForUpdate: any;
   placeholders = {
@@ -28,10 +28,6 @@ export class EditEntityModalComponent implements OnChanges {
     const description = this.data[2];
     this.editEntityForm = this.formBuilder.group({name
       , description});
-  }
-
-  ngOnChanges() {
-
   }
 
   editEntityRecord() {

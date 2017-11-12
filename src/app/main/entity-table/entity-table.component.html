@@ -8,10 +8,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let rowItem of tableRowArr"
-        (click)="onSelect(rowItem)">
+        (dblclick)="onSelect(rowItem)">
       <td *ngFor="let item of rowItem">{{item}}</td>
       <td><i (click)="openDialogAndPassDataToIt(rowItem)" class="fa fa-pencil-square-o"></i></td>
-      <td><i (click)="deleteItem(rowItem)" class="fa fa-times"></i></td>
+      <td><i (click)="openDeleteDialogAndPassItemToDelete(rowItem)" class="fa fa-times"></i></td>
     </tr>
   </tbody>
 </table>

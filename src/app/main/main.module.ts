@@ -3,13 +3,15 @@ import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-
+import {DeleteConfirmModalComponent} from './entity-table/delete-confirm-modal/delete-confirm-modal.component';
 import {EditEntityModalComponent} from './entity-table/edit-entity-modal/edit-entity-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
 import {FacultiesComponent} from './faculties/faculties.component';
+import {FacultyModalComponent} from './faculties/faculty-modal/faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
+import {GroupsModalComponent} from './groups/groups-modal/groups-modal.component';
 import {ModalComponent} from './modal/modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
@@ -49,7 +51,9 @@ import {QuestionAddModalComponent} from './test/question/question-add-modal/ques
     MainComponent,
     NavComponent,
     FacultiesComponent,
+    FacultyModalComponent,
     GroupsComponent,
+    GroupsModalComponent,
     ModalComponent,
     SpecialityComponent,
     StudentComponent,
@@ -60,6 +64,7 @@ import {QuestionAddModalComponent} from './test/question/question-add-modal/ques
     WelcomeComponent,
     EntityTableComponent,
     EditEntityModalComponent,
+    DeleteConfirmModalComponent,
     StudentAddModalComponent,
     SpecialityModalComponent,
     InfoModalComponent,
@@ -76,6 +81,7 @@ import {QuestionAddModalComponent} from './test/question/question-add-modal/ques
     FormsModule
   ],
   entryComponents: [
+    DeleteConfirmModalComponent,
     EditEntityModalComponent,
     SubjectModalComponent,
     StudentAddModalComponent,

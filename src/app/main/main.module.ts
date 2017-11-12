@@ -11,6 +11,7 @@ import {NavComponent} from './nav/nav.component';
 import {FacultiesComponent} from './faculties/faculties.component';
 import {FacultyModalComponent} from './faculties/faculty-modal/faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
+import {GroupsModalComponent} from './groups/groups-modal/groups-modal.component';
 import {ModalComponent} from './modal/modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
@@ -51,6 +52,7 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     FacultiesComponent,
     FacultyModalComponent,
     GroupsComponent,
+    GroupsModalComponent,
     ModalComponent,
     SpecialityComponent,
     StudentComponent,
@@ -84,7 +86,8 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     SpecialityModalComponent,
     InfoModalComponent,
     FacultyModalComponent,
-    TimeTableModalComponent
+    TimeTableModalComponent,
+    GroupsModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

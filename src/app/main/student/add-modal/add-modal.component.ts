@@ -3,7 +3,6 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
 import {StudentService} from '../student.service';
-import {StudentDto} from '../student-dto';
 import {InfoModalService} from '../../info-modal/info-modal.service'
 
 @Component({
@@ -34,7 +33,7 @@ export class StudentAddModalComponent {
   student: any;
   errorEmptyInput = 'Заповніть поле!';
   errorInvalidGradebook = 'Дані повинні бути формату ХХ-ХХХХХХХ (AU-2251346)';
-  errorInvalidPassword = 'Пароль повинен займати 8-20 знаків (букви так числа обов\'язкові)!';
+  errorInvalidPassword = 'Пароль повинен займати 8-20 знаків (букви та цифри обов\'язкові)!';
   errorInvalidPasswordConfirm = 'Паролі не збігаються!';
   errorInvalidEmail = 'Некоректна адреса!';
   errorInvalidUsername = 'Логін повинен займати 6-16 символів!';
@@ -101,7 +100,6 @@ export class StudentAddModalComponent {
       password: student.passwords.password,
       passwordConfirm: student.passwords.passwordConfirm
     }).subscribe(res => {
-      this.dialogRef.close(res);
       if (res.response !== 'ok') {
         this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
       } else if (res.response === 'ok') {

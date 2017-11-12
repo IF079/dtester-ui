@@ -42,6 +42,7 @@ import {AnswerService} from './test/answer/answer.service';
 import {QuestionService} from './test/question/question.service';
 import {InfoModalService} from './info-modal/info-modal.service';
 import {SpecialityModalComponent} from './speciality/speciality-modal/speciality-modal.component';
+import {QuestionAddModalComponent} from './test/question/question-add-modal/question-add-modal.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     InfoModalComponent,
     TestComponent,
     TestDetailComponent,
-    TimeTableModalComponent
+    TimeTableModalComponent,
+    QuestionAddModalComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +81,9 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     StudentAddModalComponent,
     SpecialityModalComponent,
     InfoModalComponent,
-    TimeTableModalComponent
+    FacultyModalComponent,
+    TimeTableModalComponent,
+    GroupsModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

@@ -81,7 +81,7 @@
                     <mat-form-field>
                       <input matInput placeholder="{{placeholders.passwordConfirm}}" [type]="passwordVisible ? 'text' : 'password'" formControlName="passwordConfirm">
                       <mat-icon matSuffix (click)="passwordVisible = !passwordVisible" class="fa {{passwordVisible ? 'fa-unlock' : 'fa-lock'}}"></mat-icon>
-                      <mat-error *ngIf="!form.controls['passwords'].controls['passwordConfirm'].valid && form.controls['passwords'].controls['passwordConfirm'].touched">{{errorInvalidPasswordConfirm}}</mat-error>
+                      <mat-error *ngIf="!form.controls['passwords'].controls['passwordConfirm'].valid && form.controls['passwords'].controls['passwordConfirm'].dirty">{{errorInvalidPasswordConfirm}}</mat-error>
                     </mat-form-field>
                   </div>
                 </div>

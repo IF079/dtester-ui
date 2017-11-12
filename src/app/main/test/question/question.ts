@@ -1,7 +1,7 @@
 import {QuestionDto} from './question-dto';
 
 export class Question {
-  questionId: number;
+  questionId?: number;
   testId: number;
   questionText: string;
   level: number;

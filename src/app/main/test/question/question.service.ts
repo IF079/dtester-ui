@@ -16,7 +16,7 @@ export class QuestionService {
   }
 
   getQuestion(id: number): Observable<Question[]> {
-    return this.http.get<QuestionDto[]>(`${url.questionUrl}${url.getRecords}`)
+    return this.http.get<QuestionDto[]>(`${url.questionUrl}${url.getRecords}/${id}`)
       .map(questionDtoArr => questionDtoArr.map( questionDto => new Question(questionDto)));
   }
 

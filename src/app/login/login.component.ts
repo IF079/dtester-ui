@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {LoginService} from './services/login.service';
 import {LOGIN_FORM_DEFAULT_CONFIG} from './config/login-form.default.config';
@@ -14,16 +14,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 export class LoginComponent {
   loginForm: FormGroup;
-  username: FormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(LOGIN_FORM_DEFAULT_CONFIG.USERNAME.MIN_LENGTH),
-    Validators.maxLength(LOGIN_FORM_DEFAULT_CONFIG.USERNAME.MAX_LENGTH)
-  ]);
-  password: FormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(LOGIN_FORM_DEFAULT_CONFIG.PASSWORD.MIN_LENGTH),
-    Validators.maxLength(LOGIN_FORM_DEFAULT_CONFIG.PASSWORD.MAX_LENGTH)
-  ]);
   hasBadCredentialsError = false;
   returnUrl: string;
 
@@ -32,8 +22,15 @@ export class LoginComponent {
               private route: ActivatedRoute,
               private fb: FormBuilder) {
   this.loginForm = this.fb.group({
-    username: this.username,
-    password: this.password
+    username: [null, Validators.compose([
+      Validators.required,
+      Validators.minLength(LOGIN_FORM_DEFAULT_CONFIG.USERNAME.MIN_LENGTH),
+      Validators.maxLength(LOGIN_FORM_DEFAULT_CONFIG.USERNAME.MAX_LENGTH)])],
+    password: [null, Validators.compose([
+      Validators.required,
+      Validators.minLength(LOGIN_FORM_DEFAULT_CONFIG.PASSWORD.MIN_LENGTH),
+      Validators.maxLength(LOGIN_FORM_DEFAULT_CONFIG.PASSWORD.MAX_LENGTH)
+    ])]
   });
   }
 
@@ -58,7 +55,6 @@ export class LoginComponent {
   getReturnUrl() {
     return this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-
   getRequiredMsg(): string {
     return 'Поле повинно бути заповненим';
   }

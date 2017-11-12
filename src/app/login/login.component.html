@@ -3,23 +3,27 @@
     <mat-card>
       <h1>Авторизація</h1>
       <mat-form-field>
-        <input matInput [formControl]="username" placeholder="Ім'я">
-        <mat-error *ngIf="username.invalid">
-          <div *ngIf="username.hasError('required')">{{getRequiredMsg()}}</div>
-          <div *ngIf="username.hasError('minlength')">{{getInsufficientLengthErrorMsg(username.getError('minlength'))}}
+        <input matInput [formControl]="loginForm.controls['username']" placeholder="Ім'я">
+        <mat-error>
+          <div *ngIf="loginForm.controls['username'].hasError('required')">{{getRequiredMsg()}}</div>
+          <div *ngIf="loginForm.controls['username'].hasError('minlength')">
+            {{getInsufficientLengthErrorMsg(loginForm.controls['username'].getError('minlength'))}}
           </div>
-          <div *ngIf="username.hasError('maxlength')">{{getExceedingLengthErrorMsg(username.getError('maxlength'))}}
+          <div *ngIf="loginForm.controls['username'].hasError('maxlength')">
+            {{getExceedingLengthErrorMsg(loginForm.controls['username'].getError('maxlength'))}}
           </div>
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput [formControl]="password" type="password"
+        <input matInput [formControl]="loginForm.controls['password']" type="password"
                placeholder="Пароль">
-        <mat-error *ngIf="password.invalid">
-          <div *ngIf="password.hasError('required')">{{getRequiredMsg()}}</div>
-          <div *ngIf="password.hasError('minlength')">{{getInsufficientLengthErrorMsg(password.getError('minlength'))}}
+        <mat-error>
+          <div *ngIf="loginForm.controls['password'].hasError('required')">{{getRequiredMsg()}}</div>
+          <div *ngIf="loginForm.controls['password'].hasError('minlength')">
+            {{getInsufficientLengthErrorMsg(loginForm.controls['password'].getError('minlength'))}}
           </div>
-          <div *ngIf="password.hasError('maxlength')">{{getExceedingLengthErrorMsg(password.getError('maxlength'))}}
+          <div *ngIf="loginForm.controls['password'].hasError('maxlength')">
+            {{getExceedingLengthErrorMsg(loginForm.controls['password'].getError('maxlength'))}}
           </div>
         </mat-error>
       </mat-form-field>

@@ -33,6 +33,20 @@ export class FacultiesComponent implements OnInit {
  constructor(private delUpdateService: UpdateDeleteEntityService,
              private facultyService: FacultyService,
              public dialog: MatDialog) {
+   this.updateNumberOfRecordsInDomWhenAdded();
+   this.updateNumberOfRecordsInDomWhenDeleted();
+  }
+
+  updateNumberOfRecordsInDomWhenAdded() {
+    this.facultyService.facultyAdded$.subscribe(resp => {
+        console.log(resp);
+        this.numberOfRecords += 1;
+      },
+      err => console.log(err));
+
+  }
+
+  updateNumberOfRecordsInDomWhenDeleted() {
     this.delUpdateService.recordDeleted$.subscribe((res) => {
         this.numberOfRecords -= 1;
       },
@@ -46,11 +60,11 @@ export class FacultiesComponent implements OnInit {
   goPage(pageEvent: PageEvent) {
     this.limit = pageEvent.pageSize;
     this.offset = ((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize;
-    this.getFaculties();
+    this.getFacultiesRange();
   }
 
-  getFaculties() {
-    this.facultyService.getFaculties(this.limit, this.offset).subscribe(data => {
+  getFacultiesRange() {
+    this.facultyService.getFacultiesRange(this.limit, this.offset).subscribe(data => {
         this.faculties = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords);
       },
@@ -60,7 +74,7 @@ export class FacultiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getFaculties();
+    this.getFacultiesRange();
   }
 }
 

@@ -16,6 +16,10 @@ form {
       }
     }
     #addAnswers {
+      .description{
+        color: grey;
+        font-size: 13px;
+      }
       mat-form-field {
         width: 100%;
       }

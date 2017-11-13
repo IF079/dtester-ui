@@ -70,15 +70,11 @@ export class EntityTableComponent implements OnChanges {
   }
 
   openDialogAndPassDataToIt(rowItem): void {
-    if (this.entityName === 'Subject') {
       const dialogRef = this.dialog.open(this.componentModalsDictionary[this.entityName], {
         height: '350px',
         width: '1000px',
         data: rowItem
       });
-    }
-
-
   }
 
   ngOnChanges(changes: SimpleChanges) {

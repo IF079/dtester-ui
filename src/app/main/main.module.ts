@@ -4,7 +4,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {DeleteConfirmModalComponent} from './entity-table/delete-confirm-modal/delete-confirm-modal.component';
-import {EditEntityModalComponent} from './entity-table/edit-entity-modal/edit-entity-modal.component';
+import {EditGroupsModalComponent} from './entity-table/edit-groups-modal/edit-groups-modal.component';
+import {EditSubjectModalComponent} from './entity-table/edit-subject-modal/edit-subject-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
@@ -66,7 +67,8 @@ import {ResultAddModalComponent} from './test/result/result-add-modal/result-add
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent,
-    EditEntityModalComponent,
+    EditSubjectModalComponent,
+    EditGroupsModalComponent,
     DeleteConfirmModalComponent,
     StudentAddModalComponent,
     SpecialityModalComponent,
@@ -87,7 +89,7 @@ import {ResultAddModalComponent} from './test/result/result-add-modal/result-add
   ],
   entryComponents: [
     DeleteConfirmModalComponent,
-    EditEntityModalComponent,
+    EditSubjectModalComponent,
     SubjectModalComponent,
     StudentAddModalComponent,
     SpecialityModalComponent,
@@ -97,7 +99,8 @@ import {ResultAddModalComponent} from './test/result/result-add-modal/result-add
     GroupsModalComponent,
     QuestionAddModalComponent,
     TestAddModalComponent,
-    ResultAddModalComponent
+    ResultAddModalComponent,
+    EditGroupsModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

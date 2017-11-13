@@ -26,11 +26,18 @@ export class GroupsService {
   }
 
 
-
   getGroups(): Observable<[Group[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<Group[]>(`${url.groupUrl}${url.getRecords}`),
       this.http.get<RecordsCount>(`${url.groupUrl}${url.getCount}`)
+    );
+  }
+
+  getFacultiesAndSpecialities(): Observable<[Faculty[], Speciality[]]> {
+    return Observable.forkJoin(
+      this.http.get<Faculty[]>(`${url.facultyUrl}${url.getRecords}`),
+      this.http.get<SpecialityDto[]>(`${url.specialityUrl}${url.getRecords}`)
+        .map(specialityDtoArr => specialityDtoArr.map(specialityDto => new Speciality(specialityDto)))
     );
   }
 

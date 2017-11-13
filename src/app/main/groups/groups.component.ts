@@ -71,7 +71,7 @@ export class GroupsComponent implements OnInit, OnChanges {
           item.faculty_id = this.facultyDictionary[item.faculty_id];
           item.speciality_id = this.specialityDictionary[item.speciality_id];
         });
-        this.numberOfRecords = parseInt(data[3].numberOfRecords);
+        this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
       },
       err => {
         console.log(err);

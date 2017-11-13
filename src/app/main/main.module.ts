@@ -43,8 +43,11 @@ import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.ser
 import {AnswerService} from './test/answer/answer.service';
 import {QuestionService} from './test/question/question.service';
 import {InfoModalService} from './info-modal/info-modal.service';
+import {ResultService} from './test/result/result.service';
 import {SpecialityModalComponent} from './speciality/speciality-modal/speciality-modal.component';
 import {QuestionAddModalComponent} from './test/question/question-add-modal/question-add-modal.component';
+import {TestAddModalComponent} from './test/test-add-modal/test-add-modal.component';
+import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +74,9 @@ import {QuestionAddModalComponent} from './test/question/question-add-modal/ques
     TestComponent,
     TestDetailComponent,
     TimeTableModalComponent,
-    QuestionAddModalComponent
+    QuestionAddModalComponent,
+    TestAddModalComponent,
+    ResultAddModalComponent
   ],
   imports: [
     CommonModule,
@@ -90,7 +95,9 @@ import {QuestionAddModalComponent} from './test/question/question-add-modal/ques
     FacultyModalComponent,
     TimeTableModalComponent,
     GroupsModalComponent,
-    QuestionAddModalComponent
+    QuestionAddModalComponent,
+    TestAddModalComponent,
+    ResultAddModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
@@ -106,7 +113,8 @@ import {QuestionAddModalComponent} from './test/question/question-add-modal/ques
     SpinnerService,
     AnswerService,
     QuestionService,
-    InfoModalService
+    InfoModalService,
+    ResultService
   ]
 })
 export class MainModule {

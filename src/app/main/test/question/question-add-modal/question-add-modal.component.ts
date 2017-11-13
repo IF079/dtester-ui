@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/form
 
 import {QuestionService} from '../question.service';
 import {InfoModalService} from '../../../info-modal/info-modal.service';
-import { QuestionDto } from '../question-dto';
+import {Question} from '../question';
 
 @Component({
   selector: 'app-question-add-modal',
@@ -44,7 +44,7 @@ export class QuestionAddModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = formBuilder.group({
-      'test': [null, Validators.required],
+      'testId': [null, Validators.required],
       'questionText': [null, [Validators.required, Validators.maxLength(250)]],
       'level': [null, Validators.required],
       'type': [null, Validators.required]
@@ -60,10 +60,10 @@ export class QuestionAddModalComponent {
     };
   }
 
-  onSubmit(question) {
+  onSubmit(question: Question) {
     this.dialogRef.close();
     this.questionService.setQuestion({
-      testId: question.test,
+      testId: question.testId,
       questionText: question.questionText,
       level: question.level,
       type: question.type,

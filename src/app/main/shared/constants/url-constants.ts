@@ -9,6 +9,7 @@ export const url = {
   testDetailUrl: '/TestDetail',
   questionUrl: '/question',
   answerUrl: '/answer',
+  resultUrl: '/result',
   getCount: '/countRecords',
   getRecordsRange: '/getRecordsRange',
   getRecords: '/getRecords',

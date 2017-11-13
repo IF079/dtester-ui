@@ -14,8 +14,15 @@ export class SubjectService {
   constructor(private http: HttpClient) {
   }
 
+  getSubjects(): Observable<[Subject[], RecordsCount]> {
+    return Observable.forkJoin(
+      this.http.get<SubjectDto[]>(`${url.subjectUrl}${url.getRecords}`)
+        .map(subjectDtoArr => subjectDtoArr.map(subjectDto => new Subject(subjectDto))),
+      this.http.get<RecordsCount>(`${url.subjectUrl}${url.getCount}`)
+    );
+  }
 
-  getSubjects(limit: number, offset: number): Observable<[Subject[], RecordsCount]> {
+  getSubjectsRange(limit: number, offset: number): Observable<[Subject[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<SubjectDto[]>(`${url.subjectUrl}${url.getRecordsRange}/${limit}/${offset}`)
         .map(subjectDtoArr => subjectDtoArr.map(subjectDto => new Subject(subjectDto))),

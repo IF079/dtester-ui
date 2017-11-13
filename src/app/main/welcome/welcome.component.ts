@@ -4,8 +4,14 @@ import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 import {LoginService} from '../../login/services/login.service';
 import {User} from '../../login/entities/user';
 import {QuestionAddModalComponent} from '../test/question/question-add-modal/question-add-modal.component';
+import {TestAddModalComponent} from '../test/test-add-modal/test-add-modal.component';
+import {ResultAddModalComponent} from '../test/result/result-add-modal/result-add-modal.component';
 import {TestService} from '../test/test.service';
 import {Test} from '../test/test';
+import {SubjectService} from '../subject/subject.service';
+import {Subject} from '../subject/subject';
+import {ResultService} from '../test/result/result.service';
+import {Result} from '../test/result/result';
 
 @Component({
   selector: 'app-welcome',
@@ -19,7 +25,10 @@ export class WelcomeComponent {
   constructor(
     private loginService: LoginService,
     private testService: TestService,
-    private dialog: MatDialog
+    private subjectService: SubjectService,
+    private resultService: ResultService,
+    private dialog: MatDialog,
+    private res: ResultService
   ) {
   }
 
@@ -53,6 +62,32 @@ export class WelcomeComponent {
     return localArr;
   }
 
+  parseSubjects(subject: Subject[]): any[] {
+    let localArr = [];
+    subject.forEach(item => {
+      localArr.push({
+        value: item.id,
+        text: item.name
+      });
+    });
+    return localArr;
+  }
+
+  parseResults(result: Result[]): any[] {
+    let localArr = [];
+    result.forEach(item => {
+      this.resultService.getStudentAndTest(item.studentId, item.testId).subscribe(data => {
+        localArr.push({
+          endTime: item.endTime.substring(0, item.endTime.length - 3),
+          studentName: `${data[0][0].studentName} ${data[0][0].studentSurname}`,
+          testName: data[1][0].testName,
+          result: item.result
+        });
+      });
+    });
+    return localArr;
+  }
+
   openQuestionAddModal(): void {
     this.testService.getTests().subscribe(testsData => {
       const dialogRef = this.dialog.open(QuestionAddModalComponent, {
@@ -65,6 +100,40 @@ export class WelcomeComponent {
       dialogRef.afterClosed().subscribe(result => {
 
       });
-    })
+    });
+
+    this.res.getResults().subscribe(data => console.log(data));
   }
+
+  openTestAddModal(): void {
+    this.subjectService.getSubjects().subscribe(subjectsData => {
+      const dialogRef = this.dialog.open(TestAddModalComponent, {
+        width: '400px',
+        data: {
+          subjects: this.parseSubjects(subjectsData[0])
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+
+      });
+    });
+  }
+
+  openResultAddModal(): void {
+    this.resultService.getResults().subscribe(resultsData => {
+      const dialogRef = this.dialog.open(ResultAddModalComponent, {
+        width: '500px',
+        data: {
+          results: this.parseResults(resultsData[0])
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+
+      });
+    });
+  }
+
 }
+

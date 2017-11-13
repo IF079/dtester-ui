@@ -4,6 +4,19 @@
       <div class="row">
         <div class="col-md-6 col-lg-4 my-2">
           <mat-card>
+            <img matCardImage src="https://www.myonlineprep.com/wp-content/uploads/2017/02/download-paper.jpg">
+            <mat-card-header>
+              <mat-card-title>
+                <span>Тести</span>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-actions align="start">
+              <button mat-raised-button color="primary" (click)="openTestAddModal()">Добавити</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div class="col-md-6 col-lg-4 my-2">
+          <mat-card>
             <img matCardImage src="https://buzzkenya.com/wp-content/uploads/2014/02/questions.jpg">
             <mat-card-header>
               <mat-card-title>
@@ -17,19 +30,6 @@
         </div>
         <div class="col-md-6 col-lg-4 my-2">
           <mat-card>
-            <img matCardImage src="https://www.myonlineprep.com/wp-content/uploads/2017/02/download-paper.jpg">
-            <mat-card-header>
-              <mat-card-title>
-                <span>Тести</span>
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-actions align="start">
-              <button mat-raised-button color="primary">Добавити</button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-        <div class="col-md-6 col-lg-4 my-2">
-          <mat-card>
             <img matCardImage src="https://cdn.deseretnews.com/images/article/hires/1346339/1346339.jpg">
             <mat-card-header>
               <mat-card-title>
@@ -37,7 +37,7 @@
               </mat-card-title>
             </mat-card-header>
             <mat-card-actions align="start">
-              <button mat-raised-button color="primary">Переглянути</button>
+              <button mat-raised-button color="primary" (click)="openResultAddModal()">Переглянути</button>
             </mat-card-actions>
           </mat-card>
         </div>

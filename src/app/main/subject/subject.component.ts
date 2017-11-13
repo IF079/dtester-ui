@@ -48,7 +48,7 @@ export class SubjectComponent implements OnInit {
   }
 
   getSubjects(): void {
-    this.subjectService.getSubjects(this.limit, this.offset).subscribe((data) => {
+    this.subjectService.getSubjectsRange(this.limit, this.offset).subscribe((data) => {
         this.subjects = data[0];
         this.numberOfRecords = parseInt(data[1].numberOfRecords);
       },

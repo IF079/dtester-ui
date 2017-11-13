@@ -4,12 +4,12 @@
     <div class="container">
       <div class="row">
         <mat-form-field>
-          <mat-select [placeholder]="placeholders.testName" formControlName="test">
+          <mat-select [placeholder]="placeholders.testName" formControlName="testId">
             <mat-option *ngFor="let test of tests" [value]="test.value">
               {{test.text}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="!form.controls['test'].valid && form.controls['test'].touched">{{errorEmptyInput}}</mat-error>
+          <mat-error *ngIf="!form.controls['testId'].valid && form.controls['testId'].touched">{{errorEmptyInput}}</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput [placeholder]="placeholders.questionText" formControlName="questionText">

@@ -3,11 +3,16 @@ import {Http, Response, Headers} from '@angular/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
+import {
+  urlConstants
+}  from '../shared/constants/url-constants';
+
+
 
 @Injectable()
 export class TestPlayerService {
-  private getAnswersByQuestionUrl: string = getAnswersByQuestionTestPlayerUrl;
-  private checkSAnswerUrl: string = checkSAnswerUrl;
+  private getAnswersByQuestionUrl: string = urlConstants.getAnswersByQuestionTestPlayerUrl;
+  private checkSAnswerUrl: string = urlConstants.checkSAnswerUrl;
   private headersCheckSAnswer = new Headers({'content-type': 'application/json'});
 
   constructor(private http: Http,

@@ -15,4 +15,6 @@ export const urlConstants = {
   getTestDetailsByTest: '/getTestDetailsByTest',
   question: '/question',
   getQuestionIdsByLevelRand: 'getQuestionIdsByLevelRand',
+  getAnswersByQuestionTestPlayerUrl: 'SAnswer/getAnswersByQuestion',
+  checkSAnswerUrl: 'SAnswer/checkAnswers'
 };

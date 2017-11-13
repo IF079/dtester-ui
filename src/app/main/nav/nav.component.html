@@ -17,6 +17,6 @@
     <a mat-button color="primary" [routerLink]="['/groups']" [routerLinkActive]="navActiveClass">Групи</a>
   </mat-toolbar-row>
   <mat-toolbar-row *ngIf="!loginService.user.isAdmin()">
-    <a mat-button color="primary" [routerLink]="['/player']" [routerLinkActive]="navActiveClass">Почати тестування</a>
+    <a mat-button color="primary" [routerLink]="['/test-player']" [routerLinkActive]="navActiveClass">Почати тестування</a>
   </mat-toolbar-row>
 </mat-toolbar>

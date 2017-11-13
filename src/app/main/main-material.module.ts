@@ -12,14 +12,15 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCheckboxModule
 } from '@angular/material';
 
 @NgModule({
   imports: [MatSortModule, MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
-    MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule],
+    MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule, MatCheckboxModule],
   exports: [MatSortModule, MatPaginatorModule, MatTableModule, CdkTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
-    MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule]
+    MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule, MatCheckboxModule]
 })
 
 export class MainMaterialModule {

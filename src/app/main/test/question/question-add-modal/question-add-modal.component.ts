@@ -19,7 +19,8 @@ export class QuestionAddModalComponent {
     questionText: 'Запитання',
     level: 'Рівень',
     type: 'Тип',
-    attachment: 'Картинка'
+    attachment: 'Картинка',
+    answer: 'Відповідь'
   };
   levels = [
     {value: 1, text: 'Простий'},
@@ -32,9 +33,11 @@ export class QuestionAddModalComponent {
     {value: 3, text: 'Написати свою відповідь'},
   ];
   attachment: string;
+  answers = [];
   form: FormGroup;
   errorEmptyInput = 'Заповніть поле!';
   errorQuestionText = 'Поле повинно бути заповнене, та займати до 250 символів!';
+  errorAnswersAmount = 'Повинно бути не менше двох варіантів відповідей!';
 
   constructor(
     private questionService: QuestionService,
@@ -47,7 +50,8 @@ export class QuestionAddModalComponent {
       'testId': [null, Validators.required],
       'questionText': [null, [Validators.required, Validators.maxLength(250)]],
       'level': [null, Validators.required],
-      'type': [null, Validators.required]
+      'type': [null, Validators.required],
+      'answers': [null, this.validateAnswersLength]
     });
   }
 
@@ -76,6 +80,29 @@ export class QuestionAddModalComponent {
       }
     });
   }
+
+  addAnswer(answer: string, isTrue) {
+    console.log(answer);
+    console.log(isTrue);
+    this.answers.push({
+      text: answer,
+      isTrue: isTrue
+    });
+  }
+
+  validateAnswersLength(control: AbstractControl) {
+    // console.log(this);
+    /*if (this.answers.length || this.answers.length < 2) {
+      control.get('answers').setErrors({invalidAmountOfAnswers: true});
+    } else {
+      return null;
+    }*/
+  }
+
+  deleteAnswer(text: string){
+    this.answers.splice(this.answers.indexOf(this.answers.find(answer => answer.text === text)), 1);
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }

@@ -2,7 +2,7 @@
   <h2 mat-dialog-title>Добавити запитання</h2>
   <mat-dialog-content>
     <div class="container">
-      <div class="row">
+      <div class="row" id="addQuestion">
         <mat-form-field>
           <mat-select [placeholder]="placeholders.testName" formControlName="testId">
             <mat-option *ngFor="let test of tests" [value]="test.value">
@@ -35,6 +35,26 @@
         <label for="imageUpload">
           <a mat-button>Файл</a>
         </label>
+      </div>
+      <div class="row" id="addAnswers">
+        <h4>Відповіді</h4>
+        <table *ngIf="answers" id="answers">
+          <tr class="answer" *ngFor="let answer of answers">
+            <td>{{answer.text}}</td>
+            <td>
+              <i *ngIf="answer.isTrue; else falseBlock" color="green" class="fa fa-check"></i>
+              <ng-template #falseBlock>
+                <i color="red" class="fa fa-ban"></i>
+              </ng-template>
+              <i class="fa fa-times" (click)="deleteAnswer(answer.text)"></i>
+            </td>
+          </tr>
+        </table>
+        <mat-form-field>
+          <input matInput #answerInput [placeholder]="placeholders.answer" (keyup.enter)="addAnswer(answerInput.value, isTrue.checked); answerInput.value=''" formControlName="answers">
+          <mat-checkbox #isTrue matSuffix color="primary"></mat-checkbox>
+          <mat-error *ngIf="!form.controls['answers'].valid && form.controls['answers'].touched">{{errorEmptyInput}}</mat-error>
+        </mat-form-field>
       </div>
     </div>
   </mat-dialog-content>

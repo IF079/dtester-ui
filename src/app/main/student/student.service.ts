@@ -41,6 +41,10 @@ export class StudentService {
   setStudent(student: Student, otherInfo: OtherDtoInfo): Observable<any> {
     return this.http.post(`${url.studentUrl}${url.insertData}`, new StudentDto(student, otherInfo));
   }
+
+  checkUserName(username: string): Observable<any> {
+    return this.http.get(`${url.adminUser}${url.checkUserName}/${username}`);
+  }
 }
 
 const log = LoggerFactory.create(StudentService);

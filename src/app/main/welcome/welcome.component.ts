@@ -101,8 +101,6 @@ export class WelcomeComponent {
 
       });
     });
-
-    this.res.getResults().subscribe(data => console.log(data));
   }
 
   openTestAddModal(): void {

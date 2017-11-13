@@ -55,11 +55,11 @@ export class EntityTableComponent implements OnChanges {
   }
 
   updateSpecialityInDom() {
-    this.delUpdateService.specialityUpdated$.subscribe(res => {
+    this.delUpdateService.specialityUpdated$.subscribe(specialityData => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === res[0].speciality_id) {
-          this.tableRowArr[i] = Object.values(res[0]);
+        if (this.tableRowArr[i][id] === specialityData[0].speciality_id) {
+          this.tableRowArr[i] = Object.values(specialityData[0]);
           break;
         }
       }

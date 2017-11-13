@@ -6,6 +6,7 @@ import {Speciality} from './speciality';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {SpecialityModalComponent} from './speciality-modal/speciality-modal.component';
+import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'app-speciality',
@@ -25,8 +26,11 @@ export class SpecialityComponent implements OnInit {
   btnAddSpeciality = 'Додати Спеціальність';
 
   constructor(private specialityService: SpecialityService,
-              private dialog: MatDialog) {
-
+              private dialog: MatDialog,
+              private delUpdateService: UpdateDeleteEntityService) {
+    this.delUpdateService.recordDeleted$.subscribe(() => {
+      this.numberOfRecords -= 1;
+    });
   }
 
   getSpecialities(): void {
@@ -47,7 +51,7 @@ export class SpecialityComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(SpecialityModalComponent);
+    this.dialog.open(SpecialityModalComponent);
   }
 
   ngOnInit(): void {

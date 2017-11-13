@@ -1,5 +1,5 @@
 <form [formGroup]="specialityForm" (ngSubmit)="addSpeciality(specialityForm.value)">
-  <h2 mat-dialog-title>Додати спеціальність</h2>
+  <h2 mat-dialog-title>{{title}}</h2>
   <mat-dialog-content>
     <mat-form-field>
       <input matInput [formControl]="specialityForm.controls['code']" placeholder="{{placeholders.code}}">
@@ -20,7 +20,7 @@
       <button [disabled]="!specialityForm.valid" type="submit" class="modal-button" mat-raised-button color="primary">
         {{btnAdd}}
       </button>
-      <button mat-button mat-dialog-close>Відмінити</button>
+      <button mat-button mat-dialog-close>{{btnClose}}</button>
     </div>
   </mat-dialog-actions>
 </form>

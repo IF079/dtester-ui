@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 import {SpecialityService} from '../speciality.service';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'app-speciality-modal',
@@ -19,16 +20,19 @@ export class SpecialityModalComponent {
   btnAdd = 'Додати';
   errorRequired = 'Заповніть поле!';
   errorCodePattern = 'Дані повинні бути вигляду (1.2345678)';
+  title = 'Додати спеціальність';
+  btnClose = 'Відмінити';
 
   constructor(public dialogRef: MatDialogRef<SpecialityModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public specialityService: SpecialityService,
-              private fb: FormBuilder) {
+              public fb: FormBuilder,
+              public delUpdateService: UpdateDeleteEntityService) {
     this.createForm();
   }
   createForm(): void {
     this.specialityForm = this.fb.group({
-      code: [null, Validators.compose([Validators.required, Validators.pattern(/^(([0-9]{1}\.)+([0-9]{7}))$/g)])],
+      code: [null, [Validators.required, Validators.pattern(/^(([0-9]{1}\.)+([0-9]{7}))$/g)]],
       name: [null, Validators.required],
     });
   }
@@ -37,8 +41,8 @@ export class SpecialityModalComponent {
     this.specialityService.addSpeciality( {
       specialityCode: speciality.code,
       specialityName: speciality.name,
-    }).subscribe((specialityData) => {
-      this.dialogRef.close(specialityData);
+    }).subscribe(() => {
+      this.dialogRef.close();
     });
   }
 }

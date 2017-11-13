@@ -33,7 +33,6 @@ export class WelcomeComponent {
   }
 
   getWelcomeMessage(): string {
-    console.log(this.loginService.user);
     return this.getWelcomeMessageForUser(this.loginService.user);
   }
 

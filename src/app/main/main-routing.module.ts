@@ -17,21 +17,23 @@ const mainRoutes = [
     path: '',
     component: MainComponent,
     children: [
+      {path: 'welcome', component: WelcomeComponent},
+      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {
         path: '',
         children: [
-          {path: 'welcome', component: WelcomeComponent},
-          {path: 'students/:groupId', component: StudentComponent, canActivate: [AdminGuard]},
+          {path: 'students/:groupId', component: StudentComponent},
           {path: 'students', redirectTo: '/groups', pathMatch: 'full'},
-          {path: 'student/:id', component: StudentDetailComponent, canActivate: [AdminGuard]},
-          {path: 'specialities', component: SpecialityComponent, canActivate: [AdminGuard]},
-          {path: 'subjects', component: SubjectComponent, canActivate: [AdminGuard]},
-          {path: 'faculties', component: FacultiesComponent, canActivate: [AdminGuard]},
-          {path: 'groups', component: GroupsComponent, canActivate: [AdminGuard]},
-          {path: 'timetable', component: TimeTableComponent, canActivate: [AdminGuard]},
-          {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
-        ]
-      }
+          {path: 'student/:id', component: StudentDetailComponent},
+          {path: 'specialities', component: SpecialityComponent},
+          {path: 'subjects', component: SubjectComponent},
+          {path: 'faculties', component: FacultiesComponent},
+          {path: 'groups', component: GroupsComponent},
+          {path: 'timetable', component: TimeTableComponent},
+        ],
+        canActivate: [AdminGuard]
+      },
+      {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
     ]
   }
 ];

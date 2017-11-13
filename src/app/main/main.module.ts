@@ -22,9 +22,7 @@ import {SubjectModalComponent} from './subject/subject-modal/subject-modal.compo
 import {TimeTableComponent} from './time-table/time-table.component';
 import {TimeTableModalComponent} from './time-table/timetable-modal/time-table-modal.component';
 import {WelcomeComponent} from './welcome/welcome.component';
-
 import {MainMaterialModule} from './main-material.module';
-
 import {StudentService} from './student/student.service';
 import {SpecialityService} from './speciality/speciality.service';
 import {SubjectService} from './subject/subject.service';
@@ -49,6 +47,7 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
 import {QuestionAddModalComponent} from './test/question/question-add-modal/question-add-modal.component';
 import {TestAddModalComponent} from './test/test-add-modal/test-add-modal.component';
 import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
+import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal/edit-speciality-modal.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +77,8 @@ import {ResultAddModalComponent} from './test/result/result-add-modal/result-add
     TimeTableModalComponent,
     QuestionAddModalComponent,
     TestAddModalComponent,
-    ResultAddModalComponent
+    ResultAddModalComponent,
+    EditSpecialityModalComponent
   ],
   imports: [
     CommonModule,
@@ -100,7 +100,8 @@ import {ResultAddModalComponent} from './test/result/result-add-modal/result-add
     QuestionAddModalComponent,
     TestAddModalComponent,
     ResultAddModalComponent,
-    EditGroupsModalComponent
+    EditGroupsModalComponent,
+    EditSpecialityModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

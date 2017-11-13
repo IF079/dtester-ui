@@ -18,7 +18,7 @@ export class SpecialityComponent implements OnInit {
   limit = 10;
   offset = 0;
   pageSizeOptions = [5, 10, 25, 50];
-  errWithDisplayingSubjects: string;
+  errWithDisplayingSpeciality: string;
   numberOfRecords: number;
   specialities: Speciality[];
   headingColumnsOfTable = ['№', 'Код', 'Назва'];
@@ -32,10 +32,10 @@ export class SpecialityComponent implements OnInit {
   getSpecialities(): void {
     this.specialityService.getSpeciality(this.limit, this.offset).subscribe(data => {
         this.specialities = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords);
+        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },
       err => {
-        this.errWithDisplayingSubjects = generalConst.errorWithDisplayData;
+        this.errWithDisplayingSpeciality = generalConst.errorWithDisplayData;
       }
     );
   }
@@ -53,5 +53,4 @@ export class SpecialityComponent implements OnInit {
   ngOnInit(): void {
     this.getSpecialities();
   }
-
 }

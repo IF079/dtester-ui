@@ -22,8 +22,11 @@ export class SpecialityModalComponent {
 
   constructor(public dialogRef: MatDialogRef<SpecialityModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private specialityService: SpecialityService,
+              public specialityService: SpecialityService,
               private fb: FormBuilder) {
+    this.createForm();
+  }
+  createForm(): void {
     this.specialityForm = this.fb.group({
       code: [null, Validators.compose([Validators.required, Validators.pattern(/^(([0-9]{1}\.)+([0-9]{7}))$/g)])],
       name: [null, Validators.required],
@@ -37,6 +40,5 @@ export class SpecialityModalComponent {
     }).subscribe((specialityData) => {
       this.dialogRef.close(specialityData);
     });
-
   }
 }

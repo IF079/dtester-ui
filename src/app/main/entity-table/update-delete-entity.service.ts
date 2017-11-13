@@ -13,21 +13,26 @@ export class UpdateDeleteEntityService {
   }
 
 
-
   // Observable string sources
   private subjectUpdatedSource = new Subject();
   private recordDeletedSource = new Subject();
   private facultyAndSpecialitySource = new Subject();
   private groupUpdatedSource = new Subject();
+  private specialityUpdatedSource = new Subject();
 
 
   subjectUpdated$ = this.subjectUpdatedSource.asObservable();
   groupUpdated$ = this.groupUpdatedSource.asObservable();
   recordDeleted$ = this.recordDeletedSource.asObservable();
   getFacultyAndSpeciality$ = this.facultyAndSpecialitySource.asObservable();
+  specialityUpdated$ = this.specialityUpdatedSource.asObservable();
 
   passUpdatedSubject(item) {
     this.subjectUpdatedSource.next(item);
+  }
+
+  passUpdatedSpeciality(item) {
+    this.specialityUpdatedSource.next(item);
   }
 
   passUpdatedGroup(item) {

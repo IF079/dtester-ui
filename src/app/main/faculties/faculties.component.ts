@@ -21,7 +21,7 @@ export class FacultiesComponent implements OnInit {
   offset = 0;
   pageSizeOptions = [5, 10, 25, 100];
   faculties: Faculty[];
-  headingColumnsOfTable = ['№', 'Назва', 'Опис'];
+  headingColumnsOfTable = ['№', 'Назва факультету', 'Опис факультету'];
   placeholders = {
     name: 'Назва факультету',
     description: 'Опис факультету'

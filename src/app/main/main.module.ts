@@ -48,6 +48,7 @@ import {QuestionAddModalComponent} from './test/question/question-add-modal/ques
 import {TestAddModalComponent} from './test/test-add-modal/test-add-modal.component';
 import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
 import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal/edit-speciality-modal.component';
+import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal
     QuestionAddModalComponent,
     TestAddModalComponent,
     ResultAddModalComponent,
-    EditSpecialityModalComponent
+    EditSpecialityModalComponent,
+    EditFacultyModalComponent
   ],
   imports: [
     CommonModule,
@@ -101,7 +103,8 @@ import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal
     TestAddModalComponent,
     ResultAddModalComponent,
     EditGroupsModalComponent,
-    EditSpecialityModalComponent
+    EditSpecialityModalComponent,
+    EditFacultyModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

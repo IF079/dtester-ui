@@ -7,6 +7,7 @@ import {EditSubjectModalComponent} from './edit-subject-modal/edit-subject-modal
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 import {EditGroupsModalComponent} from './edit-groups-modal/edit-groups-modal.component';
 import {EditSpecialityModalComponent} from './edit-speciality-modal/edit-speciality-modal.component';
+import {EditFacultyModalComponent} from './edit-faculty-modal/edit-faculty-modal.component';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class EntityTableComponent implements OnChanges {
   componentModalsDictionary = {
     Subject: EditSubjectModalComponent,
     Group: EditGroupsModalComponent,
-    Speciality: EditSpecialityModalComponent
+    Speciality: EditSpecialityModalComponent,
+    Faculty: EditFacultyModalComponent
   };
 
   constructor(public dialog: MatDialog, private router: Router, private delUpdateService: UpdateDeleteEntityService) {

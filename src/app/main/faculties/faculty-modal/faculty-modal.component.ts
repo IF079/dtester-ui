@@ -32,9 +32,10 @@ export class FacultyModalComponent {
   addFaculty() {
   const faculty_name = this.facultyForm.get('name').value;
   const faculty_description = this.facultyForm.get('description').value;
-  this.facultyService.addFaculty({faculty_name,  faculty_description}).subscribe(faculty => {
-      console.log(faculty);
-      this.dialogRef.close(faculty);
+  this.facultyService.addFaculty({faculty_name,  faculty_description}).subscribe(
+    (resp) => {
+      this.facultyService.passAdded(resp[0]);
+      this.dialogRef.close();
     },
     err => console.log(err)
   );

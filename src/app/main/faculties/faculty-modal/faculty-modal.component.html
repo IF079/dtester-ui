@@ -2,7 +2,7 @@
   <h2 mat-dialog-title>Додати запис</h2>
   <mat-dialog-content>
     <mat-form-field>
-      <input [formControl]="facultyForm.controls['name']" matInput placeholder="{{placeholders.name}}">
+      <textarea [formControl]="facultyForm.controls['name']" matInput placeholder="{{placeholders.name}}"></textarea>
       <mat-error>
         <div *ngIf="facultyForm.controls['name'].hasError('required')">{{errorRequired}}</div>
       </mat-error>

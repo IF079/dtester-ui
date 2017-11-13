@@ -18,12 +18,26 @@ export class GroupsService {
   }
 
   private groupAddedSource = new Subject<Group>();
+  private facultySource = new Subject();
+  private specialitySource = new Subject();
+
+  getFaculty$ = this.facultySource.asObservable();
+  getSpeciality$ = this.specialitySource.asObservable();
 
   groupAdded$ = this.groupAddedSource.asObservable();
 
   passAdded(item: Group) {
     this.groupAddedSource.next(item);
   }
+
+  passSpeciality(item) {
+    this.specialitySource.next(item);
+  }
+
+  passFaculty(item) {
+    this.facultySource.next(item);
+  }
+
 
 
   getGroups(): Observable<[Group[], RecordsCount]> {

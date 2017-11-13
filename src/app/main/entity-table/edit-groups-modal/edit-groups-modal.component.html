@@ -1,0 +1,29 @@
+<form [formGroup]="editGroupForm" (ngSubmit)="editGroup()" >
+  <h2 mat-dialog-title>Відредагуйте запис</h2>
+  <mat-dialog-content>
+    <mat-card>
+      <mat-form-field class="group-name">
+        <input formControlName="groupName"  matInput placeholder="{{placeholders.groupName}}">
+      </mat-form-field>
+      <mat-form-field class="faculty-name">
+        <mat-select   formControlName="facultyName"   placeholder="{{placeholders.facultyName}}"  >
+          <mat-option *ngFor="let faculty of facultyValues" [value]="faculty">
+            {{faculty}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="speciality-name">
+        <mat-select   formControlName="specialityName"    placeholder="{{placeholders.specialityName}}">
+          <mat-option *ngFor="let speciality of specialityValues" [value]="speciality">
+            {{speciality}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" class="modal-button" mat-raised-button color="primary">{{btnEdit}}</button>
+    <button mat-button mat-dialog-close>{{btnCancel}}</button>
+  </mat-dialog-actions>
+
+</form>

@@ -4,7 +4,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {DeleteConfirmModalComponent} from './entity-table/delete-confirm-modal/delete-confirm-modal.component';
-import {EditEntityModalComponent} from './entity-table/edit-entity-modal/edit-entity-modal.component';
+import {EditGroupsModalComponent} from './entity-table/edit-groups-modal/edit-groups-modal.component';
+import {EditSubjectModalComponent} from './entity-table/edit-subject-modal/edit-subject-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
@@ -62,7 +63,8 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent,
-    EditEntityModalComponent,
+    EditSubjectModalComponent,
+    EditGroupsModalComponent,
     DeleteConfirmModalComponent,
     StudentAddModalComponent,
     SpecialityModalComponent,
@@ -80,14 +82,15 @@ import {SpecialityModalComponent} from './speciality/speciality-modal/speciality
   ],
   entryComponents: [
     DeleteConfirmModalComponent,
-    EditEntityModalComponent,
+    EditSubjectModalComponent,
     SubjectModalComponent,
     StudentAddModalComponent,
     SpecialityModalComponent,
     InfoModalComponent,
     FacultyModalComponent,
     TimeTableModalComponent,
-    GroupsModalComponent
+    GroupsModalComponent,
+    EditGroupsModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

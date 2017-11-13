@@ -4,20 +4,19 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 
 @Component({
-  selector: 'app-entity-modal',
-  templateUrl: './edit-entity-modal.component.html'
+  selector: 'app-edit-subject-modal',
+  templateUrl: './edit-subject-modal.component.html'
 })
 
-export class EditEntityModalComponent {
-  editEntityForm: FormGroup;
-  dataForUpdate: any;
+export class EditSubjectModalComponent {
+  editSubjectForm: FormGroup;
   placeholders = {
     name: 'Назва предмету',
     description: 'Опис предмету'
   };
   btnEdit = 'Редагувати предмет';
 
-  constructor(public dialogRef: MatDialogRef<EditEntityModalComponent>,
+  constructor(public dialogRef: MatDialogRef<EditSubjectModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private delUpdateService: UpdateDeleteEntityService,
               private formBuilder: FormBuilder, ) {
     this.createForm();
@@ -26,18 +25,18 @@ export class EditEntityModalComponent {
   createForm(): void {
     const name = this.data[1];
     const description = this.data[2];
-    this.editEntityForm = this.formBuilder.group({name
+    this.editSubjectForm = this.formBuilder.group({name
       , description});
   }
 
   editEntityRecord() {
     const id = this.data[0];
-    const subject_name = this.editEntityForm.get('name').value;
-    const subject_description = this.editEntityForm.get('description').value;
-    this.dataForUpdate = 'Something';
-    this.delUpdateService.updateEntity(id, 'Subject',
+    const entityName = 'Subject';
+    const subject_name = this.editSubjectForm.get('name').value;
+    const subject_description = this.editSubjectForm.get('description').value;
+    this.delUpdateService.updateEntity(id, entityName,
       {subject_name, subject_description}).subscribe(response => {
-        this.delUpdateService.passUpdated(response);
+        this.delUpdateService.passUpdatedSubject(response);
         this.dialogRef.close();
       },
       err => console.log(err)

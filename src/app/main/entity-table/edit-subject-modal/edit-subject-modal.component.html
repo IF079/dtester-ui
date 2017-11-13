@@ -1,0 +1,17 @@
+<form [formGroup]="editSubjectForm" (ngSubmit)="editEntityRecord()">
+  <h2 mat-dialog-title>Відредагуйте запис</h2>
+  <mat-dialog-content>
+    <mat-card>
+      <mat-form-field>
+        <input formControlName="name" matInput placeholder="{{placeholders.name}}">
+      </mat-form-field>
+      <mat-form-field class="text-area-container">
+        <textarea formControlName="description" matInput placeholder="{{placeholders.description}}"></textarea>
+      </mat-form-field>
+    </mat-card>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" class="modal-button" mat-raised-button color="primary">{{btnEdit}}</button>
+    <button mat-button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>

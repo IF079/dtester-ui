@@ -1,15 +1,10 @@
 <div *ngIf="errWithDisplayingTimeTables" class="mat-error">{{errWithDisplayingTimeTables}}</div>
+<button  class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
+<app-entity-table [entityName]="'TimeTable'"  [columnsArray]="headingColumnsOfTable" [entityArray]="timetables"></app-entity-table>
 
-<app-entity-table [entityName]="'Timetable'" [columnsArray]="headingColumnsOfTable"
-                  [entityArray]="timetables"></app-entity-table>
-
-<app-pagination (goPage)="goPage($event)"
-                (goPrev)="goPrev()"
-                (goNext)="goNext()"
-                [numberOfRecords]="numberOfRecords"
-                [currentPage]="currentPage"
-                [isLoading]="isLoading"
-                [limitPerPage]="limitPerPage"
-                [numberOfPagesToShow]="3"
-                [errWithCounting]="errWithCountingRecords"></app-pagination>
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>
 

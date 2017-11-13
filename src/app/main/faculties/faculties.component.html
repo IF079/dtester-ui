@@ -1,14 +1,11 @@
-
 <div *ngIf="errWithDisplayingFaculties" class="mat-error">{{errWithDisplayingFaculties}}</div>
+<button  class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
 
-<app-entity-table [entityName]="'Faculty'" [columnsArray]="headingColumnsOfTable" [entityArray]="faculties"> </app-entity-table>
+<app-entity-table [entityName]="'Faculty'"  [columnsArray]="headingColumnsOfTable" [entityArray]="faculties"></app-entity-table>
 
-<app-pagination (goPage)="goPage($event)"
-                (goPrev)="goPrev()"
-                (goNext)="goNext()"
-                [numberOfRecords]="numberOfRecords"
-                [currentPage]="currentPage"
-                [isLoading]="isLoading"
-                [limitPerPage]="limitPerPage"
-                [numberOfPagesToShow]="3"
-                [errWithCounting]="errWithCountingRecords"></app-pagination>
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>
+

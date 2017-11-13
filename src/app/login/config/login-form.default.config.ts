@@ -1,0 +1,10 @@
+export const LOGIN_FORM_DEFAULT_CONFIG = {
+  USERNAME: {
+    MIN_LENGTH: 3,
+    MAX_LENGTH: 16
+  },
+  PASSWORD: {
+    MIN_LENGTH: 3,
+    MAX_LENGTH: 16
+  }
+};

@@ -8,6 +8,7 @@ table {
   }
   td {
     font-weight: $primary-font-weight;
+    cursor: pointer;
   }
   th {
     border: none;
@@ -24,5 +25,4 @@ table {
       color: rgb(218, 5, 5);
     }
   }
-
 }

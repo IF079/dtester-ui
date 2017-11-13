@@ -2,15 +2,15 @@
   <div class="wrapper" *ngIf="student">
     <div class="row">
       <div class="col-md-5 imagin">
-        <img src="data:image/png;base64,{{student.photo}}" alt="Photo">
+        <img src="{{student.photo}}" alt="Photo">
       </div>
       <div class="col-md-7">
-        <p><strong>Ідентифікатор(ID) студента:</strong> {{student.userId}}</p>
+        <p><strong>Номер(ID) студента:</strong> {{student.userId}}</p>
         <p><strong>Прізвище:</strong> {{student.studentSurname}}</p>
         <p><strong>Ім'я:</strong> {{student.studentName}}</p>
         <p><strong>По-батькові:</strong> {{student.studentFname}}</p>
         <p><strong>Номер(ID) залікової книжки:</strong> {{student.gradebookId}}</p>
-        <p><strong>Ідентифікатор(ID) групи:</strong> {{student.groupId}}</p>
+        <p><strong>Номер(ID) групи:</strong> {{student.groupId}}</p>
         <p><strong>Пароль:</strong> {{student.plainPassword}}</p>
       </div>
     </div>

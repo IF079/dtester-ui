@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Останні результати</h2>
+<mat-dialog-content>
+  <div class="container">
+    <div class="row">
+      <table>
+        <tbody>
+          <tr class="mat-card" *ngFor="let result of results">
+            <td>{{result.endTime}}</td>
+            <td>{{result.studentName}}</td>
+            <td>{{result.testName}}</td>
+            <td><span class="badge badge-pill badge-primary">{{result.result}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</mat-dialog-content>

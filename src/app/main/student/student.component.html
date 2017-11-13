@@ -1,72 +1,17 @@
 <div *ngIf="errWithDisplayingStudents" class="mat-error">{{errWithDisplayingStudents}}</div>
-<button mat-raised-button=""
+<button mat-raised-button
         color="primary"
-        (click)="addModal.openDialogue()"
+        (click)="goBack()"
+        class="fa fa-long-arrow-left backButton"></button>
+<button mat-raised-button
+        color="primary"
+        (click)="openAddDialog()"
         class="addButton">Додати студента</button>
-<app-modal #addModal>
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-4">
-          <div class="parts">
-              <mat-form-field>
-                <input matInput placeholder="Прізвище">
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Ім'я">
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="По-батькові">
-              </mat-form-field>
-            </div>
-      </div>
-      <div class="col-md-4">
-          <div class="parts">
-              <mat-form-field>
-                <input matInput placeholder="ID групи">
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Greedbook ID">
-              </mat-form-field>
-              <div id="inputFile">Фото: <input type="file"></div>
-            </div>
-      </div>
-      <div class="col-md-4">
-          <div class="parts">
-              <mat-form-field>
-                <input matInput placeholder="Username">
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Email">
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Пароль">
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Підтвердження паролю">
-              </mat-form-field>
-            </div>
-      </div>
-    </div>
-  </div>
-  <mat-card>
-  
-  
-  
-  <button  class="modal-button"
-  mat-raised-button=""
-  color="primary">Додати</button>
-  </mat-card>
-  
-</app-modal>
-<app-entity-table [entityName]="'Student'" [entityArray]="students" [columnsArray]="headingColumnsOfTable"
-                  [detailUrl]='path'></app-entity-table>
+<app-entity-table [entityArray]="students" [entityName]="'Student'" [columnsArray]="headingColumnsOfTable"
+                  [detailUrl]="'/student'"></app-entity-table>
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>
 
-<app-pagination (goPage)="goPage($event)"
-                (goPrev)="goPrev()"
-                (goNext)="goNext()"
-                [numberOfRecords]="numberOfRecords"
-                [currentPage]="currentPage"
-                [isLoading]="isLoading"
-                [limitPerPage]="limitPerPage"
-                [numberOfPagesToShow]="3"
-                [errWithCounting]="errWithCountingRecords"></app-pagination>

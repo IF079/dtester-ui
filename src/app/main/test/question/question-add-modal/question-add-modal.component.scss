@@ -1,0 +1,61 @@
+form {
+  mat-dialog-content {
+    #addQuestion {
+      mat-form-field {
+        width: 100%;
+      }
+      input[type="file"] {
+        display: none
+      }
+      label[for="imageUpload"] {
+        a {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    #addAnswers {
+      .description{
+        color: grey;
+        font-size: 13px;
+      }
+      mat-form-field {
+        width: 100%;
+      }
+      #answers {
+        width: 100%;
+        tr {
+          &:nth-child(even){
+            background-color: rgb(232, 222, 222);
+          }
+          td {
+            text-align: right;
+            min-width: 35px;
+            &:first-child {
+              text-align: left;
+            }
+            .fa-check {
+              color: green;
+            }
+            .fa-ban {
+              color: red;
+            }
+            .fa-times {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      #plusBlock {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        &:hover {
+          color: rgb(63, 81, 181);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
-import {AuthConfig} from './auth.config';
-import {RequestParams} from '../services/params/request-params';
+import {Authorization} from '../entities/auth';
 
-const prefix = '/login';
 
-export const defaultAuthConfig: AuthConfig = {
-  login: new RequestParams(prefix + '/index', 3000),
-  logout: new RequestParams(prefix + '/logout', 3000),
-  isLoggedIn: new RequestParams(prefix + '/isLogged', 3000)
+const PREFIX = '/login';
+
+export const DEFAULT_AUTH_CONFIG: Authorization = {
+  login: PREFIX + '/index',
+  logout: PREFIX + '/logout',
+  isLoggedIn: PREFIX + '/isLogged'
 };

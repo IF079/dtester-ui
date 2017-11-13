@@ -35,7 +35,7 @@ const mainRoutes = [
         ],
         canActivate: [AdminGuard]
       },
-      {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+      {path: '**', redirectTo: 'welcome', pathMatch: 'full'},
       {path: 'welcome', component: WelcomeComponent},
       {path: 'students', component: StudentComponent, canActivate: [AdminGuard]},
       {path: 'student/:id', component: StudentDetailComponent, canActivate: [AdminGuard]},

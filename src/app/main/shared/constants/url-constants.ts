@@ -29,6 +29,6 @@ export const url = {
   checkEmailAddress: '/checkEmailAddress',
   adminUser: '/AdminUser',
   question: '/question',
-
-
+  getAnswersByQuestionTestPlayerUrl: 'SAnswer/getAnswersByQuestion',
+  checkSAnswerUrl: 'SAnswer/checkAnswers'
 };

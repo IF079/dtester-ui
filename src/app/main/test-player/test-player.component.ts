@@ -6,7 +6,7 @@ import {TestDetailService} from '../test-detail/test-detail.service';
 
 @Component({
   templateUrl: 'test-player.component.html',
-  styleUrls: ['test-player.component.css']
+  styleUrls: ['test-player.component.scss']
 })
 
 export class TestPlayerComponent implements OnInit {

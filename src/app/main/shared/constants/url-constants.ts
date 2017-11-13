@@ -24,5 +24,7 @@ export const url = {
   getQuestionIdsByLevelRand: '/getQuestionIdsByLevelRand',
   getRecordsRangeByTest: '/getRecordsRangeByTest',
   countRecordsByTest: '/countRecordsByTest',
-  getEntityValues: '/getEntityValues'
+  getEntityValues: '/getEntityValues',
+  checkUserName: '/checkUserName',
+  adminUser: '/AdminUser'
 };

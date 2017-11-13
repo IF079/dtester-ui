@@ -3,7 +3,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
 import {StudentService} from '../student.service';
-import {InfoModalService} from '../../info-modal/info-modal.service'
+import {InfoModalService} from '../../info-modal/info-modal.service';
+import {AsyncUsernameValidator} from './async-username.validator';
 
 @Component({
   selector: 'app-add-modal',
@@ -59,11 +60,12 @@ export class StudentAddModalComponent {
       'name': [null, Validators.required],
       'fname': [null, Validators.required],
       'group': [null],
-      'gradebookId': [null, Validators.compose([Validators.required, Validators.pattern(/[A-Z]{2}-\d{7}/)])],
-      'username': [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(16)])],
-      'email': [null, Validators.compose([Validators.required, Validators.email])],
+      'gradebookId': [null, [Validators.required, Validators.pattern(/[A-Z]{2}-\d{7}/)]],
+      'username': [null, [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
+                  AsyncUsernameValidator.createValidator(this.studentService)],
+      'email': [null, [Validators.required, Validators.email]],
       'passwords': formBuilder.group({
-        'password': [null, Validators.compose([Validators.required, Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/)])],
+        'password': [null, [Validators.required, Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/)]],
         'passwordConfirm': [null, Validators.required]
       }, {
         validator: this.validatePasswordConfirm
@@ -79,6 +81,12 @@ export class StudentAddModalComponent {
     } else {
       return null;
     }
+  }
+
+  validateUsername(control: AbstractControl) {
+    this.studentService.checkUserName(control.value).subscribe(data => {
+      return data ? {usernameTaken: true} : null;
+    });
   }
 
   onNoClick(): void {

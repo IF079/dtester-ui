@@ -17,14 +17,14 @@ export class FacultyModalComponent {
     description: 'Опис Факультету'
   };
   btnAdd = 'Додати Факультет';
-  errorRequired = 'Необхідно заповнити дане поле';
+  errorRequired = 'Необхідно заповнити дане поле(мін. 3 символи)';
 
   constructor(public dialogRef: MatDialogRef<FacultyModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private facultyService: FacultyService,
               private fb: FormBuilder){
     this.facultyForm = this.fb.group({
-      name: [null, Validators.required],
+      name: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
       description: [null, Validators.required]
     });
   }

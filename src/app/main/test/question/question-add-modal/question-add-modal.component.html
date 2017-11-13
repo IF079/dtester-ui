@@ -38,6 +38,7 @@
       </div>
       <div class="row" id="addAnswers">
         <h4>Відповіді</h4>
+        <span class="description">*обов'язково повинна бути 1 правильна відповідь</span>
         <table *ngIf="answers" id="answers">
           <tr class="answer" *ngFor="let answer of answers">
             <td>{{answer.text}}</td>
@@ -51,15 +52,15 @@
           </tr>
         </table>
         <mat-form-field>
-          <input matInput #answerInput [placeholder]="placeholders.answer" (keyup.enter)="addAnswer(answerInput.value, isTrue.checked); answerInput.value=''" formControlName="answers">
+          <input matInput #answerInput [placeholder]="placeholders.answer" (keyup.enter)="addAnswer(answerInput.value, isTrue.checked); answerInput.value=''">
           <mat-checkbox #isTrue matSuffix color="primary"></mat-checkbox>
-          <mat-error *ngIf="!form.controls['answers'].valid && form.controls['answers'].touched">{{errorEmptyInput}}</mat-error>
+          <mat-error *ngIf="!check()">{{errorAnswersAmount}}</mat-error>
         </mat-form-field>
       </div>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button type="submit" class="modal-button" mat-raised-button color="primary" [disabled]="!form.valid">Добавити</button>
+    <button type="submit" class="modal-button" mat-raised-button color="primary" [disabled]="!checkAnswers()">Добавити</button>
     <button mat-button mat-dialog-close tabindex="-1">Відмінити</button>
   </mat-dialog-actions>
 </form>

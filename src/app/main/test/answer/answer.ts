@@ -1,7 +1,7 @@
 import {AnswerDto} from './answer-dto';
 
 export class Answer {
-  answerId: number;
+  answerId?: number;
   questionId: number;
   trueAnswer: number;
   answerText: string;

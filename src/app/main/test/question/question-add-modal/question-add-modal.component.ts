@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/form
 import {QuestionService} from '../question.service';
 import {InfoModalService} from '../../../info-modal/info-modal.service';
 import {Question} from '../question';
+import {AnswerService} from '../../answer/answer.service';
+import {Answer} from '../../answer/answer';
 
 @Component({
   selector: 'app-question-add-modal',
@@ -37,10 +39,11 @@ export class QuestionAddModalComponent {
   form: FormGroup;
   errorEmptyInput = 'Заповніть поле!';
   errorQuestionText = 'Поле повинно бути заповнене, та займати до 250 символів!';
-  errorAnswersAmount = 'Повинно бути не менше двох варіантів відповідей!';
+  errorAnswersAmount = 'Повинен бути хоча б один варіант правильної відповіді!';
 
   constructor(
     private questionService: QuestionService,
+    private answerService: AnswerService,
     private formBuilder: FormBuilder,
     private modalService: InfoModalService,
     public dialogRef: MatDialogRef<QuestionAddModalComponent>,
@@ -50,8 +53,7 @@ export class QuestionAddModalComponent {
       'testId': [null, Validators.required],
       'questionText': [null, [Validators.required, Validators.maxLength(250)]],
       'level': [null, Validators.required],
-      'type': [null, Validators.required],
-      'answers': [null, this.validateAnswersLength]
+      'type': [null, Validators.required]
     });
   }
 
@@ -72,8 +74,20 @@ export class QuestionAddModalComponent {
       level: question.level,
       type: question.type,
       attachment: this.attachment || ''
-    }).subscribe(data => {
-      if (data[0]) {
+    }).subscribe(questionResp => {
+      if (questionResp[0]) {
+        this.answers.forEach(item => {
+          this.answerService.setAnswer({
+            questionId: questionResp[0].question_id,
+            trueAnswer: item.isTrue,
+            answerText: item.text,
+            attachment: ''
+          }).subscribe(answerResp => {
+            if (!answerResp) {
+              this.modalService.openErrorDialog('Щось пішло не так, як було заплановано! Спробуйте, будь ласка, пізніше.');
+            }
+          });
+        });
         this.modalService.openInfoDialog('Запитання успішно добавлено!');
       } else {
         this.modalService.openErrorDialog('Щось пішло не так, як було заплановано! Спробуйте, будь ласка, пізніше.');
@@ -82,21 +96,14 @@ export class QuestionAddModalComponent {
   }
 
   addAnswer(answer: string, isTrue) {
-    console.log(answer);
-    console.log(isTrue);
     this.answers.push({
       text: answer,
-      isTrue: isTrue
+      isTrue: +isTrue
     });
   }
 
   validateAnswersLength(control: AbstractControl) {
-    // console.log(this);
-    /*if (this.answers.length || this.answers.length < 2) {
-      control.get('answers').setErrors({invalidAmountOfAnswers: true});
-    } else {
-      return null;
-    }*/
+    return !this.check() ? {invalidAmountOfAnswers: true} : null;
   }
 
   deleteAnswer(text: string){
@@ -107,4 +114,13 @@ export class QuestionAddModalComponent {
     this.dialogRef.close();
   }
 
+  check(){
+    let isAnswersEnough = !!this.answers.length;
+    let isTrueAnswer = !!this.answers.find(answer => answer.isTrue === 1);
+    return isTrueAnswer && isAnswersEnough;
+  }
+  checkAnswers(): boolean {
+    let isFormValid = this.form.valid;
+    return isFormValid && this.check();
+  }
 }

@@ -78,9 +78,11 @@ export class EditGroupsModalComponent {
     console.log(faculty_id);
     console.log(speciality_id);
     this.delUpdateService.updateEntity(groupId, entityName, {group_name, faculty_id, speciality_id}).subscribe(
-      (response) => {
-        console.log(this.facultyDictionary);
-        this.delUpdateService.passUpdatedGroup(response);
+      (updatedGroupResponse) => {
+        const updatedGroup = updatedGroupResponse[0];
+        updatedGroup.faculty_id = this.facultyDictionary[updatedGroup.faculty_id];
+        updatedGroup.speciality_id = this.specialityDictionary[updatedGroup.speciality_id];
+        this.delUpdateService.passUpdatedGroup(updatedGroup);
         this.dialogRef.close();
       },
       (err) => console.log(err)

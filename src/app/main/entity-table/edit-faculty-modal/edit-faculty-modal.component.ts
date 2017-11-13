@@ -41,7 +41,7 @@ export class EditFacultyModalComponent {
     const faculty_description = this.facultyForm.get('description').value;
     this.delUpdateService.updateEntity(id, entityName,
       {faculty_name, faculty_description}).subscribe(response => {
-        this.delUpdateService.passUpdatedSpeciality(response);
+        this.delUpdateService.passUpdatedFaculty(response);
         this.dialogRef.close();
       },
       err => console.log(err)

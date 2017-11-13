@@ -4,6 +4,12 @@ import {Observable} from 'rxjs/Observable';
 import {url} from '../shared/constants/url-constants';
 import {Subject} from 'rxjs/Subject';
 import {Group} from '../groups/group';
+import 'rxjs/add/observable/forkJoin';
+import {Faculty} from '../faculties/faculty';
+import {SpecialityDto} from '../speciality/speciality-dto';
+import {Speciality} from '../speciality/speciality';
+import {RecordsCount} from '../shared/entities/recordsCount';
+
 
 @Injectable()
 export class UpdateDeleteEntityService {
@@ -17,30 +23,47 @@ export class UpdateDeleteEntityService {
   private subjectUpdatedSource = new Subject();
   private recordDeletedSource = new Subject();
   private facultyAndSpecialitySource = new Subject();
-  private groupUpdatedSource = new Subject();
+
+  private groupUpdatedSource = new Subject<Group>();
   private specialityUpdatedSource = new Subject();
+
+  private facultySource = new Subject();
+  private specialitySource = new Subject();
 
 
   subjectUpdated$ = this.subjectUpdatedSource.asObservable();
   groupUpdated$ = this.groupUpdatedSource.asObservable();
   recordDeleted$ = this.recordDeletedSource.asObservable();
+
   getFacultyAndSpeciality$ = this.facultyAndSpecialitySource.asObservable();
   specialityUpdated$ = this.specialityUpdatedSource.asObservable();
+
+  facultyUpdated$ = this.facultySource.asObservable();
+  getSpeciality$ = this.specialitySource.asObservable();
+
+  private joinedSource = new Subject();
+  groupSpecialityFaculty$ = Observable.forkJoin(this.joinedSource.asObservable());
+
 
   passUpdatedSubject(item) {
     this.subjectUpdatedSource.next(item);
   }
 
+
   passUpdatedSpeciality(item) {
     this.specialityUpdatedSource.next(item);
   }
 
-  passUpdatedGroup(item) {
+  passUpdatedFaculty(item) {
+    this.facultySource.next(item);
+  }
+  passUpdatedGroup(item: Group) {
     this.groupUpdatedSource.next(item);
   }
 
-  passFacultyAndSpeciality(item) {
-    this.facultyAndSpecialitySource.next(item);
+
+  passFaculty(item) {
+    this.facultySource.next(item);
   }
 
   passErrorWhenUpdateSubject(err) {
@@ -54,7 +77,6 @@ export class UpdateDeleteEntityService {
   passErrorWhenDelete(err) {
     this.recordDeletedSource.error(err);
   }
-
 
   updateEntity(id: number, entity: string, dto: any): Observable<any> {
     return this.http.post(`/${entity}${url.update}/${id}`, dto);

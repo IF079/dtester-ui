@@ -7,11 +7,13 @@ import {EditSubjectModalComponent} from './edit-subject-modal/edit-subject-modal
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 import {EditGroupsModalComponent} from './edit-groups-modal/edit-groups-modal.component';
 
+
 import {EditSpecialityModalComponent} from './edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './edit-faculty-modal/edit-faculty-modal.component';
 import {GroupsService} from '../groups/groups.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import {DeleteErrorModalComponent} from './delete-error-modal/delete-error-modal.component';
 
 
 @Component({
@@ -91,8 +93,7 @@ export class EntityTableComponent implements OnChanges {
   }
 
   deleteItemInDom() {
-    this.delUpdateService.recordDeleted$.subscribe(res => {
-      console.log(res);
+    this.delUpdateService.recordDeletedInDataBase$.subscribe(res => {
       this.tableRowArr = this.tableRowArr.filter(item => item !== res);
     });
   }
@@ -124,8 +125,6 @@ export class EntityTableComponent implements OnChanges {
       height: '350px',
       data: {item: item, entityName: this.entityName}
     });
-
-
   }
 
   onSelect(item: any[]) {

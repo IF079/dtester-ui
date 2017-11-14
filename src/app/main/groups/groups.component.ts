@@ -42,7 +42,7 @@ export class GroupsComponent implements OnInit, OnChanges {
   }
 
   updateNumberOfRecordsInDomWhenDeleted() {
-    this.delUpdateService.recordDeleted$.subscribe((res) => {
+    this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
         this.numberOfRecords -= 1;
       },
       err => console.log(err));

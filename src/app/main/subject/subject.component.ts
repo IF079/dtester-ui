@@ -8,6 +8,7 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
+import {DeleteErrorModalComponent} from '../entity-table/delete-error-modal/delete-error-modal.component';
 
 @Component({
   selector: 'app-subjects',
@@ -27,10 +28,9 @@ export class SubjectComponent implements OnInit {
   numberOfRecords: number;
 
   constructor(private delUpdateService: UpdateDeleteEntityService, private subjectService: SubjectService, public dialog: MatDialog) {
-    this.delUpdateService.recordDeleted$.subscribe((res) => {
+    this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
         this.numberOfRecords -= 1;
-      },
-      err => console.log(err));
+      });
   }
 
   openDialog() {

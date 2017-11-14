@@ -1,5 +1,5 @@
 <form [formGroup]="facultyForm" (ngSubmit)="addFaculty(facultyForm.value)">
-  <h2 mat-dialog-title>Додати запис</h2>
+  <h2 mat-dialog-title>Додати Факультет</h2>
   <mat-dialog-content>
     <mat-form-field>
       <textarea [formControl]="facultyForm.controls['name']" matInput placeholder="{{placeholders.name}}"></textarea>

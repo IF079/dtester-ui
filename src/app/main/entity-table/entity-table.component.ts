@@ -6,15 +6,13 @@ import {DeleteConfirmModalComponent} from './delete-confirm-modal/delete-confirm
 import {EditSubjectModalComponent} from './edit-subject-modal/edit-subject-modal.component';
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 import {EditGroupsModalComponent} from './edit-groups-modal/edit-groups-modal.component';
-
-
+import {EditTimetableModalComponent} from './edit-timetable-modal/edit-timetable-modal.component';
 import {EditSpecialityModalComponent} from './edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './edit-faculty-modal/edit-faculty-modal.component';
 import {GroupsService} from '../groups/groups.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import {DeleteErrorModalComponent} from './delete-error-modal/delete-error-modal.component';
-
 
 @Component({
   selector: 'app-entity-table',
@@ -35,7 +33,8 @@ export class EntityTableComponent implements OnChanges, OnInit {
     Subject: EditSubjectModalComponent,
     Group: EditGroupsModalComponent,
     Speciality: EditSpecialityModalComponent,
-    Faculty: EditFacultyModalComponent
+    Faculty: EditFacultyModalComponent,
+    Timetable: EditTimetableModalComponent
   };
 
   constructor(public dialog: MatDialog, private router: Router, private delUpdateService: UpdateDeleteEntityService,

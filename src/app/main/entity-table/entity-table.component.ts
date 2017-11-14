@@ -45,12 +45,11 @@ export class EntityTableComponent implements OnChanges, OnInit {
 
   updateSubjectInDom() {
 
-    this.delUpdateService.subjectUpdated$.subscribe(res => {
-      console.log(res);
+    this.delUpdateService.subjectUpdated$.subscribe(subjectData => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === res[0].subject_id) {
-          this.tableRowArr[i] = Object.values(res[0]);
+        if (this.tableRowArr[i][id] === subjectData[0].subject_id) {
+          this.tableRowArr[i] = Object.values(subjectData[0]);
           break;
         }
       }
@@ -59,7 +58,6 @@ export class EntityTableComponent implements OnChanges, OnInit {
 
   updateSpecialityInDom() {
     this.delUpdateService.specialityUpdated$.subscribe(specialityData => {
-      console.log(specialityData);
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === specialityData[0].speciality_id) {
@@ -119,8 +117,8 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   ngOnInit() {
-    this.updateSpecialityInDom();
     this.updateSubjectInDom();
+    this.updateSpecialityInDom();
     this.deleteItemInDom();
     this.updateGroupInDom();
     this.updateFacultyInDom();

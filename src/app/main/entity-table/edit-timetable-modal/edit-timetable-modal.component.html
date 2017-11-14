@@ -1,0 +1,37 @@
+<form [formGroup]="editTimetableForm" (ngSubmit)="editTimetable()">
+  <h2 mat-dialog-title>{{title}}</h2>
+  <mat-dialog-content>
+    <mat-card>
+      <mat-form-field class="group-name">
+        <mat-select formControlName="groupName" placeholder="{{placeholders.groupName}}">
+          <mat-option *ngFor="let group of groupValues" [value]="group">
+            {{group}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="subject-name">
+        <mat-select formControlName="subjectName" placeholder="{{placeholders.subjectName}}">
+          <mat-option *ngFor="let subject of subjectValues" [value]="subject">
+            {{subject}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="startDate" matInput placeholder="{{placeholders.startDate}}">
+      </mat-form-field>
+      <mat-form-field >
+        <input formControlName="startTime" matInput placeholder="{{placeholders.startTime}}">
+      </mat-form-field>
+      <mat-form-field>
+        <input  formControlName="endDate" matInput placeholder="{{placeholders.endDate}}">
+      </mat-form-field>
+      <mat-form-field>
+        <input  formControlName="endTime" matInput placeholder="{{placeholders.endTime}}">
+      </mat-form-field>
+    </mat-card>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" class="modal-button" mat-raised-button color="primary">{{btnEdit}}</button>
+    <button mat-button mat-dialog-close>{{btnCancel}}</button>
+  </mat-dialog-actions>
+</form>

@@ -18,45 +18,59 @@ export class UpdateDeleteEntityService {
 
   }
 
-
   // Observable string sources
-  private subjectUpdatedSource = new Subject();
-  private recordDeletedSource = new Subject();
-  private facultyAndSpecialitySource = new Subject();
+  private subjectInsertedSource = new Subject();
 
+  private subjectUpdatedSource = new Subject();
+  private recordDeletedInDatabaseSource = new Subject();
+  private facultyAndSpecialitySource = new Subject();
   private groupUpdatedSource = new Subject<Group>();
   private specialityUpdatedSource = new Subject();
+  private specialityInsertedSource = new Subject();
+  private timetableUpdatedSource = new Subject();
 
   private facultySource = new Subject();
   private specialitySource = new Subject();
 
-
+  subjectInserted$ = this.subjectInsertedSource.asObservable();
   subjectUpdated$ = this.subjectUpdatedSource.asObservable();
   groupUpdated$ = this.groupUpdatedSource.asObservable();
-  recordDeleted$ = this.recordDeletedSource.asObservable();
+
+  recordDeletedInDataBase$ = this.recordDeletedInDatabaseSource.asObservable();
 
   getFacultyAndSpeciality$ = this.facultyAndSpecialitySource.asObservable();
   specialityUpdated$ = this.specialityUpdatedSource.asObservable();
-
+  specialityInserted$ = this.specialityInsertedSource.asObservable();
+  timetableUpdated$ = this.timetableUpdatedSource.asObservable();
   facultyUpdated$ = this.facultySource.asObservable();
   getSpeciality$ = this.specialitySource.asObservable();
-
   private joinedSource = new Subject();
   groupSpecialityFaculty$ = Observable.forkJoin(this.joinedSource.asObservable());
 
+  passInsertedSubject(item) {
+    this.subjectInsertedSource.next(item);
+  }
 
   passUpdatedSubject(item) {
     this.subjectUpdatedSource.next(item);
   }
 
+  passUpdatedTimetable(item) {
+    this.timetableUpdatedSource.next(item);
+  }
 
   passUpdatedSpeciality(item) {
     this.specialityUpdatedSource.next(item);
   }
 
+  passInsertedSpeciality(item) {
+    this.specialityInsertedSource.next(item);
+  }
+
   passUpdatedFaculty(item) {
     this.facultySource.next(item);
   }
+
   passUpdatedGroup(item: Group) {
     this.groupUpdatedSource.next(item);
   }
@@ -71,11 +85,11 @@ export class UpdateDeleteEntityService {
   }
 
   passDeleted(item) {
-    this.recordDeletedSource.next(item);
+    this.recordDeletedInDatabaseSource.next(item);
   }
 
   passErrorWhenDelete(err) {
-    this.recordDeletedSource.error(err);
+    this.recordDeletedInDatabaseSource.error(err);
   }
 
   updateEntity(id: number, entity: string, dto: any): Observable<any> {

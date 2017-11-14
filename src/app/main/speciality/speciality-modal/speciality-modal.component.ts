@@ -4,6 +4,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 import {SpecialityService} from '../speciality.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {Speciality} from '../speciality';
+import {SpecialityDto} from '../speciality-dto';
 
 @Component({
   selector: 'app-speciality-modal',
@@ -41,7 +43,8 @@ export class SpecialityModalComponent {
     this.specialityService.addSpeciality( {
       specialityCode: speciality.code,
       specialityName: speciality.name,
-    }).subscribe(() => {
+    }).subscribe(specialityData => {
+      this.delUpdateService.passInsertedSpeciality(specialityData);
       this.dialogRef.close();
     });
   }

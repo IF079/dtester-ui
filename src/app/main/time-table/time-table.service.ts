@@ -28,6 +28,13 @@ export class TimeTableService {
     );
   }
 
+  getGroupsAndSubjects(): Observable<[Group[], Subject[]]> {
+    return Observable.forkJoin(
+      this.http.get<Group[]>(`${url.groupUrl}${url.getRecords}`),
+      this.http.get<Subject[]>(`${url.subjectUrl}${url.getRecords}`)
+    );
+  }
+
   getTimeTable(id: number): Observable<any> {
     return this.http.get(`${url.timeTableUrl}${url.getRecords}${id}`);
   }

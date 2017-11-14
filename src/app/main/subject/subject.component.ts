@@ -28,9 +28,16 @@ export class SubjectComponent implements OnInit {
   numberOfRecords: number;
 
   constructor(private delUpdateService: UpdateDeleteEntityService, private subjectService: SubjectService, public dialog: MatDialog) {
+    this.updateNumberOfRecords();
+  }
+
+  updateNumberOfRecords() {
     this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
-        this.numberOfRecords -= 1;
-      });
+      this.numberOfRecords -= 1;
+    });
+    this.delUpdateService.subjectInserted$.subscribe((res) => {
+      this.numberOfRecords += 1;
+    });
   }
 
   openDialog() {

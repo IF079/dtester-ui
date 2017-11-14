@@ -38,19 +38,15 @@ export class FacultiesComponent implements OnInit {
   }
 
   updateNumberOfRecordsInDomWhenAdded() {
-    this.facultyService.facultyAdded$.subscribe(resp => {
-        console.log(resp);
+    this.facultyService.facultyAdded$.subscribe(() => {
         this.numberOfRecords += 1;
-      },
-      err => console.log(err));
-
+      })
   }
 
   updateNumberOfRecordsInDomWhenDeleted() {
-    this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
+    this.delUpdateService.recordDeletedInDataBase$.subscribe(() => {
         this.numberOfRecords -= 1;
-      },
-      err => console.log(err));
+      })
   }
 
   openDialog() {

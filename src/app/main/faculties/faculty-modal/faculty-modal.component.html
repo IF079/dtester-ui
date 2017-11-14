@@ -10,7 +10,7 @@
     <mat-form-field>
       <textarea [formControl]="facultyForm.controls['description']" matInput placeholder="{{placeholders.description}}"></textarea>
       <mat-error>
-        <div *ngIf="facultyForm.controls['description'].hasError('required')">{{errorRequired}}</div>
+        <div *ngIf="facultyForm.controls['description'].hasError('required')">{{errorRequiredInformation}}</div>
       </mat-error>
     </mat-form-field>
   </mat-dialog-content>

@@ -49,6 +49,7 @@ import {TestAddModalComponent} from './test/test-add-modal/test-add-modal.compon
 import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
 import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
+import {DeleteErrorModalComponent} from './entity-table/delete-error-modal/delete-error-modal.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-
     TestAddModalComponent,
     ResultAddModalComponent,
     EditSpecialityModalComponent,
-    EditFacultyModalComponent
+    EditFacultyModalComponent,
+    DeleteErrorModalComponent
   ],
   imports: [
     CommonModule,
@@ -90,6 +92,7 @@ import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-
     FormsModule
   ],
   entryComponents: [
+    DeleteErrorModalComponent,
     DeleteConfirmModalComponent,
     EditSubjectModalComponent,
     SubjectModalComponent,

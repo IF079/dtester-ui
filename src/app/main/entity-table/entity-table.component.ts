@@ -7,11 +7,13 @@ import {EditSubjectModalComponent} from './edit-subject-modal/edit-subject-modal
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 import {EditGroupsModalComponent} from './edit-groups-modal/edit-groups-modal.component';
 
+
 import {EditSpecialityModalComponent} from './edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './edit-faculty-modal/edit-faculty-modal.component';
 import {GroupsService} from '../groups/groups.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import {DeleteErrorModalComponent} from './delete-error-modal/delete-error-modal.component';
 
 
 @Component({
@@ -44,6 +46,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   updateSubjectInDom() {
 
     this.delUpdateService.subjectUpdated$.subscribe(res => {
+      console.log(res);
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === res[0].subject_id) {
@@ -56,6 +59,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
 
   updateSpecialityInDom() {
     this.delUpdateService.specialityUpdated$.subscribe(specialityData => {
+      console.log(specialityData);
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === specialityData[0].speciality_id) {
@@ -63,12 +67,6 @@ export class EntityTableComponent implements OnChanges, OnInit {
           break;
         }
       }
-    });
-  }
-
-  insertDataInDom() {
-    this.delUpdateService.specialityInserted$.subscribe(specialityData => {
-      this.tableRowArr.push(Object.values(specialityData[0]));
     });
   }
 
@@ -97,7 +95,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   deleteItemInDom() {
-    this.delUpdateService.recordDeleted$.subscribe(res => {
+    this.delUpdateService.recordDeletedInDataBase$.subscribe(res => {
       this.tableRowArr = this.tableRowArr.filter(item => item !== res);
     });
   }
@@ -117,15 +115,15 @@ export class EntityTableComponent implements OnChanges, OnInit {
       }
       this.tableRowArr = localArray;
     }
-    this.updateSubjectInDom();
-    this.deleteItemInDom();
-    this.updateGroupInDom();
-    this.updateFacultyInDom();
+
   }
 
   ngOnInit() {
     this.updateSpecialityInDom();
-    this.insertDataInDom();
+    this.updateSubjectInDom();
+    this.deleteItemInDom();
+    this.updateGroupInDom();
+    this.updateFacultyInDom();
   }
 
   openDeleteDialogAndPassItemToDelete(item) {
@@ -133,8 +131,6 @@ export class EntityTableComponent implements OnChanges, OnInit {
       height: '350px',
       data: {item: item, entityName: this.entityName}
     });
-
-
   }
 
   onSelect(item: any[]) {

@@ -19,8 +19,4 @@ export class InfoModalComponent {
   ) {
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }

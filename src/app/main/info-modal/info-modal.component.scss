@@ -9,13 +9,19 @@ mat-dialog-actions {
   }
 }
 
+.info {
+  h2 {
+    background-color: rgb(63, 81, 181);
+  }
+}
+
 .error {
   h2 {
     background-color: red;
   }
 }
 
-.info {
+.success {
   h2 {
     background-color: rgb(44, 165, 44);
   }

@@ -29,22 +29,27 @@ export class InfoModalService {
     });
   }
 
-  openInfoDialog(text: string, callback: Function = null) {
+  openInfoDialog(title: string, text: string) {
     this.dialog.closeAll();
     const dialogRef = this.dialog.open(InfoModalComponent, {
       width: '350px',
       data: {
         type: 'info',
-        title: 'Успіх',
+        title: title,
         text: text
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (callback) {
-        callback();
       }
     });
   }
 
+  openSuccessDialog(text: string) {
+    this.dialog.closeAll();
+    const dialogRef = this.dialog.open(InfoModalComponent, {
+      width: '350px',
+      data: {
+        type: 'success',
+        title: 'Успіх',
+        text: text
+      }
+    });
+  }
 }

@@ -5,7 +5,6 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {StudentService} from '../../student/student.service';
-import {GroupsService} from '../../groups/groups.service';
 import {Student} from '../../student/student';
 import {AsyncUsernameValidator} from '../../student/add-modal/async-username.validator';
 
@@ -47,7 +46,6 @@ export class EditStudentModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private delUpdateService: UpdateDeleteEntityService,
     private studentService: StudentService,
-    private groupsService: GroupsService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
   ) {
@@ -77,7 +75,7 @@ export class EditStudentModalComponent {
       'name': [null, Validators.required],
       'fname': [null, Validators.required],
       'group': [null],
-      'gradebookId': [null, [Validators.required, Validators.pattern(/[A-Z]{2}-\d{7}/)]],
+      'gradebookId': [null, [Validators.required, Validators.maxLength(10), Validators.pattern(/[A-Z]{2}-\d{7}/)]],
       'username': [{value: '', disabled: true}, [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
         AsyncUsernameValidator.createValidator(this.studentService)],
       'email': [{value: null, disabled: true}, [Validators.required, Validators.email]],
@@ -140,11 +138,14 @@ export class EditStudentModalComponent {
       group_id,
       photo
     }).subscribe(response => {
-        // this.delUpdateService.passUpdatedSubject(response);
+      this.studentService.getStudent(this.data[0]).subscribe(responseStudent =>{
+        console.log(responseStudent);
+        this.delUpdateService.passUpdatedStudent(responseStudent);
         this.dialogRef.close();
-      },
+      });
+    },
       err => console.log(err)
-      );
+    );
   }
 
 }

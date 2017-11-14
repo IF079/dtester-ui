@@ -56,7 +56,7 @@ export class TestAddModalComponent implements OnInit {
       attempts: test.attempts
     }).subscribe(data => {
       if (data[0]) {
-        this.modalService.openInfoDialog('Тест успішно добавлено!');
+        this.modalService.openSuccessDialog('Тест успішно добавлено!');
       } else {
         this.modalService.openErrorDialog('Щось пішло не так, як було заплановано! Спробуйте, будь ласка, пізніше.');
       }

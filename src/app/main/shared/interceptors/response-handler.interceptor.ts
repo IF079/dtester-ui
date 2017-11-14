@@ -26,9 +26,9 @@ export class ResponseHandlerInterceptor implements HttpInterceptor {
             this.modal.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
           }
         } else if (res.url.indexOf('/insertData') !== -1 && res.body.response === 'ok') { // IF GOOD RESPONSE...
-          this.modal.openInfoDialog('Запис успішно добавлено!');
+          this.modal.openSuccessDialog('Запис успішно добавлено!');
         } else if (res.url.indexOf('/update') !== -1) {
-          this.modal.openInfoDialog('Зміни успішно збережені!');
+          this.modal.openSuccessDialog('Зміни успішно збережені!');
         }
       }
     });

@@ -60,7 +60,7 @@ export class StudentAddModalComponent {
       'name': [null, Validators.required],
       'fname': [null, Validators.required],
       'group': [this.groupId + ''],
-      'gradebookId': [null, [Validators.required, Validators.pattern(/[A-Z]{2}-\d{7}/)]],
+      'gradebookId': [null, [Validators.required, Validators.maxLength(10), Validators.pattern(/[A-Z]{2}-\d{7}/)]],
       'username': [null, [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
                   AsyncUsernameValidator.createValidator(this.studentService)],
       'email': [null, [Validators.required, Validators.email]],
@@ -74,8 +74,8 @@ export class StudentAddModalComponent {
   }
 
   validatePasswordConfirm(control: AbstractControl) {
-    let password = control.get('password').value;
-    let passwordConfirm = control.get('passwordConfirm').value;
+    const password = control.get('password').value;
+    const passwordConfirm = control.get('passwordConfirm').value;
     if (password !== passwordConfirm) {
       control.get('passwordConfirm').setErrors({invalidPasswordConfirm: true});
     } else {
@@ -111,7 +111,7 @@ export class StudentAddModalComponent {
       if (res.response !== 'ok') {
         this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
       } else if (res.response === 'ok') {
-        this.modalService.openInfoDialog('Запис успішно добавлено!');
+        this.modalService.openSuccessDialog('Запис успішно добавлено!');
       }
     });
   }

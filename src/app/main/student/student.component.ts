@@ -78,7 +78,8 @@ export class StudentComponent implements OnInit {
         delete student.plainPassword;
         delete student.groupId;
       });
-    });
+    },
+    error => this.infoModal.openErrorDialog());
   }
 
   getStudents(): void {
@@ -89,9 +90,7 @@ export class StudentComponent implements OnInit {
           delete item.plainPassword;
         });
       },
-      err => {
-        log.error(err);
-      });
+      error => this.infoModal.openErrorDialog());
   }
 
   goPage(pageEvent: PageEvent) {

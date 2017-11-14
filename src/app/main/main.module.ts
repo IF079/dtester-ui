@@ -49,6 +49,8 @@ import {TestAddModalComponent} from './test/test-add-modal/test-add-modal.compon
 import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
 import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
+import {DeleteErrorModalComponent} from './entity-table/delete-error-modal/delete-error-modal.component';
+import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/edit-timetable-modal.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,10 @@ import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-
     TestAddModalComponent,
     ResultAddModalComponent,
     EditSpecialityModalComponent,
-    EditFacultyModalComponent
+    EditFacultyModalComponent,
+    DeleteErrorModalComponent,
+    EditTimetableModalComponent
+
   ],
   imports: [
     CommonModule,
@@ -90,6 +95,7 @@ import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-
     FormsModule
   ],
   entryComponents: [
+    DeleteErrorModalComponent,
     DeleteConfirmModalComponent,
     EditSubjectModalComponent,
     SubjectModalComponent,
@@ -104,7 +110,8 @@ import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-
     ResultAddModalComponent,
     EditGroupsModalComponent,
     EditSpecialityModalComponent,
-    EditFacultyModalComponent
+    EditFacultyModalComponent,
+    EditTimetableModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
 
@@ -6,13 +6,14 @@ import {DeleteConfirmModalComponent} from './delete-confirm-modal/delete-confirm
 import {EditSubjectModalComponent} from './edit-subject-modal/edit-subject-modal.component';
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 import {EditGroupsModalComponent} from './edit-groups-modal/edit-groups-modal.component';
-
+import {EditTimetableModalComponent} from './edit-timetable-modal/edit-timetable-modal.component';
 import {EditSpecialityModalComponent} from './edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './edit-faculty-modal/edit-faculty-modal.component';
+import {EditStudentModalComponent} from './edit-student-modal/edit-student-modal.component';
 import {GroupsService} from '../groups/groups.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
-
+import {DeleteErrorModalComponent} from './delete-error-modal/delete-error-modal.component';
 
 @Component({
   selector: 'app-entity-table',
@@ -20,7 +21,7 @@ import 'rxjs/add/observable/forkJoin';
   styleUrls: ['./entity-table.component.scss']
 })
 
-export class EntityTableComponent implements OnChanges {
+export class EntityTableComponent implements OnChanges, OnInit {
   tableRowArr: any[];
   @Input() entityName: string;
   @Input() entityArray: any[];
@@ -33,7 +34,8 @@ export class EntityTableComponent implements OnChanges {
     Subject: EditSubjectModalComponent,
     Group: EditGroupsModalComponent,
     Speciality: EditSpecialityModalComponent,
-    Faculty: EditFacultyModalComponent
+    Faculty: EditFacultyModalComponent,
+    Timetable: EditTimetableModalComponent
   };
 
   constructor(public dialog: MatDialog, private router: Router, private delUpdateService: UpdateDeleteEntityService,
@@ -43,11 +45,11 @@ export class EntityTableComponent implements OnChanges {
 
   updateSubjectInDom() {
 
-    this.delUpdateService.subjectUpdated$.subscribe(res => {
+    this.delUpdateService.subjectUpdated$.subscribe(subjectData => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === res[0].subject_id) {
-          this.tableRowArr[i] = Object.values(res[0]);
+        if (this.tableRowArr[i][id] === subjectData[0].subject_id) {
+          this.tableRowArr[i] = Object.values(subjectData[0]);
           break;
         }
       }
@@ -91,8 +93,7 @@ export class EntityTableComponent implements OnChanges {
   }
 
   deleteItemInDom() {
-    this.delUpdateService.recordDeleted$.subscribe(res => {
-      console.log(res);
+    this.delUpdateService.recordDeletedInDataBase$.subscribe(res => {
       this.tableRowArr = this.tableRowArr.filter(item => item !== res);
     });
   }
@@ -101,7 +102,6 @@ export class EntityTableComponent implements OnChanges {
     const dialogRef = this.dialog.open(this.componentModalsDictionary[this.entityName], {
       data: rowItem
     });
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -112,10 +112,13 @@ export class EntityTableComponent implements OnChanges {
       }
       this.tableRowArr = localArray;
     }
+  }
+
+  ngOnInit() {
     this.updateSubjectInDom();
+    this.updateSpecialityInDom();
     this.deleteItemInDom();
     this.updateGroupInDom();
-    this.updateSpecialityInDom();
     this.updateFacultyInDom();
   }
 
@@ -124,8 +127,6 @@ export class EntityTableComponent implements OnChanges {
       height: '350px',
       data: {item: item, entityName: this.entityName}
     });
-
-
   }
 
   onSelect(item: any[]) {

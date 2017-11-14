@@ -42,6 +42,21 @@ export class StudentService {
     return this.http.post(`${url.studentUrl}${url.insertData}`, new StudentDto(student, otherInfo));
   }
 
+  getGroups(): Observable<any> {
+    return this.http.get<any[]>(`${url.groupUrl}${url.getRecords}`);
+  }
+
+      // this.groupsService.getGroups().subscribe(data => {
+      //   let localArr = [];
+      //   data[0].forEach(group => {
+      //     localArr.push({
+      //       value: group.group_id,
+      //       text: group.group_name
+      //     });
+      //   });
+      //   return localArr;
+      // });
+
   checkUserName(username: string): Observable<any> {
     return this.http.get(`${url.adminUser}${url.checkUserName}/${username}`);
   }

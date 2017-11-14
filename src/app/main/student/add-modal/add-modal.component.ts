@@ -29,7 +29,6 @@ export class StudentAddModalComponent {
   dropPhoto: string;
   groups = this.data.groups;
   groupId = this.data.groupId;
-  selectDefaultGroup = this.groups.find(group => +group.value === this.groupId).text;
   form: FormGroup;
   student: any;
   errorEmptyInput = 'Заповніть поле!';
@@ -38,6 +37,7 @@ export class StudentAddModalComponent {
   errorInvalidPasswordConfirm = 'Паролі не збігаються!';
   errorInvalidEmail = 'Некоректна адреса!';
   errorInvalidUsername = 'Логін повинен займати 6-16 символів!';
+  errorUsernameIsTaken = 'Такий логін вже використовується!';
 
   filesSelect(event): void {
     const reader = new FileReader();
@@ -59,7 +59,7 @@ export class StudentAddModalComponent {
       'sname': [null, Validators.required],
       'name': [null, Validators.required],
       'fname': [null, Validators.required],
-      'group': [null],
+      'group': [this.groupId + ''],
       'gradebookId': [null, [Validators.required, Validators.pattern(/[A-Z]{2}-\d{7}/)]],
       'username': [null, [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
                   AsyncUsernameValidator.createValidator(this.studentService)],

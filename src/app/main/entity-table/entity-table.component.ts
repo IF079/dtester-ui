@@ -101,7 +101,6 @@ export class EntityTableComponent implements OnChanges, OnInit {
     const dialogRef = this.dialog.open(this.componentModalsDictionary[this.entityName], {
       data: rowItem
     });
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -112,7 +111,6 @@ export class EntityTableComponent implements OnChanges, OnInit {
       }
       this.tableRowArr = localArray;
     }
-
   }
 
   ngOnInit() {

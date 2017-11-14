@@ -83,7 +83,7 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     ResultAddModalComponent,
     EditSpecialityModalComponent,
     EditFacultyModalComponent,
-    DeleteErrorModalComponent
+    DeleteErrorModalComponent,
     EditTimetableModalComponent
 
   ],

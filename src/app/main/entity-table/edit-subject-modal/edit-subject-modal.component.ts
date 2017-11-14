@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 
 @Component({
@@ -15,7 +15,8 @@ export class EditSubjectModalComponent {
     description: 'Опис предмету'
   };
   btnEdit = 'Редагувати предмет';
-
+  btn
+  errRequestMsg: string;
   constructor(public dialogRef: MatDialogRef<EditSubjectModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private delUpdateService: UpdateDeleteEntityService,
               private formBuilder: FormBuilder, ) {
@@ -25,10 +26,17 @@ export class EditSubjectModalComponent {
   createForm(): void {
     const name = this.data[1];
     const description = this.data[2];
-    this.editSubjectForm = this.formBuilder.group({name
-      , description});
+    this.editSubjectForm = this.formBuilder.group({
+      name: [name, Validators.required],
+      description: [description, Validators.required]
+    });
   }
-
+  get name() {
+    return this.editSubjectForm.get('name');
+  }
+  get description() {
+    return this.editSubjectForm.get('description');
+  }
   editEntityRecord() {
     const id = this.data[0];
     const entityName = 'Subject';
@@ -39,7 +47,8 @@ export class EditSubjectModalComponent {
         this.delUpdateService.passUpdatedSubject(response);
         this.dialogRef.close();
       },
-      err => console.log(err)
-    );
+      err => {
+        this.errRequestMsg = 'Даний предмет вже існує. Або відбулась інша помилка';
+      });
   }
 }

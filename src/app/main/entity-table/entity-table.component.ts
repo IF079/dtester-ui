@@ -35,6 +35,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     Group: EditGroupsModalComponent,
     Speciality: EditSpecialityModalComponent,
     Faculty: EditFacultyModalComponent,
+    Student: EditStudentModalComponent,
     Timetable: EditTimetableModalComponent
   };
 

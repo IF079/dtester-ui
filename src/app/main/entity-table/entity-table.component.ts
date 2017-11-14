@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
 
@@ -20,7 +20,7 @@ import 'rxjs/add/observable/forkJoin';
   styleUrls: ['./entity-table.component.scss']
 })
 
-export class EntityTableComponent implements OnChanges {
+export class EntityTableComponent implements OnChanges, OnInit {
   tableRowArr: any[];
   @Input() entityName: string;
   @Input() entityArray: any[];
@@ -66,6 +66,12 @@ export class EntityTableComponent implements OnChanges {
     });
   }
 
+  insertDataInDom() {
+    this.delUpdateService.specialityInserted$.subscribe(specialityData => {
+      this.tableRowArr.push(Object.values(specialityData[0]));
+    });
+  }
+
   updateFacultyInDom() {
     this.delUpdateService.facultyUpdated$.subscribe(res => {
       const id = 0;
@@ -92,7 +98,6 @@ export class EntityTableComponent implements OnChanges {
 
   deleteItemInDom() {
     this.delUpdateService.recordDeleted$.subscribe(res => {
-      console.log(res);
       this.tableRowArr = this.tableRowArr.filter(item => item !== res);
     });
   }
@@ -115,8 +120,12 @@ export class EntityTableComponent implements OnChanges {
     this.updateSubjectInDom();
     this.deleteItemInDom();
     this.updateGroupInDom();
-    this.updateSpecialityInDom();
     this.updateFacultyInDom();
+  }
+
+  ngOnInit() {
+    this.updateSpecialityInDom();
+    this.insertDataInDom();
   }
 
   openDeleteDialogAndPassItemToDelete(item) {

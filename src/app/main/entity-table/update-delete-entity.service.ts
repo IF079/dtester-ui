@@ -23,40 +23,39 @@ export class UpdateDeleteEntityService {
   private subjectUpdatedSource = new Subject();
   private recordDeletedSource = new Subject();
   private facultyAndSpecialitySource = new Subject();
-
   private groupUpdatedSource = new Subject<Group>();
   private specialityUpdatedSource = new Subject();
-
+  private specialityInsertedSource = new Subject();
   private facultySource = new Subject();
   private specialitySource = new Subject();
-
 
   subjectUpdated$ = this.subjectUpdatedSource.asObservable();
   groupUpdated$ = this.groupUpdatedSource.asObservable();
   recordDeleted$ = this.recordDeletedSource.asObservable();
-
   getFacultyAndSpeciality$ = this.facultyAndSpecialitySource.asObservable();
   specialityUpdated$ = this.specialityUpdatedSource.asObservable();
-
+  specialityInserted$ = this.specialityInsertedSource.asObservable();
   facultyUpdated$ = this.facultySource.asObservable();
   getSpeciality$ = this.specialitySource.asObservable();
-
   private joinedSource = new Subject();
   groupSpecialityFaculty$ = Observable.forkJoin(this.joinedSource.asObservable());
-
 
   passUpdatedSubject(item) {
     this.subjectUpdatedSource.next(item);
   }
 
-
   passUpdatedSpeciality(item) {
     this.specialityUpdatedSource.next(item);
+  }
+
+  passInsertedSpeciality(item) {
+    this.specialityInsertedSource.next(item);
   }
 
   passUpdatedFaculty(item) {
     this.facultySource.next(item);
   }
+
   passUpdatedGroup(item: Group) {
     this.groupUpdatedSource.next(item);
   }

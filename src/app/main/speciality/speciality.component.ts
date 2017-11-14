@@ -31,6 +31,11 @@ export class SpecialityComponent implements OnInit {
     this.delUpdateService.recordDeleted$.subscribe(() => {
       this.numberOfRecords -= 1;
     });
+    this.delUpdateService.specialityInserted$.subscribe(
+      () => {
+        this.numberOfRecords += 1;
+      }
+    );
   }
 
   getSpecialities(): void {

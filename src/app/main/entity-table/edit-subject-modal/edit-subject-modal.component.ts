@@ -15,7 +15,7 @@ export class EditSubjectModalComponent {
     description: 'Опис предмету'
   };
   btnEdit = 'Редагувати предмет';
-  btn
+  btnClose = 'Відмінити';
   errRequestMsg: string;
   constructor(public dialogRef: MatDialogRef<EditSubjectModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private delUpdateService: UpdateDeleteEntityService,

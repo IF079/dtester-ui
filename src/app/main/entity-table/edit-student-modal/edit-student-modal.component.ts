@@ -5,7 +5,6 @@ import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/form
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {StudentService} from '../../student/student.service';
 import {Student} from '../../student/student';
-import {AsyncUsernameValidator} from '../../student/add-modal/async-username.validator';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 
 @Component({
@@ -76,12 +75,11 @@ export class EditStudentModalComponent {
       'fname': [null, Validators.required],
       'group': [null],
       'gradebookId': [null, [Validators.required, Validators.maxLength(10), Validators.pattern(/[A-Z]{2}-\d{7}/)]],
-      'username': [{value: '', disabled: true}, [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
-        AsyncUsernameValidator.createValidator(this.studentService)],
-      'email': [{value: null, disabled: true}, [Validators.required, Validators.email]],
+      'username': [{value: '', disabled: true}],
+      'email': [{value: null, disabled: true}],
       'passwords': this.formBuilder.group({
-        'password': [{value: '', disabled: true}, [Validators.required, Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/)]],
-        'passwordConfirm': [{value: '', disabled: true}, Validators.required]
+        'password': [{value: '', disabled: true}],
+        'passwordConfirm': [{value: '', disabled: true}]
       }, {
           validator: this.validatePasswordConfirm
         })

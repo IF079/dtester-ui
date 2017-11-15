@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {GroupsService} from '../../groups/groups.service';
@@ -23,7 +23,8 @@ export class EditGroupsModalComponent {
   facultyValues = [];
   specialityValues = [];
   btnEdit = 'Редагувати групу';
-  btnCancel = 'Закрити';
+  btnClose = 'Відмінити';
+  errRequestMsg: string;
 
   constructor(public dialogRef: MatDialogRef<EditGroupsModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private delUpdateService: UpdateDeleteEntityService,
@@ -38,7 +39,6 @@ export class EditGroupsModalComponent {
       this.facultyValues = Object.values(this.facultyDictionary);
       data[1].forEach(item => this.specialityDictionary[item.specialityId] = item.specialityName);
       this.specialityValues = Object.values(this.specialityDictionary);
-
     });
   }
 
@@ -47,16 +47,30 @@ export class EditGroupsModalComponent {
     const specialityName = this.data[2];
     const facultyName = this.data[3];
     this.editGroupForm = this.formBuilder.group({
-      groupName: [groupName],
-      facultyName: [facultyName],
-      specialityName: [specialityName]
+      groupName: [groupName, Validators.required],
+      facultyName: [facultyName, Validators.required],
+      specialityName: [specialityName, Validators.required]
     });
   }
+  get groupName() {
+    return this.editGroupForm.get('groupName');
+  }
 
+  get facultyName() {
+    return this.editGroupForm.get('facultyName');
+  }
+
+  get specialityName() {
+    return this.editGroupForm.get('specialityName');
+  }
+
+  isFormValid(): boolean {
+    return this.editGroupForm.valid;
+  }
   editGroup() {
-    const group_name = this.editGroupForm.get('groupName').value;
-    const facultyName = this.editGroupForm.get('facultyName').value;
-    const specialityName = this.editGroupForm.get('specialityName').value;
+    const group_name = this.groupName.value;
+    const facultyName = this.facultyName.value;
+    const specialityName = this.specialityName.value;
     const keysOfFacultyDictionary = Object.keys(this.facultyDictionary);
     const keysOfSpecialityDictionary = Object.keys(this.specialityDictionary);
     const entityName = 'Group';
@@ -75,8 +89,6 @@ export class EditGroupsModalComponent {
         break;
       }
     }
-    console.log(faculty_id);
-    console.log(speciality_id);
     this.delUpdateService.updateEntity(groupId, entityName, {group_name, faculty_id, speciality_id}).subscribe(
       (updatedGroupResponse) => {
         const updatedGroup = updatedGroupResponse[0];
@@ -85,7 +97,9 @@ export class EditGroupsModalComponent {
         this.delUpdateService.passUpdatedGroup(updatedGroup);
         this.dialogRef.close();
       },
-      (err) => console.log(err)
+      (err) => {
+        this.errRequestMsg = `Дана група вже існує, або проблеми зі з'єднанням на сервері або якась інша помилка`;
+      }
     );
 
   }

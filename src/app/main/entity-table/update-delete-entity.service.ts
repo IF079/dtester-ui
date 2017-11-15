@@ -20,7 +20,7 @@ export class UpdateDeleteEntityService {
 
   // Observable string sources
   private subjectInsertedSource = new Subject();
-
+  private groupInsertedSource = new Subject();
   private subjectUpdatedSource = new Subject();
   private recordDeletedInDatabaseSource = new Subject();
   private facultyAndSpecialitySource = new Subject();
@@ -32,7 +32,9 @@ export class UpdateDeleteEntityService {
   private facultySource = new Subject();
   private specialitySource = new Subject();
 
+  groupInserted$ = this.groupInsertedSource.asObservable();
   subjectInserted$ = this.subjectInsertedSource.asObservable();
+
   subjectUpdated$ = this.subjectUpdatedSource.asObservable();
   groupUpdated$ = this.groupUpdatedSource.asObservable();
 
@@ -46,6 +48,10 @@ export class UpdateDeleteEntityService {
   getSpeciality$ = this.specialitySource.asObservable();
   private joinedSource = new Subject();
   groupSpecialityFaculty$ = Observable.forkJoin(this.joinedSource.asObservable());
+
+  passInsertedGroup(item) {
+    this.groupInsertedSource.next(item);
+  }
 
   passInsertedSubject(item) {
     this.subjectInsertedSource.next(item);

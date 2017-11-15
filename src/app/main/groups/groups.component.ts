@@ -28,25 +28,19 @@ export class GroupsComponent implements OnInit, OnChanges {
   btnAdd = 'Додати групу';
 
   constructor(private delUpdateService: UpdateDeleteEntityService, private groupsService: GroupsService, public dialog: MatDialog) {
-    this.updateNumberOfRecordsInDomWhenAdded();
-    this.updateNumberOfRecordsInDomWhenDeleted();
+    this.updateNumberOfRecordsInDom();
   }
 
-  updateNumberOfRecordsInDomWhenAdded() {
-      this.groupsService.groupAdded$.subscribe(resp => {
-        console.log(resp);
+  updateNumberOfRecordsInDom() {
+      this.delUpdateService.groupInserted$.subscribe(resp => {
         this.numberOfRecords += 1;
-      },
-        err => console.log(err));
-
-  }
-
-  updateNumberOfRecordsInDomWhenDeleted() {
+      });
     this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
         this.numberOfRecords -= 1;
-      },
-      err => console.log(err));
+      });
   }
+
+
 
   goPage(pageEvent: PageEvent) {
     this.limit = pageEvent.pageSize;

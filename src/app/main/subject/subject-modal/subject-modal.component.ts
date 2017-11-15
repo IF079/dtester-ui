@@ -37,7 +37,9 @@ export class SubjectModalComponent {
       description: ['', Validators.required]
     });
   }
-
+  isFormValid(): boolean {
+    return this.subjectForm.valid;
+  }
   get name() {
     return this.subjectForm.get('name');
   }
@@ -47,8 +49,8 @@ export class SubjectModalComponent {
   }
 
   addSubject() {
-    const subject_name = this.subjectForm.get('name').value;
-    const subject_description = this.subjectForm.get('description').value;
+    const subject_name = this.name.value;
+    const subject_description = this.description.value;
     this.subjectService.addSubject({subject_name, subject_description}).subscribe(subject => {
 
         this.delUpdateService.passInsertedSubject(subject);

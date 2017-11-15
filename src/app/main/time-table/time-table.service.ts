@@ -31,7 +31,8 @@ export class TimeTableService {
   getGroupsAndSubjects(): Observable<[Group[], Subject[]]> {
     return Observable.forkJoin(
       this.http.get<Group[]>(`${url.groupUrl}${url.getRecords}`),
-      this.http.get<Subject[]>(`${url.subjectUrl}${url.getRecords}`)
+      this.http.get<SubjectDto[]>(`${url.subjectUrl}${url.getRecords}`)
+        .map(subjectDtoArr => subjectDtoArr.map(subjectDto => new Subject(subjectDto)))
     );
   }
 

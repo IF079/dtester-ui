@@ -5,7 +5,6 @@
       <input matInput [formControl]="facultyForm.controls['name']" placeholder="{{placeholders.name}}">
       <mat-error>
         <div *ngIf="facultyForm.controls['name'].hasError('required')">{{errorRequired}}</div>
-        <div *ngIf="facultyForm.controls['name'].hasError('pattern')">{{errorCodePattern}}</div>
       </mat-error>
     </mat-form-field>
     <mat-form-field>

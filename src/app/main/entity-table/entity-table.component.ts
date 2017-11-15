@@ -93,6 +93,18 @@ export class EntityTableComponent implements OnChanges, OnInit {
     });
   }
 
+  updateTimetableInDom() {
+    this.delUpdateService.timetableUpdated$.subscribe(timetableData => {
+      const id = 0;
+      for (let i = 0; i < this.tableRowArr.length; i++) {
+        if (this.tableRowArr[i][id] === timetableData[0].timetable_id) {
+          this.tableRowArr[i] = Object.values(timetableData[0]);
+          break;
+        }
+      }
+    });
+  }
+
   deleteItemInDom() {
     this.delUpdateService.recordDeletedInDataBase$.subscribe(res => {
       this.tableRowArr = this.tableRowArr.filter(item => item !== res);
@@ -121,6 +133,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.deleteItemInDom();
     this.updateGroupInDom();
     this.updateFacultyInDom();
+    this.updateTimetableInDom();
   }
 
   openDeleteDialogAndPassItemToDelete(item) {

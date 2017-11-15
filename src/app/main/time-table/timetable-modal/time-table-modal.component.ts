@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {TimeTableService} from '../time-table.service';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'app-time-table-modal',
@@ -14,18 +15,27 @@ export class TimeTableModalComponent implements OnInit {
   timeTableForm: FormGroup;
   subjectValues = [];
   groupValues = [];
+  isTimeTableAdded = false;
+  successMsg = 'Розклад додано успішно. Оновіть сторінку, щоб побачити зміни.';
+  errorDatePattern = 'Дані повинні бути вигляду рік-місяць-день';
+  errorTimePattern = 'Дані повинні бути вигляду год:хв:с'
+  errorRequired = 'Заповніть поле!';
+  errRequestMsg: string;
   placeholders = {
     groupName: 'Назва групи',
     subjectName: 'Назва предмету',
-    dateOfStart: 'Дата початку в форматі 2017-11-09',
-    timeOfStart: 'Час початку в форматі 10:22:00',
-    dateOfEnd: 'Дата закінчення в форматі 2018-10-08',
-    timeOfEnd: 'Час закінчення в форматі 10:22:00'
+    dateOfStart: 'Виберіть дату початку',
+    timeOfStart: 'Виберіть час початку',
+    dateOfEnd: 'Виберіть дату закінчення',
+    timeOfEnd: 'Виберіть час закінчення'
   };
-  btnAdd = 'Додати предмет';
+  btnAdd = 'Додати розклад';
+  btnClose = 'Відмінити';
+  btnOk = 'Ок';
 
   constructor(public dialogRef: MatDialogRef<TimeTableModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private timeTableService: TimeTableService, private formBuilder: FormBuilder) {
+              @Inject(MAT_DIALOG_DATA) public data: any, private timeTableService: TimeTableService,
+              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
     this.createForm();
   }
 
@@ -33,26 +43,53 @@ export class TimeTableModalComponent implements OnInit {
     this.subjectValues = Object.values(this.data.subjectDictionary);
     this.groupValues = Object.values(this.data.groupDictionary);
     this.timeTableForm = this.formBuilder.group({
-      groupName: [''],
-      subjectName: [''],
-      dateOfStart: [''],
-      timeOfStart: [''],
-      dateOfEnd: [''],
-      timeOfEnd: ['']
+      groupName: ['', Validators.required],
+      subjectName: ['', Validators.required],
+      dateOfStart: ['', Validators.required],
+      timeOfStart: ['', Validators.required],
+      dateOfEnd: ['', Validators.required],
+      timeOfEnd: ['', Validators.required]
     });
+  }
+
+  get groupName() {
+    return this.timeTableForm.get('groupName');
+  }
+
+  get subjectName() {
+    return this.timeTableForm.get('subjectName');
+  }
+
+  get dateOfStart() {
+    return this.timeTableForm.get('dateOfStart');
+  }
+
+  get timeOfStart() {
+    return this.timeTableForm.get('timeOfStart');
+  }
+
+  get dateOfEnd() {
+    return this.timeTableForm.get('dateOfEnd');
+  }
+
+  get timeOfEnd() {
+    return this.timeTableForm.get('timeOfEnd');
+  }
+
+  isFormValid(): boolean {
+    return this.timeTableForm.valid;
   }
 
   ngOnInit() {
   }
 
   addTimeTable() {
-
-    const groupName = this.timeTableForm.get('groupName').value;
-    const subjectName = this.timeTableForm.get('subjectName').value;
-    const start_date = this.timeTableForm.get('dateOfStart').value;
-    const start_time = this.timeTableForm.get('timeOfStart').value;
-    const end_date = this.timeTableForm.get('dateOfEnd').value;
-    const end_time = this.timeTableForm.get('timeOfEnd').value;
+    const groupName = this.groupName.value;
+    const subjectName = this.subjectName.value;
+    const start_date = this.dateOfStart.value;
+    const start_time = this.timeOfStart.value;
+    const end_date = this.dateOfEnd.value;
+    const end_time = this.timeOfEnd.value;
     const keysOfSubjectDictionary = Object.keys(this.data.subjectDictionary);
     const keysOfGroupDictionary = Object.keys(this.data.groupDictionary);
     let subject_id = 0;
@@ -71,8 +108,14 @@ export class TimeTableModalComponent implements OnInit {
     }
 
     this.timeTableService.addTimeTable({group_id, subject_id, start_date, start_time, end_date, end_time}).subscribe(
-      (resp) => console.log(resp),
-      (err) => console.log(err)
+      (resp) => {
+        this.delUpdateService.passInsertedTimetable(resp);
+        this.isTimeTableAdded = true;
+      },
+      (err) => {
+        this.errRequestMsg = `Розклад для такої групи і предмету вже можливо існує, дати розкладу такі вже є,  
+         або виникла інша помилка на сервері`;
+      }
     );
 
 

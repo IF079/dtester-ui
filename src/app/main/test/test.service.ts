@@ -32,8 +32,12 @@ export class TestService {
   }
 
   getTestsBySubjectId(subjectId: number): Observable<Test[]>{
-    return this.http.get<TestDto[]>(`${url.testUrl}${url.getTestsBySubject}/${subjectId}`)
-      .map( testDtoArr => testDtoArr.map( testDto => new Test(testDto)));
+    return this.http.get<any>(`${url.testUrl}${url.getTestsBySubject}/${subjectId}`)
+      .map( testDtoArr => {
+        if (testDtoArr.response !== 'no records') {
+          return testDtoArr.map( testDto => new Test(testDto));
+        }
+      });
   }
 
   getTest(id: number): Observable<Test[]> {

@@ -44,7 +44,7 @@ import {InfoModalService} from './info-modal/info-modal.service';
 import {ResultService} from './test/result/result.service';
 import {SpecialityModalComponent} from './speciality/speciality-modal/speciality-modal.component';
 import {QuestionAddModalComponent} from './test/question/question-add-modal/question-add-modal.component';
-import {TestAddModalComponent} from './test/test-add-modal/test-add-modal.component';
+import {TestModalComponent} from './test/test-modal/test-modal.component';
 import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
 import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
@@ -77,7 +77,7 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     TestDetailComponent,
     TimeTableModalComponent,
     QuestionAddModalComponent,
-    TestAddModalComponent,
+    TestModalComponent,
     ResultAddModalComponent,
     EditSpecialityModalComponent,
     EditFacultyModalComponent,
@@ -103,7 +103,7 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     TimeTableModalComponent,
     GroupsModalComponent,
     QuestionAddModalComponent,
-    TestAddModalComponent,
+    TestModalComponent,
     ResultAddModalComponent,
     EditGroupsModalComponent,
     EditSpecialityModalComponent,

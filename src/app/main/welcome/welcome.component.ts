@@ -4,7 +4,7 @@ import {MatDialog} from '@angular/material';
 import {LoginService} from '../../login/services/login.service';
 import {User} from '../../login/entities/user';
 import {QuestionAddModalComponent} from '../test/question/question-add-modal/question-add-modal.component';
-import {TestAddModalComponent} from '../test/test-add-modal/test-add-modal.component';
+import {TestModalComponent} from '../test/test-modal/test-modal.component';
 import {ResultAddModalComponent} from '../test/result/result-add-modal/result-add-modal.component';
 import {TestService} from '../test/test.service';
 import {Test} from '../test/test';
@@ -99,12 +99,13 @@ export class WelcomeComponent {
     });
   }
 
-  openTestAddModal(): void {
+  openTestModal(type: string): void {
     this.subjectService.getSubjects().subscribe(subjectsData => {
-      const dialogRef = this.dialog.open(TestAddModalComponent, {
+      const dialogRef = this.dialog.open(TestModalComponent, {
         width: '400px',
         data: {
-          subjects: this.parseSubjects(subjectsData[0])
+          subjects: this.parseSubjects(subjectsData[0]),
+          type: type
         }
       });
 

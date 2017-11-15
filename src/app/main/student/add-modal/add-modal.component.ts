@@ -92,12 +92,13 @@ export class StudentAddModalComponent {
   }
 
   onSubmit(student) {
+    const selectedId = student.group || this.groupId;
     this.dialogRef.close();
     this.studentService.setStudent({
       studentSurname: student.sname,
       studentName: student.name,
       studentFname: student.fname,
-      groupId: student.group || this.groupId,
+      groupId: selectedId,
       gradebookId: student.gradebookId,
       photo: this.dropPhoto || ''
     }, {
@@ -110,7 +111,9 @@ export class StudentAddModalComponent {
 
         this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
       } else if (res.response === 'ok') {
-        this.delUpdateService.passInsertedStudent(res);
+        if (selectedId === this.groupId) {
+          this.delUpdateService.passInsertedStudent(res);
+        }
         this.modalService.openSuccessDialog('Запис успішно добавлено! Обновіть сторінку для відображення даних.', () => {
 
         });

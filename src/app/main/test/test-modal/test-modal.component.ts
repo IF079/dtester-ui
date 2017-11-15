@@ -7,14 +7,17 @@ import {TestService} from '../test.service';
 import {Test} from '../test';
 
 @Component({
-  selector: 'app-test-add-modal',
-  templateUrl: './test-add-modal.component.html',
-  styleUrls: ['./test-add-modal.component.scss']
+  selector: 'app-test-modal',
+  templateUrl: './test-modal.component.html',
+  styleUrls: ['./test-modal.component.scss']
 })
-export class TestAddModalComponent implements OnInit {
+export class TestModalComponent implements OnInit {
+  type = this.data.type;
   subjects = this.data.subjects;
-  tasks = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  attempts = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  viewTestArray: Test[];
+  tasks = this.setArrayOfDigit(30);
+  attempts = this.setArrayOfDigit(10);
+  viewHeadersArray = ['Тема', 'Завдань', 'Час', 'Спроби', 'Статус'];
   status = [{value: 1, text: 'Доступний'}, {value: 0, text: 'Недоступний'}];
   placeholders = {
     testName: 'Назва',
@@ -32,7 +35,7 @@ export class TestAddModalComponent implements OnInit {
     private testService: TestService,
     private formBuilder: FormBuilder,
     private modalService: InfoModalService,
-    public dialogRef: MatDialogRef<TestAddModalComponent>,
+    public dialogRef: MatDialogRef<TestModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = formBuilder.group({
@@ -43,6 +46,14 @@ export class TestAddModalComponent implements OnInit {
       'enabled': [null, Validators.required],
       'attempts': [null, Validators.required]
     });
+  }
+
+  setArrayOfDigit(amount: number) {
+    const localArr = []
+    for (let i = 1; i <= amount; i++) {
+      localArr.push(i);
+    }
+    return localArr;
   }
 
   onSubmit(test: Test): void {
@@ -63,12 +74,20 @@ export class TestAddModalComponent implements OnInit {
     });
   }
 
+  onViewChange(event) {
+    const id = event.value;
+    this.dialogRef.updateSize('550px');
+    this.testService.getTestsBySubjectId(id).subscribe(response => {
+      this.viewTestArray = response;
+    });
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   ngOnInit() {
-
+    
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
@@ -13,11 +13,12 @@ import {InfoModalService} from '../../info-modal/info-modal.service';
   styleUrls: ['../../student/add-modal/add-modal.component.scss']
 })
 
-export class EditStudentModalComponent {
+export class EditStudentModalComponent implements OnInit {
   form: FormGroup;
   curentStudent: Student;
   groups: any[];
   dropPhoto: string;
+  curentPhoto: string;
   placeholders = {
     sname: 'Прізвище',
     name: 'Ім\'я',
@@ -56,6 +57,7 @@ export class EditStudentModalComponent {
         const studentFname = this.data[4];
         const studentGroup = response[0].groupId;
         this.dropPhoto = response[0].photo;
+        this.curentPhoto = response[0].photo;
         this.curentStudent = response[0];
         this.form.patchValue({
           sname: studentSurname,
@@ -69,6 +71,7 @@ export class EditStudentModalComponent {
   }
 
   createForm(): void {
+    this.dialogRef.updateSize('800px');
     this.form = this.formBuilder.group({
       'sname': [null, Validators.required],
       'name': [null, Validators.required],
@@ -127,7 +130,7 @@ export class EditStudentModalComponent {
     const student_surname = this.form.get('sname').value;
     const gradebook_id = this.form.get('gradebookId').value;
     const group_id = this.form.get('group').value;
-    const photo = this.dropPhoto || '';
+    const photo = this.dropPhoto;
     this.dialogRef.close();
     if (!(
         student_name === this.curentStudent.studentName &&
@@ -135,7 +138,7 @@ export class EditStudentModalComponent {
         student_surname === this.curentStudent.studentSurname &&
         gradebook_id === this.curentStudent.gradebookId &&
         group_id === this.curentStudent.groupId &&
-        photo === this.dropPhoto
+        photo === this.curentPhoto
       )) {
         this.delUpdateService.updateEntity(id, entityName, {
           student_name,
@@ -154,6 +157,10 @@ export class EditStudentModalComponent {
           });
         });
       }
+  }
+
+  ngOnInit() {
+    this.dialogRef.updateSize('800px');
   }
 
 }

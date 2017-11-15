@@ -12,6 +12,8 @@ import {SpecialityModalComponent} from '../../speciality/speciality-modal/specia
 export class EditSpecialityModalComponent extends SpecialityModalComponent {
   btnUpd = 'Редагувати';
   title = 'Редагувати спеціальність';
+  titleUpdated = 'Запис успішно відредаговано';
+  isUpdated = false;
 
   createForm(): void {
     this.specialityForm = this.fb.group({
@@ -28,9 +30,11 @@ export class EditSpecialityModalComponent extends SpecialityModalComponent {
     this.delUpdateService.updateEntity(id, entityName,
       {speciality_code, speciality_name}).subscribe(specialityData => {
         this.delUpdateService.passUpdatedSpeciality(specialityData);
-        this.dialogRef.close();
+        this.isUpdated = true;
       },
-      err => console.log(err)
+      () => {
+        this.errorMessage = 'Спеціальність з такими даними вже існує';
+      }
     );
   }
 }

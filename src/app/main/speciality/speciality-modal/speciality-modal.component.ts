@@ -4,8 +4,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 import {SpecialityService} from '../speciality.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
-import {Speciality} from '../speciality';
-import {SpecialityDto} from '../speciality-dto';
 
 @Component({
   selector: 'app-speciality-modal',
@@ -23,7 +21,11 @@ export class SpecialityModalComponent {
   errorRequired = 'Заповніть поле!';
   errorCodePattern = 'Дані повинні бути вигляду (1.2345678)';
   title = 'Додати спеціальність';
+  titleSuccess = 'Запис успішно додано';
   btnClose = 'Відмінити';
+  errorMessage = '';
+  btnOk = 'Ок';
+  isAdded = false;
 
   constructor(public dialogRef: MatDialogRef<SpecialityModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -45,7 +47,10 @@ export class SpecialityModalComponent {
       specialityName: speciality.name,
     }).subscribe(specialityData => {
       this.delUpdateService.passInsertedSpeciality(specialityData);
-      this.dialogRef.close();
-    });
+      this.isAdded = true;
+    },
+      () => {
+      this.errorMessage = 'Спеціальність з такими даними вже існує';
+      });
   }
 }

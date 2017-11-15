@@ -66,7 +66,6 @@ export class GroupsComponent implements OnInit {
         this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
       },
       err => {
-        console.log(err);
         this.errWithDisplayingGroups = generalConst.errorWithDisplayData;
       });
   }

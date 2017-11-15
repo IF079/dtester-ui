@@ -23,7 +23,6 @@ export class TestDetailComponent {
     this.testDetailService.getTestDetails().subscribe(data => {
       this.testDetails = data[0];
       this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
-      console.log(data[0]);
     },
     err => {
       log.error(err);
@@ -35,7 +34,6 @@ export class TestDetailComponent {
     this.testDetailService.getTestDetailsRange(5, 1).subscribe(data => {
       this.testDetails = data[0];
       this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
-      console.log(data[0]);
     },
     err => {
       log.error(err);

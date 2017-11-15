@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {TimeTableService} from '../../time-table/time-table.service';
@@ -21,6 +21,7 @@ export class EditTimetableModalComponent {
     endDate: 'Дата закінчення',
     endTime: 'Час закінчення'
   };
+  errRequestMsg: string;
   groupDictionary = {};
   subjectDictionary = {};
   groupValues = [];
@@ -53,25 +54,52 @@ export class EditTimetableModalComponent {
     const endDate = this.data[5];
     const endTime = this.data[6];
     this.editTimetableForm = this.formBuilder.group({
-      groupName: [groupName],
-      subjectName: [subjectName],
-      startDate: [startDate],
-      startTime: [startTime],
-      endDate: [endDate],
-      endTime: [endTime],
+      groupName: [groupName, Validators.required],
+      subjectName: [subjectName, Validators.required],
+      startDate: [startDate, Validators.required],
+      startTime: [startTime, Validators.required],
+      endDate: [endDate, Validators.required],
+      endTime: [endTime, Validators.required],
     });
   }
 
+  get groupName() {
+    return this.editTimetableForm.get('groupName');
+  }
+
+  get subjectName() {
+    return this.editTimetableForm.get('subjectName');
+  }
+
+  get startTime() {
+    return this.editTimetableForm.get('startTime');
+  }
+
+  get startDate() {
+    return this.editTimetableForm.get('endDate');
+  }
+
+  get endDate() {
+    return this.editTimetableForm.get('endDate');
+  }
+
+  get endTime() {
+    return this.editTimetableForm.get('endTime');
+  }
+
+  isFormValid(): boolean {
+    return this.editTimetableForm.valid;
+  }
   editTimetable() {
-    const groupName = this.editTimetableForm.get('groupName').value;
-    const subjectName = this.editTimetableForm.get('subjectName').value;
-    const start_date = this.editTimetableForm.get('startDate').value;
-    const start_time = this.editTimetableForm.get('startTime').value;
-    const end_date = this.editTimetableForm.get('endDate').value;
-    const end_time = this.editTimetableForm.get('endTime').value;
+    const groupName = this.groupName.value;
+    const subjectName = this.subjectName.value;
+    const start_date = this.startDate.value;
+    const start_time = this.startTime.value;
+    const end_date = this.endDate.value;
+    const end_time = this.endTime.value;
     const keysOfGroupDictionary = Object.keys(this.groupDictionary);
     const keysOfSubjectDictionary = Object.keys(this.subjectDictionary);
-    const entityName = 'Timetable';
+    const entityName = 'TimeTable';
     const timetableId = this.data[0];
     let group_id = 0;
     let subject_id = 0;
@@ -97,7 +125,10 @@ export class EditTimetableModalComponent {
         this.delUpdateService.passUpdatedTimetable(updatedTimetable);
         this.dialogRef.close();
       },
-      (err) => console.log(err)
+      (err) => {
+        this.errRequestMsg = `Розклад для такої групи і предмету вже можливо існує, дати розкладу такі вже є,
+        або виникла інша помилка на сервері`;
+      }
     );
 
   }

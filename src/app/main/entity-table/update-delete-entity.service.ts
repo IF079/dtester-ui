@@ -9,6 +9,7 @@ import {Faculty} from '../faculties/faculty';
 import {SpecialityDto} from '../speciality/speciality-dto';
 import {Speciality} from '../speciality/speciality';
 import {RecordsCount} from '../shared/entities/recordsCount';
+import {TimeTable} from '../time-table/time-table';
 
 
 @Injectable()
@@ -29,7 +30,7 @@ export class UpdateDeleteEntityService {
   private groupUpdatedSource = new Subject<Group>();
   private specialityUpdatedSource = new Subject();
   private specialityInsertedSource = new Subject();
-  private timetableUpdatedSource = new Subject();
+  private timetableUpdatedSource = new Subject<TimeTable>();
 
   private facultySource = new Subject();
   private specialitySource = new Subject();
@@ -73,7 +74,7 @@ export class UpdateDeleteEntityService {
     this.studentUpdatedSource.next(item);
   }
 
-  passUpdatedTimetable(item) {
+  passUpdatedTimetable(item: TimeTable) {
     this.timetableUpdatedSource.next(item);
   }
 

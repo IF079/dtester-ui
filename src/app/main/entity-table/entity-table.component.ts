@@ -30,7 +30,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     Speciality: EditSpecialityModalComponent,
     Faculty: EditFacultyModalComponent,
     Student: EditStudentModalComponent,
-    Timetable: EditTimetableModalComponent
+    TimeTable: EditTimetableModalComponent
   };
 
   constructor(public dialog: MatDialog, private router: Router, private delUpdateService: UpdateDeleteEntityService) {
@@ -100,8 +100,8 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.delUpdateService.timetableUpdated$.subscribe(timetableData => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === timetableData[0].timetable_id) {
-          this.tableRowArr[i] = Object.values(timetableData[0]);
+        if (this.tableRowArr[i][id] === timetableData.timetable_id) {
+          this.tableRowArr[i] = Object.values(timetableData);
           break;
         }
       }

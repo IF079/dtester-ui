@@ -144,11 +144,8 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.deleteItemInDom();
     this.updateGroupInDom();
     this.updateFacultyInDom();
-<<<<<<< HEAD
     this.updateTimetableInDom();
-=======
     this.updateStudentInDom();
->>>>>>> welcomeAdmin
   }
 
   openDeleteDialogAndPassItemToDelete(item) {

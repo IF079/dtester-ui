@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {GroupsService} from '../groups.service';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'app-groups-modal',
@@ -14,15 +15,22 @@ export class GroupsModalComponent implements OnInit {
   groupForm: FormGroup;
   facultyValues = [];
   specialityValues = [];
+  isGroupAdded = false;
   placeholders = {
     groupName: 'Назва групи',
     facultyName: 'Назва факультету',
     specialityName: 'Назва спеціальності'
   };
+  successMsg = 'Групу додано успішно';
+  errorRequired = 'Заповніть поле!';
+  btnClose = 'Відмінити';
+  btnOk = 'Ок';
   btnAdd = 'Додати групу';
+  errRequestMsg: string;
 
   constructor(public dialogRef: MatDialogRef<GroupsModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private groupsService: GroupsService, private formBuilder: FormBuilder) {
+              @Inject(MAT_DIALOG_DATA) public data: any, private groupsService: GroupsService,
+              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
     this.createForm();
   }
 
@@ -30,19 +38,35 @@ export class GroupsModalComponent implements OnInit {
     this.facultyValues = Object.values(this.data.facultyDictionary);
     this.specialityValues = Object.values(this.data.specialityDictionary);
     this.groupForm = this.formBuilder.group({
-      groupName: [''],
-      facultyName: [''],
-      specialityName: ['']
+      groupName: ['', Validators.required],
+      facultyName: ['', Validators.required],
+      specialityName: ['', Validators.required]
     });
+  }
+
+  get groupName() {
+    return this.groupForm.get('groupName');
+  }
+
+  get facultyName() {
+    return this.groupForm.get('facultyName');
+  }
+
+  get specialityName() {
+    return this.groupForm.get('specialityName');
+  }
+
+  isFormValid(): boolean {
+    return this.groupForm.valid;
   }
 
   ngOnInit() {
   }
 
   addGroup() {
-    const group_name = this.groupForm.get('groupName').value;
-    const facultyName = this.groupForm.get('facultyName').value;
-    const specialityName = this.groupForm.get('specialityName').value;
+    const group_name = this.groupName.value;
+    const facultyName = this.facultyName.value;
+    const specialityName = this.specialityName.value;
     const keysOfFacultyDictionary = Object.keys(this.data.facultyDictionary);
     const keysOfSpecialityDictionary = Object.keys(this.data.specialityDictionary);
     let speciality_id = 0;
@@ -59,14 +83,14 @@ export class GroupsModalComponent implements OnInit {
         break;
       }
     }
-    console.log(faculty_id);
-    console.log(speciality_id);
     this.groupsService.addGroup({group_name, faculty_id, speciality_id}).subscribe(
       (resp) => {
-        this.groupsService.passAdded(resp[0]);
-        this.dialogRef.close();
+        this.delUpdateService.passInsertedGroup(resp[0]);
+        this.isGroupAdded = true;
       },
-      (err) => console.log(err)
+      (err) => {
+        this.errRequestMsg = `Проблеми зі з'єднанням на сервері або якась інша помилка`;
+      }
     );
 
 

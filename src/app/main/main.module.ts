@@ -13,7 +13,6 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {FacultyModalComponent} from './faculties/faculty-modal/faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
 import {GroupsModalComponent} from './groups/groups-modal/groups-modal.component';
-import {ModalComponent} from './modal/modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
@@ -50,7 +49,6 @@ import {ResultAddModalComponent} from './test/result/result-add-modal/result-add
 import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from './entity-table/edit-student-modal/edit-student-modal.component';
-import {DeleteErrorModalComponent} from './entity-table/delete-error-modal/delete-error-modal.component';
 import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/edit-timetable-modal.component';
 
 @NgModule({
@@ -61,7 +59,6 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     FacultyModalComponent,
     GroupsComponent,
     GroupsModalComponent,
-    ModalComponent,
     SpecialityComponent,
     StudentComponent,
     StudentDetailComponent,
@@ -85,7 +82,6 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     EditSpecialityModalComponent,
     EditFacultyModalComponent,
     EditStudentModalComponent,
-    DeleteErrorModalComponent,
     EditTimetableModalComponent
 
   ],
@@ -97,7 +93,6 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     FormsModule
   ],
   entryComponents: [
-    DeleteErrorModalComponent,
     DeleteConfirmModalComponent,
     EditSubjectModalComponent,
     SubjectModalComponent,

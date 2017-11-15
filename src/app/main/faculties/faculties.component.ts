@@ -40,13 +40,13 @@ export class FacultiesComponent implements OnInit {
   updateNumberOfRecordsInDomWhenAdded() {
     this.facultyService.facultyAdded$.subscribe(() => {
         this.numberOfRecords += 1;
-      })
+      });
   }
 
   updateNumberOfRecordsInDomWhenDeleted() {
     this.delUpdateService.recordDeletedInDataBase$.subscribe(() => {
         this.numberOfRecords -= 1;
-      })
+      });
   }
 
   openDialog() {

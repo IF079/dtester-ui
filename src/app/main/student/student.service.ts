@@ -27,24 +27,24 @@ export class StudentService {
   getStudentsRange(limit: number, offset: number): Observable<[Student[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<StudentDto[]>(`${url.studentUrl}${url.getRecordsRange}/${limit}/${offset}`)
-        .map( studentDtoArr => studentDtoArr.map(studentDto => new Student(studentDto))),
+        .map(studentDtoArr => studentDtoArr.map(studentDto => new Student(studentDto))),
       this.http.get<RecordsCount>(`${url.studentUrl}${url.getCount}`)
     );
   }
 
   getStudentsByGroup(groupId: number): Observable<Student[]> {
     return this.http.get<StudentDto[]>(`${url.studentUrl}${url.getStudentsByGroup}/${groupId}`)
-      .map( studentDtoArr => studentDtoArr.map( studentDto => new Student(studentDto) ) );
+      .map(studentDtoArr => studentDtoArr.map(studentDto => new Student(studentDto)));
   }
 
   getStudentBySurename(surename: string) {
     return this.http.get<StudentDto[]>(`${url.studentUrl}${url.getRecordsBySearch}/${surename}`)
-      .map( studentDtoArr => studentDtoArr.map(studentDto => new Student(studentDto)));
+      .map(studentDtoArr => studentDtoArr.map(studentDto => new Student(studentDto)));
   }
 
   getStudent(id: number): Observable<Student[]> {
     return this.http.get<StudentDto[]>(`${url.studentUrl}${url.getRecords}/${id}`)
-      .map( studentDtoArr => studentDtoArr.map(studentDto => new Student(studentDto)));
+      .map(studentDtoArr => studentDtoArr.map(studentDto => new Student(studentDto)));
   }
 
   setStudent(student: Student, otherInfo: OtherDtoInfo): Observable<any> {
@@ -62,7 +62,6 @@ export class StudentService {
   checkEmailAddress(email: string): Observable<any> {
     return this.http.get(`${url.adminUser}${url.checkEmailAddress}/${email}`);
   }
-
 }
 
 const log = LoggerFactory.create(StudentService);

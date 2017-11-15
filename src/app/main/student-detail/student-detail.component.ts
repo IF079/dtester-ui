@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-
 import 'rxjs/add/operator/mergeMap';
 
 import {Student} from '../student/student';

@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
 import {GroupsService} from './groups.service';
@@ -15,7 +15,7 @@ import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.se
   providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
 
-export class GroupsComponent implements OnInit, OnChanges {
+export class GroupsComponent implements OnInit {
   limit = 10;
   offset = 0;
   pageSizeOptions = [5, 10, 25, 100];
@@ -32,15 +32,13 @@ export class GroupsComponent implements OnInit, OnChanges {
   }
 
   updateNumberOfRecordsInDom() {
-      this.delUpdateService.groupInserted$.subscribe(resp => {
-        this.numberOfRecords += 1;
-      });
+    this.delUpdateService.groupInserted$.subscribe(resp => {
+      this.numberOfRecords += 1;
+    });
     this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
-        this.numberOfRecords -= 1;
-      });
+      this.numberOfRecords -= 1;
+    });
   }
-
-
 
   goPage(pageEvent: PageEvent) {
     this.limit = pageEvent.pageSize;
@@ -59,11 +57,11 @@ export class GroupsComponent implements OnInit, OnChanges {
   getGroupsRange() {
     this.groupsService.getGroupsRange(this.limit, this.offset).subscribe(data => {
         this.groups = data[0];
-        data[1].forEach(item => this.facultyDictionary[item.faculty_id] = item.faculty_name);
-        data[2].forEach(item => this.specialityDictionary[item.specialityId] = item.specialityName);
-        this.groups.forEach(item => {
-          item.faculty_id = this.facultyDictionary[item.faculty_id];
-          item.speciality_id = this.specialityDictionary[item.speciality_id];
+        data[1].forEach(facultyItem => this.facultyDictionary[facultyItem.faculty_id] = facultyItem.faculty_name);
+        data[2].forEach(specialityItem => this.specialityDictionary[specialityItem.specialityId] = specialityItem.specialityName);
+        this.groups.forEach(groupItem => {
+          groupItem.faculty_id = this.facultyDictionary[groupItem.faculty_id];
+          groupItem.speciality_id = this.specialityDictionary[groupItem.speciality_id];
         });
         this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
       },
@@ -71,10 +69,6 @@ export class GroupsComponent implements OnInit, OnChanges {
         console.log(err);
         this.errWithDisplayingGroups = generalConst.errorWithDisplayData;
       });
-  }
-
-  ngOnChanges() {
-
   }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {TestDetailService} from './test-detail.service';
 import {TestDetail} from './test-detail';
@@ -10,7 +10,7 @@ import {generalConst} from '../shared/constants/general-constants';
   templateUrl: './test-detail.component.html',
   styleUrls: ['./test-detail.component.scss']
 })
-export class TestDetailComponent implements OnInit {
+export class TestDetailComponent {
   testDetails: TestDetail[];
   testDetail: TestDetail;
   numberOfRecords: number;
@@ -42,11 +42,6 @@ export class TestDetailComponent implements OnInit {
       this.errWithDisplayingStudents = generalConst.errorWithDisplayData;
     });
   }
-
-  ngOnInit() {
-
-  }
-
 }
 
 const log = LoggerFactory.create(TestDetailComponent);

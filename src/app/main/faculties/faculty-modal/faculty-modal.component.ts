@@ -27,7 +27,7 @@ export class FacultyModalComponent {
   constructor(public dialogRef: MatDialogRef<FacultyModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private facultyService: FacultyService,
-              private fb: FormBuilder){
+              private fb: FormBuilder) {
     this.facultyForm = this.fb.group({
       name: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
       description: [null, Validators.compose([Validators.required, Validators.minLength(5)])]
@@ -38,8 +38,8 @@ export class FacultyModalComponent {
   const faculty_name = this.facultyForm.get('name').value;
   const faculty_description = this.facultyForm.get('description').value;
   this.facultyService.addFaculty({faculty_name,  faculty_description}).subscribe(
-    (resp) => {
-      this.facultyService.passAdded(resp[0]);
+    (facultyData) => {
+      this.facultyService.passAdded(facultyData[0]);
       this.isFacultyAdded = true;
     },
     err => {

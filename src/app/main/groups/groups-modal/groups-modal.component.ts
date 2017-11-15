@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {GroupsService} from '../groups.service';
@@ -84,8 +84,8 @@ export class GroupsModalComponent implements OnInit {
       }
     }
     this.groupsService.addGroup({group_name, faculty_id, speciality_id}).subscribe(
-      (resp) => {
-        this.delUpdateService.passInsertedGroup(resp[0]);
+      (groupData) => {
+        this.delUpdateService.passInsertedGroup(groupData[0]);
         this.isGroupAdded = true;
       },
       (err) => {

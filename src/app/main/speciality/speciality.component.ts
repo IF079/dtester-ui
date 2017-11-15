@@ -39,9 +39,9 @@ export class SpecialityComponent implements OnInit {
   }
 
   getSpecialities(): void {
-    this.specialityService.getSpeciality(this.limit, this.offset).subscribe(data => {
-        this.specialities = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
+    this.specialityService.getSpeciality(this.limit, this.offset).subscribe(specialityData => {
+        this.specialities = specialityData[0];
+        this.numberOfRecords = parseInt(specialityData[1].numberOfRecords, 10);
       },
       err => {
         this.errWithDisplayingSpeciality = generalConst.errorWithDisplayData;

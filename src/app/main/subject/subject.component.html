@@ -1,10 +1,10 @@
 <div *ngIf="errWithDisplayingSubjects" class="mat-error">{{errWithDisplayingSubjects}}</div>
-<button  class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
+<button class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
 
-<app-entity-table [entityName]="'Subject'" [columnsArray]="headingColumnsOfTable" [entityArray]="subjects"></app-entity-table>
-
+<app-entity-table [entityName]="'Subject'" [columnsArray]="headingColumnsOfTable"
+                  [entityArray]="subjects"></app-entity-table>
 <mat-paginator [length]="numberOfRecords"
-              [pageSize]="limit"
-              [pageSizeOptions]="pageSizeOptions"
-              (page)="goPage($event)">
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
 </mat-paginator>

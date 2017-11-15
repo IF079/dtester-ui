@@ -8,7 +8,6 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
-import {DeleteErrorModalComponent} from '../entity-table/delete-error-modal/delete-error-modal.component';
 
 @Component({
   selector: 'app-subjects',
@@ -70,4 +69,3 @@ export class SubjectComponent implements OnInit {
 }
 
 const log = LoggerFactory.create(SubjectComponent);
-

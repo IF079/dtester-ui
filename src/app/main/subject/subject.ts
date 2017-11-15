@@ -9,5 +9,4 @@ export class Subject {
     this.name = subjectDto.subject_name;
     this.description = subjectDto.subject_description;
   }
-
 }

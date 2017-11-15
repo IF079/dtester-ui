@@ -12,11 +12,15 @@ import {FacultyService} from '../faculty.service';
 
 export class FacultyModalComponent {
   facultyForm: FormGroup;
+  successMsg = 'Факультет успішно добавлено в кінець списку';
+  isFacultyAdded = false;
   placeholders = {
     name: 'Назва Факультету',
     description: 'Опис Факультету'
   };
   btnAdd = 'Додати Факультет';
+  btnOk = 'Ок';
+  errRequestMsg: string;
   errorRequired = 'Необхідно заповнити дане поле(мін. 3 символи)';
   errorRequiredInformation = 'Необхідно заповнити дане поле(мін. 5 символів)';
 
@@ -36,7 +40,10 @@ export class FacultyModalComponent {
   this.facultyService.addFaculty({faculty_name,  faculty_description}).subscribe(
     (resp) => {
       this.facultyService.passAdded(resp[0]);
-      this.dialogRef.close();
+      this.isFacultyAdded = true;
+    },
+    err => {
+      this.errRequestMsg = 'Помилка, можливо даний факультет вже існує';
     });
   }
 }

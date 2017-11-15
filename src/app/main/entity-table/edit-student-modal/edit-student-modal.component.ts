@@ -57,6 +57,7 @@ export class EditStudentModalComponent {
         const studentFname = this.data[4];
         const studentGroup = response[0].groupId;
         this.dropPhoto = response[0].photo;
+        this.curentStudent = response[0];
         this.form.patchValue({
           sname: studentSurname,
           name: studentName,
@@ -129,24 +130,32 @@ export class EditStudentModalComponent {
     const gradebook_id = this.form.get('gradebookId').value;
     const group_id = this.form.get('group').value;
     const photo = this.dropPhoto || '';
-    this.delUpdateService.updateEntity(id, entityName, {
-      student_name,
-      student_fname,
-      student_surname,
-      gradebook_id,
-      group_id,
-      photo
-    }).subscribe(response => {
-      this.studentService.getStudent(this.data[0]).subscribe(responseStudent => {
-        delete responseStudent[0].photo;
-        delete responseStudent[0].plainPassword;
-        delete responseStudent[0].groupId;
-        this.delUpdateService.passUpdatedStudent(responseStudent);
-        this.dialogRef.close();
-      });
-    },
-      err => this.modal.openErrorDialog()
-    );
+    this.dialogRef.close();
+    if (!(
+        student_name === this.curentStudent.studentName &&
+        student_fname === this.curentStudent.studentFname &&
+        student_surname === this.curentStudent.studentSurname &&
+        gradebook_id === this.curentStudent.gradebookId &&
+        group_id === this.curentStudent.groupId &&
+        photo === this.dropPhoto
+      )) {
+        this.delUpdateService.updateEntity(id, entityName, {
+          student_name,
+          student_fname,
+          student_surname,
+          gradebook_id,
+          group_id,
+          photo
+        }).subscribe(response => {
+          this.studentService.getStudent(this.data[0]).subscribe(responseStudent => {
+            delete responseStudent[0].photo;
+            delete responseStudent[0].plainPassword;
+            delete responseStudent[0].groupId;
+            this.delUpdateService.passUpdatedStudent(responseStudent);
+            this.modal.openSuccessDialog('Зміни успішно збережено!');
+          });
+        });
+      }
   }
 
 }

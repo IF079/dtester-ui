@@ -88,7 +88,7 @@ export class QuestionAddModalComponent {
             }
           });
         });
-        this.modalService.openInfoDialog('Запитання успішно добавлено!');
+        this.modalService.openSuccessDialog('Запитання успішно добавлено!');
       } else {
         this.modalService.openErrorDialog('Щось пішло не так, як було заплановано! Спробуйте, будь ласка, пізніше.');
       }

@@ -58,7 +58,7 @@ export class StudentComponent implements OnInit {
 
   parseGroups(): void {
     this.groupsService.getGroups().subscribe(data => {
-      let localArr = [];
+      const localArr = [];
       data[0].forEach(group => {
         localArr.push({
           value: group.group_id,
@@ -79,7 +79,7 @@ export class StudentComponent implements OnInit {
         delete student.groupId;
       });
     },
-    error => this.infoModal.openErrorDialog());
+    error => this.infoModal.openInfoDialog('Увага', 'На даний момент тут немає записів.'));
   }
 
   getStudents(): void {
@@ -90,7 +90,7 @@ export class StudentComponent implements OnInit {
           delete item.plainPassword;
         });
       },
-      error => this.infoModal.openErrorDialog());
+      error => this.infoModal.openInfoDialog('Увага', 'На даний момент тут немає записів.'));
   }
 
   goPage(pageEvent: PageEvent) {

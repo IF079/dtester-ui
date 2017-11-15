@@ -23,6 +23,7 @@ export class UpdateDeleteEntityService {
   private subjectInsertedSource = new Subject();
   private groupInsertedSource = new Subject();
   private subjectUpdatedSource = new Subject();
+  private studentUpdatedSource = new Subject();
   private recordDeletedInDatabaseSource = new Subject();
   private facultyAndSpecialitySource = new Subject();
   private groupUpdatedSource = new Subject<Group>();
@@ -38,6 +39,7 @@ export class UpdateDeleteEntityService {
   subjectInserted$ = this.subjectInsertedSource.asObservable();
 
   subjectUpdated$ = this.subjectUpdatedSource.asObservable();
+  studentUpdated$ = this.studentUpdatedSource.asObservable();
   groupUpdated$ = this.groupUpdatedSource.asObservable();
 
   recordDeletedInDataBase$ = this.recordDeletedInDatabaseSource.asObservable();
@@ -65,6 +67,10 @@ export class UpdateDeleteEntityService {
 
   passUpdatedSubject(item) {
     this.subjectUpdatedSource.next(item);
+  }
+
+  passUpdatedStudent(item) {
+    this.studentUpdatedSource.next(item);
   }
 
   passUpdatedTimetable(item) {

@@ -51,7 +51,7 @@ export class WelcomeComponent {
   }
 
   parseTests(test: Test[]): any[] {
-    let localArr = [];
+    const localArr = [];
     test.forEach(item => {
       localArr.push({
         value: item.testId,
@@ -62,7 +62,7 @@ export class WelcomeComponent {
   }
 
   parseSubjects(subject: Subject[]): any[] {
-    let localArr = [];
+    const localArr = [];
     subject.forEach(item => {
       localArr.push({
         value: item.id,
@@ -73,7 +73,7 @@ export class WelcomeComponent {
   }
 
   parseResults(result: Result[]): any[] {
-    let localArr = [];
+    const localArr = [];
     result.forEach(item => {
       this.resultService.getStudentAndTest(item.studentId, item.testId).subscribe(data => {
         localArr.push({

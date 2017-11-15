@@ -42,7 +42,6 @@ export class EditTimetableModalComponent {
       this.groupValues = Object.values(this.groupDictionary);
       data[1].forEach(item => this.subjectDictionary[item.id] = item.name);
       this.subjectValues = Object.values(this.subjectDictionary);
-
     });
   }
 
@@ -66,10 +65,10 @@ export class EditTimetableModalComponent {
   editTimetable() {
     const groupName = this.editTimetableForm.get('groupName').value;
     const subjectName = this.editTimetableForm.get('subjectName').value;
-    const startDate = this.editTimetableForm.get('startDate').value;
-    const startTime = this.editTimetableForm.get('startTime').value;
-    const endDate = this.editTimetableForm.get('endDate').value;
-    const endTime = this.editTimetableForm.get('endTime').value;
+    const start_date = this.editTimetableForm.get('startDate').value;
+    const start_time = this.editTimetableForm.get('startTime').value;
+    const end_date = this.editTimetableForm.get('endDate').value;
+    const end_time = this.editTimetableForm.get('endTime').value;
     const keysOfGroupDictionary = Object.keys(this.groupDictionary);
     const keysOfSubjectDictionary = Object.keys(this.subjectDictionary);
     const entityName = 'Timetable';
@@ -90,7 +89,7 @@ export class EditTimetableModalComponent {
     }
     console.log(group_id);
     console.log(subject_id);
-    this.delUpdateService.updateEntity(timetableId, entityName, {group_id, subject_id}).subscribe(
+    this.delUpdateService.updateEntity(timetableId, entityName, {group_id, subject_id, start_date, start_time, end_date, end_time}).subscribe(
       (updatedTimetableResponse) => {
         const updatedTimetable = updatedTimetableResponse[0];
         updatedTimetable.group_id = this.groupDictionary[updatedTimetable.group_id];

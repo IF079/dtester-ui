@@ -10,7 +10,6 @@ import {DeleteErrorModalComponent} from '../delete-error-modal/delete-error-moda
 })
 
 export class DeleteConfirmModalComponent {
-
   btnConfirmYes = 'Так';
   btnConfirmNo = 'Ні';
   btnClose = 'Закрити';
@@ -18,7 +17,7 @@ export class DeleteConfirmModalComponent {
 
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<DeleteConfirmModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRefForErorModal: MatDialogRef<DeleteErrorModalComponent>,
+              public dialogRefForErrorModal: MatDialogRef<DeleteErrorModalComponent>,
               private delUpdateService: UpdateDeleteEntityService) {
   }
 
@@ -26,13 +25,11 @@ export class DeleteConfirmModalComponent {
     const id = this.data.item[0];
     const entityName = this.data.entityName;
     this.delUpdateService.deleteEntity(id, entityName).subscribe(
-      (resp) => {
-        console.log(resp);
+      () => {
         this.delUpdateService.passDeleted(this.data.item);
         this.dialogRef.close();
       },
-      (err) => {
-        console.log(err);
+      () => {
         this.errorMsg = 'Виникла помилка при видаленні даних. Дані цього запису використовуються в інших сутностях. Або виникла проблема\n' +
           '  зі з\'єднанням на сервері';
       }

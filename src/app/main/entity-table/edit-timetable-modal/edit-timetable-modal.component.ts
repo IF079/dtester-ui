@@ -39,9 +39,9 @@ export class EditTimetableModalComponent {
 
   loadGroupsAndSubjects() {
     this.timetableService.getGroupsAndSubjects().subscribe(data => {
-      data[0].forEach(item => this.groupDictionary[item.group_id] = item.group_name);
+      data[0].forEach(groupItem => this.groupDictionary[groupItem.group_id] = groupItem.group_name);
       this.groupValues = Object.values(this.groupDictionary);
-      data[1].forEach(item => this.subjectDictionary[item.id] = item.name);
+      data[1].forEach(subjectItem => this.subjectDictionary[subjectItem.id] = subjectItem.name);
       this.subjectValues = Object.values(this.subjectDictionary);
     });
   }
@@ -90,6 +90,7 @@ export class EditTimetableModalComponent {
   isFormValid(): boolean {
     return this.editTimetableForm.valid;
   }
+
   editTimetable() {
     const groupName = this.groupName.value;
     const subjectName = this.subjectName.value;
@@ -115,9 +116,14 @@ export class EditTimetableModalComponent {
         break;
       }
     }
-    console.log(group_id);
-    console.log(subject_id);
-    this.delUpdateService.updateEntity(timetableId, entityName, {group_id, subject_id, start_date, start_time, end_date, end_time}).subscribe(
+    this.delUpdateService.updateEntity(timetableId, entityName, {
+      group_id,
+      subject_id,
+      start_date,
+      start_time,
+      end_date,
+      end_time
+    }).subscribe(
       (updatedTimetableResponse) => {
         const updatedTimetable = updatedTimetableResponse[0];
         updatedTimetable.group_id = this.groupDictionary[updatedTimetable.group_id];
@@ -130,6 +136,5 @@ export class EditTimetableModalComponent {
         або виникла інша помилка на сервері`;
       }
     );
-
   }
 }

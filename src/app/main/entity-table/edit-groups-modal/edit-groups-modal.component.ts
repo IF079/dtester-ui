@@ -35,9 +35,9 @@ export class EditGroupsModalComponent {
 
   loadFacultiesAndSpecialities() {
     this.groupsService.getFacultiesAndSpecialities().subscribe(data => {
-      data[0].forEach(item => this.facultyDictionary[item.faculty_id] = item.faculty_name);
+      data[0].forEach(facultyItem => this.facultyDictionary[facultyItem.faculty_id] = facultyItem.faculty_name);
       this.facultyValues = Object.values(this.facultyDictionary);
-      data[1].forEach(item => this.specialityDictionary[item.specialityId] = item.specialityName);
+      data[1].forEach(specialityItem => this.specialityDictionary[specialityItem.specialityId] = specialityItem.specialityName);
       this.specialityValues = Object.values(this.specialityDictionary);
     });
   }

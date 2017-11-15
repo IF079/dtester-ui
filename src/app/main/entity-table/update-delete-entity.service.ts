@@ -1,23 +1,17 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import 'rxjs/add/observable/forkJoin';
 import {Observable} from 'rxjs/Observable';
+
 import {url} from '../shared/constants/url-constants';
 import {Subject} from 'rxjs/Subject';
 import {Group} from '../groups/group';
-import 'rxjs/add/observable/forkJoin';
-import {Faculty} from '../faculties/faculty';
-import {SpecialityDto} from '../speciality/speciality-dto';
-import {Speciality} from '../speciality/speciality';
-import {RecordsCount} from '../shared/entities/recordsCount';
-
+import {TimeTable} from '../time-table/time-table';
 
 @Injectable()
 export class UpdateDeleteEntityService {
-
   constructor(private http: HttpClient) {
-
   }
-
   // Observable string sources
   private timeTableInsertedSource = new Subject();
   private subjectInsertedSource = new Subject();
@@ -25,33 +19,24 @@ export class UpdateDeleteEntityService {
   private subjectUpdatedSource = new Subject();
   private studentUpdatedSource = new Subject();
   private recordDeletedInDatabaseSource = new Subject();
-  private facultyAndSpecialitySource = new Subject();
+
   private groupUpdatedSource = new Subject<Group>();
   private specialityUpdatedSource = new Subject();
   private specialityInsertedSource = new Subject();
-  private timetableUpdatedSource = new Subject();
-
+  private timetableUpdatedSource = new Subject<TimeTable>();
   private facultySource = new Subject();
-  private specialitySource = new Subject();
-
   timeTableInserted$ = this.timeTableInsertedSource.asObservable();
   groupInserted$ = this.groupInsertedSource.asObservable();
   subjectInserted$ = this.subjectInsertedSource.asObservable();
-
   subjectUpdated$ = this.subjectUpdatedSource.asObservable();
   studentUpdated$ = this.studentUpdatedSource.asObservable();
   groupUpdated$ = this.groupUpdatedSource.asObservable();
-
   recordDeletedInDataBase$ = this.recordDeletedInDatabaseSource.asObservable();
-
-  getFacultyAndSpeciality$ = this.facultyAndSpecialitySource.asObservable();
   specialityUpdated$ = this.specialityUpdatedSource.asObservable();
   specialityInserted$ = this.specialityInsertedSource.asObservable();
   timetableUpdated$ = this.timetableUpdatedSource.asObservable();
   facultyUpdated$ = this.facultySource.asObservable();
-  getSpeciality$ = this.specialitySource.asObservable();
-  private joinedSource = new Subject();
-  groupSpecialityFaculty$ = Observable.forkJoin(this.joinedSource.asObservable());
+
 
   passInsertedTimetable(item) {
     this.timeTableInsertedSource.next(item);
@@ -73,7 +58,7 @@ export class UpdateDeleteEntityService {
     this.studentUpdatedSource.next(item);
   }
 
-  passUpdatedTimetable(item) {
+  passUpdatedTimetable(item: TimeTable) {
     this.timetableUpdatedSource.next(item);
   }
 
@@ -93,21 +78,8 @@ export class UpdateDeleteEntityService {
     this.groupUpdatedSource.next(item);
   }
 
-
-  passFaculty(item) {
-    this.facultySource.next(item);
-  }
-
-  passErrorWhenUpdateSubject(err) {
-    this.subjectUpdatedSource.error(err);
-  }
-
   passDeleted(item) {
     this.recordDeletedInDatabaseSource.next(item);
-  }
-
-  passErrorWhenDelete(err) {
-    this.recordDeletedInDatabaseSource.error(err);
   }
 
   updateEntity(id: number, entity: string, dto: any): Observable<any> {

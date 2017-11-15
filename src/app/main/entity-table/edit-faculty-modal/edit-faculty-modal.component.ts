@@ -40,11 +40,10 @@ export class EditFacultyModalComponent {
     const faculty_name = this.facultyForm.get('name').value;
     const faculty_description = this.facultyForm.get('description').value;
     this.delUpdateService.updateEntity(id, entityName,
-      {faculty_name, faculty_description}).subscribe(response => {
-        this.delUpdateService.passUpdatedFaculty(response);
+      {faculty_name, faculty_description}).subscribe(facultyData => {
+        this.delUpdateService.passUpdatedFaculty(facultyData);
         this.dialogRef.close();
-      },
-      err => console.log(err)
+      }
     );
   }
 }

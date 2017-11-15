@@ -7,7 +7,6 @@ import {User} from '../entities/user';
 import {Authorization} from '../entities/auth';
 import {DEFAULT_AUTH_CONFIG} from '../config/auth.default.config';
 
-
 @Injectable()
 export class AuthService {
   private isLoggedInParams: string;

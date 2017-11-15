@@ -9,13 +9,10 @@ import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 })
 
 export class DeleteErrorModalComponent {
-  successMessage;
   btnOk = 'ОК';
   constructor(public dialogRef: MatDialogRef<DeleteErrorModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private delUpdateService: UpdateDeleteEntityService) {
 
   }
-
-
-  }
+}
 

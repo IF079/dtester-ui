@@ -17,8 +17,6 @@ export class TimeTableModalComponent implements OnInit {
   groupValues = [];
   isTimeTableAdded = false;
   successMsg = 'Розклад додано успішно. Оновіть сторінку, щоб побачити зміни.';
-  errorDatePattern = 'Дані повинні бути вигляду рік-місяць-день';
-  errorTimePattern = 'Дані повинні бути вигляду год:хв:с'
   errorRequired = 'Заповніть поле!';
   errRequestMsg: string;
   placeholders = {
@@ -113,8 +111,8 @@ export class TimeTableModalComponent implements OnInit {
         this.isTimeTableAdded = true;
       },
       (err) => {
-        this.errRequestMsg = `Розклад для такої групи і предмету вже можливо існує, дати розкладу такі вже є,  
-         або виникла інша помилка на сервері`;
+        this.errRequestMsg = `Розклад для такої групи і предмету вже можливо існує, дати розкладу такі вже є,
+        або виникла інша помилка на сервері`;
       }
     );
 

@@ -7,6 +7,9 @@
           <mat-option *ngFor="let group of groupValues" [value]="group">
             {{group}}
           </mat-option>
+          <mat-error>
+            <div *ngIf="groupName.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="subject-name">
@@ -14,24 +17,46 @@
           <mat-option *ngFor="let subject of subjectValues" [value]="subject">
             {{subject}}
           </mat-option>
+          <mat-error>
+            <div *ngIf="subjectName.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
-        <input formControlName="startDate" matInput placeholder="{{placeholders.startDate}}">
-      </mat-form-field>
-      <mat-form-field >
-        <input formControlName="startTime" matInput placeholder="{{placeholders.startTime}}">
-      </mat-form-field>
-      <mat-form-field>
-        <input  formControlName="endDate" matInput placeholder="{{placeholders.endDate}}">
-      </mat-form-field>
-      <mat-form-field>
-        <input  formControlName="endTime" matInput placeholder="{{placeholders.endTime}}">
-      </mat-form-field>
+      <div class="date-and-time">
+        <mat-form-field class="start-date">
+          <input formControlName="startDate" type="date" matInput placeholder="{{placeholders.startDate}}">
+          <mat-error>
+            <div *ngIf="startDate.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="start-time">
+          <input formControlName="startTime" type="time" matInput placeholder="{{placeholders.startTime}}">
+          <mat-error>
+            <div *ngIf="startTime.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="end-date">
+          <input formControlName="endDate" type="date" matInput placeholder="{{placeholders.endDate}}">
+          <mat-error>
+            <div *ngIf="endDate.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="end-time">
+          <input formControlName="endTime" type="time" matInput placeholder="{{placeholders.endTime}}">
+          <mat-error>
+            <div *ngIf="endTime.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-error>
+          <div *ngIf="errRequestMsg">{{errRequestMsg}}</div>
+        </mat-error>
+      </div>
     </mat-card>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button type="submit" class="modal-button" mat-raised-button color="primary">{{btnEdit}}</button>
+    <button type="submit" class="modal-button" [disabled]="!isFormValid()" mat-raised-button color="primary">
+      {{btnEdit}}
+    </button>
     <button mat-button mat-dialog-close>{{btnCancel}}</button>
   </mat-dialog-actions>
 </form>

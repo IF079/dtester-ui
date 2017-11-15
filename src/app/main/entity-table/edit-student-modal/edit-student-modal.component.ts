@@ -1,12 +1,12 @@
 import {Component, Inject, group} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
-import {ActivatedRoute, ParamMap} from '@angular/router';
 
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {StudentService} from '../../student/student.service';
 import {Student} from '../../student/student';
 import {AsyncUsernameValidator} from '../../student/add-modal/async-username.validator';
+import {InfoModalService} from '../../info-modal/info-modal.service';
 
 @Component({
   selector: 'app-edit-student-modal',
@@ -18,7 +18,6 @@ export class EditStudentModalComponent {
   form: FormGroup;
   curentStudent: Student;
   groups: any[];
-  groupId: number;
   dropPhoto: string;
   placeholders = {
     sname: 'Прізвище',
@@ -47,7 +46,7 @@ export class EditStudentModalComponent {
     private delUpdateService: UpdateDeleteEntityService,
     private studentService: StudentService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private modal: InfoModalService
   ) {
     this.createForm();
     this.parseGroups((groupsArr) => {
@@ -65,7 +64,7 @@ export class EditStudentModalComponent {
           group: studentGroup,
           gradebookId: gradebookId
         });
-      })
+      });
     });
   }
 
@@ -99,7 +98,7 @@ export class EditStudentModalComponent {
 
   parseGroups(callback): void {
     this.studentService.getGroups().subscribe(response => {
-      let localArr = [];
+      const localArr = [];
       response.forEach(oneGroup => {
         localArr.push({
           value: oneGroup.group_id,
@@ -112,8 +111,8 @@ export class EditStudentModalComponent {
   }
 
   validatePasswordConfirm(control: AbstractControl) {
-    let password = control.get('password').value;
-    let passwordConfirm = control.get('passwordConfirm').value;
+    const password = control.get('password').value;
+    const passwordConfirm = control.get('passwordConfirm').value;
     if (password !== passwordConfirm) {
       control.get('passwordConfirm').setErrors({ invalidPasswordConfirm: true });
     } else {
@@ -138,13 +137,15 @@ export class EditStudentModalComponent {
       group_id,
       photo
     }).subscribe(response => {
-      this.studentService.getStudent(this.data[0]).subscribe(responseStudent =>{
-        console.log(responseStudent);
+      this.studentService.getStudent(this.data[0]).subscribe(responseStudent => {
+        delete responseStudent[0].photo;
+        delete responseStudent[0].plainPassword;
+        delete responseStudent[0].groupId;
         this.delUpdateService.passUpdatedStudent(responseStudent);
         this.dialogRef.close();
       });
     },
-      err => console.log(err)
+      err => this.modal.openErrorDialog()
     );
   }
 

@@ -45,12 +45,23 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   updateSubjectInDom() {
-
     this.delUpdateService.subjectUpdated$.subscribe(subjectData => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === subjectData[0].subject_id) {
           this.tableRowArr[i] = Object.values(subjectData[0]);
+          break;
+        }
+      }
+    });
+  }
+
+  updateStudentInDom() {
+    this.delUpdateService.studentUpdated$.subscribe(studentData => {
+      const id = 0;
+      for (let i = 0; i < this.tableRowArr.length; i++) {
+        if (this.tableRowArr[i][id] === studentData[0].userId) {
+          this.tableRowArr[i] = Object.values(studentData[0]);
           break;
         }
       }
@@ -121,6 +132,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.deleteItemInDom();
     this.updateGroupInDom();
     this.updateFacultyInDom();
+    this.updateStudentInDom();
   }
 
   openDeleteDialogAndPassItemToDelete(item) {

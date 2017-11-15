@@ -61,8 +61,8 @@ export class StudentAddModalComponent {
       'fname': [null, Validators.required],
       'group': [this.groupId + ''],
       'gradebookId': [null, [Validators.required, Validators.maxLength(10), Validators.pattern(/[A-Z]{2}-\d{7}/)]],
-      'username': [null, [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
-                  AsyncUsernameValidator.createValidator(this.studentService)],
+      'username': [null, {updateOn: 'blur', validators: [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
+        asyncValidators: [AsyncUsernameValidator.createValidator(this.studentService)]}],
       'email': [null, [Validators.required, Validators.email]],
       'passwords': formBuilder.group({
         'password': [null, [Validators.required, Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/)]],

@@ -58,7 +58,7 @@ export class StudentComponent implements OnInit {
 
   parseGroups(): void {
     this.groupsService.getGroups().subscribe(data => {
-      let localArr = [];
+      const localArr = [];
       data[0].forEach(group => {
         localArr.push({
           value: group.group_id,

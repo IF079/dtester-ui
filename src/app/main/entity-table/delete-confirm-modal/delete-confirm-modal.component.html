@@ -1,8 +1,10 @@
 <h1 mat-dialog-title *ngIf="!errorMsg">Ви справді хочете видалити цей запис?</h1>
 <p mat-dialog-content  *ngIf="errorMsg" class="mat-error">{{errorMsg}} </p>
 <mat-dialog-actions>
+  <div style="margin: auto">
   <button *ngIf="!errorMsg" (click)="deleteItem()" class="modal-button" mat-raised-button color="primary">{{btnConfirmYes}}</button>
   <button *ngIf="!errorMsg" mat-button mat-raised-button color="primary" mat-dialog-close>{{btnConfirmNo}}</button>
   <button *ngIf="errorMsg" mat-button mat-raised-button color="primary" mat-dialog-close>{{btnClose}}</button>
+  </div>
 </mat-dialog-actions>
 

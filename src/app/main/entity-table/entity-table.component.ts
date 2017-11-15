@@ -10,10 +10,6 @@ import {EditTimetableModalComponent} from './edit-timetable-modal/edit-timetable
 import {EditSpecialityModalComponent} from './edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from './edit-student-modal/edit-student-modal.component';
-import {GroupsService} from '../groups/groups.service';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
-import {DeleteErrorModalComponent} from './delete-error-modal/delete-error-modal.component';
 
 @Component({
   selector: 'app-entity-table',
@@ -28,8 +24,6 @@ export class EntityTableComponent implements OnChanges, OnInit {
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
 
-  facultyDictionary = {};
-  specialityDictionary = {};
   componentModalsDictionary = {
     Subject: EditSubjectModalComponent,
     Group: EditGroupsModalComponent,
@@ -39,9 +33,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     Timetable: EditTimetableModalComponent
   };
 
-  constructor(public dialog: MatDialog, private router: Router, private delUpdateService: UpdateDeleteEntityService,
-              private groupsService: GroupsService) {
-
+  constructor(public dialog: MatDialog, private router: Router, private delUpdateService: UpdateDeleteEntityService) {
   }
 
   updateSubjectInDom() {
@@ -123,7 +115,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   openDialogAndPassDataToIt(rowItem): void {
-    const dialogRef = this.dialog.open(this.componentModalsDictionary[this.entityName], {
+    this.dialog.open(this.componentModalsDictionary[this.entityName], {
       data: rowItem
     });
   }
@@ -149,8 +141,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   openDeleteDialogAndPassItemToDelete(item) {
-    const dialogRef = this.dialog.open(DeleteConfirmModalComponent, {
-      height: '350px',
+    this.dialog.open(DeleteConfirmModalComponent, {
       data: {item: item, entityName: this.entityName}
     });
   }

@@ -13,7 +13,7 @@ import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity
 
 export class SubjectModalComponent {
   subjectForm: FormGroup;
-  successMsg = 'Предмет додано успішно';
+  successMsg = 'Предмет додано успішно. Оновіть сторінку, щоб побачити зміни.';
   isSubjectAdded = false;
   placeholders = {
     name: 'Назва предмету',

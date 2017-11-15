@@ -6,6 +6,7 @@ import {TimeTable} from './time-table';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {TimeTableModalComponent} from './timetable-modal/time-table-modal.component';
+import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'app-time-table',
@@ -26,13 +27,22 @@ export class TimeTableComponent implements OnInit {
   groupDictionary = {};
   btnAdd = 'Додати розклад';
 
-  constructor(private timeTableService: TimeTableService, public dialog: MatDialog) {
+  constructor(private timeTableService: TimeTableService, public dialog: MatDialog,  private delUpdateService: UpdateDeleteEntityService) {
+    this.updateNumberOfRecordsInDom();
   }
 
 
+  updateNumberOfRecordsInDom() {
+    this.delUpdateService.timeTableInserted$.subscribe(resp => {
+      this.numberOfRecords += 1;
+    });
+    this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
+      this.numberOfRecords -= 1;
+    });
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(TimeTableModalComponent, {
-      height: '350px',
       width: '1000px',
       data: {groupDictionary: this.groupDictionary, subjectDictionary: this.subjectDictionary}
     });

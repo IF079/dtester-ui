@@ -21,7 +21,7 @@ export class GroupsModalComponent implements OnInit {
     facultyName: 'Назва факультету',
     specialityName: 'Назва спеціальності'
   };
-  successMsg = 'Групу додано успішно';
+  successMsg = 'Групу додано успішно. Оновіть сторінку, щоб побачити зміни.';
   errorRequired = 'Заповніть поле!';
   btnClose = 'Відмінити';
   btnOk = 'Ок';
@@ -39,8 +39,8 @@ export class GroupsModalComponent implements OnInit {
     this.specialityValues = Object.values(this.data.specialityDictionary);
     this.groupForm = this.formBuilder.group({
       groupName: ['', Validators.required],
-      facultyName: ['', Validators.required],
-      specialityName: ['', Validators.required]
+      facultyName: ['', Validators.required, ],
+      specialityName: ['', Validators.required, ]
     });
   }
 

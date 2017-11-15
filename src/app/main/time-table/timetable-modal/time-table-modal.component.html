@@ -1,38 +1,66 @@
-<form [formGroup]="timeTableForm" (ngSubmit)="addTimeTable()" >
-  <h2 mat-dialog-title>Додайте запис</h2>
-  <mat-dialog-content>
+<form [formGroup]="timeTableForm" (ngSubmit)="addTimeTable()">
+  <h2 *ngIf="!isTimeTableAdded" mat-dialog-title>Додайте запис</h2>
+  <mat-dialog-content *ngIf="isTimeTableAdded">{{successMsg}}</mat-dialog-content>
+  <mat-dialog-content *ngIf="!isTimeTableAdded">
     <mat-card>
-      <mat-form-field>
-        <mat-select  formControlName="groupName"   placeholder="{{placeholders.groupName}}"  >
+      <mat-form-field class="group-name">
+        <mat-select formControlName="groupName" placeholder="{{placeholders.groupName}}">
           <mat-option *ngFor="let group of groupValues" [value]="group">
-           {{group}}
+            {{group}}
           </mat-option>
         </mat-select>
+        <mat-error>
+          <div *ngIf="groupName.hasError('required')">{{errorRequired}}</div>
+        </mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <mat-select  formControlName="subjectName"    placeholder="{{placeholders.subjectName}}">
+      <mat-form-field class="subject-name">
+        <mat-select formControlName="subjectName" placeholder="{{placeholders.subjectName}}">
           <mat-option *ngFor="let subject of subjectValues" [value]="subject">
             {{subject}}
           </mat-option>
         </mat-select>
+        <mat-error>
+          <div *ngIf="subjectName.hasError('required')">{{errorRequired}}</div>
+        </mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <input formControlName="dateOfStart"  matInput placeholder="{{placeholders.dateOfStart}}">
-      </mat-form-field>
-      <mat-form-field >
-        <input formControlName="timeOfStart" matInput placeholder="{{placeholders.timeOfStart}}">
-      </mat-form-field>
-      <mat-form-field class="date-of-end">
-        <input  formControlName="dateOfEnd" matInput placeholder="{{placeholders.dateOfEnd}}">
-      </mat-form-field>
-      <mat-form-field class="time-of-end" >
-        <input  formControlName="timeOfEnd" matInput placeholder="{{placeholders.timeOfEnd}}">
-      </mat-form-field>
+      <div class="date-and-time">
+        <mat-form-field class="date-of-start">
+          <input formControlName="dateOfStart" type="date" matInput placeholder="{{placeholders.dateOfStart}}">
+          <mat-error>
+            <div *ngIf="dateOfStart.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="time-of-start">
+          <input formControlName="timeOfStart" type="time" matInput placeholder="{{placeholders.timeOfStart}}">
+          <mat-error>
+            <div *ngIf="timeOfStart.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="date-of-end">
+          <input formControlName="dateOfEnd" type="date" matInput placeholder="{{placeholders.dateOfEnd}}">
+          <mat-error>
+            <div *ngIf="dateOfEnd.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="time-of-end">
+          <input formControlName="timeOfEnd" type="time" matInput placeholder="{{placeholders.timeOfEnd}}">
+          <mat-error>
+            <div *ngIf="timeOfEnd.hasError('required')">{{errorRequired}}</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-error>
+          <div *ngIf="errRequestMsg">{{errRequestMsg}}</div>
+        </mat-error>
+      </div>
     </mat-card>
   </mat-dialog-content>
-  <mat-dialog-actions>
-    <button type="submit" class="modal-button" mat-raised-button color="primary">{{btnAdd}}</button>
-    <button mat-button mat-dialog-close>Cancel</button>
+  <mat-dialog-actions *ngIf="!isTimeTableAdded">
+    <button type="submit" class="modal-button" [disabled]="!isFormValid()" mat-raised-button color="primary">
+      {{btnAdd}}
+    </button>
+    <button mat-button mat-dialog-close>{{btnClose}}</button>
   </mat-dialog-actions>
-
+  <mat-dialog-actions *ngIf="isTimeTableAdded">
+    <button mat-raised-button mat-dialog-close color="primary">{{btnOk}}</button>
+  </mat-dialog-actions>
 </form>

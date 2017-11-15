@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog} from '@angular/material';
 
 import {LoginService} from '../../login/services/login.service';
 import {User} from '../../login/entities/user';
@@ -22,14 +22,11 @@ import {Result} from '../test/result/result';
 export class WelcomeComponent {
   private anonymousUserUsername = 'анонімний користувач';
 
-  constructor(
-    private loginService: LoginService,
-    private testService: TestService,
-    private subjectService: SubjectService,
-    private resultService: ResultService,
-    private dialog: MatDialog,
-    private res: ResultService
-  ) {
+  constructor(private loginService: LoginService,
+              private testService: TestService,
+              private subjectService: SubjectService,
+              private resultService: ResultService,
+              private dialog: MatDialog) {
   }
 
   getWelcomeMessage(): string {
@@ -125,9 +122,7 @@ export class WelcomeComponent {
           results: this.parseResults(resultsData[0])
         }
       });
-
       dialogRef.afterClosed().subscribe(result => {
-
       });
     });
   }

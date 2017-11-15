@@ -13,7 +13,6 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {FacultyModalComponent} from './faculties/faculty-modal/faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
 import {GroupsModalComponent} from './groups/groups-modal/groups-modal.component';
-import {ModalComponent} from './modal/modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
@@ -60,7 +59,6 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     FacultyModalComponent,
     GroupsComponent,
     GroupsModalComponent,
-    ModalComponent,
     SpecialityComponent,
     StudentComponent,
     StudentDetailComponent,

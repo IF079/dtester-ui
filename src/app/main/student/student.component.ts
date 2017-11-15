@@ -7,9 +7,7 @@ import {StudentService} from './student.service';
 import {GroupsService} from '../groups/groups.service';
 import {Student} from './student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import {generalConst} from '../shared/constants/general-constants';
 import {StudentAddModalComponent} from './add-modal/add-modal.component';
-import {InfoModalComponent} from '../info-modal/info-modal.component';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {InfoModalService} from '../info-modal/info-modal.service';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
@@ -87,8 +85,8 @@ export class StudentComponent implements OnInit {
   }
 
   getStudents(): void {
-    this.studentService.getStudentsRange(this.limit, this.offset).subscribe(data => {
-        this.students = data[0];
+    this.studentService.getStudentsRange(this.limit, this.offset).subscribe(studentData => {
+        this.students = studentData[0];
         this.students.forEach(item => {
           delete item.photo;
           delete item.plainPassword;

@@ -1,12 +1,11 @@
 import {Component, Inject} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
 import {QuestionService} from '../question.service';
 import {InfoModalService} from '../../../info-modal/info-modal.service';
 import {Question} from '../question';
 import {AnswerService} from '../../answer/answer.service';
-import {Answer} from '../../answer/answer';
 
 @Component({
   selector: 'app-question-add-modal',

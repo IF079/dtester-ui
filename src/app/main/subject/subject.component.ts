@@ -69,4 +69,3 @@ export class SubjectComponent implements OnInit {
 }
 
 const log = LoggerFactory.create(SubjectComponent);
-

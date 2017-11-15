@@ -16,5 +16,4 @@ export class LogDto {
     this.log_time = log.logTime;
     this.remote_ip = log.remoteIp;
   }
-
 }

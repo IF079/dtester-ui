@@ -36,7 +36,6 @@ export class AnswerService {
   setAnswer(answer: Answer): Observable<any> {
     return this.http.post(`${url.answerUrl}${url.insertData}`, new AnswerDto(answer));
   }
-
 }
 
 const log = LoggerFactory.create(AnswerService);

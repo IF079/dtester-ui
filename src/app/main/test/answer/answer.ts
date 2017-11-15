@@ -14,5 +14,4 @@ export class Answer {
     this.answerText = answerDto.answer_text;
     this.attachment = answerDto.attachment;
   }
-
 }

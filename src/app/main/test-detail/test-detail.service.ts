@@ -6,7 +6,6 @@ import 'rxjs/add/observable/forkJoin';
 import {TestDetail} from './test-detail';
 import {TestDetailDto} from './test-detail-dto';
 import {RecordsCount} from '../shared/entities/recordsCount';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {url} from '../shared/constants/url-constants';
 
 @Injectable()

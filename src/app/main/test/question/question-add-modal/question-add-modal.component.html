@@ -9,11 +9,14 @@
               {{test.text}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="!form.controls['testId'].valid && form.controls['testId'].touched">{{errorEmptyInput}}</mat-error>
+          <mat-error *ngIf="!form.controls['testId'].valid && form.controls['testId'].touched">{{errorEmptyInput}}
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput [placeholder]="placeholders.questionText" formControlName="questionText">
-          <mat-error *ngIf="!form.controls['questionText'].valid && form.controls['questionText'].touched">{{errorQuestionText}}</mat-error>
+          <mat-error *ngIf="!form.controls['questionText'].valid && form.controls['questionText'].touched">
+            {{errorQuestionText}}
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-select [placeholder]="placeholders.level" formControlName="level">
@@ -21,7 +24,8 @@
               {{level.text}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="!form.controls['level'].valid && form.controls['level'].touched">{{errorEmptyInput}}</mat-error>
+          <mat-error *ngIf="!form.controls['level'].valid && form.controls['level'].touched">{{errorEmptyInput}}
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-select [placeholder]="placeholders.type" formControlName="type">
@@ -29,7 +33,8 @@
               {{type.text}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="!form.controls['type'].valid && form.controls['type'].touched">{{errorEmptyInput}}</mat-error>
+          <mat-error *ngIf="!form.controls['type'].valid && form.controls['type'].touched">{{errorEmptyInput}}
+          </mat-error>
         </mat-form-field>
         <input type="file" id="imageUpload" accept='image/*' (change)="fileSelect($event)">
         <label for="imageUpload">
@@ -52,7 +57,8 @@
           </tr>
         </table>
         <mat-form-field>
-          <input matInput #answerInput [placeholder]="placeholders.answer" (keyup.enter)="addAnswer(answerInput.value, isTrue.checked); answerInput.value=''">
+          <input matInput #answerInput [placeholder]="placeholders.answer"
+                 (keyup.enter)="addAnswer(answerInput.value, isTrue.checked); answerInput.value=''">
           <mat-checkbox #isTrue matSuffix color="primary"></mat-checkbox>
           <mat-error *ngIf="!check()">{{errorAnswersAmount}}</mat-error>
         </mat-form-field>
@@ -60,7 +66,8 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button type="submit" class="modal-button" mat-raised-button color="primary" [disabled]="!checkAnswers()">Добавити</button>
+    <button type="submit" class="modal-button" mat-raised-button color="primary" [disabled]="!checkAnswers()">Добавити
+    </button>
     <button mat-button mat-dialog-close tabindex="-1">Відмінити</button>
   </mat-dialog-actions>
 </form>

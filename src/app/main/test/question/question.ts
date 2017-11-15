@@ -16,5 +16,4 @@ export class Question {
     this.type = questionDto.type;
     this.attachment = questionDto.attachment;
   }
-
 }

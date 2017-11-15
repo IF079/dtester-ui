@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/form
 import {StudentService} from '../student.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {AsyncUsernameValidator, AsyncEmailValidator} from './async.validator';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'app-add-modal',
@@ -54,6 +55,7 @@ export class StudentAddModalComponent {
     private formBuilder: FormBuilder,
     private modalService: InfoModalService,
     public dialogRef: MatDialogRef<StudentAddModalComponent>,
+     private delUpdateService: UpdateDeleteEntityService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = formBuilder.group({
@@ -75,7 +77,7 @@ export class StudentAddModalComponent {
     });
   }
 
-  validatePasswordConfirm(control: AbstractControl) {
+  validatePasswordConfirm (control: AbstractControl) {
     const password = control.get('password').value;
     const passwordConfirm = control.get('passwordConfirm').value;
     if (password !== passwordConfirm) {
@@ -105,10 +107,12 @@ export class StudentAddModalComponent {
       passwordConfirm: student.passwords.passwordConfirm
     }).subscribe(res => {
       if (res.response !== 'ok') {
+
         this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
       } else if (res.response === 'ok') {
+        this.delUpdateService.passInsertedStudent(res);
         this.modalService.openSuccessDialog('Запис успішно добавлено! Обновіть сторінку для відображення даних.', () => {
-          window.location.reload();
+
         });
       }
     });

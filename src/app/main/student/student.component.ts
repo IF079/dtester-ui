@@ -98,7 +98,7 @@ export class StudentComponent implements OnInit {
   }
 
   updateNumberOfRecordsInDomWhenAdded() {
-    this.studentService.studentAdded$.subscribe(() => {
+    this.delUpdateService.studentInserted$.subscribe(() => {
         this.numberOfRecords += 1;
       });
   }

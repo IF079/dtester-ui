@@ -50,7 +50,6 @@ import {ResultAddModalComponent} from './test/result/result-add-modal/result-add
 import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from './entity-table/edit-student-modal/edit-student-modal.component';
-import {DeleteErrorModalComponent} from './entity-table/delete-error-modal/delete-error-modal.component';
 import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/edit-timetable-modal.component';
 
 @NgModule({
@@ -85,7 +84,6 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     EditSpecialityModalComponent,
     EditFacultyModalComponent,
     EditStudentModalComponent,
-    DeleteErrorModalComponent,
     EditTimetableModalComponent
 
   ],
@@ -97,7 +95,6 @@ import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/e
     FormsModule
   ],
   entryComponents: [
-    DeleteErrorModalComponent,
     DeleteConfirmModalComponent,
     EditSubjectModalComponent,
     SubjectModalComponent,

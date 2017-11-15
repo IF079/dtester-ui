@@ -2,7 +2,6 @@ import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
-import {DeleteErrorModalComponent} from '../delete-error-modal/delete-error-modal.component';
 
 @Component({
   selector: 'app-delete-confirm-modal',
@@ -17,7 +16,6 @@ export class DeleteConfirmModalComponent {
 
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<DeleteConfirmModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRefForErrorModal: MatDialogRef<DeleteErrorModalComponent>,
               private delUpdateService: UpdateDeleteEntityService) {
   }
 

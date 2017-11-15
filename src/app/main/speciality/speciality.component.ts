@@ -22,7 +22,7 @@ export class SpecialityComponent implements OnInit {
   errWithDisplayingSpeciality: string;
   numberOfRecords: number;
   specialities: Speciality[];
-  headingColumnsOfTable = ['№', 'Код', 'Назва'];
+  headingColumnsOfTable = ['№', 'Код Спеціальності', 'Назва Спеціальності'];
   btnAddSpeciality = 'Додати Спеціальність';
 
   constructor(private specialityService: SpecialityService,

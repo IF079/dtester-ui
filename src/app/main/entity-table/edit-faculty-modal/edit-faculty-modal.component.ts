@@ -12,6 +12,9 @@ import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 
 export class EditFacultyModalComponent {
   facultyForm: FormGroup;
+  isUpdated = false;
+  errorMessage = '';
+  btnOk = 'Ок';
   placeholders = {
     name: 'Назва факультету',
     description: 'Опис факультету'
@@ -19,6 +22,7 @@ export class EditFacultyModalComponent {
   btnUpd = 'Редагувати';
   btnClose = 'Відмінити';
   title = 'Редагувати факультет';
+  titleUpdated = 'Запис успішно відредаговано';
   errorRequired = 'Заповніть поле!';
 
   constructor(public dialogRef: MatDialogRef<EditFacultyModalComponent>,
@@ -27,6 +31,7 @@ export class EditFacultyModalComponent {
               private fb: FormBuilder) {
     this.createForm();
   }
+
   createForm(): void {
     this.facultyForm = this.fb.group({
       name: [this.data[1], Validators.required],
@@ -42,7 +47,9 @@ export class EditFacultyModalComponent {
     this.delUpdateService.updateEntity(id, entityName,
       {faculty_name, faculty_description}).subscribe(facultyData => {
         this.delUpdateService.passUpdatedFaculty(facultyData);
-        this.dialogRef.close();
+        this.isUpdated = true;
+      }, () => {
+        this.errorMessage = 'Факультет з такими даними вже існує';
       }
     );
   }

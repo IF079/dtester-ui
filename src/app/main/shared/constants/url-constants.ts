@@ -26,5 +26,6 @@ export const url = {
   countRecordsByTest: '/countRecordsByTest',
   getEntityValues: '/getEntityValues',
   checkUserName: '/checkUserName',
+  checkEmailAddress: '/checkEmailAddress',
   adminUser: '/AdminUser'
 };

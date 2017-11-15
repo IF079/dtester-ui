@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/form
 
 import {StudentService} from '../student.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
-import {AsyncUsernameValidator} from './async-username.validator';
+import {AsyncUsernameValidator, AsyncEmailValidator} from './async.validator';
 
 @Component({
   selector: 'app-add-modal',
@@ -38,6 +38,7 @@ export class StudentAddModalComponent {
   errorInvalidEmail = 'Некоректна адреса!';
   errorInvalidUsername = 'Логін повинен займати 6-16 символів!';
   errorUsernameIsTaken = 'Такий логін вже використовується!';
+  errorEmailIsTaken = 'Така адреса вже використовується!';
 
   filesSelect(event): void {
     const reader = new FileReader();
@@ -63,7 +64,8 @@ export class StudentAddModalComponent {
       'gradebookId': [null, [Validators.required, Validators.maxLength(10), Validators.pattern(/[A-Z]{2}-\d{7}/)]],
       'username': [null, {updateOn: 'blur', validators: [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
         asyncValidators: [AsyncUsernameValidator.createValidator(this.studentService)]}],
-      'email': [null, [Validators.required, Validators.email]],
+      'email': [null, {updateOn: 'blur', validators: [Validators.required, Validators.email],
+        asyncValidators: [AsyncEmailValidator.createValidator(this.studentService)]}],
       'passwords': formBuilder.group({
         'password': [null, [Validators.required, Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/)]],
         'passwordConfirm': [null, Validators.required]
@@ -81,12 +83,6 @@ export class StudentAddModalComponent {
     } else {
       return null;
     }
-  }
-
-  validateUsername(control: AbstractControl) {
-    this.studentService.checkUserName(control.value).subscribe(data => {
-      return data ? {usernameTaken: true} : null;
-    });
   }
 
   onNoClick(): void {
@@ -111,7 +107,9 @@ export class StudentAddModalComponent {
       if (res.response !== 'ok') {
         this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
       } else if (res.response === 'ok') {
-        this.modalService.openSuccessDialog('Запис успішно добавлено!');
+        this.modalService.openSuccessDialog('Запис успішно добавлено! Обновіть сторінку для відображення даних.', () => {
+          window.location.reload();
+        });
       }
     });
   }

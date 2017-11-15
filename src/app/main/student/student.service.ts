@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import {Subject} from 'rxjs/Subject';
 
 import {Student} from './student';
 import {StudentDto, OtherDtoInfo} from './student-dto';
@@ -12,7 +13,15 @@ import {url} from '../shared/constants/url-constants';
 @Injectable()
 
 export class StudentService {
+
   constructor(private http: HttpClient) {
+  }
+
+  private studentAddedSource = new Subject<Student>();
+  studentAdded$ = this.studentAddedSource.asObservable();
+
+  passAdded(item: Student) {
+    this.studentAddedSource.next(item);
   }
 
   getStudentsRange(limit: number, offset: number): Observable<[Student[], RecordsCount]> {
@@ -46,20 +55,14 @@ export class StudentService {
     return this.http.get<any[]>(`${url.groupUrl}${url.getRecords}`);
   }
 
-      // this.groupsService.getGroups().subscribe(data => {
-      //   let localArr = [];
-      //   data[0].forEach(group => {
-      //     localArr.push({
-      //       value: group.group_id,
-      //       text: group.group_name
-      //     });
-      //   });
-      //   return localArr;
-      // });
-
   checkUserName(username: string): Observable<any> {
     return this.http.get(`${url.adminUser}${url.checkUserName}/${username}`);
   }
+
+  checkEmailAddress(email: string): Observable<any> {
+    return this.http.get(`${url.adminUser}${url.checkEmailAddress}/${email}`);
+  }
+
 }
 
 const log = LoggerFactory.create(StudentService);

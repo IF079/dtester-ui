@@ -11,7 +11,7 @@ export class InfoModalService {
   ) {
   }
 
-  openErrorDialog(text: string = 'Щось пішло не так. Повторіть, будь ласка, спробу пізніше.', callback: Function = null) {
+  openErrorDialog(text: string = 'Щось пішло не так. Повторіть, будь ласка, спробу пізніше.', callback?) {
     this.dialog.closeAll();
     const dialogRef = this.dialog.open(InfoModalComponent, {
       width: '350px',
@@ -29,7 +29,7 @@ export class InfoModalService {
     });
   }
 
-  openInfoDialog(title: string, text: string) {
+  openInfoDialog(title: string, text: string, callback?) {
     this.dialog.closeAll();
     const dialogRef = this.dialog.open(InfoModalComponent, {
       width: '350px',
@@ -39,9 +39,15 @@ export class InfoModalService {
         text: text
       }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (callback) {
+        callback();
+      }
+    });
   }
 
-  openSuccessDialog(text: string) {
+  openSuccessDialog(text: string, callback?) {
     this.dialog.closeAll();
     const dialogRef = this.dialog.open(InfoModalComponent, {
       width: '350px',
@@ -49,6 +55,12 @@ export class InfoModalService {
         type: 'success',
         title: 'Успіх',
         text: text
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (callback) {
+        callback();
       }
     });
   }

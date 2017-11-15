@@ -12,6 +12,7 @@ import {StudentAddModalComponent} from './add-modal/add-modal.component';
 import {InfoModalComponent} from '../info-modal/info-modal.component';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {InfoModalService} from '../info-modal/info-modal.service';
+import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'app-students',
@@ -35,11 +36,14 @@ export class StudentComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private groupsService: GroupsService,
+    private delUpdateService: UpdateDeleteEntityService,
     private infoModal: InfoModalService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private location: Location
   ) {
+    this.updateNumberOfRecordsInDomWhenAdded();
+    this.updateNumberOfRecordsInDomWhenDeleted();
   }
 
   openAddDialog() {
@@ -91,6 +95,18 @@ export class StudentComponent implements OnInit {
         });
       },
       error => this.infoModal.openInfoDialog('Увага', 'На даний момент тут немає записів.'));
+  }
+
+  updateNumberOfRecordsInDomWhenAdded() {
+    this.studentService.studentAdded$.subscribe(() => {
+        this.numberOfRecords += 1;
+      });
+  }
+
+  updateNumberOfRecordsInDomWhenDeleted() {
+    this.delUpdateService.recordDeletedInDataBase$.subscribe(() => {
+        this.numberOfRecords -= 1;
+      });
   }
 
   goPage(pageEvent: PageEvent) {

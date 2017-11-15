@@ -10,3 +10,13 @@ export class AsyncUsernameValidator {
     };
   }
 }
+
+export class AsyncEmailValidator {
+  static createValidator(studentService: StudentService) {
+    return (control: AbstractControl) => {
+      return studentService.checkEmailAddress(control.value).map(res => {
+        return res.response ? {emailTaken: true} : null;
+      });
+    };
+  }
+}

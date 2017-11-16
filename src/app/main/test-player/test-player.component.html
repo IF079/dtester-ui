@@ -1,63 +1,101 @@
-<div class="container">
+<div id="container">
   <div class="row">
-    <div class="col-xs-6 info">
-      Запитань залишилось: {{unAnsweredQuestionCount}} з {{tasksCount}} ({{unAnsweredQuestionPercent+'%'}})
-      <div class="progress hidden-xs">
-        <div class="progress-bar" [ngStyle]="{'width': unAnsweredQuestionPercent+'%'}">
-        </div>
-      </div>
+    <div class="col-md-10">
+      <h3>{{testName}}.</h3>
+    </div>
+    <div class="col-md-2 exit">
+      <button class=" btn btn-exit btn-close-test" (click)="finishTest()"> {{FINISH}}</button>
     </div>
   </div>
 </div>
-<div class="container" *ngIf="show">
-  <div class="row">
-    <ng-container *ngFor="let question of questions; let i=index">
-      <div class="col-xs-12 col-md-10 info" *ngIf="i===activeQuestion">
-        <div>
-          <h4 class="text-right">Запитання номер{{i+1}}</h4>
-          <div class="question-img">
-            <img *ngIf="question.attachment" [src]="question.attachment"
-                 alt="Картинка для питання">
-          </div>
-          <h3 class="question-text">{{question.question_text}}</h3>
-          <ul class="answers">
-            <li *ngFor="let answer of question.answers">
-              <label>
-                <input [type]="question.type" name="answer"
-                       [value]="answer.answer_id"
-                       (click)="toggleAnswer(answer.answer_id, i)"
-                       [checked]="question.chosenAnswer[answer.answer_id]">
-                <img *ngIf="answer.attachment"
-                     [src]="answer.attachment"
-                     alt="картинка для відповіді">{{answer.answer_text}}
-              </label>
-            </li>
-          </ul>
-          <p class="text-left">
-            <button type="button" class="btn btn-primary"
-                    (click)="skipQuestion()"
-                    [disabled]="disableSkip">Пропустити
-            </button>
-            <button type="button" class="btn btn-success" (click)="answerQuestion()">Підтвердити відповідь
-            </button>
-          </p>
-          <p class="text-right">
-            <button type="button" class="btn btn-danger" (click)="finishTest()">Завершити тест
-            </button>
-          </p>
-        </div>
-      </div>
+<div id="timer-background">
+  <div id="timer" [ngStyle]="{'width': statusTimer, 'background-color': checkProgresColor()}">
+    <p>{{minutesDisplay}}:{{secondsDisplay}}</p>
+  </div>
+</div>
+<div class="container" (click)="checkUnixTime()">
+  <div class="navbar">
+    <ul class="nav navbar-nav navbar-toggler-right">
+      <li><a href="#"> {{MARKED}}</a></li>
+    </ul>
+  </div>
+  <div id="button">
+    <ng-container *ngIf="!start">
+      <button type="button" class="btn-test-player" (click)="startTest()">{{START}}</button>
     </ng-container>
-    <div class="col-xs-12 col-md-2 info text-center nav-buttons">
-      <h3>Навігація</h3>
-      <button *ngFor="let button of navButtons; let j=index"
-              type="button"
-              [ngClass]="button.className"
-              (click)="changeActiveQuestion(j)">{{button.label}}
-      </button>
+    <ng-container *ngIf="finish">
+      {{FINISH_DIALOG}}
+      <button type="button" class="btn-test-player" (click)="startTest()">{{RESULTS}}</button>
+    </ng-container>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 wrapper">
+
+      <ng-container *ngIf="question">
+        <div class="navigation">
+          <button class="btn-test-player" (click)="next()">{{NEXT_QUESTION}}</button>
+        </div>
+        <div class="table-responsive ">
+          <table class="table">
+            <caption><h3>{{QUESTION}}{{questions.indexOf(question)+1}}</h3></caption>
+            <tr>
+              <td>{{question['question_text']}}</td>
+            </tr>
+            <tr *ngIf="question.attachment">
+              <td><img [src]=question.attachment></td>
+            </tr>
+          </table>
+        </div>
+        <div class="answers">
+          <ng-container *ngIf="question['type'] == 1">
+            <div *ngIf="question['answers']" class="flex-container">
+              <!--<form [formGroup]="singlechoise">-->
+              <label *ngFor="let answer of question['answers']" class="flex-box">
+                <input type="radio" name='singlechoise' [value]="answer['answer_id']">
+                {{answer['answer_text']}}
+                <img [src]="answer['attachment']">
+              </label>
+              <!--</form>-->
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="question['type'] == 2">
+            <div *ngIf="question['answers']" class="flex-container">
+              <label *ngFor="let answer of question['answers']" class="flex-box">
+                <input type="checkbox" name='answer'  [value]="answer['answer_id']">
+                {{answer['answer_text']}}
+                <span>  <img [src]="answer['attachment']"></span>
+              </label>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="question['type'] == 3">
+            <div class="form-input" class="input-field">
+              <label>{{ENTER_ANSWER}}
+                <input
+                  type="text"
+                  maxlength="100"/>
+              </label>
+            </div>
+          </ng-container>
+        </div>
+        <div class="navigation">
+          <button type="submit" class="btn-test-player">{{SAVE_ANSWER}}</button>
+        </div>
+      </ng-container>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 sidebar">
+      <div>
+        <ul *ngIf="questions" class="number-container">
+          <li class="number-box" *ngFor="let number of getArrayOfNumbers(questions)" (click)="goToAnswers(number)">
+            {{number}}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
-<template ngbModalContainer></template>
 
 

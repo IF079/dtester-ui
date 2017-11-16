@@ -30,7 +30,7 @@ export const url = {
   adminUser: '/AdminUser',
   question: '/question',
   getAnswersByQuestionTestPlayerUrl: 'SAnswer/getAnswersByQuestion',
-  checkSAnswerUrl: 'SAnswer/checkAnswers',
+  checkSAnswerUrl: 'SAnswer/checkAnswers'
 
 };
 export const HOST = 'api1.lena.limit.com.ua';

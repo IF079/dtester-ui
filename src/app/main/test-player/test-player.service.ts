@@ -2,15 +2,15 @@ import {Injectable} from '@angular/core';
 import {Http, Response, RequestOptions} from '@angular/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {Question} from "../shared/entities/question";
-import {Answer} from "../shared/entities/answer";
+import {Question} from "../test/question/question";
+import {Answer} from "../test/answer/answer";
+import {HttpClient} from "@angular/common/http";
 import {
   HOST, HOST_PROTOCOL, TEST_PLAYER_GET_ANSWER_BY_QUESTION,
   TEST_PLAYER_GET_QUESTIONS_IDS_BY_LEVEL_RAND,
   TEST_PLAYER_GET_TEST_DETAILS_BY_TEST,
   TEST_PLAYER_GET_TIME_STAMP, TEST_PLAYER_RESET_SESSION_DATA, TEST_PLAYER_SANSWER, TEST_PLAYER_START_TEST
 } from '../shared/constants/url-constants';
-
 
 @Injectable()
 export class TestPlayerService {
@@ -19,12 +19,12 @@ export class TestPlayerService {
   options: RequestOptions;
 
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               private router: Router) {
   };
 
   private handleError = (error: any) => {
-    let errMsg = (error.message) ? error.message :
+    const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     if (error.status === 403) {
       sessionStorage.removeItem('userRole');
@@ -35,24 +35,24 @@ export class TestPlayerService {
 
 
   getCurrentTime() {
-    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_TIME_STAMP).map(resp => resp.json()).catch(this.handleError);
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_TIME_STAMP).catch(this.handleError);
   }
 
   getQuestionsByLevelRandom(test_id: number, level: number, number: number) {
-    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_QUESTIONS_IDS_BY_LEVEL_RAND + test_id + '/' + level + '/' + number).map(resp => resp.json()).catch(this.handleError);
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_QUESTIONS_IDS_BY_LEVEL_RAND + test_id + '/' + level + '/' + number).catch(this.handleError);
   }
 
   getTestDetail(test_id: number) {
-    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_TEST_DETAILS_BY_TEST + test_id).map(resp => resp.json()).catch(this.handleError);
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_TEST_DETAILS_BY_TEST + test_id).catch(this.handleError);
   }
 
   getAnswersById(id: number): Observable<any> {
-    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_SANSWER + TEST_PLAYER_GET_ANSWER_BY_QUESTION + id).map(resp => resp.json()).catch(this.handleError);
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_SANSWER + TEST_PLAYER_GET_ANSWER_BY_QUESTION + id).catch(this.handleError);
   }
 
   getQuestions(testDetails: any[]) {
     this.questions = [];
-    let forkJoinBatch: Observable<any>[] = testDetails.map(item => {
+    const forkJoinBatch: Observable<any>[] = testDetails.map(item => {
       return this.getQuestionsByLevelRandom(item.test_id, item.level, item.tasks);
     });
     return Observable.forkJoin(forkJoinBatch)
@@ -64,7 +64,7 @@ export class TestPlayerService {
   };
 
   prepareQuestionForTest(questions: Question[][]): Question[] {
-    let tempArr: Question[] = [];
+    const tempArr: Question[] = [];
 
     questions.forEach((elem: Question[]) => {
       tempArr.push(...elem);
@@ -75,7 +75,7 @@ export class TestPlayerService {
   }
 
   getAnswers(questions: Question[]) {
-    let forkJoinBatch: Observable<any>[] = questions.filter(item => item['type'].toString() !== '3')
+    const forkJoinBatch: Observable<any>[] = questions.filter(item => item['type'].toString() !== '3')
       .map(question => {
         return this.getAnswersById(question['question_id']);
       });
@@ -89,12 +89,12 @@ export class TestPlayerService {
   }
 
   resetSessionData() {
-    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_RESET_SESSION_DATA).map(resp => resp.json()).catch(this.handleError);
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_RESET_SESSION_DATA).catch(this.handleError);
   }
 
   checkSecurity(user_id: number, test_id: number) {
-    let body = JSON.stringify({'user_id': user_id, 'test_id': test_id});
-    return this.http.post(HOST_PROTOCOL + HOST + TEST_PLAYER_START_TEST + user_id + '/' + test_id, JSON.stringify(body), this.options).map((resp: Response) => resp.json()).catch(this.handleError);
+    const body = JSON.stringify({'user_id': user_id, 'test_id': test_id});
+    return this.http.post(HOST_PROTOCOL + HOST + TEST_PLAYER_START_TEST + user_id + '/' + test_id, JSON.stringify(body), this.options).catch(this.handleError);
   }
 
 

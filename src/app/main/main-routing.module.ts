@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-
 import {WelcomeComponent} from './welcome/welcome.component';
 import {StudentComponent} from './student/student.component';
 import {SpecialityComponent} from './speciality/speciality.component';
@@ -34,29 +33,7 @@ const mainRoutes = [
           {path: 'timetable', component: TimeTableComponent},
         ],
         canActivate: [AdminGuard]
-      },
-      {path: '**', redirectTo: 'welcome', pathMatch: 'full'},
-      {path: 'welcome', component: WelcomeComponent},
-      {path: 'students', component: StudentComponent, canActivate: [AdminGuard]},
-      {path: 'student/:id', component: StudentDetailComponent, canActivate: [AdminGuard]},
-      {path: 'specialities', component: SpecialityComponent, canActivate: [AdminGuard]},
-      {path: 'subjects', component: SubjectComponent, canActivate: [AdminGuard]},
-      {path: 'faculties', component: FacultiesComponent, canActivate: [AdminGuard]},
-      {path: 'groups', component: GroupsComponent, canActivate: [AdminGuard]},
-      {path: 'timetable', component: TimeTableComponent, canActivate: [AdminGuard]},
-      {path: 'test', component: TestDetailComponent, canActivate: [AdminGuard]},
-      {path: 'test-player', component: TestPlayerComponent, canActivate: [AdminGuard]},
-      {path: '**', redirectTo: 'welcome', pathMath: 'full'},
-          {path: 'welcome', component: WelcomeComponent},
-          {path: 'students', component: StudentComponent, canActivate: [AdminGuard]},
-          {path: 'student/:id', component: StudentDetailComponent, canActivate: [AdminGuard]},
-          {path: 'specialities', component: SpecialityComponent, canActivate: [AdminGuard]},
-          {path: 'subjects', component: SubjectComponent, canActivate: [AdminGuard]},
-          {path: 'faculties', component: FacultiesComponent, canActivate: [AdminGuard]},
-          {path: 'groups', component: GroupsComponent, canActivate: [AdminGuard]},
-          {path: 'timetable', component: TimeTableComponent, canActivate: [AdminGuard]},
-          {path: 'test', component: TestDetailComponent, canActivate: [AdminGuard]},
-          {path: 'test-player', component: TestPlayerComponent},
+      }, {path: 'test-player', component: TestPlayerComponent},
           {path: '**', redirectTo: 'welcome', pathMath: 'full'}
         ]
       }

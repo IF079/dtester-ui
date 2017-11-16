@@ -3,14 +3,12 @@ import {Router} from '@angular/router';
 import {SubjectService} from '../subject/subject.service';
 import {TestPlayerService} from './test-player.service';
 import {TestDetailService} from '../test-detail/test-detail.service';
-import {Question} from "../shared/entities/question";
-import {Answer} from "../shared/entities/answer";
-import {TestDetailComponent} from "../test-detail/test-detail.component";
-import {TestComponent} from "../test/test.component";
-import {TestDetail} from "../test-detail/test-detail";
-import {Test} from "../test/test";
-import {TestService} from "../test/test.service";
-import {generalConst} from "../shared/constants/general-constants";
+import {Question} from '../test/question/question';
+import {Answer} from '../test/answer/answer';
+import {TestDetail} from '../test-detail/test-detail';
+import {Test} from '../test/test';
+import {TestService} from '../test/test.service';
+import {generalConst} from '../shared/constants/general-constants';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -131,8 +129,8 @@ export class TestPlayerComponent implements OnInit {
   }
 
   next() {
-    let currentIndex = this.questions.indexOf(this.question);
-    let newIndex = currentIndex === this.questions.length - 1 ? 0 : currentIndex + 1;
+    const currentIndex = this.questions.indexOf(this.question);
+    const newIndex = currentIndex === this.questions.length - 1 ? 0 : currentIndex + 1;
     this.question = this.questions[newIndex];
   }
 
@@ -172,7 +170,7 @@ export class TestPlayerComponent implements OnInit {
   }
 
   private showTimer() {
-    let timer = setInterval(() => {
+    const timer = setInterval(() => {
       if (this.unixTimeLeft > 0) {
         this.secondsDisplay = this.digitizeTime(Math.floor(this.unixTimeLeft % 60)).toString();
         this.statusTimer = Math.floor(this.unixTimeLeft / (this.testDuration / this.PERSENT)) + '%';
@@ -200,7 +198,7 @@ export class TestPlayerComponent implements OnInit {
   }
 
   getArrayOfNumbers(array: Question[]) {
-    let ArrayOfNumbers = [];
+    const ArrayOfNumbers = [];
     for (let j = 1; j <= array.length; j++) {
       ArrayOfNumbers.push(j);
     }
@@ -216,7 +214,7 @@ export class TestPlayerComponent implements OnInit {
   };
 
   checkProgresColor() {
-    let status = parseInt(this.statusTimer, 0);
+    const status = parseInt(this.statusTimer, 0);
     if (status > this.DANGER_STATUS) {
       return this.STATUS_COLOR;
     } else if (status <= this.DANGER_STATUS) {

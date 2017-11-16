@@ -37,23 +37,10 @@ import {TestComponent} from './test/test.component';
 import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
 import {TestDetailService} from './test-detail/test-detail.service';
-
-import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.service';
-import {AnswerService} from './test/answer/answer.service';
-import {QuestionService} from './test/question/question.service';
-import {InfoModalService} from './info-modal/info-modal.service';
-import {ResultService} from './test/result/result.service';
-import {SpecialityModalComponent} from './speciality/speciality-modal/speciality-modal.component';
-import {QuestionAddModalComponent} from './test/question/question-add-modal/question-add-modal.component';
-import {TestModalComponent} from './test/test-modal/test-modal.component';
-import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
-import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal/edit-speciality-modal.component';
-import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
-import {EditStudentModalComponent} from './entity-table/edit-student-modal/edit-student-modal.component';
-import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/edit-timetable-modal.component';
-
 import {TestPlayerComponent} from "./test-player/test-player.component";
 import {TestPlayerService} from "./test-player/test-player.service";
+
+
 
 
 @NgModule({
@@ -88,8 +75,7 @@ import {TestPlayerService} from "./test-player/test-player.service";
     EditFacultyModalComponent,
     EditStudentModalComponent,
     EditTimetableModalComponent,
-
-
+    TestPlayerComponent
   ],
   imports: [
     CommonModule,
@@ -129,15 +115,11 @@ import {TestPlayerService} from "./test-player/test-player.service";
     TestService,
     TestDetailService,
     SpinnerService,
-
     AnswerService,
     QuestionService,
     InfoModalService,
     ResultService,
     TestPlayerService
-
-
   ]
-})
-export class MainModule {
 }
+)

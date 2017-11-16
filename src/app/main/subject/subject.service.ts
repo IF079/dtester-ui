@@ -8,8 +8,8 @@ import {SubjectDto} from './subject-dto';
 import {RecordsCount} from '../shared/entities/recordsCount';
 
 
+
 import {url} from '../shared/constants/url-constants';
-import {TestPlayerComponent} from "../test-player/test-player.component";
 
 
 
@@ -46,6 +46,8 @@ export class SubjectService {
   getQuestionIdsByLevelRand(id: number, level: any, tasks: any): Observable<any> {
     return this.http.post(`${url.question}${url.getQuestionIdsByLevelRand}`, id, level);
   }
+
+
 
 }
 

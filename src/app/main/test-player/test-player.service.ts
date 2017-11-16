@@ -94,7 +94,7 @@ export class TestPlayerService {
 
   checkSecurity(user_id: number, test_id: number) {
     const body = JSON.stringify({'user_id': user_id, 'test_id': test_id});
-    return this.http.post(HOST_PROTOCOL + HOST + TEST_PLAYER_START_TEST + user_id + '/' + test_id, JSON.stringify(body), this.options).catch(this.handleError);
+    return this.http.post(HOST_PROTOCOL + HOST + TEST_PLAYER_START_TEST + user_id + '/' + test_id, JSON.stringify(body), ).catch(this.handleError);
   }
 
 

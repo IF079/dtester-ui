@@ -33,7 +33,7 @@ export const url = {
   checkSAnswerUrl: 'SAnswer/checkAnswers'
 
 };
-export const HOST = 'api1.lena.limit.com.ua';
+export const HOST = 'api1.limit.com.ua';
 export const HOST_PROTOCOL = 'http://';
 export const TEST_PLAYER_GET_TIME_STAMP = '/TestPlayer/getTimeStamp';
 export const TEST_PLAYER_GET_QUESTIONS_IDS_BY_LEVEL_RAND = '/question/getQuestionIdsByLevelRand/';

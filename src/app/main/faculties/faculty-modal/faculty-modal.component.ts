@@ -21,16 +21,16 @@ export class FacultyModalComponent {
   btnAdd = 'Додати Факультет';
   btnOk = 'Ок';
   errRequestMsg: string;
-  errorRequired = 'Необхідно заповнити дане поле(мін. 3 символи)';
-  errorRequiredInformation = 'Необхідно заповнити дане поле(мін. 5 символів)';
+  errorRequired = 'Заповніть поле! (мін.3-макс.60 знаків)';
+  errorRequiredInformation = 'Заповніть поле! (мін.3-макс.120 знаків)';
 
   constructor(public dialogRef: MatDialogRef<FacultyModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private facultyService: FacultyService,
               private fb: FormBuilder) {
     this.facultyForm = this.fb.group({
-      name: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-      description: [null, Validators.compose([Validators.required, Validators.minLength(5)])]
+      name: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(60)])],
+      description: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(120)])]
     });
   }
 

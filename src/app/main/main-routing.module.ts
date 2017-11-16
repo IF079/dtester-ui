@@ -31,7 +31,7 @@ const mainRoutes = [
           {path: 'groups', component: GroupsComponent, canActivate: [AdminGuard]},
           {path: 'timetable', component: TimeTableComponent, canActivate: [AdminGuard]},
           {path: 'test', component: TestDetailComponent, canActivate: [AdminGuard]},
-          {path: 'test-player', component: TestPlayerComponent, canActivate: [AdminGuard]},
+          {path: 'test-player', component: TestPlayerComponent},
           {path: '**', redirectTo: 'welcome', pathMath: 'full'}
         ]
       }

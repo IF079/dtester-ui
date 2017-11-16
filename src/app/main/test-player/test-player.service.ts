@@ -1,19 +1,23 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers} from '@angular/http';
+import {Http, Response, RequestOptions} from '@angular/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-
+import {Question} from "../shared/entities/question";
+import {Answer} from "../shared/entities/answer";
 import {
-  urlConstants
-}  from '../shared/constants/url-constants';
-
+  HOST, HOST_PROTOCOL, TEST_PLAYER_GET_ANSWER_BY_QUESTION,
+  TEST_PLAYER_GET_QUESTIONS_IDS_BY_LEVEL_RAND,
+  TEST_PLAYER_GET_TEST_DETAILS_BY_TEST,
+  TEST_PLAYER_GET_TIME_STAMP, TEST_PLAYER_RESET_SESSION_DATA, TEST_PLAYER_SANSWER, TEST_PLAYER_START_TEST
+} from '../shared/constants/url-constants';
 
 
 @Injectable()
 export class TestPlayerService {
-  private getAnswersByQuestionUrl: string = urlConstants.getAnswersByQuestionTestPlayerUrl;
-  private checkSAnswerUrl: string = urlConstants.checkSAnswerUrl;
-  private headersCheckSAnswer = new Headers({'content-type': 'application/json'});
+  questions: Question[] = [];
+  answers: Answer[] = [];
+  options: RequestOptions;
+
 
   constructor(private http: Http,
               private router: Router) {
@@ -29,63 +33,70 @@ export class TestPlayerService {
     return Observable.throw(errMsg);
   };
 
-  private successResponse = (response: Response) => response.json();
 
-  getAnswersByQuestion(questionId: number): Observable<any> {
-    return this.http
-      .get(`${this.getAnswersByQuestionUrl}${questionId}`)
-      .map(this.successResponse)
-      .catch(this.handleError);
+  getCurrentTime() {
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_TIME_STAMP).map(resp => resp.json()).catch(this.handleError);
   }
 
-  checkSAnswers(questions: any): Observable<any> {
-    let body = this.createBodyCheck(questions);
-    return this.http
-      .post(this.checkSAnswerUrl, JSON.stringify(body), {headers: this.headersCheckSAnswer})
-      .map(this.successResponse)
-      .catch(this.handleError);
+  getQuestionsByLevelRandom(test_id: number, level: number, number: number) {
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_QUESTIONS_IDS_BY_LEVEL_RAND + test_id + '/' + level + '/' + number).map(resp => resp.json()).catch(this.handleError);
   }
 
-  createButtons(countOfButtons: number) {
-    let navButtons: any[] = [
-      {answered: false, name: '01', active: true, className: 'btn btn-warning nom-qua'}];
-    for (let i = 1; i < countOfButtons; i++) {
-      navButtons.push({});
-      navButtons[i].answered = false;
-      navButtons[i].name = i + 1 < 10 ? `0${i + 1}` : i + 1;
-      navButtons[i].className = 'btn btn-primary nom-qua';
-      navButtons[i].active = false;
-    }
-    return navButtons;
+  getTestDetail(test_id: number) {
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_TEST_DETAILS_BY_TEST + test_id).map(resp => resp.json()).catch(this.handleError);
   }
 
-  getUserRate(results: any[], questions: any[]): number {
-    let userRate: number = 0;
-    results.forEach((result) => {
-      if (result.true === 0) return;
-      questions.forEach((question) => {
-        if (result.question_id === question.question_id) {
-          userRate += +question.rate;
-        }
+  getAnswersById(id: number): Observable<any> {
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_SANSWER + TEST_PLAYER_GET_ANSWER_BY_QUESTION + id).map(resp => resp.json()).catch(this.handleError);
+  }
+
+  getQuestions(testDetails: any[]) {
+    this.questions = [];
+    let forkJoinBatch: Observable<any>[] = testDetails.map(item => {
+      return this.getQuestionsByLevelRandom(item.test_id, item.level, item.tasks);
+    });
+    return Observable.forkJoin(forkJoinBatch)
+      .map((questions: Question[][] | any) => {
+        this.questions = this.prepareQuestionForTest(<Question[][]>questions);
+        return this.questions;
+      }).catch(this.handleError);
+
+  };
+
+  prepareQuestionForTest(questions: Question[][]): Question[] {
+    let tempArr: Question[] = [];
+
+    questions.forEach((elem: Question[]) => {
+      tempArr.push(...elem);
+    });
+    return tempArr.map((question: Question) => {
+      return question;
+    });
+  }
+
+  getAnswers(questions: Question[]) {
+    let forkJoinBatch: Observable<any>[] = questions.filter(item => item['type'].toString() !== '3')
+      .map(question => {
+        return this.getAnswersById(question['question_id']);
       });
-    });
-    return userRate;
+
+    return Observable.forkJoin(forkJoinBatch)
+      .do((answers: Answer[][] | any) => {
+        answers.map((answer, i) => {
+          questions[i]['answers'] = answer;
+        });
+      }).catch(this.handleError);
   }
 
-  createBodyCheck(questions: any[]) {
-    let bodyCheck: any[] = [];
-    questions.forEach(question => {
-      let data: any = {};
-      data.question_id = question.question_id;
-      data.answer_ids = [];
-      for (let key in question.chosenAnswer) {
-        question.chosenAnswer[key] ? data.answer_ids.push(key) : null;
-      }
-      bodyCheck.push(data);
-    });
-    return bodyCheck;
+  resetSessionData() {
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_RESET_SESSION_DATA).map(resp => resp.json()).catch(this.handleError);
   }
+
+  checkSecurity(user_id: number, test_id: number) {
+    let body = JSON.stringify({'user_id': user_id, 'test_id': test_id});
+    return this.http.post(HOST_PROTOCOL + HOST + TEST_PLAYER_START_TEST + user_id + '/' + test_id, JSON.stringify(body), this.options).map((resp: Response) => resp.json()).catch(this.handleError);
+  }
+
+
 }
-
-
 

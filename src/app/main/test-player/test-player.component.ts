@@ -3,125 +3,225 @@ import {Router} from '@angular/router';
 import {SubjectService} from '../subject/subject.service';
 import {TestPlayerService} from './test-player.service';
 import {TestDetailService} from '../test-detail/test-detail.service';
+import {Question} from "../shared/entities/question";
+import {Answer} from "../shared/entities/answer";
+import {TestDetailComponent} from "../test-detail/test-detail.component";
+import {TestComponent} from "../test/test.component";
+import {TestDetail} from "../test-detail/test-detail";
+import {Test} from "../test/test";
+import {TestService} from "../test/test.service";
+import {generalConst} from "../shared/constants/general-constants";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  templateUrl: 'test-player.component.html',
-  styleUrls: ['test-player.component.scss']
+  selector: 'dtester-test-player',
+  templateUrl: 'test-player.component.html', styleUrls: ['test-player.component.scss']
 })
 
 export class TestPlayerComponent implements OnInit {
+  testDuration: number;
+  test_id: number;
+  test: Test;
+  questions: Question[] = [];
+  question: Question;
+  start: boolean;
+  finish: boolean;
+  user_id: number;
+  test_details: TestDetail[] = [];
+  answers: Answer[];
+  errWithDisplaying: string;
+  testName: string;
+  seconds: number;
+  startunixTime: number;
+  endUnixTime: number;
+  unixTimeLeft: number;
+  currentUnixTime: number;
+  minutesDisplay: string;
+  secondsDisplay: string;
+  ticks: number;
+  MILLISECONDS_IN_MINUTE: number;
+  timer: any;
+  timerForDisplay: any;
+  currentAnswer: Array<string> = [];
+  statusTimer: string;
+  PERSENT: number;
+  DANGER_COLOR: string;
+  STATUS_COLOR: string;
+  DANGER_STATUS: number;
+  availability: any;
 
 
-   testId: number;
+  NEXT_QUESTION = 'Наступне питання';
+  ENTER_ANSWER = 'Ввести відповідь';
+  MARKED = 'Marked for review';
+  FINISH = 'Завершити тест';
+  START = 'Почати тест';
+  QUESTION = 'Питання №';
+  SAVE_ANSWER = 'Зберети відповідь';
+  RESULTS = 'Зверегти результати';
+  FINISH_DIALOG = 'Тест завершено';
 
-  private navButtons: any[];
-
-  private activeQuestion = 0;
-  private questions: any[] = [];
-  private tasksCount = 0;
-  private questionCount = 0;
-  private show = false;
-  private testDetails: any[];
-  private maxUserRate  = 0;
 
   constructor(private router: Router,
               private subjectService: SubjectService,
-              private testPlayerService: TestPlayerService,
-             private testDetailService: TestDetailService
-             /* private modalService: NgbModal*/) {
+              private route: ActivatedRoute,
+              private testService: TestService,
+              private test_player: TestPlayerService,
+              private test_detail: TestDetailService) {
+
+
+    this.seconds = 60;
+    this.ticks = 0;
+    this.minutesDisplay = '00';
+    this.secondsDisplay = '00';
+    this.MILLISECONDS_IN_MINUTE = 1000;
+    this.PERSENT = 100;
+    this.STATUS_COLOR = '#51E000';
+    this.DANGER_COLOR = '#FD040E';
+    this.DANGER_STATUS = 18;
+
+
   }
 
   ngOnInit() {
-    this.testDetailService.getTestDetailsByTestId(this.testId)
-      .subscribe(testDetails => {
-        this.testDetails = testDetails;
-        testDetails.forEach((data) => {
-          this.tasksCount += +data.tasks;
-          this.maxUserRate += +data.tasks * +data.rate;
+    this.test_id = this.route.snapshot.queryParams['testId'] || 1;
+    this.user_id = this.route.snapshot.queryParams['user_id'];
+    this.testDuration = +this.route.snapshot.queryParams['test_duration'] * this.seconds;
+    this.getTestDetails();
+    this.testService.getTestsBySubjectId(this.test_id)
+      .subscribe(
+        resp => this.testName = resp[0]['test_name'],
+        err => {
+          this.errWithDisplaying = generalConst.errorWithDisplayData;
         });
-        testDetails.forEach((item) => {
-          this.subjectService.getQuestionIdsByLevelRand(item.id, item.level, item.tasks)
-              .subscribe(response => {              /*this.questionCount += +item.tasks;
-              response.forEach(question => {
-                question.chosenAnswer = {};
-                question.rate = item.rate;
-                this.questions.push(question);
-              });*/
-              if (this.questionCount === this.tasksCount) {
-                this.questions.sort((a, b) => {
-                  return Math.random() > 0.5 ? +a.question_id - +b.question_id : +b.question_id - +a.question_id;
-                });
-                this.navButtons = this.testPlayerService.createButtons(this.questions.length);
-                this.questions.forEach((elem, j) => {
-                  this.testPlayerService.getAnswersByQuestion(elem.question_id)
-                    .subscribe(answers => {
-                      answers.sort((a, b) => {
-                        return Math.random() > 0.5 ? +a.answer_id - +b.answer_id : +b.answer_id - +a.answer_id;
-                      });
-                      elem.answers = answers;
-                      if (j === this.questions.length - 1) {
-                        this.show = true;
-                      }
-                    });
-                });
-              }
-            });
-        });
+
+  }
+
+  getTestDetails() {
+    this.test_detail.getTestDetail(this.test_id).subscribe(resp => {
+      this.test_details = resp;
+    }, err => {
+      this.errWithDisplaying = generalConst.errorWithDisplayData;
+    });
+  }
+
+
+  startTest() {
+    this.test_player.checkSecurity(this.user_id, this.test_id).subscribe(resp => console.log(resp));
+    this.getTime();
+    this.start = true;
+    if (this.start) {
+      this.startTimer();
+
+
+      const answers$ = this.test_player.getQuestions(this.test_details).do(resp => {
+        this.questions = resp;
+        this.question = resp[0];
+      })
+        .switchMap(resp => this.test_player.getAnswers(resp));
+
+      answers$.subscribe(response => {
+        this.questions['answers'] = response;
+      }, err => {
+        this.errWithDisplaying = generalConst.errorWithDisplayData;
+      });
+    } else {
+
+    }
+  }
+
+  next() {
+    let currentIndex = this.questions.indexOf(this.question);
+    let newIndex = currentIndex === this.questions.length - 1 ? 0 : currentIndex + 1;
+    this.question = this.questions[newIndex];
+  }
+
+  goToAnswers(number: number) {
+    this.question = this.questions[number - 1];
+  }
+
+  finishTest() {
+    /*this.modalService.openSuccessDialog('Tест завершено', () => {
+
+    });
+    this.test_player.resetSessionData().subscribe(err => {
+      this.errWithDisplaying = generalConst.errorWithDisplayData;
+    });*/
+  }
+
+  getTime() {
+    this.test_player.getCurrentTime()
+      .subscribe(res => {
+        this.startunixTime = +res['unix_timestamp'];
+        this.endUnixTime = this.startunixTime + this.testDuration;
+        this.unixTimeLeft = this.testDuration;
+        this.startTimer();
       });
   }
-  skipQuestion(numberOfQuestion: number) {
-    if (numberOfQuestion === this.questions.length) {
-      for (let i = 0; i < this.navButtons.length; i++) {
-        if (this.navButtons[i].answered === false) {
-          this.changeActiveQuestion(i);
-          break;
-        }
-      }
-    } else {
-      this.changeActiveQuestion(this.activeQuestion + 1);
-    }
-  }
 
-  answerQuestion() {
-    this.navButtons[this.activeQuestion].answered = true;
-    const finishTest = this.navButtons.some((question) => {
-      return question.answered === false;
-    });
-    if (!finishTest) {
-      this.testPlayerService.checkSAnswers(this.questions)
-        .subscribe(results => {
-          const userRate = this.testPlayerService.getUserRate(results, this.questions);
 
+  startTimer() {
+    this.test_player.getCurrentTime()
+      .subscribe(res => {
+          this.currentUnixTime = +res['unix_timestamp'];
+          this.showTimer();
+        },
+        err => {
+          this.errWithDisplaying = generalConst.errorWithDisplayData;
         });
-    } else {
-      if (this.activeQuestion === this.questions.length - 1) {
-        for (let i = 0; i < this.navButtons.length; i++) {
-          if (this.navButtons[i].answered === false) {
-            this.changeActiveQuestion(i);
-            break;
-          }
-        }
+  }
+
+  private showTimer() {
+    let timer = setInterval(() => {
+      if (this.unixTimeLeft > 0) {
+        this.secondsDisplay = this.digitizeTime(Math.floor(this.unixTimeLeft % 60)).toString();
+        this.statusTimer = Math.floor(this.unixTimeLeft / (this.testDuration / this.PERSENT)) + '%';
+        this.minutesDisplay = this.digitizeTime(Math.floor(this.unixTimeLeft / 60)).toString();
+        this.unixTimeLeft--;
       } else {
-        this.changeActiveQuestion(this.activeQuestion + 1);
+        /*this.modalService.openSuccessDialog('Час завершився', () => {
+
+        });*/
+        clearInterval(timer);
+        this.finishTest();
+        this.stopTimer();
       }
+    }, this.MILLISECONDS_IN_MINUTE);
+  }
+
+  checkUnixTime() {
+    this.test_player.getCurrentTime()
+      .subscribe(res => {
+        if (+res['unix_timestamp'] < this.endUnixTime) {
+          this.unixTimeLeft = (this.endUnixTime - +res['unix_timestamp']);
+        } else if (+res['unix_timestamp'] > this.endUnixTime) {
+        }
+      });
+  }
+
+  getArrayOfNumbers(array: Question[]) {
+    let ArrayOfNumbers = [];
+    for (let j = 1; j <= array.length; j++) {
+      ArrayOfNumbers.push(j);
     }
+    return ArrayOfNumbers;
   }
 
-  changeActiveQuestion(num: number) {
-    if (num === this.activeQuestion) {
-      return; }
-      this.navButtons[this.activeQuestion].answered ?
-      this.navButtons[this.activeQuestion].className = 'btn btn-success nom-qua' :
-      this.navButtons[this.activeQuestion].className = 'btn btn-primary nom-qua';
-    this.activeQuestion = num;
-    this.navButtons[this.activeQuestion].className = 'btn btn-warning nom-qua';
-  }
+  stopTimer() {
+    clearInterval(this.timer);
+  };
 
-  toggleAnswer(event: any, answerId: number, numberOfQuestion: number) {
-    this.questions[numberOfQuestion].chosenAnswer[answerId] = !this.questions[numberOfQuestion].chosenAnswer[answerId];
-    event.stopImmediatePropagation();
+  digitizeTime(value: any) {
+    return value <= 9 ? '0' + value : value;
+  };
 
-
-  }
+  checkProgresColor() {
+    let status = parseInt(this.statusTimer, 0);
+    if (status > this.DANGER_STATUS) {
+      return this.STATUS_COLOR;
+    } else if (status <= this.DANGER_STATUS) {
+      return this.DANGER_COLOR;
+    }
+  };
 
 }

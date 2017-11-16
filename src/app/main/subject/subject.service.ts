@@ -7,6 +7,7 @@ import {Subject} from './subject';
 import {SubjectDto} from './subject-dto';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {urlConstants} from '../shared/constants/url-constants';
+import {TestPlayerComponent} from "../test-player/test-player.component";
 
 
 @Injectable()
@@ -32,7 +33,7 @@ export class SubjectService {
   addSubject(subject: any): Observable<SubjectDto> {
     return this.http.post(`${urlConstants.subjectUrl}${urlConstants.insertData}`, subject);
   }
-  getQuestionIdsByLevelRand(id: number, level: any, tasks: any): Observable<SubjectDto> {
+  getQuestionIdsByLevelRand(id: number, level: any, tasks: any): Observable<any> {
     return this.http.post(`${urlConstants.question}${urlConstants.getQuestionIdsByLevelRand}`, id, level);
   }
 

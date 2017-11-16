@@ -25,6 +25,9 @@ export class User {
   hasRole(expectedRole: string): boolean {
     return this.roles.filter(role => role === expectedRole).length > 0;
   }
+  isStudent(): boolean {
+    return this.hasRole(ROLES_DEFAULT_CONFIG.ROLE_STUDENT);
+  }
 
   isLogged(): boolean {
     return this.id !== '';

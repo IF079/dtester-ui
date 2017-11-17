@@ -4,7 +4,7 @@ mat-card.info-block {
   padding: 0;
   margin-bottom: 20px;
   mat-card-title {
-    @include indigo-grey($app-light-theme);
+    @include indigo-grey($dtest-light-theme);
     padding: 10px 24px;
   }
   mat-card-content {

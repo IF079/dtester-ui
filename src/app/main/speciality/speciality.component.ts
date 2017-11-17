@@ -9,7 +9,7 @@ import {SpecialityModalComponent} from './speciality-modal/speciality-modal.comp
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-speciality',
+  selector: 'dtest-speciality',
   templateUrl: './speciality.component.html',
   styleUrls: ['./speciality.component.scss'],
   providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]

@@ -6,7 +6,7 @@ import {SpecialityService} from '../speciality.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-speciality-modal',
+  selector: 'dtest-speciality-modal',
   templateUrl: 'speciality-modal.component.html',
   styleUrls: ['speciality-modal.component.scss']
 })

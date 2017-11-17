@@ -8,7 +8,7 @@ import {Question} from '../question';
 import {AnswerService} from '../../answer/answer.service';
 
 @Component({
-  selector: 'app-question-add-modal',
+  selector: 'dtest-question-add-modal',
   templateUrl: './question-add-modal.component.html',
   styleUrls: ['./question-add-modal.component.scss']
 })

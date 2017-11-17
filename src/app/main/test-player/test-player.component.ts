@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+
 import {SubjectService} from '../subject/subject.service';
 import {TestPlayerService} from './test-player.service';
 import {TestDetailService} from '../test-detail/test-detail.service';
@@ -9,11 +11,12 @@ import {TestDetail} from '../test-detail/test-detail';
 import {Test} from '../test/test';
 import {TestService} from '../test/test.service';
 import {generalConst} from '../shared/constants/general-constants';
-import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
-  selector: 'dtester-test-player',
-  templateUrl: 'test-player.component.html', styleUrls: ['test-player.component.scss']
+  selector: 'dtest-test-player',
+  templateUrl: 'test-player.component.html',
+  styleUrls: ['test-player.component.scss']
 })
 
 export class TestPlayerComponent implements OnInit {
@@ -207,11 +210,11 @@ export class TestPlayerComponent implements OnInit {
 
   stopTimer() {
     clearInterval(this.timer);
-  };
+  }
 
   digitizeTime(value: any) {
     return value <= 9 ? '0' + value : value;
-  };
+  }
 
   checkProgresColor() {
     const status = parseInt(this.statusTimer, 0);
@@ -220,6 +223,5 @@ export class TestPlayerComponent implements OnInit {
     } else if (status <= this.DANGER_STATUS) {
       return this.DANGER_COLOR;
     }
-  };
-
+  }
 }

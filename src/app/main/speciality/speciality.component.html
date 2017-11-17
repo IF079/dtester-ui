@@ -5,8 +5,8 @@
           (click)="openDialog()">{{btnAddSpeciality}}
   </button>
 </div>
-<app-entity-table [entityName]="'Speciality'" [columnsArray]="headingColumnsOfTable"
-                  [entityArray]="specialities"></app-entity-table>
+<dtest-entity-table [entityName]="'Speciality'" [columnsArray]="headingColumnsOfTable"
+                  [entityArray]="specialities"></dtest-entity-table>
 <mat-paginator [length]="numberOfRecords"
                [pageSize]="limit"
                [pageSizeOptions]="pageSizeOptions"

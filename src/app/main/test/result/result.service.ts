@@ -6,7 +6,6 @@ import 'rxjs/add/observable/forkJoin';
 import {Result} from './result';
 import {ResultDto} from './result-dto';
 import {RecordsCount} from '../../shared/entities/recordsCount';
-import {LoggerFactory} from '../../../shared/logger/logger.factory';
 import {url} from '../../shared/constants/url-constants';
 import {Student} from '../../student/student';
 import {Test} from '../test';

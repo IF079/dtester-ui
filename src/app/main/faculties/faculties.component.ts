@@ -10,7 +10,7 @@ import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-faculties',
+  selector: 'dtest-faculties',
   templateUrl: './faculties.component.html',
   styleUrls: ['./faculties.component.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]

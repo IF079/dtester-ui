@@ -1,12 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {TimeTableService} from '../time-table.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-time-table-modal',
+  selector: 'dtest-time-table-modal',
   templateUrl: './time-table-modal.component.html',
   styleUrls: ['./time-table-modal.component.scss']
 })

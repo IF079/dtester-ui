@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
-  selector: 'app-info-modal',
+  selector: 'dtest-info-modal',
   templateUrl: './info-modal.component.html',
   styleUrls: ['./info-modal.component.scss']
 })

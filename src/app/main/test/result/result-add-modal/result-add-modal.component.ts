@@ -1,11 +1,10 @@
 import {Component, OnInit, Inject} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import {InfoModalService} from '../../../info-modal/info-modal.service';
-import {Result} from '../result';
 
 @Component({
-  selector: 'app-result-add-modal',
+  selector: 'dtest-result-add-modal',
   templateUrl: './result-add-modal.component.html',
   styleUrls: ['./result-add-modal.component.scss']
 })

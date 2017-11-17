@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 
 @Component({
-  selector: 'app-edit-subject-modal',
+  selector: 'dtest-edit-subject-modal',
   templateUrl: './edit-subject-modal.component.html'
 })
 

@@ -6,7 +6,7 @@ import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {TimeTableService} from '../../time-table/time-table.service';
 
 @Component({
-  selector: 'app-edit-timetable-modal',
+  selector: 'dtest-edit-timetable-modal',
   templateUrl: './edit-timetable-modal.component.html',
   styleUrls: ['./edit-timetable-modal.component.scss']
 })

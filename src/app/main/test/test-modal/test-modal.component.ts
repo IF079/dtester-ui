@@ -1,17 +1,17 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
+import {Component, Inject} from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {TestService} from '../test.service';
 import {Test} from '../test';
 
 @Component({
-  selector: 'app-test-modal',
+  selector: 'dtest-test-modal',
   templateUrl: './test-modal.component.html',
   styleUrls: ['./test-modal.component.scss']
 })
-export class TestModalComponent implements OnInit {
+export class TestModalComponent {
   type = this.data.type;
   subjects = this.data.subjects;
   viewTestArray: Test[];
@@ -49,7 +49,7 @@ export class TestModalComponent implements OnInit {
   }
 
   setArrayOfDigit(amount: number) {
-    const localArr = []
+    const localArr = [];
     for (let i = 1; i <= amount; i++) {
       localArr.push(i);
     }
@@ -85,9 +85,4 @@ export class TestModalComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-  ngOnInit() {
-    
-  }
-
 }

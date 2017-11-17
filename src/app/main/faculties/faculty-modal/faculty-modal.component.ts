@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FacultyService} from '../faculty.service';
 
 @Component({
-  selector: 'app-faculty-modal',
+  selector: 'dtest-faculty-modal',
   templateUrl: './faculty-modal.component.html',
   styleUrls: ['./faculty-modal.component.scss']
 })

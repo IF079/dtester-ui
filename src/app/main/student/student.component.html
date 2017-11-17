@@ -7,8 +7,8 @@
         color="primary"
         (click)="openAddDialog()"
         class="addButton">Додати студента</button>
-<app-entity-table [entityArray]="students" [entityName]="'Student'" [columnsArray]="headingColumnsOfTable"
-                  [detailUrl]="'/student'"></app-entity-table>
+<dtest-entity-table [entityArray]="students" [entityName]="'Student'" [columnsArray]="headingColumnsOfTable"
+                  [detailUrl]="'/student'"></dtest-entity-table>
 <mat-paginator [length]="numberOfRecords"
                [pageSize]="limit"
                [pageSizeOptions]="pageSizeOptions"

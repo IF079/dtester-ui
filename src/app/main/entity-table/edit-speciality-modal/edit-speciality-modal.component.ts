@@ -4,7 +4,7 @@ import {Validators} from '@angular/forms';
 import {SpecialityModalComponent} from '../../speciality/speciality-modal/speciality-modal.component';
 
 @Component({
-  selector: 'app-edit-speciality-modal',
+  selector: 'dtest-edit-speciality-modal',
   templateUrl: './edit-speciality-modal.component.html',
   styleUrls: ['./edit-speciality-modal.component.scss']
 })

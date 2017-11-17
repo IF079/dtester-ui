@@ -5,7 +5,6 @@ import 'rxjs/add/observable/forkJoin';
 
 import {Subject} from '../subject/subject';
 import {SubjectDto} from '../subject/subject-dto';
-
 import {TimeTable} from './time-table';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {url} from '../shared/constants/url-constants';

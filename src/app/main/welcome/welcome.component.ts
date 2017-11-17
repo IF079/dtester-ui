@@ -14,7 +14,7 @@ import {ResultService} from '../test/result/result.service';
 import {Result} from '../test/result/result';
 
 @Component({
-  selector: 'app-welcome',
+  selector: 'dtest-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })

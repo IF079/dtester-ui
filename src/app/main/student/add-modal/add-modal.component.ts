@@ -8,7 +8,7 @@ import {AsyncUsernameValidator, AsyncEmailValidator} from './async.validator';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-add-modal',
+  selector: 'dtest-add-modal',
   templateUrl: './add-modal.component.html',
   styleUrls: ['./add-modal.component.scss']
 })

@@ -6,7 +6,7 @@ import {SubjectService} from '../subject.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-subject-modal',
+  selector: 'dtest-subject-modal',
   templateUrl: './subject-modal.component.html',
   styleUrls: ['./subject-modal.component.scss']
 })

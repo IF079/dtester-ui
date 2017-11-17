@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {SpinnerService} from './spinner/spinner.service';
 
 @Component({
-  selector: 'app-main',
+  selector: 'dtest-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })

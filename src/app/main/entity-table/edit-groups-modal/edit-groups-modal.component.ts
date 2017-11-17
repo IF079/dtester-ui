@@ -6,7 +6,7 @@ import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {GroupsService} from '../../groups/groups.service';
 
 @Component({
-  selector: 'app-edit-groups-modal',
+  selector: 'dtest-edit-groups-modal',
   templateUrl: './edit-groups-modal.component.html',
   styleUrls: ['./edit-groups-modal.component.scss']
 })

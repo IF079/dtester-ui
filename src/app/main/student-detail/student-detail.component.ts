@@ -8,7 +8,7 @@ import {StudentService} from '../student/student.service';
 
 
 @Component({
-    selector: 'app-student-detail',
+    selector: 'dtest-student-detail',
     templateUrl: './student-detail.component.html',
     styleUrls: ['./student-detail.component.scss']
 })

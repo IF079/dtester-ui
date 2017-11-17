@@ -9,7 +9,7 @@ import {GroupsModalComponent} from './groups-modal/groups-modal.component';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-groups',
+  selector: 'dtest-groups',
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss'],
   providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]

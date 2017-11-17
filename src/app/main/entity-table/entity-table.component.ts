@@ -12,7 +12,7 @@ import {EditFacultyModalComponent} from './edit-faculty-modal/edit-faculty-modal
 import {EditStudentModalComponent} from './edit-student-modal/edit-student-modal.component';
 
 @Component({
-  selector: 'app-entity-table',
+  selector: 'dtest-entity-table',
   templateUrl: './entity-table.component.html',
   styleUrls: ['./entity-table.component.scss']
 })

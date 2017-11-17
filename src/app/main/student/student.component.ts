@@ -13,7 +13,7 @@ import {InfoModalService} from '../info-modal/info-modal.service';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-students',
+  selector: 'dtest-students',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]

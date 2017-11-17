@@ -3,7 +3,7 @@
 table {
   font-size: 15px;
   .heading-row {
-    @include indigo-grey($app-light-theme);
+    @include indigo-grey($dtest-light-theme);
   }
   td {
     font-weight: $primary-font-weight;

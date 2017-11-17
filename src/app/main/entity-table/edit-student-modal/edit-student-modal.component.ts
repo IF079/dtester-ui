@@ -8,7 +8,7 @@ import {Student} from '../../student/student';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 
 @Component({
-  selector: 'app-edit-student-modal',
+  selector: 'dtest-edit-student-modal',
   templateUrl: './edit-student-modal.component.html',
   styleUrls: ['../../student/add-modal/add-modal.component.scss']
 })

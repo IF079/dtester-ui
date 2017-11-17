@@ -4,7 +4,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 
 @Component({
-  selector: 'app-delete-confirm-modal',
+  selector: 'dtest-delete-confirm-modal',
   templateUrl: './delete-confirm-modal.component.html'
 })
 

@@ -9,7 +9,7 @@ import {TimeTableModalComponent} from './timetable-modal/time-table-modal.compon
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-time-table',
+  selector: 'dtest-time-table',
   templateUrl: './time-table.component.html',
   styleUrls: ['./time-table.component.scss'],
   providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]

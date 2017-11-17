@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, RequestOptions} from '@angular/http';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {Question} from "../test/question/question";
-import {Answer} from "../test/answer/answer";
-import {HttpClient} from "@angular/common/http";
+import {Observable} from 'rxjs/Observable';
+
+import {Question} from '../test/question/question';
+import {Answer} from '../test/answer/answer';
+import {HttpClient} from '@angular/common/http';
 import {
   HOST, HOST_PROTOCOL, TEST_PLAYER_GET_ANSWER_BY_QUESTION,
   TEST_PLAYER_GET_QUESTIONS_IDS_BY_LEVEL_RAND,
@@ -31,8 +32,7 @@ export class TestPlayerService {
       this.router.navigate(['/login']);
     }
     return Observable.throw(errMsg);
-  };
-
+  }
 
   getCurrentTime() {
     return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_TIME_STAMP).catch(this.handleError);
@@ -61,7 +61,7 @@ export class TestPlayerService {
         return this.questions;
       }).catch(this.handleError);
 
-  };
+  }
 
   prepareQuestionForTest(questions: Question[][]): Question[] {
     const tempArr: Question[] = [];
@@ -94,9 +94,6 @@ export class TestPlayerService {
 
   checkSecurity(user_id: number, test_id: number) {
     const body = JSON.stringify({'user_id': user_id, 'test_id': test_id});
-    return this.http.post(HOST_PROTOCOL + HOST + TEST_PLAYER_START_TEST + user_id + '/' + test_id, JSON.stringify(body), ).catch(this.handleError);
+    return this.http.post(HOST_PROTOCOL + HOST + TEST_PLAYER_START_TEST + user_id + '/' + test_id, JSON.stringify(body),).catch(this.handleError);
   }
-
-
 }
-

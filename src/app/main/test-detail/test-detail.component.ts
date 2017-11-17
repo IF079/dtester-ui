@@ -6,7 +6,7 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 
 @Component({
-  selector: 'app-test-detail',
+  selector: 'dtest-test-detail',
   templateUrl: './test-detail.component.html',
   styleUrls: ['./test-detail.component.scss']
 })

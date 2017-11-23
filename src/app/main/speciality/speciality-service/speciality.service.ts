@@ -2,11 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/operator/map';
 
-import {Speciality} from './speciality';
-import {SpecialityDto} from './speciality-dto';
-import {RecordsCount} from '../shared/entities/recordsCount';
-import {url} from '../shared/constants/url-constants';
+import {Speciality} from '../speciality';
+import {SpecialityDto} from '../speciality-dto';
+import {RecordsCount} from '../../shared/entities/recordsCount';
+import {url} from '../../shared/constants/url-constants';
 
 @Injectable()
 

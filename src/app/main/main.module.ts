@@ -23,7 +23,7 @@ import {TimeTableModalComponent} from './time-table/timetable-modal/time-table-m
 import {WelcomeComponent} from './welcome/welcome.component';
 import {MainMaterialModule} from './main-material.module';
 import {StudentService} from './student/student.service';
-import {SpecialityService} from './speciality/speciality.service';
+import {SpecialityService} from './speciality/speciality-service/speciality.service';
 import {SubjectService} from './subject/subject.service';
 import {SpinnerService} from './spinner/spinner.service';
 import {GroupsService} from './groups/groups.service';

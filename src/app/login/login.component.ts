@@ -7,7 +7,7 @@ import {LOGIN_FORM_DEFAULT_CONFIG} from './config/login-form.default.config';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'dtest-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

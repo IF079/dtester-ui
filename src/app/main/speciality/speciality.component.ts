@@ -1,18 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog, PageEvent} from '@angular/material';
 
-import {SpecialityService} from './speciality.service';
+import {SpecialityService} from './speciality-service/speciality.service';
 import {Speciality} from './speciality';
 import {generalConst} from '../shared/constants/general-constants';
-import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {SpecialityModalComponent} from './speciality-modal/speciality-modal.component';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-speciality',
   templateUrl: './speciality.component.html',
-  styleUrls: ['./speciality.component.scss'],
-  providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
+  styleUrls: ['./speciality.component.scss']
 })
 
 export class SpecialityComponent implements OnInit {
@@ -21,7 +19,7 @@ export class SpecialityComponent implements OnInit {
   pageSizeOptions = [5, 10, 25, 50];
   errWithDisplayingSpeciality: string;
   numberOfRecords: number;
-  specialities: Speciality[];
+  specialities: Speciality[] = [];
   headingColumnsOfTable = ['№', 'Код Спеціальності', 'Назва Спеціальності'];
   btnAddSpeciality = 'Додати Спеціальність';
 

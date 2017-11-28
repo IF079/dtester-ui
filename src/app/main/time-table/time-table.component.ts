@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog, PageEvent} from '@angular/material';
 
 import {TimeTableService} from './time-table.service';
 import {TimeTable} from './time-table';
 import {generalConst} from '../shared/constants/general-constants';
-import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {TimeTableModalComponent} from './timetable-modal/time-table-modal.component';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
@@ -12,14 +11,13 @@ import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.se
   selector: 'dtest-time-table',
   templateUrl: './time-table.component.html',
   styleUrls: ['./time-table.component.scss'],
-  providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
 
 export class TimeTableComponent implements OnInit {
   limit = 10;
   offset = 0;
   pageSizeOptions = [5, 10, 25, 100];
-  timetables: TimeTable[];
+  timetables: TimeTable[] = [];
   headingColumnsOfTable = ['№', 'Назва групи', 'Назва предмету', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
   errWithDisplayingTimeTables: string;
   numberOfRecords: number;

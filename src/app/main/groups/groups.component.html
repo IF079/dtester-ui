@@ -1,12 +1,9 @@
-<div *ngIf="errWithDisplayingFaculties" class="mat-error">{{errWithDisplayingFaculties}}</div>
-
-<app-entity-table [entityName]="'Group'" [columnsArray]="headingColumnsOfTable" [entityArray]="groups"> </app-entity-table>
-<app-pagination (goPage)="goPage($event)"
-                (goPrev)="goPrev()"
-                (goNext)="goNext()"
-                [numberOfRecords]="numberOfRecords"
-                [currentPage]="currentPage"
-                [isLoading]="isLoading"
-                [limitPerPage]="limitPerPage"
-                [numberOfPagesToShow]="3"
-                [errWithCounting]="errWithCountingRecords"></app-pagination>
+<div *ngIf="errWithDisplayingGroups" class="mat-error">{{errWithDisplayingGroups}}</div>
+<button  class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
+<dtest-entity-table [entityName]="'Group'" [columnsArray]="headingColumnsOfTable"
+                [entityArray]="groups" [detailUrl]="'/groups'"></dtest-entity-table>
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>

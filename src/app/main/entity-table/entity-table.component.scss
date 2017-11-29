@@ -1,13 +1,13 @@
 @import '../../../mixins';
 
 table {
-  margin-top: 50px;
   font-size: 15px;
   .heading-row {
-    @include indigo-grey($app-light-theme);
+    @include indigo-grey($dtest-light-theme);
   }
   td {
     font-weight: $primary-font-weight;
+    cursor: pointer;
   }
   th {
     border: none;
@@ -24,5 +24,4 @@ table {
       color: rgb(218, 5, 5);
     }
   }
-
 }

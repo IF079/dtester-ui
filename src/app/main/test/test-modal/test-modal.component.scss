@@ -1,0 +1,25 @@
+@import '../../../../mixins';
+
+mat-dialog-content {
+  mat-form-field {
+    width: 100%;
+  }
+  .viewInfo{
+    text-align: center;
+    color: grey;
+    font-size: 15px;
+  }
+  table {
+    font-size: 15px;
+    .heading-row {
+      @include indigo-grey($dtest-light-theme);
+    }
+    td {
+      font-weight: $primary-font-weight;
+      cursor: pointer;
+    }
+    th {
+      border: none;
+    }
+  }
+}

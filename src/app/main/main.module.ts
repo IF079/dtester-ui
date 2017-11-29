@@ -1,64 +1,136 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import {DeleteConfirmModalComponent} from './entity-table/delete-confirm-modal/delete-confirm-modal.component';
+import {EditGroupsModalComponent} from './entity-table/edit-groups-modal/edit-groups-modal.component';
+import {EditSubjectModalComponent} from './entity-table/edit-subject-modal/edit-subject-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
-import {HttpSpinnerComponent} from './http-spinner/http-spinner.component';
 import {FacultiesComponent} from './faculties/faculties.component';
+import {FacultyModalComponent} from './faculties/faculty-modal/faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
-import {ModalComponent} from './modal/modal.component';
-import {PaginationComponent} from './pagination/pagination.component';
+import {GroupsModalComponent} from './groups/groups-modal/groups-modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {SubjectComponent} from './subject/subject.component';
+import {SubjectModalComponent} from './subject/subject-modal/subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
+import {TimeTableModalComponent} from './time-table/timetable-modal/time-table-modal.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {MainMaterialModule} from './main-material.module';
-import {StudentService} from './shared/services/crud/student.service';
-import {SpecialityService} from './shared/services/crud/speciality.service';
-import {SubjectService} from './shared/services/crud/subject.service';
-import {SpinnerService} from './shared/services/spinner.service';
-import {GroupsService} from './shared/services/crud/groups.service';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {SpinnerInterceptor} from '../shared/interceptors/spinner.interceptor';
+import {StudentService} from './student/student.service';
+import {SpecialityService} from './speciality/speciality-service/speciality.service';
+import {SubjectService} from './subject/subject.service';
+import {SpinnerService} from './spinner/spinner.service';
+import {GroupsService} from './groups/groups.service';
+import {SpinnerInterceptor} from './spinner/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
-import {TestsComponent} from './tests/tests.component';
-import {FacultyService} from './shared/services/crud/faculty.service';
-import {TimeTableService} from './shared/services/crud/time-table.service';
+import {FacultyService} from './faculties/faculty.service';
+import {TimeTableService} from './time-table/time-table.service';
+import {StudentAddModalComponent} from './student/add-modal/add-modal.component';
+import {InfoModalComponent} from './info-modal/info-modal.component';
+import {TestComponent} from './test/test.component';
+import {TestDetailComponent} from './test-detail/test-detail.component';
+import {TestService} from './test/test.service';
+import {TestDetailService} from './test-detail/test-detail.service';
+import {UpdateDeleteEntityService} from './entity-table/update-delete-entity.service';
+import {AnswerService} from './test/answer/answer.service';
+import {QuestionService} from './test/question/question.service';
+import {InfoModalService} from './info-modal/info-modal.service';
+import {ResultService} from './test/result/result.service';
+import {SpecialityModalComponent} from './speciality/speciality-modal/speciality-modal.component';
+import {QuestionAddModalComponent} from './test/question/question-add-modal/question-add-modal.component';
+import {TestModalComponent} from './test/test-modal/test-modal.component';
+import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
+import {EditSpecialityModalComponent} from './entity-table/edit-speciality-modal/edit-speciality-modal.component';
+import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
+import {EditStudentModalComponent} from './entity-table/edit-student-modal/edit-student-modal.component';
+import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/edit-timetable-modal.component';
+import {TestPlayerComponent} from './test-player/test-player.component';
+import {TestPlayerService} from './test-player/test-player.service';
+
 
 @NgModule({
   declarations: [
     MainComponent,
     NavComponent,
-    HttpSpinnerComponent,
     FacultiesComponent,
+    FacultyModalComponent,
     GroupsComponent,
-    ModalComponent,
-    PaginationComponent,
+    GroupsModalComponent,
     SpecialityComponent,
     StudentComponent,
     StudentDetailComponent,
     SubjectComponent,
+    SubjectModalComponent,
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent,
-    TestsComponent
+    EditSubjectModalComponent,
+    EditGroupsModalComponent,
+    DeleteConfirmModalComponent,
+    StudentAddModalComponent,
+    SpecialityModalComponent,
+    InfoModalComponent,
+    TestComponent,
+    TestDetailComponent,
+    TimeTableModalComponent,
+    QuestionAddModalComponent,
+    TestModalComponent,
+    ResultAddModalComponent,
+    EditSpecialityModalComponent,
+    EditFacultyModalComponent,
+    EditStudentModalComponent,
+    EditTimetableModalComponent,
+    TestPlayerComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MainRoutingModule,
-    MainMaterialModule
+    MainMaterialModule,
+    FormsModule
+  ],
+  entryComponents: [
+    DeleteConfirmModalComponent,
+    EditSubjectModalComponent,
+    SubjectModalComponent,
+    StudentAddModalComponent,
+    SpecialityModalComponent,
+    InfoModalComponent,
+    FacultyModalComponent,
+    TimeTableModalComponent,
+    GroupsModalComponent,
+    QuestionAddModalComponent,
+    TestModalComponent,
+    ResultAddModalComponent,
+    EditGroupsModalComponent,
+    EditSpecialityModalComponent,
+    EditFacultyModalComponent,
+    EditStudentModalComponent,
+    EditTimetableModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
+    UpdateDeleteEntityService,
     StudentService,
     SpecialityService,
     GroupsService,
     SubjectService,
     FacultyService,
     TimeTableService,
-    SpinnerService
+    TestService,
+    TestDetailService,
+    SpinnerService,
+    AnswerService,
+    QuestionService,
+    InfoModalService,
+    ResultService,
+    TestPlayerService
   ]
 })
 export class MainModule {

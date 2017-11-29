@@ -1,26 +1,23 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {LoginModule} from './login/login.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule} from '@angular/router';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+
+import {AppComponent} from './app.component';
+import {LoginModule} from './login/login.module';
 import {DomainUrlAppenderInterceptor} from './shared/interceptors/domain-url-appender.interceptor';
-import {AppMaterialModule} from './app-material.module';
 import {BasicErrorHandler} from './shared/basic-error-handler';
 import {MainModule} from './main/main.module';
 
-
-
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppMaterialModule,
-    AppRoutingModule,
+    RouterModule.forRoot([]),
     LoginModule,
     MainModule
   ],

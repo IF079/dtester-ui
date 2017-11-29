@@ -1,35 +1,16 @@
-<button mat-raised-button=""
-        color="primary"
-        (click)="modal.openDialogue()"
-        class="addButton">Додати спеціальність</button>
-<app-modal #modal>
-  <form>
-    <mat-card>
-      <mat-form-field>
-        <input matInput  placeholder="Код Спеціальності">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput  placeholder="Назва Спеціальності">
-      </mat-form-field>
-      <button  class="modal-button"
-               mat-raised-button=""
-               color="primary">Додати</button>
-      <button  class="modal-button"
-               mat-raised-button=""
-               color="primary"
-               (click)="modal.closeDialogue()">Закрити</button>
-    </mat-card>
-  </form>
-</app-modal>
-<app-entity-table [entityName]="'Speciality'"
-                  [columnsArray]="headingColumnsOfTable"
-                  [entityArray]="specialities"></app-entity-table>
-<app-pagination (goPage)="goPage($event)"
-                (goPrev)="goPrev()"
-                (goNext)="goNext()"
-                [numberOfRecords]="numberOfRecords"
-                [currentPage]="currentPage"
-                [isLoading]="isLoading"
-                [limitPerPage]="limitPerPage"
-                [numberOfPagesToShow]="3"
-                [errWithCounting]="errWithCountingRecords"></app-pagination>
+<div *ngIf="errWithDisplayingSpeciality" class="mat-error">{{errWithDisplayingSpeciality}}</div>
+<div class="toRight">
+  <button mat-raised-button
+          color="primary"
+          (click)="openDialog()">{{btnAddSpeciality}}
+  </button>
+</div>
+<dtest-entity-table [entityName]="'Speciality'" [columnsArray]="headingColumnsOfTable"
+                  [entityArray]="specialities"></dtest-entity-table>
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>
+
+

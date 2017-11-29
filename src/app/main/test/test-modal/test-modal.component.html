@@ -1,0 +1,89 @@
+<form *ngIf="type === 'add'" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <h2 mat-dialog-title>Добавити тест</h2>
+  <mat-dialog-content>
+    <div class="container">
+      <div class="row">
+        <mat-form-field>
+          <input matInput [placeholder]="placeholders.testName" formControlName="testName">
+          <mat-error *ngIf="!form.controls['testName'].valid && form.controls['testName'].touched">{{errorTestName}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [placeholder]="placeholders.subjectName" formControlName="subjectId">
+            <mat-option *ngFor="let subject of subjects" [value]="subject.value">
+              {{subject.text}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!form.controls['subjectId'].valid && form.controls['subjectId'].touched">{{errorEmptyInput}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [placeholder]="placeholders.tasks" formControlName="tasks">
+            <mat-option *ngFor="let task of tasks" [value]="task">
+              {{task}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!form.controls['tasks'].valid && form.controls['tasks'].touched">{{errorEmptyInput}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [placeholder]="placeholders.timeForTest" type="time" formControlName="timeForTest">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [placeholder]="placeholders.enabled" formControlName="enabled">
+            <mat-option *ngFor="let stat of status" [value]="stat.value">
+              {{stat.text}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!form.controls['enabled'].valid && form.controls['enabled'].touched">{{errorEmptyInput}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [placeholder]="placeholders.attempts" formControlName="attempts">
+            <mat-option *ngFor="let attempt of attempts" [value]="attempt">
+              {{attempt}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!form.controls['attempts'].valid && form.controls['attempts'].touched">{{errorEmptyInput}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" class="modal-button" mat-raised-button color="primary" [disabled]="!form.valid">Добавити</button>
+    <button mat-button mat-dialog-close tabindex="-1">Відмінити</button>
+  </mat-dialog-actions>
+</form>
+
+<div *ngIf="type === 'view'">
+  <h2 mat-dialog-title>Список тестів</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-select #subjectSelect [placeholder]="placeholders.subjectName" (change)="onViewChange($event)">
+        <mat-option *ngFor="let subject of subjects" [value]="subject.value">
+          {{subject.text}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="viewInfo" *ngIf="!viewTestArray && !subjectSelect.value">Виберіть один з предметів, щоб перевірити доступні тести</div>
+    <div class="viewInfo" *ngIf="!viewTestArray && subjectSelect.value">На даний момент немає тестів по даному предмету</div>
+    <table *ngIf="!!viewTestArray" class="table table-hover">
+      <thead>
+        <tr class="heading-row">
+          <th *ngFor="let col of viewHeadersArray">{{col}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let test of viewTestArray">
+          <td>{{test.testName}}</td>
+          <td>{{test.tasks}}</td>
+          <td>{{test.timeForTest}}</td>
+          <td>{{test.attempts}}</td>
+          <td *ngIf="test.enabled == 1; else disable">Доступний</td>
+          <ng-template #disable>
+            <td>Недоступний</td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close tabindex="-1">Закрити</button>
+  </mat-dialog-actions>
+</div>

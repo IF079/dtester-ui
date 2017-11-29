@@ -1,70 +1,76 @@
 import {Component, OnInit} from '@angular/core';
-import {GroupsService} from '../shared/services/crud/groups.service';
-import {Group} from '../shared/entities/group';
+import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
+import {GroupsService} from './groups.service';
+import {Group} from './group';
+import {generalConst} from '../shared/constants/general-constants';
+import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
+import {GroupsModalComponent} from './groups-modal/groups-modal.component';
+import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-groups',
+  selector: 'dtest-groups',
   templateUrl: './groups.component.html',
-  styleUrls: ['./groups.component.scss']
-
+  styleUrls: ['./groups.component.scss'],
+  providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
+
 export class GroupsComponent implements OnInit {
-
-  groups: Group[];
-  errWithDisplayingSubjects: string;
-  errWithCountingRecords: string;
+  limit = 10;
   offset = 0;
-  currentPage = 1;
-  limitPerPage = 10;
+  pageSizeOptions = [5, 10, 25, 100];
+  groups: Group[];
+  errWithDisplayingGroups: string;
   numberOfRecords: number;
-  isLoading = false;
-  headingColumnsOfTable = ['ID', 'Назва', 'ID Факультету', 'ID Спеціальності'];
+  headingColumnsOfTable = ['№', 'Назва групи', 'Назва спеціальності', 'Назва факультету'];
+  facultyDictionary = {};
+  specialityDictionary = {};
+  btnAdd = 'Додати групу';
 
-  constructor(private groupsService: GroupsService) {
+  constructor(private delUpdateService: UpdateDeleteEntityService, private groupsService: GroupsService, public dialog: MatDialog) {
+    this.updateNumberOfRecordsInDom();
   }
-  getGroups() {
-    this.isLoading = true;
-    this.groupsService.getGroups(this.limitPerPage, this.offset).subscribe(data => {
-        this.groups = data;
-        console.log(this.groups);
-        this.isLoading = false;
+
+  updateNumberOfRecordsInDom() {
+    this.delUpdateService.groupInserted$.subscribe(resp => {
+      this.numberOfRecords += 1;
+    });
+    this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
+      this.numberOfRecords -= 1;
+    });
+  }
+
+  goPage(pageEvent: PageEvent) {
+    this.limit = pageEvent.pageSize;
+    this.offset = ((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize;
+    this.getGroupsRange();
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(GroupsModalComponent, {
+      height: '350px',
+      width: '1000px',
+      data: {facultyDictionary: this.facultyDictionary, specialityDictionary: this.specialityDictionary}
+    });
+  }
+
+  getGroupsRange() {
+    this.groupsService.getGroupsRange(this.limit, this.offset).subscribe(data => {
+        this.groups = data[0];
+        data[1].forEach(facultyItem => this.facultyDictionary[facultyItem.faculty_id] = facultyItem.faculty_name);
+        data[2].forEach(specialityItem => this.specialityDictionary[specialityItem.specialityId] = specialityItem.specialityName);
+        this.groups.forEach(groupItem => {
+          groupItem.faculty_id = this.facultyDictionary[groupItem.faculty_id];
+          groupItem.speciality_id = this.specialityDictionary[groupItem.speciality_id];
+        });
+        this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
       },
       err => {
-        console.log(err);
-        this.errWithDisplayingSubjects = 'Something is wrong with displaying data. Please try again.';
+        this.errWithDisplayingGroups = generalConst.errorWithDisplayData;
       });
-  }
-  countRecords(): void {
-    this.groupsService.countGroups().subscribe((data) => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-      err => {
-        console.log(err);
-        this.errWithCountingRecords = 'Something is wrong with displaying the number of subjects';
-      });
-  }
-
-  goPage(n: number): void {
-    this.offset = (this.limitPerPage * n) - this.limitPerPage;
-    this.getGroups();
-  }
-
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-
-    this.getGroups();
-  }
-
-  goNext(): void {
-    this.offset += this.limitPerPage;
-    this.getGroups();
   }
 
   ngOnInit() {
-    this.getGroups();
-    this.countRecords();
+    this.getGroupsRange();
   }
-
-
 }

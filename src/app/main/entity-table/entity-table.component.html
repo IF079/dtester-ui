@@ -2,16 +2,16 @@
   <thead>
   <tr class="heading-row">
     <th *ngFor="let col of columnsArray">{{col}}</th>
+    <th></th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let tableItem of tableArray"
-        (dblclick)="onSelect(tableItem)">
-    <td *ngFor="let item of tableItem">{{item}}</td>
-    <td><i class="fa fa-pencil-square-o"></i></td>
-    <td><i class="fa fa-times"></i></td>
-  </tr>
+    <tr *ngFor="let rowItem of tableRowArr"
+        (dblclick)="onSelect(rowItem)">
+      <td *ngFor="let item of rowItem">{{item}}</td>
+      <td><i (click)="openDialogAndPassDataToIt(rowItem)" class="fa fa-pencil-square-o"></i></td>
+      <td><i (click)="openDeleteDialogAndPassItemToDelete(rowItem)" class="fa fa-times"></i></td>
+    </tr>
   </tbody>
 </table>
-
-

@@ -1,0 +1,36 @@
+<form [formGroup]="specialityForm" (ngSubmit)="addSpeciality(specialityForm.value)">
+  <h2 mat-dialog-title *ngIf="!isAdded">{{title}}</h2>
+  <h2 mat-dialog-title *ngIf="isAdded">{{titleSuccess}}</h2>
+  <mat-dialog-content *ngIf="!isAdded">
+    <mat-form-field>
+      <input matInput [formControl]="specialityForm.controls['code']" placeholder="{{placeholders.code}}">
+      <mat-error>
+        <div *ngIf="specialityForm.controls['code'].hasError('required')">{{errorRequired}}</div>
+        <div *ngIf="specialityForm.controls['code'].hasError('pattern')">{{errorCodePattern}}</div>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [formControl]="specialityForm.controls['name']" placeholder="{{placeholders.name}}">
+      <mat-error>
+        <div *ngIf="specialityForm.controls['name'].hasError('required')">{{errorRequired}}</div>
+      </mat-error>
+    </mat-form-field>
+    <mat-error>
+      <div *ngIf="errorMessage">{{errorMessage}}</div>
+    </mat-error>
+  </mat-dialog-content>
+  <mat-dialog-actions *ngIf="!isAdded">
+    <div class="btn-center">
+      <button [disabled]="!specialityForm.valid" type="submit" class="modal-button" mat-raised-button color="primary">
+        {{btnAdd}}
+      </button>
+      <button mat-raised-button mat-dialog-close>{{btnClose}}</button>
+    </div>
+  </mat-dialog-actions>
+  <mat-dialog-actions *ngIf="isAdded">
+    <div class="btn-center">
+      <button mat-raised-button mat-dialog-close color="primary">{{btnOk}}</button>
+    </div>
+  </mat-dialog-actions>
+</form>
+

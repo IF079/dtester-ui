@@ -1,0 +1,34 @@
+<div class="login-container">
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()" method="post">
+    <mat-card>
+      <h1>Авторизація</h1>
+      <mat-form-field>
+        <input matInput [formControl]="loginForm.controls['username']" placeholder="Ім'я">
+        <mat-error>
+          <div *ngIf="loginForm.controls['username'].hasError('required')">{{getRequiredMsg()}}</div>
+          <div *ngIf="loginForm.controls['username'].hasError('minlength')">
+            {{getInsufficientLengthErrorMsg(loginForm.controls['username'].getError('minlength'))}}
+          </div>
+          <div *ngIf="loginForm.controls['username'].hasError('maxlength')">
+            {{getExceedingLengthErrorMsg(loginForm.controls['username'].getError('maxlength'))}}
+          </div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [formControl]="loginForm.controls['password']" type="password"
+               placeholder="Пароль">
+        <mat-error>
+          <div *ngIf="loginForm.controls['password'].hasError('required')">{{getRequiredMsg()}}</div>
+          <div *ngIf="loginForm.controls['password'].hasError('minlength')">
+            {{getInsufficientLengthErrorMsg(loginForm.controls['password'].getError('minlength'))}}
+          </div>
+          <div *ngIf="loginForm.controls['password'].hasError('maxlength')">
+            {{getExceedingLengthErrorMsg(loginForm.controls['password'].getError('maxlength'))}}
+          </div>
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="hasBadCredentialsError" class="server-error mat-error">Дані введені неправильно</div>
+      <button mat-raised-button [disabled]="!loginForm.valid" color="primary">Увійти</button>
+    </mat-card>
+  </form>
+</div>

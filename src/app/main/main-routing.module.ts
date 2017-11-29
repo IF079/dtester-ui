@@ -9,31 +9,40 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
-import {TestsComponent} from './tests/tests.component';
-
+import {TestDetailComponent} from './test-detail/test-detail.component';
+import {TestPlayerComponent} from './test-player/test-player.component';
+import {AdminGuard} from './admin.guard';
 
 const mainRoutes = [
   {
     path: '',
     component: MainComponent,
     children: [
+      {path: 'welcome', component: WelcomeComponent},
+      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {
         path: '',
         children: [
-          {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-          {path: 'welcome', component: WelcomeComponent},
-          {path: 'students/:currentPage', component: StudentComponent},
+          {path: 'groups/:groupId', component: StudentComponent},
+          {path: 'students', redirectTo: '/groups', pathMatch: 'full'},
           {path: 'student/:id', component: StudentDetailComponent},
-          {path: 'specialities/:currentPage', component: SpecialityComponent},
-          {path: 'subjects/:currentPage', component: SubjectComponent},
-          {path: 'faculties/:currentPage', component: FacultiesComponent},
-          {path: 'groups/:currentPage', component: GroupsComponent},
-          {path: 'timetable/:currentPage', component: TimeTableComponent}
+          {path: 'specialities', component: SpecialityComponent},
+          {path: 'subjects', component: SubjectComponent},
+          {path: 'faculties', component: FacultiesComponent},
+          {path: 'groups', component: GroupsComponent},
+          {path: 'timetable', component: TimeTableComponent},
+        ],
+        canActivate: [AdminGuard]
+      }, {path: 'test-player', component: TestPlayerComponent},
+          {path: '**', redirectTo: 'welcome', pathMath: 'full'}
         ]
       }
+
     ]
-  }
-];
+
+
+;
+
 
 @NgModule({
   imports: [
@@ -41,6 +50,9 @@ const mainRoutes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    AdminGuard
   ]
 })
 export class MainRoutingModule {

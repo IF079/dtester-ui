@@ -1,69 +1,77 @@
 import {Component, OnInit} from '@angular/core';
-import {FacultyService} from '../shared/services/crud/faculty.service';
-import {Faculty} from '../shared/entities/faculty';
+import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
+import {FacultyModalComponent} from './faculty-modal/faculty-modal.component';
+import {FacultyService} from './faculty.service';
+import {Faculty} from './faculty';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
+import {generalConst} from '../shared/constants/general-constants';
+import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
+import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-faculties',
+  selector: 'dtest-faculties',
   templateUrl: './faculties.component.html',
-  styleUrls: ['./faculties.component.scss']
+  styleUrls: ['./faculties.component.scss'],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
+
 export class FacultiesComponent implements OnInit {
-
-  faculties: Faculty[];
-  headingColumnsOfTable = ['ID', 'Назва', 'Опис'];
-  errWithDisplayingFaculties: string;
-  errWithCountingRecords: string;
+  limit = 10;
   offset = 0;
-  currentPage = 1;
-  limitPerPage = 10;
+  pageSizeOptions = [5, 10, 25, 100];
+  faculties: Faculty[];
+  headingColumnsOfTable = ['№', 'Назва факультету', 'Опис факультету'];
+  placeholders = {
+    name: 'Назва факультету',
+    description: 'Опис факультету'
+  };
+  btnAdd = 'Додати факультет';
+  errWithDisplayingFaculties: string;
   numberOfRecords: number;
-  isLoading = false;
 
-  constructor(private facultyService: FacultyService) {
+ constructor(private delUpdateService: UpdateDeleteEntityService,
+             private facultyService: FacultyService,
+             public dialog: MatDialog) {
+   this.updateNumberOfRecordsInDomWhenAdded();
+   this.updateNumberOfRecordsInDomWhenDeleted();
   }
 
-  goPage(n: number): void {
-    this.offset = (this.limitPerPage * n) - this.limitPerPage;
-    this.getFaculties();
-  }
-
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-    this.getFaculties();
-  }
-
-  goNext(): void {
-    this.offset += this.limitPerPage;
-    this.getFaculties();
-  }
-
-  getFaculties() {
-    this.isLoading = true;
-    this.facultyService.getFaculties(this.limitPerPage, this.offset).subscribe(data => {
-        this.faculties = data;
-        console.log(this.faculties);
-        this.isLoading = false;
-      },
-      err => {
-        console.log(err);
-        this.errWithDisplayingFaculties = 'Something is wrong with displaying data. Please try again.';
+  updateNumberOfRecordsInDomWhenAdded() {
+    this.facultyService.facultyAdded$.subscribe(() => {
+        this.numberOfRecords += 1;
       });
   }
 
-  countRecords() {
-    this.facultyService.countFaculties().subscribe((data) => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
+  updateNumberOfRecordsInDomWhenDeleted() {
+    this.delUpdateService.recordDeletedInDataBase$.subscribe(() => {
+        this.numberOfRecords -= 1;
+      });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(FacultyModalComponent);
+  }
+
+  goPage(pageEvent: PageEvent) {
+    this.limit = pageEvent.pageSize;
+    this.offset = ((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize;
+    this.getFacultiesRange();
+  }
+
+  getFacultiesRange() {
+    this.facultyService.getFacultiesRange(this.limit, this.offset).subscribe(data => {
+        this.faculties = data[0];
+        this.numberOfRecords = parseInt(data[1].numberOfRecords);
       },
       err => {
-        console.log(err);
-        this.errWithCountingRecords = 'Something is wrong with displaying the number of  records';
+        this.errWithDisplayingFaculties = generalConst.errorWithDisplayData;
       });
   }
 
   ngOnInit() {
-    this.getFaculties();
-    this.countRecords();
+    this.getFacultiesRange();
   }
-
 }
+
+const log = LoggerFactory.create(FacultiesComponent);

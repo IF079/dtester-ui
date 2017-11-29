@@ -1,18 +1,4 @@
-@import '../../../variables';
-
-td {
-  font-weight: $primary-font-weight;
-}
-
-i.gr {
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.4);
-  }
-  &.fa-pencil-square-o {
-    color: #148038;
-  }
-  &.fa-times {
-    color: rgb(218, 5, 5);
-  }
+.addButton {
+  float: right;
+  margin: 15px 0;
 }

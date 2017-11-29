@@ -1,70 +1,70 @@
 import {Component, OnInit} from '@angular/core';
-import {SubjectService} from '../shared/services/crud/subject.service';
-import {Subject} from '../shared/entities/subject';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
+import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
+import {SubjectModalComponent} from './subject-modal/subject-modal.component';
+import {SubjectService} from './subject.service';
+import {Subject} from './subject';
+import {LoggerFactory} from '../../shared/logger/logger.factory';
+import {generalConst} from '../shared/constants/general-constants';
+import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
+import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 @Component({
-  selector: 'app-subjects',
+  selector: 'dtest-subjects',
   templateUrl: './subject.component.html',
-  styleUrls: ['./subject.component.scss']
+  styleUrls: ['./subject.component.scss'],
+  providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
+
 export class SubjectComponent implements OnInit {
-  headingColumnsOfTable = ['ID', 'Назва', 'Опис'];
+  limit = 10;
+  offset = 0;
+  pageSizeOptions = [5, 10, 25, 100];
+  headingColumnsOfTable = ['№', 'Назва', 'Опис'];
+  btnAdd = 'Додати предмет';
   subjects: Subject[];
   errWithDisplayingSubjects: string;
-  errWithCountingRecords: string;
-  offset = 0;
-  currentPage = 1;
-  limitPerPage = 10;
   numberOfRecords: number;
-  isLoading = false;
 
-  constructor(private subjectService: SubjectService) {
+  constructor(private delUpdateService: UpdateDeleteEntityService, private subjectService: SubjectService, public dialog: MatDialog) {
+    this.updateNumberOfRecords();
+  }
+
+  updateNumberOfRecords() {
+    this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
+      this.numberOfRecords -= 1;
+    });
+    this.delUpdateService.subjectInserted$.subscribe((res) => {
+      this.numberOfRecords += 1;
+    });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(SubjectModalComponent, {
+      height: '350px',
+      width: '1000px'
+    });
 
   }
 
-  goPage(n: number): void {
-    this.offset = (this.limitPerPage * n) - this.limitPerPage;
-    this.getSubjects();
-  }
-
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-
-    this.getSubjects();
-  }
-
-  goNext(): void {
-    this.offset += this.limitPerPage;
+  goPage(pageEvent: PageEvent) {
+    this.limit = pageEvent.pageSize;
+    this.offset = ((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize;
     this.getSubjects();
   }
 
   getSubjects(): void {
-    this.isLoading = true;
-    this.subjectService.getSubjects(this.limitPerPage, this.offset).subscribe((data) => {
-        this.subjects = data;
-        this.isLoading = false;
+    this.subjectService.getSubjectsRange(this.limit, this.offset).subscribe((data) => {
+        this.subjects = data[0];
+        this.numberOfRecords = parseInt(data[1].numberOfRecords);
       },
       err => {
-        console.log(err);
-        this.errWithDisplayingSubjects = 'Something is wrong with displaying data. Please try again.';
-      });
-  }
-
-  countRecords(): void {
-      this.subjectService.countSubjects().subscribe((data) => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-      err => {
-        console.log(err);
-        this.errWithCountingRecords = 'Something is wrong with displaying the number of subjects';
+        this.errWithDisplayingSubjects = generalConst.errorWithDisplayData;
       });
   }
 
   ngOnInit() {
     this.getSubjects();
-    this.countRecords();
   }
 }
 

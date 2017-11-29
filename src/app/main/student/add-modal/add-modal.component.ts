@@ -10,7 +10,8 @@ import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity
 @Component({
   selector: 'dtest-add-modal',
   templateUrl: './add-modal.component.html',
-  styleUrls: ['./add-modal.component.scss']
+  styleUrls: ['./add-modal.component.scss'],
+  providers: [StudentService, InfoModalService]
 })
 export class StudentAddModalComponent {
   passwordVisible = false;

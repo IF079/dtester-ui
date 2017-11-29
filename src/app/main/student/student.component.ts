@@ -120,8 +120,8 @@ export class StudentComponent implements OnInit {
   ngOnInit() {
     this.parseGroups();
     this.route.paramMap.subscribe( (params: ParamMap) => {
-        this.groupId = +params.get('groupId');
-        this.getStudentsByGroup(this.groupId);
+      this.groupId = +params.get('groupId');
+      this.getStudentsByGroup(this.groupId);
     });
   }
 }

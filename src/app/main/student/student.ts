@@ -6,9 +6,9 @@ export class Student {
   studentSurname: string;
   studentName: string;
   studentFname: string;
-  groupId: string;
+  groupId?: string;
   plainPassword?: string;
-  photo: string;
+  photo?: string;
 
   constructor(studentDto: StudentDto) {
     this.userId = studentDto.user_id;

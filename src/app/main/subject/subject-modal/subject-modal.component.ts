@@ -52,7 +52,7 @@ export class SubjectModalComponent {
     const subject_name = this.name.value;
     const subject_description = this.description.value;
     this.subjectService.addSubject({subject_name, subject_description}).subscribe(subject => {
-
+        console.log(subject);
         this.delUpdateService.passInsertedSubject(subject);
         this.isSubjectAdded = true;
       },

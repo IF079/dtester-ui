@@ -8,7 +8,7 @@ import {TestModalComponent} from '../test/test-modal/test-modal.component';
 import {ResultAddModalComponent} from '../test/result/result-add-modal/result-add-modal.component';
 import {TestService} from '../test/test.service';
 import {Test} from '../test/test';
-import {SubjectService} from '../subject/subject.service';
+import {SubjectService} from '../subject/subject-service/subject.service';
 import {Subject} from '../subject/subject';
 import {ResultService} from '../test/result/result.service';
 import {Result} from '../test/result/result';

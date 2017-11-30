@@ -30,7 +30,7 @@ export class TestService {
     );
   }
 
-  getTestsBySubjectId(subjectId: number): Observable<Test[]>{
+  getTestsBySubjectId(subjectId: number): Observable<Test[]> {
     return this.http.get<any>(`${url.testUrl}${url.getTestsBySubject}/${subjectId}`)
       .map( testDtoArr => {
         if (testDtoArr.response !== 'no records') {

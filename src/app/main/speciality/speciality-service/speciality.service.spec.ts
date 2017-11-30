@@ -24,7 +24,7 @@ describe('SpecialityService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should return group', (done) => {
+  it('should return speciality', (done) => {
     specialityService.getSpeciality(1, 0).subscribe((res: any) => {
       done();
       expect(res[0][0].specialityName).toEqual('Конструювання');

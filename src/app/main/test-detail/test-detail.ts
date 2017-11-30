@@ -7,7 +7,7 @@ export class TestDetail {
   tasks: number;
   rate: number;
 
-  constructor(testDetailDto: TestDetailDto){
+  constructor(testDetailDto: TestDetailDto) {
     this.id = testDetailDto.id;
     this.testId = testDetailDto.test_id;
     this.level = testDetailDto.level;

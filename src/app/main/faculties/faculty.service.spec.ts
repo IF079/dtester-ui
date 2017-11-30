@@ -4,8 +4,8 @@ import {FacultyService} from './faculty.service';
 
 describe( 'FacultyService', () => {
 
-  beforeEach( () => {
-    TestBed.configureTestingModule()
-  });
+  /*beforeEach( () => {
+    TestBed.configureTestingModule();
+  });*/
 
 });

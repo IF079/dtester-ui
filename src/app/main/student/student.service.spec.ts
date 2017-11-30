@@ -84,7 +84,7 @@ describe('StudentService', () => {
     http.verify();
   });
 
-  it('should return student by surename', (done) => {
+  it('should return student by surname', (done) => {
     service.getStudentBySurename('Заник').subscribe(student => {
       done();
       expect(student.length).toBe(1);

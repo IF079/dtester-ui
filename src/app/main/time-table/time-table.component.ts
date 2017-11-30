@@ -63,7 +63,7 @@ export class TimeTableComponent implements OnInit {
           item.group_id = this.groupDictionary[item.group_id];
           item.subject_id = this.subjectDictionary[item.subject_id];
         });
-        this.numberOfRecords = parseInt(data[3].numberOfRecords);
+        this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
       },
       err => {
         this.errWithDisplayingTimeTables = generalConst.errorWithDisplayData;

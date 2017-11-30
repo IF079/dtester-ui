@@ -9,7 +9,7 @@ export class Test {
   enabled: string;
   attempts: string;
 
-  constructor(testDto: TestDto){
+  constructor(testDto: TestDto) {
     this.testId = testDto.test_id;
     this.testName = testDto.test_name;
     this.subjectId = testDto.subject_id;

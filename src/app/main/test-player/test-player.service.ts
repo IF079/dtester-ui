@@ -22,7 +22,7 @@ export class TestPlayerService {
 
   constructor(private http: HttpClient,
               private router: Router) {
-  };
+  }
 
   private handleError = (error: any) => {
     const errMsg = (error.message) ? error.message :
@@ -39,7 +39,8 @@ export class TestPlayerService {
   }
 
   getQuestionsByLevelRandom(test_id: number, level: number, number: number) {
-    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_QUESTIONS_IDS_BY_LEVEL_RAND + test_id + '/' + level + '/' + number).catch(this.handleError);
+    return this.http.get(HOST_PROTOCOL + HOST + TEST_PLAYER_GET_QUESTIONS_IDS_BY_LEVEL_RAND + test_id + '/' +
+      level + '/' + number).catch(this.handleError);
   }
 
   getTestDetail(test_id: number) {
@@ -94,6 +95,7 @@ export class TestPlayerService {
 
   checkSecurity(user_id: number, test_id: number) {
     const body = JSON.stringify({'user_id': user_id, 'test_id': test_id});
-    return this.http.post(HOST_PROTOCOL + HOST + TEST_PLAYER_START_TEST + user_id + '/' + test_id, JSON.stringify(body),).catch(this.handleError);
+    return this.http.post(HOST_PROTOCOL + HOST + TEST_PLAYER_START_TEST + user_id + '/' + test_id, JSON.stringify(body))
+      .catch(this.handleError);
   }
 }

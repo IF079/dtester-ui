@@ -24,5 +24,4 @@ export class Result {
     this.trueAnswers = resultDto.true_answers;
     this.answers = resultDto.answers;
   }
-
 }

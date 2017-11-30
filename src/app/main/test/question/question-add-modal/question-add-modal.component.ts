@@ -105,7 +105,7 @@ export class QuestionAddModalComponent {
     return !this.check() ? {invalidAmountOfAnswers: true} : null;
   }
 
-  deleteAnswer(text: string){
+  deleteAnswer(text: string) {
     this.answers.splice(this.answers.indexOf(this.answers.find(answer => answer.text === text)), 1);
   }
 
@@ -113,13 +113,13 @@ export class QuestionAddModalComponent {
     this.dialogRef.close();
   }
 
-  check(){
-    let isAnswersEnough = !!this.answers.length;
-    let isTrueAnswer = !!this.answers.find(answer => answer.isTrue === 1);
+  check() {
+    const isAnswersEnough = !!this.answers.length;
+    const isTrueAnswer = !!this.answers.find(answer => answer.isTrue === 1);
     return isTrueAnswer && isAnswersEnough;
   }
   checkAnswers(): boolean {
-    let isFormValid = this.form.valid;
+    const isFormValid = this.form.valid;
     return isFormValid && this.check();
   }
 }

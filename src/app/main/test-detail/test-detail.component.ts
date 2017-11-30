@@ -11,6 +11,7 @@ import {generalConst} from '../shared/constants/general-constants';
   styleUrls: ['./test-detail.component.scss']
 })
 export class TestDetailComponent {
+  log = LoggerFactory.create(TestDetailComponent);
   testDetails: TestDetail[];
   testDetail: TestDetail;
   numberOfRecords: number;
@@ -25,7 +26,7 @@ export class TestDetailComponent {
       this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
     },
     err => {
-      log.error(err);
+      this.log.error(err);
       this.errWithDisplayingStudents = generalConst.errorWithDisplayData;
     });
   }
@@ -36,10 +37,10 @@ export class TestDetailComponent {
       this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
     },
     err => {
-      log.error(err);
+      this.log.error(err);
       this.errWithDisplayingStudents = generalConst.errorWithDisplayData;
     });
   }
 }
 
-const log = LoggerFactory.create(TestDetailComponent);
+

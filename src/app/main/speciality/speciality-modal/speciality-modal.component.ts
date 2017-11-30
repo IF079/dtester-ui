@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA} from '@angular/material';
 
 import {SpecialityService} from '../speciality-service/speciality.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
@@ -27,8 +27,7 @@ export class SpecialityModalComponent {
   btnOk = 'Ок';
   isAdded = false;
 
-  constructor(public dialogRef: MatDialogRef<SpecialityModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public specialityService: SpecialityService,
               public fb: FormBuilder,
               public delUpdateService: UpdateDeleteEntityService) {

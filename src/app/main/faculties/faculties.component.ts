@@ -62,7 +62,7 @@ export class FacultiesComponent implements OnInit {
   getFacultiesRange() {
     this.facultyService.getFacultiesRange(this.limit, this.offset).subscribe(data => {
         this.faculties = data[0];
-        this.numberOfRecords = parseInt(data[1].numberOfRecords);
+        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },
       err => {
         this.errWithDisplayingFaculties = generalConst.errorWithDisplayData;

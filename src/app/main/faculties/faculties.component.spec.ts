@@ -1,4 +1,4 @@
-import {TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {FacultiesComponent} from './faculties.component';
@@ -6,8 +6,12 @@ import {MainMaterialModule} from '../main-material.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {FacultyService} from './faculty.service';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
+import {FacultyServiceMock} from "./faculty.service.mock";
 
 describe('FacultiesComponent', () => {
+
+  let fixture: ComponentFixture<FacultiesComponent>;
+  let component: FacultiesComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,15 +22,15 @@ describe('FacultiesComponent', () => {
         HttpClientTestingModule
       ],
       providers: [
-        {provide: FacultyService, /*useValue: new FacultyService()*/},
+        {provide: FacultyService, useValue: new FacultyServiceMock()},
         UpdateDeleteEntityService
       ]
     });
+    fixture = TestBed.createComponent(FacultiesComponent);
+    component = fixture.debugElement.componentInstance;
   });
 
-  xit ('should create component instance', () => {
-    const fixture = TestBed.createComponent(FacultiesComponent);
-    const component = fixture.debugElement.componentInstance;
+  xit ('should create component', () => {
     expect(component).toBeTruthy();
   });
 });

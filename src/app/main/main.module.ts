@@ -117,7 +117,7 @@ import {TestPlayerService} from './test-player/test-player.service';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
     UpdateDeleteEntityService,
-    StudentService,
+    SubjectService,
     SpecialityService,
     GroupsService,
     SubjectService,

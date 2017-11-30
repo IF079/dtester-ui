@@ -42,7 +42,7 @@ class MockGroupsService {
   }
 }
 
-xdescribe('StudentComponent', () => {
+describe('StudentComponent', () => {
   let fixture: ComponentFixture<StudentComponent>;
   let component: StudentComponent;
   const mockRouter = {

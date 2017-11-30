@@ -4,7 +4,7 @@ import {inject, TestBed} from '@angular/core/testing';
 import {SubjectService} from './subject.service';
 import {url} from '../../shared/constants/url-constants';
 
-describe('SubjectService', () => {
+describe('StudentService', () => {
   let httpMock: HttpTestingController;
   let subjectService: SubjectService;
   const recordsCountResponse = {

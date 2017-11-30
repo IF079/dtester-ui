@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 
-import {SubjectService} from '../subject/subject.service';
+import {SubjectService} from '../subject/subject-service/subject.service';
 import {TestPlayerService} from './test-player.service';
 import {TestDetailService} from '../test-detail/test-detail.service';
 import {Question} from '../test/question/question';

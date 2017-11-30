@@ -24,7 +24,7 @@ import {WelcomeComponent} from './welcome/welcome.component';
 import {MainMaterialModule} from './main-material.module';
 import {StudentService} from './student/student.service';
 import {SpecialityService} from './speciality/speciality-service/speciality.service';
-import {SubjectService} from './subject/subject.service';
+import {SubjectService} from './subject/subject-service/subject.service';
 import {SpinnerService} from './spinner/spinner.service';
 import {GroupsService} from './groups/groups.service';
 import {SpinnerInterceptor} from './spinner/spinner.interceptor';

@@ -130,7 +130,8 @@ import {TestPlayerService} from './test-player/test-player.service';
     QuestionService,
     InfoModalService,
     ResultService,
-    TestPlayerService
+    TestPlayerService,
+    StudentService
   ]
 })
 export class MainModule {

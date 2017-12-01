@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+import {Group} from '../../groups/group';
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {GroupsService} from '../../groups/groups.service';
 
@@ -90,11 +91,13 @@ export class EditGroupsModalComponent {
       }
     }
     this.delUpdateService.updateEntity(groupId, entityName, {group_name, faculty_id, speciality_id}).subscribe(
-      (updatedGroupResponse) => {
-        const updatedGroup = updatedGroupResponse[0];
-        updatedGroup.faculty_id = this.facultyDictionary[updatedGroup.faculty_id];
-        updatedGroup.speciality_id = this.specialityDictionary[updatedGroup.speciality_id];
-        this.delUpdateService.passUpdatedGroup(updatedGroup);
+      (updatedGroupResponse: Group[]) => {
+        updatedGroupResponse.forEach((group) => {
+            group.faculty_id = this.facultyDictionary[group.faculty_id];
+            group.speciality_id =  this.specialityDictionary[group.speciality_id];
+        });
+
+        this.delUpdateService.passUpdatedEntity<Group[]>(updatedGroupResponse);
         this.dialogRef.close();
       },
       (err) => {

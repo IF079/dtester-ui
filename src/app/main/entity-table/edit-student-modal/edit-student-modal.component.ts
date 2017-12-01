@@ -148,11 +148,11 @@ export class EditStudentModalComponent implements OnInit {
           group_id,
           photo
         }).subscribe(response => {
-          this.studentService.getStudent(this.data[0]).subscribe(responseStudent => {
+          this.studentService.getStudent(this.data[0]).subscribe((responseStudent: Student[]) => {
             delete responseStudent[0].photo;
             delete responseStudent[0].plainPassword;
             delete responseStudent[0].groupId;
-            this.delUpdateService.passUpdatedStudent(responseStudent);
+            this.delUpdateService.passUpdatedEntity<Student[]>(responseStudent);
             this.modal.openSuccessDialog('Зміни успішно збережено!');
           });
         });

@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import {SubjectDto} from '../../subject/subject-dto';
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 
 @Component({
@@ -44,8 +44,8 @@ export class EditSubjectModalComponent {
     const subject_name = this.editSubjectForm.get('name').value;
     const subject_description = this.editSubjectForm.get('description').value;
     this.delUpdateService.updateEntity(id, entityName,
-      {subject_name, subject_description}).subscribe(subjectData => {
-        this.delUpdateService.passUpdatedSubject(subjectData);
+      {subject_name, subject_description}).subscribe((subjectData: SubjectDto[]) => {
+        this.delUpdateService.passUpdatedEntity<SubjectDto[]>(subjectData);
         this.dialogRef.close();
       },
       err => {

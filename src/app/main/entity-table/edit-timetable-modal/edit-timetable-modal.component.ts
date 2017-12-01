@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import {TimeTable} from '../../time-table/time-table';
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {TimeTableService} from '../../time-table/time-table.service';
 
@@ -21,6 +21,7 @@ export class EditTimetableModalComponent {
     endDate: 'Дата закінчення',
     endTime: 'Час закінчення'
   };
+  errorRequired = 'Заповніть поле!';
   errRequestMsg: string;
   groupDictionary = {};
   subjectDictionary = {};
@@ -76,7 +77,7 @@ export class EditTimetableModalComponent {
   }
 
   get startDate() {
-    return this.editTimetableForm.get('endDate');
+    return this.editTimetableForm.get('startDate');
   }
 
   get endDate() {
@@ -124,11 +125,12 @@ export class EditTimetableModalComponent {
       end_date,
       end_time
     }).subscribe(
-      (updatedTimetableResponse) => {
-        const updatedTimetable = updatedTimetableResponse[0];
-        updatedTimetable.group_id = this.groupDictionary[updatedTimetable.group_id];
-        updatedTimetable.subject_id = this.subjectDictionary[updatedTimetable.subject_id];
-        this.delUpdateService.passUpdatedTimetable(updatedTimetable);
+      (updatedTimetableResponse: TimeTable[]) => {
+        updatedTimetableResponse.forEach((timeTableItem)  => {
+          timeTableItem.group_id = this.groupDictionary[timeTableItem.group_id];
+          timeTableItem.subject_id = this.subjectDictionary[timeTableItem.subject_id];
+        });
+        this.delUpdateService.passUpdatedEntity<TimeTable[]>(updatedTimetableResponse);
         this.dialogRef.close();
       },
       (err) => {

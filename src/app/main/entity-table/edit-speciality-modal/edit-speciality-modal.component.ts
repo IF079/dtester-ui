@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Validators} from '@angular/forms';
-
+import {SpecialityDto} from '../../speciality/speciality-dto';
 import {SpecialityModalComponent} from '../../speciality/speciality-modal/speciality-modal.component';
 
 @Component({
@@ -28,8 +28,8 @@ export class EditSpecialityModalComponent extends SpecialityModalComponent {
     const speciality_code = this.specialityForm.get('code').value;
     const speciality_name = this.specialityForm.get('name').value;
     this.delUpdateService.updateEntity(id, entityName,
-      {speciality_code, speciality_name}).subscribe(specialityData => {
-        this.delUpdateService.passUpdatedSpeciality(specialityData);
+      {speciality_code, speciality_name}).subscribe((specialityData: SpecialityDto[]) => {
+        this.delUpdateService.passUpdatedEntity<SpecialityDto[]>(specialityData);
         this.isUpdated = true;
       },
       () => {

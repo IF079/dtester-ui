@@ -13,6 +13,9 @@ export class UpdateDeleteEntityService {
   constructor(private http: HttpClient) {
   }
   // Observable string sources
+  private insertedEntitySource = new Subject();
+  private updatedEntitySource = new Subject();
+
   private timeTableInsertedSource = new Subject();
   private subjectInsertedSource = new Subject();
   private groupInsertedSource = new Subject();
@@ -26,18 +29,24 @@ export class UpdateDeleteEntityService {
   private specialityInsertedSource = new Subject();
   private timetableUpdatedSource = new Subject<TimeTable>();
   private facultySource = new Subject();
+
+  entityUpdated$ = this.updatedEntitySource.asObservable();
+  entityInserted$ = this.insertedEntitySource.asObservable();
   studentInserted$ = this.studentInsertedSource.asObservable();
   timeTableInserted$ = this.timeTableInsertedSource.asObservable();
   groupInserted$ = this.groupInsertedSource.asObservable();
   subjectInserted$ = this.subjectInsertedSource.asObservable();
-  subjectUpdated$ = this.subjectUpdatedSource.asObservable();
-  studentUpdated$ = this.studentUpdatedSource.asObservable();
-  groupUpdated$ = this.groupUpdatedSource.asObservable();
+
   recordDeletedInDataBase$ = this.recordDeletedInDatabaseSource.asObservable();
-  specialityUpdated$ = this.specialityUpdatedSource.asObservable();
   specialityInserted$ = this.specialityInsertedSource.asObservable();
   timetableUpdated$ = this.timetableUpdatedSource.asObservable();
-  facultyUpdated$ = this.facultySource.asObservable();
+
+  passUpdatedEntity<T>(item: T) {
+    this.updatedEntitySource.next(item);
+  }
+  passInsertedEntity (item) {
+    this.insertedEntitySource.next(item);
+  }
 
   passInsertedStudent(item) {
     this.studentInsertedSource.next(item);
@@ -55,29 +64,16 @@ export class UpdateDeleteEntityService {
     this.subjectInsertedSource.next(item);
   }
 
-  passUpdatedSubject(item) {
-    this.subjectUpdatedSource.next(item);
-  }
-
-  passUpdatedStudent(item) {
-    this.studentUpdatedSource.next(item);
-  }
 
   passUpdatedTimetable(item: TimeTable) {
     this.timetableUpdatedSource.next(item);
   }
 
-  passUpdatedSpeciality(item) {
-    this.specialityUpdatedSource.next(item);
-  }
 
   passInsertedSpeciality(item) {
     this.specialityInsertedSource.next(item);
   }
 
-  passUpdatedFaculty(item) {
-    this.facultySource.next(item);
-  }
 
   passUpdatedGroup(item: Group) {
     this.groupUpdatedSource.next(item);

@@ -5,10 +5,8 @@ import {FacultyService} from './faculty.service';
 import {url} from '../shared/constants/url-constants';
 
 describe( 'FacultyService', () => {
-  let http: HttpTestingController;
+  let httpMock: HttpTestingController;
   let facultyService: FacultyService;
-  const getFacultyRequest = httpMock.expectOne(`${url.facultyUrl}${url.getRecordsRange}/1/0`);
-  const getFacultyRecords = httpMock.expectOne(`${url.facultyUrl}${url.getCount}`);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -19,7 +17,7 @@ describe( 'FacultyService', () => {
     });
 
     facultyService = TestBed.get(FacultyService);
-    http = TestBed.get(HttpTestingController);
+    httpMock = TestBed.get(HttpTestingController);
   });
 
   it('should be created', inject([FacultyService], (service: FacultyService) => {
@@ -32,11 +30,13 @@ describe( 'FacultyService', () => {
       expect(res[0][0].faculty_name).toEqual('Факультет тестов');
       expect(res[1].numberOfRecords).toEqual(1);
     });
+    const getFacultyRequest = httpMock.expectOne(`${url.facultyUrl}${url.getRecordsRange}/1/0`);
+    const getFacultyRecords = httpMock.expectOne(`${url.facultyUrl}${url.getCount}`);
     getFacultyRequest.flush([{
       faculty_name: 'Факультет тестов',
       faculty_description: 'Опис'
     }]);
     getFacultyRecords.flush({numberOfRecords: 1});
-  });
+  }));
 
 });

@@ -3,12 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
-import {Group} from './group';
-import {RecordsCount} from '../shared/entities/recordsCount';
-import {url} from '../shared/constants/url-constants';
-import {Faculty} from '../faculties/faculty';
-import {Speciality} from '../speciality/speciality';
-import {SpecialityDto} from '../speciality/speciality-dto';
+import {Group} from '../group';
+import {RecordsCount} from '../../shared/entities/recordsCount';
+import {url} from '../../shared/constants/url-constants';
+import {Faculty} from '../../faculties/faculty';
+import {Speciality} from '../../speciality/speciality';
+import {SpecialityDto} from '../../speciality/speciality-dto';
 
 @Injectable()
 
@@ -41,13 +41,6 @@ export class GroupsService {
     );
   }
 
-  getGroupById(id: number): Observable<any> {
-    return this.http.get(`${url.groupUrl}${url.getRecords}/${id}`);
-  }
-
-  getGroupByName(name: string): Observable<any> {
-    return this.http.get(`${url.groupUrl}${url.getRecordsBySearch}/${name}`);
-  }
 
   addGroup(data): Observable<any> {
     return this.http.post(`${url.groupUrl}${url.insertData}`, data);

@@ -38,11 +38,13 @@ export class EntityTableComponent implements OnChanges, OnInit {
     TimeTable: EditTimetableModalComponent
   };
 
-  constructor(public dialog: MatDialog, private router: Router, private delUpdateService: UpdateDeleteEntityService) {
+  constructor(public dialog: MatDialog,
+              private router: Router,
+              private delUpdateService: UpdateDeleteEntityService) {
   }
 
   updateSubjectInDom() {
-    this.delUpdateService.entityUpdated$.subscribe((subjectData: SubjectDto[]) => {
+    this.delUpdateService.itemUpdated$.subscribe((subjectData: SubjectDto[]) => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === subjectData[0].subject_id) {
@@ -54,7 +56,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   updateStudentInDom() {
-    this.delUpdateService.entityUpdated$.subscribe((studentData: Student[]) => {
+    this.delUpdateService.itemUpdated$.subscribe((studentData: Student[]) => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === studentData[0].userId) {
@@ -66,7 +68,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   updateSpecialityInDom() {
-    this.delUpdateService.entityUpdated$.subscribe((specialityData: SpecialityDto[]) => {
+    this.delUpdateService.itemUpdated$.subscribe((specialityData: SpecialityDto[]) => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === specialityData[0].speciality_id) {
@@ -78,7 +80,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   updateFacultyInDom() {
-    this.delUpdateService.entityUpdated$.subscribe((facultyData: Faculty[]) => {
+    this.delUpdateService.itemUpdated$.subscribe((facultyData: Faculty[]) => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === facultyData[0].faculty_id) {
@@ -90,7 +92,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   updateGroupInDom() {
-    this.delUpdateService.entityUpdated$.subscribe((groupData: Group[]) => {
+    this.delUpdateService.itemUpdated$.subscribe((groupData: Group[]) => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === groupData[0].group_id) {
@@ -102,7 +104,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   updateTimetableInDom() {
-    this.delUpdateService.entityUpdated$.subscribe((timetableData: TimeTable[]) => {
+    this.delUpdateService.itemUpdated$.subscribe((timetableData: TimeTable[]) => {
       const id = 0;
       for (let i = 0; i < this.tableRowArr.length; i++) {
         if (this.tableRowArr[i][id] === timetableData[0].timetable_id) {
@@ -114,7 +116,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   deleteItemInDom() {
-    this.delUpdateService.recordDeletedInDataBase$.subscribe(res => {
+    this.delUpdateService.itemDeleted$.subscribe(res => {
       this.tableRowArr = this.tableRowArr.filter(item => item !== res);
     });
   }

@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {TimeTableService} from '../time-table.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {TimeTable} from '../time-table';
 
 @Component({
   selector: 'dtest-time-table-modal',
@@ -106,8 +107,8 @@ export class TimeTableModalComponent implements OnInit {
     }
 
     this.timeTableService.addTimeTable({group_id, subject_id, start_date, start_time, end_date, end_time}).subscribe(
-      (resp) => {
-        this.delUpdateService.passInsertedTimetable(resp);
+      (timeTableData) => {
+        this.delUpdateService.passInsertedItem<TimeTable[]>(timeTableData);
         this.isTimeTableAdded = true;
       },
       (err) => {

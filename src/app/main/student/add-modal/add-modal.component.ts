@@ -6,6 +6,7 @@ import {StudentService} from '../student.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {AsyncUsernameValidator, AsyncEmailValidator} from './async.validator';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {Student} from '../student';
 
 @Component({
   selector: 'dtest-add-modal',
@@ -113,7 +114,7 @@ export class StudentAddModalComponent {
         this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
       } else if (res.response === 'ok') {
         if (selectedId === this.groupId) {
-          this.delUpdateService.passInsertedStudent(res);
+          this.delUpdateService.passInsertedItem<Student[]>(res);
         }
         this.modalService.openSuccessDialog('Запис успішно добавлено! Обновіть сторінку для відображення даних.', () => {
 

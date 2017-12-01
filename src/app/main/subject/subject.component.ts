@@ -31,18 +31,16 @@ export class SubjectComponent implements OnInit {
   }
 
   updateNumberOfRecords() {
-    this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
-      this.numberOfRecords -= 1;
+    this.delUpdateService.itemDeleted$.subscribe((res) => {
+      this.numberOfRecords --;
     });
-    this.delUpdateService.subjectInserted$.subscribe((res) => {
-      this.numberOfRecords += 1;
+    this.delUpdateService.itemInserted$.subscribe(() => {
+      this.numberOfRecords ++;
     });
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(SubjectModalComponent, {
-      height: '350px',
-      width: '1000px'
     });
 
   }

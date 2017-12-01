@@ -39,7 +39,6 @@ export class UpdateDeleteEntityService {
 
   recordDeletedInDataBase$ = this.recordDeletedInDatabaseSource.asObservable();
   specialityInserted$ = this.specialityInsertedSource.asObservable();
-  timetableUpdated$ = this.timetableUpdatedSource.asObservable();
 
   passUpdatedEntity<T>(item: T) {
     this.updatedEntitySource.next(item);
@@ -65,19 +64,13 @@ export class UpdateDeleteEntityService {
   }
 
 
-  passUpdatedTimetable(item: TimeTable) {
-    this.timetableUpdatedSource.next(item);
-  }
+
 
 
   passInsertedSpeciality(item) {
     this.specialityInsertedSource.next(item);
   }
 
-
-  passUpdatedGroup(item: Group) {
-    this.groupUpdatedSource.next(item);
-  }
 
   passDeleted(item) {
     this.recordDeletedInDatabaseSource.next(item);

@@ -4,8 +4,8 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/map';
 
-import {Speciality} from '../speciality';
-import {SpecialityDto} from '../speciality-dto';
+import {Speciality} from '../speciality-entity/speciality';
+import {SpecialityDto} from '../speciality-entity/speciality-dto';
 import {RecordsCount} from '../../shared/entities/recordsCount';
 import {url} from '../../shared/constants/url-constants';
 

@@ -6,7 +6,7 @@ import {SpecialityComponent} from './speciality.component';
 import {SpecialityService} from './speciality-service/speciality.service';
 import {MainMaterialModule} from '../main-material.module';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
-import {SpecialityServiceMock} from './speciality-service/speciality.service.mock';
+import {SpecialityServiceMock} from '../../../../mocks/speciality.service.mock';
 
 describe('SpecialityComponent', () => {
   let component: SpecialityComponent;
@@ -21,7 +21,7 @@ describe('SpecialityComponent', () => {
         HttpClientTestingModule
       ],
       providers: [
-        { provide: SpecialityService, useValue: new SpecialityServiceMock() },
+        {provide: SpecialityService, useValue: new SpecialityServiceMock()},
         UpdateDeleteEntityService
       ]
     })
@@ -38,7 +38,7 @@ describe('SpecialityComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('ngOnInit should set up tableData', inject([SpecialityService], (specialityService: SpecialityService) => {
+  it('ngOnInit should set up tableData', inject([SpecialityService], () => {
     expect(component.specialities.length).toEqual(1);
   }));
 });

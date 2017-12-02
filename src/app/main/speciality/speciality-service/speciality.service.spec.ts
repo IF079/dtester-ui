@@ -40,4 +40,19 @@ describe('SpecialityService', () => {
     getSpecialityRecords.flush({numberOfRecords: 1});
     httpMock.verify();
   });
+
+  it('should add speciality', (done) => {
+    const speciality_code = '6.1233211';
+    const speciality_name = 'Землевпорядкування';
+    specialityService.addSpeciality({speciality_code, speciality_name}).subscribe((res: any) => {
+      done();
+      expect(res.speciality_code).toEqual('6.1233211');
+      expect(res.speciality_name).toEqual('Землевпорядкування');
+    });
+    const addSpecialityRequest = httpMock.expectOne(`${url.specialityUrl}${url.insertData}`);
+    addSpecialityRequest.flush({
+      speciality_code:  '6.1233211',
+      speciality_name: 'Землевпорядкування'
+    });
+  });
 });

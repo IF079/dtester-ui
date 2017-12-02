@@ -79,7 +79,7 @@ export const mockedResponse = {
 };
 export const mockedNumberOfRecords = {
   numberOfRecords: '3'
-}
+};
 export const mockedForInsert = {
   group_name: 'KIm-17-6',
   speciality_id: 3,

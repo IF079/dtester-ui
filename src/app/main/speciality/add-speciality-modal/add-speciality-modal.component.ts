@@ -4,12 +4,12 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 
 import {SpecialityService} from '../speciality-service/speciality.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
-import {SpecialityDto} from '../speciality-dto';
+import {SpecialityDto} from '../speciality-entity/speciality-dto';
 
 @Component({
   selector: 'dtest-speciality-modal',
-  templateUrl: 'speciality-modal.component.html',
-  styleUrls: ['speciality-modal.component.scss']
+  templateUrl: 'add-speciality-modal.component.html',
+  styleUrls: ['add-speciality-modal.component.scss']
 })
 
 export class SpecialityModalComponent {
@@ -30,8 +30,8 @@ export class SpecialityModalComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public specialityService: SpecialityService,
-              public fb: FormBuilder,
-              public delUpdateService: UpdateDeleteEntityService) {
+              protected fb: FormBuilder,
+              protected delUpdateService: UpdateDeleteEntityService) {
     this.createForm();
   }
   createForm(): void {

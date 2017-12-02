@@ -1,7 +1,11 @@
-import {Component} from '@angular/core';
-import {Validators} from '@angular/forms';
-import {SpecialityDto} from '../../speciality/speciality-dto';
-import {SpecialityModalComponent} from '../../speciality/speciality-modal/speciality-modal.component';
+import {Component, Inject} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA} from '@angular/material';
+
+import {SpecialityDto} from '../speciality-entity/speciality-dto';
+import {SpecialityModalComponent} from '../add-speciality-modal/add-speciality-modal.component';
+import {SpecialityService} from '../speciality-service/speciality.service';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-edit-speciality-modal',
@@ -10,6 +14,12 @@ import {SpecialityModalComponent} from '../../speciality/speciality-modal/specia
 })
 
 export class EditSpecialityModalComponent extends SpecialityModalComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) data: any,
+              specialityService: SpecialityService,
+              fb: FormBuilder,
+              delUpdateService: UpdateDeleteEntityService) {
+    super(data, specialityService, fb, delUpdateService);
+  }
   btnUpd = 'Редагувати';
   title = 'Редагувати спеціальність';
   titleUpdated = 'Запис успішно відредаговано';

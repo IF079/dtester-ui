@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
 import {Group} from '../groups/group';
 import {SubjectDto} from '../subject/subject-dto';
-import {SpecialityDto} from '../speciality/speciality-dto';
+import {SpecialityDto} from '../speciality/speciality-entity/speciality-dto';
 import {Faculty} from '../faculties/faculty';
 import {Student} from '../student/student';
 import {TimeTable} from '../time-table/time-table';
@@ -12,7 +12,7 @@ import {EditSubjectModalComponent} from './edit-subject-modal/edit-subject-modal
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 import {EditGroupsModalComponent} from './edit-groups-modal/edit-groups-modal.component';
 import {EditTimetableModalComponent} from './edit-timetable-modal/edit-timetable-modal.component';
-import {EditSpecialityModalComponent} from './edit-speciality-modal/edit-speciality-modal.component';
+import {EditSpecialityModalComponent} from '../speciality/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from './edit-student-modal/edit-student-modal.component';
 

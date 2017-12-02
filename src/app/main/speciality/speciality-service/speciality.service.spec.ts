@@ -3,6 +3,7 @@ import {inject, TestBed} from '@angular/core/testing';
 
 import {SpecialityService} from './speciality.service';
 import {url} from '../../shared/constants/url-constants';
+import {Speciality} from '../speciality-entity/speciality';
 
 describe('SpecialityService', () => {
   let httpMock: HttpTestingController;
@@ -25,14 +26,18 @@ describe('SpecialityService', () => {
   }));
 
   it('should return speciality', (done) => {
+    // Act
     specialityService.getSpeciality(1, 0).subscribe((res: any) => {
       done();
+      // Assert
+      expect(res[0][0].specialityCode).toEqual('1.1233212');
       expect(res[0][0].specialityName).toEqual('Конструювання');
       expect(res[1].numberOfRecords).toEqual(1);
     });
-
     const getSpecialityRequest = httpMock.expectOne(`${url.specialityUrl}${url.getRecordsRange}/1/0`);
     const getSpecialityRecords = httpMock.expectOne(`${url.specialityUrl}${url.getCount}`);
+
+    // Arrange
     getSpecialityRequest.flush([{
       speciality_code: '1.1233212',
       speciality_name: 'Конструювання'
@@ -42,17 +47,20 @@ describe('SpecialityService', () => {
   });
 
   it('should add speciality', (done) => {
-    const speciality_code = '6.1233211';
-    const speciality_name = 'Землевпорядкування';
-    specialityService.addSpeciality({speciality_code, speciality_name}).subscribe((res: any) => {
+    // Act
+    specialityService.addSpeciality({specialityCode: '6.1233212', specialityName: 'Землевпорядкування'}).
+    subscribe((res: any) => {
       done();
-      expect(res.speciality_code).toEqual('6.1233211');
+      // Assert
+      expect(res.speciality_code).toEqual('6.1233212');
       expect(res.speciality_name).toEqual('Землевпорядкування');
     });
     const addSpecialityRequest = httpMock.expectOne(`${url.specialityUrl}${url.insertData}`);
+    // Arrange
     addSpecialityRequest.flush({
-      speciality_code:  '6.1233211',
+      speciality_code: '6.1233212',
       speciality_name: 'Землевпорядкування'
     });
+    httpMock.verify();
   });
 });

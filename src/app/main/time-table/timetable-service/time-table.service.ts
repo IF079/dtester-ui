@@ -3,12 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
-import {Subject} from '../subject/subject';
-import {SubjectDto} from '../subject/subject-dto';
-import {TimeTable} from './time-table';
-import {RecordsCount} from '../shared/entities/recordsCount';
-import {url} from '../shared/constants/url-constants';
-import {Group} from '../groups/group';
+import {Subject} from '../../subject/subject';
+import {SubjectDto} from '../../subject/subject-dto';
+import {TimeTable} from '../time-table';
+import {RecordsCount} from '../../shared/entities/recordsCount';
+import {url} from '../../shared/constants/url-constants';
+import {Group} from '../../groups/group';
 
 @Injectable()
 
@@ -33,10 +33,6 @@ export class TimeTableService {
       this.http.get<SubjectDto[]>(`${url.subjectUrl}${url.getRecords}`)
         .map(subjectDtoArr => subjectDtoArr.map(subjectDto => new Subject(subjectDto)))
     );
-  }
-
-  getTimeTable(id: number): Observable<any> {
-    return this.http.get(`${url.timeTableUrl}${url.getRecords}${id}`);
   }
 
   addTimeTable(data): Observable<any> {

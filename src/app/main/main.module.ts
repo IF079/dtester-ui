@@ -26,7 +26,7 @@ import {StudentService} from './student/student.service';
 import {SpecialityService} from './speciality/speciality-service/speciality.service';
 import {SubjectService} from './subject/subject-service/subject.service';
 import {SpinnerService} from './spinner/spinner.service';
-import {GroupsService} from './groups/groups.service';
+import {GroupsService} from './groups/groups-service/groups.service';
 import {SpinnerInterceptor} from './spinner/spinner.interceptor';
 import {EntityTableComponent} from './entity-table/entity-table.component';
 import {FacultyService} from './faculties/faculty.service';

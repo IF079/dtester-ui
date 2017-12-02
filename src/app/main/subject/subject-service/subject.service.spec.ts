@@ -7,7 +7,7 @@ import {url} from '../../shared/constants/url-constants';
 describe('StudentService', () => {
   let httpMock: HttpTestingController;
   let subjectService: SubjectService;
-  const recordsCountResponse = {
+  const numberOfRecordsResponse = {
     numberOfRecords: 3
   };
   const subjectResponseAfterInsert = [
@@ -61,10 +61,10 @@ describe('StudentService', () => {
       expect(res[1].numberOfRecords).toEqual(3);
     });
 
-    const getSubjectsRequest = httpMock.expectOne(`${url.subjectUrl}${url.getRecordsRange}/3/0`);
+    const getSubjectsRange = httpMock.expectOne(`${url.subjectUrl}${url.getRecordsRange}/3/0`);
     const getSubjectsNumberOfRecords = httpMock.expectOne(`${url.subjectUrl}${url.getCount}`);
-    getSubjectsRequest.flush(subjectsResponse);
-    getSubjectsNumberOfRecords.flush(recordsCountResponse);
+    getSubjectsRange.flush(subjectsResponse);
+    getSubjectsNumberOfRecords.flush(numberOfRecordsResponse);
   });
   it('should return subject id, subject name and subject description after inserting subject', (done) => {
     const subject_name = 'Subject 4';

@@ -4,7 +4,7 @@ import {Location} from '@angular/common';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
 import {StudentService} from './student.service';
-import {GroupsService} from '../groups/groups.service';
+import {GroupsService} from '../groups/groups-service/groups.service';
 import {Student} from './student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {StudentAddModalComponent} from './add-modal/add-modal.component';

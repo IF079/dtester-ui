@@ -14,7 +14,7 @@ import {StudentService} from './student.service';
 import {Student} from './student';
 import {RecordsCount} from '../shared/entities/recordsCount';
 import {Group} from '../groups/group';
-import {GroupsService} from '../groups/groups.service';
+import {GroupsService} from '../groups/groups-service/groups.service';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 import {InfoModalService} from '../info-modal/info-modal.service';
 import {MockStudentService} from './student.service.mock';

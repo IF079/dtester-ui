@@ -31,7 +31,6 @@ export const url = {
   question: '/question',
   getAnswersByQuestionTestPlayerUrl: 'SAnswer/getAnswersByQuestion',
   checkSAnswerUrl: 'SAnswer/checkAnswers'
-
 };
 export const HOST = 'api1.limit.com.ua';
 export const HOST_PROTOCOL = 'http://';

@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {TimeTableService} from '../time-table.service';
+import {TimeTableService} from '../timetable-service/time-table.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 import {TimeTable} from '../time-table';
 

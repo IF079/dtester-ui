@@ -5,9 +5,6 @@ export const mockedResponse = {
     speciality_id: 3,
     faculty_id: 4
   }],
-  numOfRecords: {
-    numberOfRecords: 3
-  },
   allGroups: [{
     group_id: 1,
     group_name: 'KIm-17-1',
@@ -80,7 +77,7 @@ export const mockedResponse = {
 
 export const mockedNumberOfRecordsAll = {
   numberOfRecords: '5'
-}
+};
 
 export const mockedNumberOfRecordsWithLimit = {
   numberOfRecords: '3'
@@ -90,6 +87,7 @@ export const mockedForInsert = {
   speciality_id: 3,
   faculty_id: 4
 };
+
 export const mockedForPagination = {
   limit: 3,
   offset: 0

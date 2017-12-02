@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
-import {TimeTableService} from './time-table.service';
+import {TimeTableService} from './timetable-service/time-table.service';
 import {TimeTable} from './time-table';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';

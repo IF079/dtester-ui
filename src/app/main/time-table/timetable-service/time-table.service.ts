@@ -16,7 +16,6 @@ export class TimeTableService {
   constructor(private http: HttpClient) {
   }
 
-
   getTimeTablesRange(limit: number, offset: number): Observable<[TimeTable[], Group[], Subject[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<TimeTable[]>(`${url.timeTableUrl}${url.getRecordsRange}/${limit}/${offset}`),

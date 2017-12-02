@@ -3,7 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TimeTable} from '../../time-table/time-table';
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
-import {TimeTableService} from '../../time-table/time-table.service';
+import {TimeTableService} from '../../time-table/timetable-service/time-table.service';
 
 @Component({
   selector: 'dtest-edit-timetable-modal',

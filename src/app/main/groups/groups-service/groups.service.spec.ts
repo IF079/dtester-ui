@@ -1,7 +1,7 @@
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {inject, TestBed} from '@angular/core/testing';
 import {
-  mockedForInsert, mockedForPagination, mockedNumberOfRecords,
+  mockedForInsert, mockedForPagination, mockedNumberOfRecordsAll, mockedNumberOfRecordsWithLimit,
   mockedResponse
 } from '../../../../../mocks/groups/groups.mock.constants';
 import {GroupsService} from './groups.service';
@@ -29,41 +29,78 @@ describe('Groups Service', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should return array of   groups, faculties and specialites  and number of records', (done) => {
+  it(`should return  array of  all the groups and number of records for groups`, (done) => {
+    // act
+    groupsService.getGroups().subscribe((res) => {
+      done();
+      // assert
+      for (let i = 0; i < mockedResponse.allGroups.length; i++) {
+        expect(res[0][i].group_name).toEqual(mockedResponse.allGroups[i].group_name);
+      }
+      expect(res[1].numberOfRecords).toEqual(mockedNumberOfRecordsAll.numberOfRecords);
+    });
+
+    const getGroups = httpMock.expectOne(`${url.groupUrl}${url.getRecords}`);
+    const getGroupsNumberOfRecords = httpMock.expectOne(`${url.groupUrl}${url.getCount}`);
+    // arrange
+    getGroups.flush(mockedResponse.allGroups);
+    getGroupsNumberOfRecords.flush(mockedNumberOfRecordsAll);
+  });
+
+  it(`should return   array of all the faculties and  array of all the specialites`, (done) => {
+    // act
+    groupsService.getFacultiesAndSpecialities().subscribe((res) => {
+      done();
+      // assert
+      for (let i = 0; i < mockedResponse.allFaculties.length; i++) {
+        expect(res[0][i].faculty_name).toEqual(mockedResponse.allFaculties[i].faculty_name);
+      }
+      for (let i = 0; i < mockedResponse.allSpecialities.length; i++) {
+        expect(res[1][i].specialityName).toEqual(mockedResponse.allSpecialities[i].speciality_name);
+      }
+    });
+
+    const getAllFaculties = httpMock.expectOne(`${url.facultyUrl}${url.getRecords}`);
+    const getAllSpecialities = httpMock.expectOne(`${url.specialityUrl}${url.getRecords}`);
+    // arrange
+    getAllFaculties.flush(mockedResponse.allFaculties);
+    getAllSpecialities.flush(mockedResponse.allSpecialities);
+  });
+
+  it(`should return  array of groups with a  given limit , array of all the faculties
+   and  array of all the specialites  and number of records for groups`, (done) => {
+    // act
     groupsService.getGroupsRange(mockedForPagination.limit, mockedForPagination.offset).subscribe((res) => {
       done();
-      expect(res[0][0].group_name).toBe(mockedResponse.allGroups[0].group_name);
-      expect(res[0][1].group_name).toBe(mockedResponse.allGroups[1].group_name);
-      expect(res[0][2].group_name).toBe(mockedResponse.allGroups[2].group_name);
-
-      expect(res[1][0].faculty_name).toEqual(mockedResponse.allFaculties[0].faculty_name);
-      expect(res[1][1].faculty_name).toEqual(mockedResponse.allFaculties[1].faculty_name);
-      expect(res[1][2].faculty_name).toEqual(mockedResponse.allFaculties[2].faculty_name);
-      expect(res[1][3].faculty_name).toEqual(mockedResponse.allFaculties[3].faculty_name);
-      expect(res[1][4].faculty_name).toEqual(mockedResponse.allFaculties[4].faculty_name);
-
-      expect(res[2][0].specialityName).toEqual(mockedResponse.allSpecialities[0].speciality_name);
-      expect(res[2][1].specialityName).toEqual(mockedResponse.allSpecialities[1].speciality_name);
-      expect(res[2][2].specialityName).toEqual(mockedResponse.allSpecialities[2].speciality_name);
-      expect(res[2][3].specialityName).toEqual(mockedResponse.allSpecialities[3].speciality_name);
-      expect(res[2][4].specialityName).toEqual(mockedResponse.allSpecialities[4].speciality_name);
-      expect(res[3].numberOfRecords).toEqual(mockedNumberOfRecords.numberOfRecords);
+      // assert
+      for (let i = 0; i < mockedForPagination.limit; i++) {
+        expect(res[0][i].group_name).toEqual(mockedResponse.allGroups[i].group_name);
+      }
+      for (let i = 0; i < mockedResponse.allFaculties.length; i++) {
+        expect(res[1][i].faculty_name).toEqual(mockedResponse.allFaculties[i].faculty_name);
+      }
+      for (let i = 0; i < mockedResponse.allSpecialities.length; i++) {
+        expect(res[2][i].specialityName).toEqual(mockedResponse.allSpecialities[i].speciality_name);
+      }
+      expect(res[3].numberOfRecords).toEqual(mockedNumberOfRecordsWithLimit.numberOfRecords);
     });
 
     const getGroupsRange = httpMock.expectOne(`${url.groupUrl}${url.getRecordsRange}/${mockedForPagination.limit}/${mockedForPagination.offset}`);
     const getAllFaculties = httpMock.expectOne(`${url.facultyUrl}${url.getRecords}`);
     const getAllSpecialities = httpMock.expectOne(`${url.specialityUrl}${url.getRecords}`);
     const getGroupsNumberOfRecords = httpMock.expectOne(`${url.groupUrl}${url.getCount}`);
-
+    // arrange
     getGroupsRange.flush(mockedResponse.allGroups.slice(mockedForPagination.offset, mockedForPagination.limit));
     getAllFaculties.flush(mockedResponse.allFaculties);
     getAllSpecialities.flush(mockedResponse.allSpecialities);
-    getGroupsNumberOfRecords.flush(mockedNumberOfRecords);
+    getGroupsNumberOfRecords.flush(mockedNumberOfRecordsWithLimit);
   });
-  it('should return group id, group name, speciality_id, faculty_id after inserting group', (done) => {
 
+  it('should return group id, group name, speciality_id, faculty_id after inserting group', (done) => {
+    // act
     groupsService.addGroup(mockedForInsert).subscribe((res: any) => {
       done();
+      // assert
       expect(res[0].group_id).toEqual(mockedResponse.afterInsert[0].group_id);
       expect(res[0].group_name).toEqual(mockedResponse.afterInsert[0].group_name);
       expect(res[0].speciality_id).toEqual(mockedResponse.afterInsert[0].speciality_id);
@@ -71,6 +108,7 @@ describe('Groups Service', () => {
     });
 
     const addGroupsRequest = httpMock.expectOne(`${url.groupUrl}${url.insertData}`);
+    // arrange
     addGroupsRequest.flush(mockedResponse.afterInsert);
   });
 });

@@ -77,7 +77,12 @@ export const mockedResponse = {
     speciality_name: 'speciality name 5',
   }]
 };
-export const mockedNumberOfRecords = {
+
+export const mockedNumberOfRecordsAll = {
+  numberOfRecords: '5'
+}
+
+export const mockedNumberOfRecordsWithLimit = {
   numberOfRecords: '3'
 };
 export const mockedForInsert = {

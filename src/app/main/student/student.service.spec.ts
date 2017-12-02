@@ -4,7 +4,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {StudentService} from './student.service';
 import {url} from '../shared/constants/url-constants';
 
-describe('StudentService', () => {
+xdescribe('StudentService', () => {
   let http: HttpTestingController;
   let service: StudentService;
 

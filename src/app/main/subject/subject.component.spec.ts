@@ -4,7 +4,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {By} from '@angular/platform-browser';
 import 'rxjs/add/observable/of';
-import {MockSubjectService} from './subject-service/subject.service.mock';
+import {MockSubjectService} from '../../../../mocks/subject/subject.service.mock';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
 
 import {NO_ERRORS_SCHEMA} from '@angular/core';

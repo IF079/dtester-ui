@@ -1,39 +1,16 @@
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {inject, TestBed} from '@angular/core/testing';
-
+import {
+  mockedForInsert, mockedForPagination,  mockedNumberOfRecordsWithLimit,
+  mockedResponse
+} from '../../../../../mocks/subject/subject.mock.constants';
 import {SubjectService} from './subject.service';
 import {url} from '../../shared/constants/url-constants';
 
-describe('StudentService', () => {
+describe('Subject Service', () => {
   let httpMock: HttpTestingController;
   let subjectService: SubjectService;
-  const numberOfRecordsResponse = {
-    numberOfRecords: 3
-  };
-  const subjectResponseAfterInsert = [
-    {
-      subject_id: 4,
-      subject_name: 'Subject 4',
-      subject_description: 'Subject 4 description'
-    }
-  ];
-  const subjectsResponse = [
-    {
-      subject_id: 1,
-      subject_name: 'Subject 1',
-      subject_description: 'Subject description 1'
-    },
-    {
-      groups_id: 2,
-      subject_name: 'Subject 2',
-      subject_description: 'Subject description 2'
-    },
-    {
-      groups_id: 3,
-      subject_name: 'Subject 3',
-      subject_description: 'Subject description 3'
-    }
-  ];
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -53,30 +30,31 @@ describe('StudentService', () => {
   }));
 
   it('should return array of subjects and number of records', (done) => {
-    subjectService.getSubjectsRange(3, 0).subscribe((res: any) => {
+    subjectService.getSubjectsRange(mockedForPagination.limit, mockedForPagination.offset).subscribe((res: any) => {
       done();
-      expect(res[0][0].name).toEqual('Subject 1');
-      expect(res[0][1].name).toEqual('Subject 2');
-      expect(res[0][2].name).toEqual('Subject 3');
-      expect(res[1].numberOfRecords).toEqual(3);
+     for (let i = 0; i < mockedForPagination.limit; i++) {
+       res[0][i].name = mockedResponse.allSubjects[i].subject_name;
+     }
+      expect(res[1].numberOfRecords).toEqual(mockedNumberOfRecordsWithLimit.numberOfRecords);
     });
 
-    const getSubjectsRange = httpMock.expectOne(`${url.subjectUrl}${url.getRecordsRange}/3/0`);
+    const getSubjectsRange = httpMock.expectOne(`${url.subjectUrl}${url.getRecordsRange}/${mockedForPagination.limit}/${mockedForPagination.offset}`);
     const getSubjectsNumberOfRecords = httpMock.expectOne(`${url.subjectUrl}${url.getCount}`);
-    getSubjectsRange.flush(subjectsResponse);
-    getSubjectsNumberOfRecords.flush(numberOfRecordsResponse);
+    getSubjectsRange.flush(mockedResponse.allSubjects.slice(mockedForPagination.offset, mockedForPagination.limit));
+    getSubjectsNumberOfRecords.flush(mockedNumberOfRecordsWithLimit);
   });
   it('should return subject id, subject name and subject description after inserting subject', (done) => {
-    const subject_name = 'Subject 4';
-    const subject_description = 'Subject 4 description';
-    subjectService.addSubject({subject_name, subject_description }).subscribe((res: any) => {
+    // act
+    subjectService.addSubject(mockedForInsert).subscribe((res: any) => {
       done();
-      expect(res[0].subject_id).toEqual(4);
-      expect(res[0].subject_name).toEqual('Subject 4');
-      expect(res[0].subject_description).toEqual('Subject 4 description');
+      // assert
+      expect(res[0].subject_id).toEqual(mockedResponse.afterInsert[0].subject_id);
+      expect(res[0].subject_name).toEqual(mockedResponse.afterInsert[0].subject_name);
+      expect(res[0].subject_description).toEqual(mockedResponse.afterInsert[0].subject_description);
     });
 
     const addSubjectRequest = httpMock.expectOne(`${url.subjectUrl}${url.insertData}`);
-    addSubjectRequest.flush(subjectResponseAfterInsert);
+    // arrange
+    addSubjectRequest.flush(mockedResponse.afterInsert);
   });
 });

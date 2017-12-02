@@ -1,7 +1,7 @@
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {inject, TestBed} from '@angular/core/testing';
 import {
-  mockedForInsert, mockedForPagination, mockedNumberOfRecordsAll, mockedNumberOfRecordsWithLimit,
+  mockedForInsert, mockedForPagination, mockedNumberOfRecordsWithLimit,
   mockedResponse
 } from '../../../../../mocks/timetable/timetable.mock.constants';
 import {TimeTableService} from './time-table.service';

@@ -26,12 +26,12 @@ export class SpecialityComponent implements OnInit {
   constructor(private specialityService: SpecialityService,
               private dialog: MatDialog,
               private delUpdateService: UpdateDeleteEntityService) {
-    this.delUpdateService.recordDeletedInDataBase$.subscribe(() => {
-      this.numberOfRecords -= 1;
+    this.delUpdateService.itemDeleted$.subscribe(() => {
+      this.numberOfRecords --;
     });
-    this.delUpdateService.specialityInserted$.subscribe(
+    this.delUpdateService.itemInserted$.subscribe(
       () => {
-        this.numberOfRecords += 1;
+        this.numberOfRecords ++;
       }
     );
   }

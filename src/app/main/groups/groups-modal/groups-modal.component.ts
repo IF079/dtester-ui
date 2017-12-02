@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {GroupsService} from '../groups-service/groups.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {Group} from '../group';
 
 @Component({
   selector: 'dtest-groups-modal',
@@ -85,7 +86,7 @@ export class GroupsModalComponent implements OnInit {
     }
     this.groupsService.addGroup({group_name, faculty_id, speciality_id}).subscribe(
       (groupData) => {
-        this.delUpdateService.passInsertedGroup(groupData[0]);
+        this.delUpdateService.passInsertedItem<Group[]>(groupData[0]);
         this.isGroupAdded = true;
       },
       (err) => {

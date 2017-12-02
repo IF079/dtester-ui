@@ -3,6 +3,8 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {FacultyService} from '../faculty.service';
+import {Faculty} from '../faculty';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-faculty-modal',
@@ -27,7 +29,9 @@ export class FacultyModalComponent {
   constructor(public dialogRef: MatDialogRef<FacultyModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private facultyService: FacultyService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private delUpdateService: UpdateDeleteEntityService
+              ) {
     this.facultyForm = this.fb.group({
       name: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(60)])],
       description: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(120)])]
@@ -39,7 +43,7 @@ export class FacultyModalComponent {
   const faculty_description = this.facultyForm.get('description').value;
   this.facultyService.addFaculty({faculty_name,  faculty_description}).subscribe(
     (facultyData) => {
-      this.facultyService.passAdded(facultyData[0]);
+      this.delUpdateService.passInsertedItem<Faculty[]>(facultyData[0]);
       this.isFacultyAdded = true;
     },
     err => {

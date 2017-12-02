@@ -96,14 +96,14 @@ export class StudentComponent implements OnInit {
   }
 
   updateNumberOfRecordsInDomWhenAdded() {
-    this.delUpdateService.studentInserted$.subscribe(() => {
-        this.numberOfRecords += 1;
+    this.delUpdateService.itemInserted$.subscribe(() => {
+        this.numberOfRecords ++;
       });
   }
 
   updateNumberOfRecordsInDomWhenDeleted() {
-    this.delUpdateService.recordDeletedInDataBase$.subscribe(() => {
-        this.numberOfRecords -= 1;
+    this.delUpdateService.itemDeleted$.subscribe(() => {
+        this.numberOfRecords --;
       });
   }
 

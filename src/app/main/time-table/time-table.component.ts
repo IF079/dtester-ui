@@ -33,17 +33,16 @@ export class TimeTableComponent implements OnInit {
 
 
   updateNumberOfRecordsInDom() {
-    this.delUpdateService.timeTableInserted$.subscribe(resp => {
-      this.numberOfRecords += 1;
+    this.delUpdateService.itemInserted$.subscribe(() => {
+      this.numberOfRecords ++;
     });
-    this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
-      this.numberOfRecords -= 1;
+    this.delUpdateService.itemDeleted$.subscribe(() => {
+      this.numberOfRecords --;
     });
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(TimeTableModalComponent, {
-      width: '1000px',
       data: {groupDictionary: this.groupDictionary, subjectDictionary: this.subjectDictionary}
     });
   }

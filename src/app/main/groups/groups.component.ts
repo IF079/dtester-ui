@@ -32,11 +32,11 @@ export class GroupsComponent implements OnInit {
   }
 
   updateNumberOfRecordsInDom() {
-    this.delUpdateService.groupInserted$.subscribe(resp => {
-      this.numberOfRecords += 1;
+    this.delUpdateService.itemInserted$.subscribe(() => {
+      this.numberOfRecords ++;
     });
-    this.delUpdateService.recordDeletedInDataBase$.subscribe((res) => {
-      this.numberOfRecords -= 1;
+    this.delUpdateService.itemDeleted$.subscribe(() => {
+      this.numberOfRecords --;
     });
   }
 
@@ -48,8 +48,6 @@ export class GroupsComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(GroupsModalComponent, {
-      height: '350px',
-      width: '1000px',
       data: {facultyDictionary: this.facultyDictionary, specialityDictionary: this.specialityDictionary}
     });
   }

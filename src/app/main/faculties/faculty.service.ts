@@ -14,14 +14,6 @@ export class FacultyService {
   constructor(private http: HttpClient) {
   }
 
-  private facultyAddedSource = new Subject<Faculty>();
-
-  facultyAdded$ = this.facultyAddedSource.asObservable();
-
-  passAdded(item: Faculty) {
-    this.facultyAddedSource.next(item);
-  }
-
   getFacultiesRange(limit: number, offset: number): Observable<[Faculty[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<Faculty[]>(`${url.facultyUrl}${url.getRecordsRange}/${limit}/${offset}`),

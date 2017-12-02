@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {SubjectService} from '../subject-service/subject.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {SubjectDto} from '../subject-dto';
 
 @Component({
   selector: 'dtest-subject-modal',
@@ -52,8 +53,7 @@ export class SubjectModalComponent {
     const subject_name = this.name.value;
     const subject_description = this.description.value;
     this.subjectService.addSubject({subject_name, subject_description}).subscribe(subject => {
-        console.log(subject);
-        this.delUpdateService.passInsertedSubject(subject);
+        this.delUpdateService.passInsertedItem<SubjectDto[]>(subject);
         this.isSubjectAdded = true;
       },
       err => {

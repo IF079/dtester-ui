@@ -22,7 +22,7 @@ import {Result} from '../test/result/result';
 export class WelcomeComponent {
   private anonymousUserUsername = 'анонімний користувач';
 
-  constructor(private loginService: LoginService,
+  constructor(public loginService: LoginService,
               private testService: TestService,
               private subjectService: SubjectService,
               private resultService: ResultService,

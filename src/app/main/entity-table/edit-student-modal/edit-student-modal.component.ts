@@ -19,6 +19,7 @@ export class EditStudentModalComponent implements OnInit {
   groups: any[];
   dropPhoto: string;
   curentPhoto: string;
+  passwordVisible = false;
   placeholders = {
     sname: 'Прізвище',
     name: 'Ім\'я',

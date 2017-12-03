@@ -2,11 +2,11 @@ import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
-import {StudentService} from '../student.service';
+import {StudentService} from '../student-service/student.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {AsyncUsernameValidator, AsyncEmailValidator} from './async.validator';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
-import {Student} from '../student';
+import {Student} from '../student-entity/student';
 
 @Component({
   selector: 'dtest-add-modal',

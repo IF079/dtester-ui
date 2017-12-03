@@ -97,7 +97,7 @@
                     <mat-icon matSuffix (click)="passwordVisible = !passwordVisible"
                               class="fa {{passwordVisible ? 'fa-unlock' : 'fa-lock'}}"></mat-icon>
                     <mat-error
-                      *ngIf="!form.controls['passwords'].controls['password'].valid && form.controls['passwords'].controls['password'].touched">
+                      *ngIf="!form.controls['passwords'].get('password').valid && form.controls['passwords'].get('password').touched">
                       {{errorInvalidPassword}}
                     </mat-error>
                   </mat-form-field>
@@ -107,7 +107,7 @@
                     <mat-icon matSuffix (click)="passwordVisible = !passwordVisible"
                               class="fa {{passwordVisible ? 'fa-unlock' : 'fa-lock'}}"></mat-icon>
                     <mat-error
-                      *ngIf="!form.controls['passwords'].controls['passwordConfirm'].valid && form.controls['passwords'].controls['passwordConfirm'].dirty">
+                      *ngIf="!form.controls['passwords'].get('passwordConfirm').valid && form.controls['passwords'].get('passwordConfirm').dirty">
                       {{errorInvalidPasswordConfirm}}
                     </mat-error>
                   </mat-form-field>

@@ -3,9 +3,9 @@ import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 import {Location} from '@angular/common';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
-import {StudentService} from './student.service';
+import {StudentService} from './student-service/student.service';
 import {GroupsService} from '../groups/groups-service/groups.service';
-import {Student} from './student';
+import {Student} from './student-entity/student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {StudentAddModalComponent} from './add-modal/add-modal.component';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';

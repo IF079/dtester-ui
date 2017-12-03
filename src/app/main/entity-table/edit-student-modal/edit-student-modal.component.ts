@@ -3,8 +3,8 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
 import {UpdateDeleteEntityService} from '../update-delete-entity.service';
-import {StudentService} from '../../student/student.service';
-import {Student} from '../../student/student';
+import {StudentService} from '../../student/student-service/student.service';
+import {Student} from '../../student/student-entity/student';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 
 @Component({

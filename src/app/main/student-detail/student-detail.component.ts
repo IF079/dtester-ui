@@ -3,8 +3,8 @@ import {Location} from '@angular/common';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import 'rxjs/add/operator/mergeMap';
 
-import {Student} from '../student/student';
-import {StudentService} from '../student/student.service';
+import {Student} from '../student/student-entity/student';
+import {StudentService} from '../student/student-service/student.service';
 
 
 @Component({

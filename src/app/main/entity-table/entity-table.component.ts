@@ -5,7 +5,7 @@ import {Group} from '../groups/group';
 import {SubjectDto} from '../subject/subject-dto';
 import {SpecialityDto} from '../speciality/speciality-entity/speciality-dto';
 import {Faculty} from '../faculties/faculty';
-import {Student} from '../student/student';
+import {Student} from '../student/student-entity/student';
 import {TimeTable} from '../time-table/time-table';
 import {DeleteConfirmModalComponent} from './delete-confirm-modal/delete-confirm-modal.component';
 import {EditSubjectModalComponent} from './edit-subject-modal/edit-subject-modal.component';

@@ -1,7 +1,7 @@
 import {AbstractControl} from '@angular/forms';
 import 'rxjs/add/operator/map';
 
-import {MockStudentService} from '../student.service.mock';
+import {MockStudentService} from '../../../../../mocks/student/student.service.mock';
 
 export class MockAsyncUsernameValidator {
   static createValidator(mockStudentService: MockStudentService) {

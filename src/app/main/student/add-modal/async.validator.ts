@@ -1,6 +1,6 @@
 import {AbstractControl} from '@angular/forms';
 
-import {StudentService} from '../student.service';
+import {StudentService} from '../student-service/student.service';
 
 export class AsyncUsernameValidator {
   static createValidator(studentService: StudentService) {

@@ -2,7 +2,8 @@ import {TestBed, inject} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
 import {StudentService} from './student.service';
-import {url} from '../shared/constants/url-constants';
+import {url} from '../../shared/constants/url-constants';
+
 
 xdescribe('StudentService', () => {
   let http: HttpTestingController;

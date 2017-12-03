@@ -1,20 +1,18 @@
 import {async, ComponentFixture, TestBed, inject} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
 
 import {StudentAddModalComponent} from './add-modal.component';
 import {MainMaterialModule} from '../../main-material.module';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {StudentService} from '../student.service';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
 import {ReactiveFormsModule} from '@angular/forms';
-import {InfoModalService} from '../../info-modal/info-modal.service';
 import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MockStudentService} from '../student.service.mock';
 import {AsyncEmailValidator, AsyncUsernameValidator} from './async.validator';
 import {MockAsyncEmailValidator, MockAsyncUsernameValidator} from './async.validator.mock';
+import {StudentService} from '../student-service/student.service';
+import {MockStudentService} from '../../../../../mocks/student/student.service.mock';
 
 class MockMatDialogRef {
   close() {

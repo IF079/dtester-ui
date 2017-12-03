@@ -3,7 +3,6 @@ import {inject, TestBed} from '@angular/core/testing';
 
 import {SpecialityService} from './speciality.service';
 import {url} from '../../shared/constants/url-constants';
-import {Speciality} from '../speciality-entity/speciality';
 
 describe('SpecialityService', () => {
   let httpMock: HttpTestingController;
@@ -11,9 +10,7 @@ describe('SpecialityService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ],
+      imports: [HttpClientTestingModule],
       providers: [SpecialityService]
     });
 

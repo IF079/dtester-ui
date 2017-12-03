@@ -9,7 +9,7 @@ import {Student} from '../student/student-entity/student';
 import {TimeTable} from '../time-table/time-table';
 import {DeleteConfirmModalComponent} from './delete-confirm-modal/delete-confirm-modal.component';
 import {EditSubjectModalComponent} from './edit-subject-modal/edit-subject-modal.component';
-import {UpdateDeleteEntityService} from './update-delete-entity.service';
+import {UpdateDeleteEntityService} from './updateDeleteEntityService/update-delete-entity.service';
 import {EditGroupsModalComponent} from './edit-groups-modal/edit-groups-modal.component';
 import {EditTimetableModalComponent} from './edit-timetable-modal/edit-timetable-modal.component';
 import {EditSpecialityModalComponent} from '../speciality/edit-speciality-modal/edit-speciality-modal.component';

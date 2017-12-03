@@ -30,16 +30,19 @@ describe('Subject Service', () => {
   }));
 
   it('should return array of subjects and number of records', (done) => {
+    // act
     subjectService.getSubjectsRange(mockedForPagination.limit, mockedForPagination.offset).subscribe((res: any) => {
       done();
+      // assert
      for (let i = 0; i < mockedForPagination.limit; i++) {
-       res[0][i].name = mockedResponse.allSubjects[i].subject_name;
+       expect(res[0][i].name).toEqual(mockedResponse.allSubjects[i].subject_name);
      }
       expect(res[1].numberOfRecords).toEqual(mockedNumberOfRecordsWithLimit.numberOfRecords);
     });
 
     const getSubjectsRange = httpMock.expectOne(`${url.subjectUrl}${url.getRecordsRange}/${mockedForPagination.limit}/${mockedForPagination.offset}`);
     const getSubjectsNumberOfRecords = httpMock.expectOne(`${url.subjectUrl}${url.getCount}`);
+    // arrange
     getSubjectsRange.flush(mockedResponse.allSubjects.slice(mockedForPagination.offset, mockedForPagination.limit));
     getSubjectsNumberOfRecords.flush(mockedNumberOfRecordsWithLimit);
   });

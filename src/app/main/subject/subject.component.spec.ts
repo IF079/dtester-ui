@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {By} from '@angular/platform-browser';
 import 'rxjs/add/observable/of';
 import {MockSubjectService} from '../../../../mocks/subject/subject.service.mock';
-import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../entity-table/updateDeleteEntityService/update-delete-entity.service';
 
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {SubjectComponent} from './subject.component';

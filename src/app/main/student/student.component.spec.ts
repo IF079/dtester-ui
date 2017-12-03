@@ -11,7 +11,7 @@ import 'rxjs/add/observable/of';
 
 import {StudentComponent} from './student.component';
 import {GroupsService} from '../groups/groups-service/groups.service';
-import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../entity-table/updateDeleteEntityService/update-delete-entity.service';
 import {InfoModalService} from '../info-modal/info-modal.service';
 import {StudentService} from './student-service/student.service';
 import {MockStudentService} from '../../../../mocks/student/student.service.mock';

@@ -3,7 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {SubjectService} from '../subject-service/subject.service';
-import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
 import {SubjectDto} from '../subject-dto';
 
 @Component({
@@ -53,7 +53,7 @@ export class SubjectModalComponent {
     const subject_name = this.name.value;
     const subject_description = this.description.value;
     this.subjectService.addSubject({subject_name, subject_description}).subscribe(subject => {
-        this.delUpdateService.passInsertedItem<SubjectDto[]>(subject);
+        this.delUpdateService.passInsertedItem<SubjectDto>(subject);
         this.isSubjectAdded = true;
       },
       err => {

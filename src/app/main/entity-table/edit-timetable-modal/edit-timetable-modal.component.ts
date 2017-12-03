@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TimeTable} from '../../time-table/time-table';
-import {UpdateDeleteEntityService} from '../update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../updateDeleteEntityService/update-delete-entity.service';
 import {TimeTableService} from '../../time-table/timetable-service/time-table.service';
 
 @Component({
@@ -130,7 +130,7 @@ export class EditTimetableModalComponent {
           timeTableItem.group_id = this.groupDictionary[timeTableItem.group_id];
           timeTableItem.subject_id = this.subjectDictionary[timeTableItem.subject_id];
         });
-        this.delUpdateService.passUpdatedEntity<TimeTable[]>(updatedTimetableResponse);
+        this.delUpdateService.passUpdatedItem<TimeTable[]>(updatedTimetableResponse);
         this.dialogRef.close();
       },
       (err) => {

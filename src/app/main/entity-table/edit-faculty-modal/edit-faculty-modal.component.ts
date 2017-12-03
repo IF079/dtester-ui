@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Faculty} from '../../faculties/faculty';
-import {UpdateDeleteEntityService} from '../update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../updateDeleteEntityService/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-edit-faculty-modal',
@@ -46,7 +46,7 @@ export class EditFacultyModalComponent {
     const faculty_description = this.facultyForm.get('description').value;
     this.delUpdateService.updateEntity(id, entityName,
       {faculty_name, faculty_description}).subscribe((facultyData: Faculty[]) => {
-        this.delUpdateService.passUpdatedEntity<Faculty[]>(facultyData);
+        this.delUpdateService.passUpdatedItem<Faculty[]>(facultyData);
         this.isUpdated = true;
       }, () => {
         this.errorMessage = 'Факультет з такими даними вже існує';

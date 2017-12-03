@@ -2,9 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
-import {UpdateDeleteEntityService} from '../update-delete-entity.service';
 import {StudentService} from '../../student/student-service/student.service';
 import {Student} from '../../student/student-entity/student';
+import {UpdateDeleteEntityService} from '../updateDeleteEntityService/update-delete-entity.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 
 @Component({
@@ -153,7 +153,7 @@ export class EditStudentModalComponent implements OnInit {
             delete responseStudent[0].photo;
             delete responseStudent[0].plainPassword;
             delete responseStudent[0].groupId;
-            this.delUpdateService.passUpdatedEntity<Student[]>(responseStudent);
+            this.delUpdateService.passUpdatedItem<Student[]>(responseStudent);
             this.modal.openSuccessDialog('Зміни успішно збережено!');
           });
         });

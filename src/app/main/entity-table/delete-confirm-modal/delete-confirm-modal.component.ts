@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 
-import {UpdateDeleteEntityService} from '../update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../updateDeleteEntityService/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-delete-confirm-modal',
@@ -23,7 +23,8 @@ export class DeleteConfirmModalComponent {
     const id = this.data.item[0];
     const entityName = this.data.entityName;
     this.delUpdateService.deleteEntity(id, entityName).subscribe(
-      () => {
+      (resp) => {
+        console.log(resp);
         this.delUpdateService.passDeleted(this.data.item);
         this.dialogRef.close();
       },

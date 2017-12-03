@@ -5,7 +5,8 @@ import {StudentAddModalComponent} from './add-modal.component';
 import {MainMaterialModule} from '../../main-material.module';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
+
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';

@@ -7,7 +7,7 @@ import {Faculty} from './faculty';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
-import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../entity-table/updateDeleteEntityService/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-faculties',

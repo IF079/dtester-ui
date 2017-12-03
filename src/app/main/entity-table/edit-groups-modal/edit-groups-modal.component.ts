@@ -3,7 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {Group} from '../../groups/group';
-import {UpdateDeleteEntityService} from '../update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../updateDeleteEntityService/update-delete-entity.service';
 import {GroupsService} from '../../groups/groups-service/groups.service';
 
 @Component({
@@ -97,7 +97,7 @@ export class EditGroupsModalComponent {
             group.speciality_id =  this.specialityDictionary[group.speciality_id];
         });
 
-        this.delUpdateService.passUpdatedEntity<Group[]>(updatedGroupResponse);
+        this.delUpdateService.passUpdatedItem<Group[]>(updatedGroupResponse);
         this.dialogRef.close();
       },
       (err) => {

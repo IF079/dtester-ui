@@ -22,7 +22,7 @@ export class UpdateDeleteEntityService {
   itemInserted$ = this.insertedItemSource.asObservable();
   itemDeleted$ = this.itemDeletedSource.asObservable();
 
-  passUpdatedEntity<T>(item: T) {
+  passUpdatedItem<T>(item: T) {
     this.updatedItemSource.next(item);
   }
 

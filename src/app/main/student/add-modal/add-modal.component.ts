@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/form
 import {StudentService} from '../student.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {AsyncUsernameValidator, AsyncEmailValidator} from './async.validator';
-import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
 import {Student} from '../student';
 
 @Component({

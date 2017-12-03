@@ -7,7 +7,7 @@ import {MainMaterialModule} from '../../main-material.module';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {StudentService} from '../student.service';
-import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';

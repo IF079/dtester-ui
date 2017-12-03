@@ -5,7 +5,7 @@ import {SpecialityService} from './speciality-service/speciality.service';
 import {Speciality} from './speciality-entity/speciality';
 import {generalConst} from '../shared/constants/general-constants';
 import {SpecialityModalComponent} from './add-speciality-modal/add-speciality-modal.component';
-import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../entity-table/updateDeleteEntityService/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-speciality',

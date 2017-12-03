@@ -5,7 +5,7 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 import {SpecialityDto} from '../speciality-entity/speciality-dto';
 import {SpecialityModalComponent} from '../add-speciality-modal/add-speciality-modal.component';
 import {SpecialityService} from '../speciality-service/speciality.service';
-import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-edit-speciality-modal',
@@ -39,7 +39,7 @@ export class EditSpecialityModalComponent extends SpecialityModalComponent {
     const speciality_name = this.specialityForm.get('name').value;
     this.delUpdateService.updateEntity(id, entityName,
       {speciality_code, speciality_name}).subscribe((specialityData: SpecialityDto[]) => {
-        this.delUpdateService.passUpdatedEntity<SpecialityDto[]>(specialityData);
+        this.delUpdateService.passUpdatedItem<SpecialityDto[]>(specialityData);
         this.isUpdated = true;
       },
       () => {

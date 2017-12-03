@@ -30,7 +30,7 @@ describe('FacultiesComponent', () => {
     component = fixture.debugElement.componentInstance;
   });
 
-  xit ('should create component', () => {
+  it ('should create component', () => {
     expect(component).toBeTruthy();
   });
 });

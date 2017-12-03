@@ -1,4 +1,4 @@
-<form [formGroup]="facultyForm" (ngSubmit)="addFaculty(facultyForm.value)">
+<form [formGroup]="facultyForm" (ngSubmit)="addFaculty()">
   <h2 mat-dialog-title *ngIf="!isFacultyAdded">Додати Факультет</h2>
   <mat-dialog-content *ngIf="isFacultyAdded">{{successMsg}}</mat-dialog-content>
   <mat-dialog-content *ngIf="!isFacultyAdded">

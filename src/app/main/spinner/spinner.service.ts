@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class SpinnerService {
-  private tasksCounter = 0;
+  tasksCounter = 0;
 
   constructor() {
   }

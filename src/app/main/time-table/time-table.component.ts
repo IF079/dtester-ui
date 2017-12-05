@@ -5,7 +5,7 @@ import {TimeTableService} from './timetable-service/time-table.service';
 import {TimeTable} from './time-table';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
-import {TimeTableModalComponent} from './timetable-modal/time-table-modal.component';
+import {AddTimeTableModalComponent} from './add-timetable-modal/add-time-table-modal.component';
 import {UpdateDeleteEntityService} from '../entity-table/updateDeleteEntityService/update-delete-entity.service';
 
 @Component({
@@ -42,7 +42,7 @@ export class TimeTableComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(TimeTableModalComponent, {
+    const dialogRef = this.dialog.open(AddTimeTableModalComponent, {
       data: {groupDictionary: this.groupDictionary, subjectDictionary: this.subjectDictionary}
     });
   }

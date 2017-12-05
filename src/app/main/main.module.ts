@@ -19,7 +19,7 @@ import {StudentDetailComponent} from './student-detail/student-detail.component'
 import {SubjectComponent} from './subject/subject.component';
 import {AddSubjectModalComponent} from './subject/add-subject-modal/add-subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
-import {TimeTableModalComponent} from './time-table/timetable-modal/time-table-modal.component';
+import {AddTimeTableModalComponent} from './time-table/add-timetable-modal/add-time-table-modal.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {MainMaterialModule} from './main-material.module';
 import {StudentService} from './student/student-service/student.service';
@@ -78,7 +78,7 @@ import {TestPlayerService} from './test-player/test-player.service';
     InfoModalComponent,
     TestComponent,
     TestDetailComponent,
-    TimeTableModalComponent,
+    AddTimeTableModalComponent,
     QuestionAddModalComponent,
     TestModalComponent,
     ResultAddModalComponent,
@@ -103,7 +103,7 @@ import {TestPlayerService} from './test-player/test-player.service';
     SpecialityModalComponent,
     InfoModalComponent,
     FacultyModalComponent,
-    TimeTableModalComponent,
+    AddTimeTableModalComponent,
     GroupsModalComponent,
     QuestionAddModalComponent,
     TestModalComponent,

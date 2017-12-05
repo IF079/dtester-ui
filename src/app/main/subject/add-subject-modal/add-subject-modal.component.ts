@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {SubjectService} from '../subject-service/subject.service';
 import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
-import {SubjectDto} from '../subject-dto';
+import {SubjectDto} from '../subject-classes/subject-dto';
 
 @Component({
   selector: 'dtest-add-subject-modal',

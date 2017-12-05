@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
 import {GroupsService} from './groups-service/groups.service';
-import {Group} from './group';
+import {Group} from './groups-classes/group';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {AddGroupsModalComponent} from './add-groups-modal/add-groups-modal.component';

@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {GroupsService} from '../groups-service/groups.service';
 import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
-import {Group} from '../group';
+import {Group} from '../groups-classes/group';
 
 @Component({
   selector: 'dtest-add-groups-modal',

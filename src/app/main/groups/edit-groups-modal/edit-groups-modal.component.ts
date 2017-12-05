@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {Group} from '../group';
+import {Group} from '../groups-classes/group';
 import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
 import {GroupsService} from '../groups-service/groups.service';
 

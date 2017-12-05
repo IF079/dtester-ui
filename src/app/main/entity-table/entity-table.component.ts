@@ -1,12 +1,12 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
-import {Group} from '../groups/group';
-import {SubjectDto} from '../subject/subject-dto';
+import {Group} from '../groups/groups-classes/group';
+import {SubjectDto} from '../subject/subject-classes/subject-dto';
 import {SpecialityDto} from '../speciality/speciality-entity/speciality-dto';
 import {Faculty} from '../faculties/faculty';
 import {Student} from '../student/student-entity/student';
-import {TimeTable} from '../time-table/time-table';
+import {TimeTable} from '../time-table/timetable-classes/time-table';
 import {DeleteConfirmModalComponent} from './delete-confirm-modal/delete-confirm-modal.component';
 import {EditSubjectModalComponent} from '../subject/edit-subject-modal/edit-subject-modal.component';
 import {UpdateDeleteEntityService} from './updateDeleteEntityService/update-delete-entity.service';

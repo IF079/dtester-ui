@@ -3,7 +3,7 @@ import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
 import {AddSubjectModalComponent} from './add-subject-modal/add-subject-modal.component';
 import {SubjectService} from './subject-service/subject.service';
-import {Subject} from './subject';
+import {Subject} from './subject-classes/subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';

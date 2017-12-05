@@ -9,7 +9,7 @@ import {ResultAddModalComponent} from '../test/result/result-add-modal/result-ad
 import {TestService} from '../test/test.service';
 import {Test} from '../test/test';
 import {SubjectService} from '../subject/subject-service/subject.service';
-import {Subject} from '../subject/subject';
+import {Subject} from '../subject/subject-classes/subject';
 import {ResultService} from '../test/result/result.service';
 import {Result} from '../test/result/result';
 

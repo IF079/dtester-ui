@@ -7,12 +7,12 @@ import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntitySe
 import {Group} from '../group';
 
 @Component({
-  selector: 'dtest-groups-modal',
-  templateUrl: './groups-modal.component.html',
-  styleUrls: ['./groups-modal.component.scss']
+  selector: 'dtest-add-groups-modal',
+  templateUrl: './add-groups-modal.component.html',
+  styleUrls: ['./add-groups-modal.component.scss']
 })
 
-export class GroupsModalComponent implements OnInit {
+export class AddGroupsModalComponent implements OnInit {
   groupForm: FormGroup;
   facultyValues = [];
   specialityValues = [];
@@ -29,7 +29,7 @@ export class GroupsModalComponent implements OnInit {
   btnAdd = 'Додати групу';
   errRequestMsg: string;
 
-  constructor(public dialogRef: MatDialogRef<GroupsModalComponent>,
+  constructor(public dialogRef: MatDialogRef<AddGroupsModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private groupsService: GroupsService,
               private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
     this.createForm();

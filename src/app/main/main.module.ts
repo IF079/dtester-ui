@@ -12,7 +12,7 @@ import {NavComponent} from './nav/nav.component';
 import {FacultiesComponent} from './faculties/faculties.component';
 import {FacultyModalComponent} from './faculties/faculty-modal/faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
-import {GroupsModalComponent} from './groups/groups-modal/groups-modal.component';
+import {AddGroupsModalComponent} from './groups/add-groups-modal/add-groups-modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
@@ -61,7 +61,7 @@ import {TestPlayerService} from './test-player/test-player.service';
     FacultiesComponent,
     FacultyModalComponent,
     GroupsComponent,
-    GroupsModalComponent,
+    AddGroupsModalComponent,
     SpecialityComponent,
     StudentComponent,
     StudentDetailComponent,
@@ -104,7 +104,7 @@ import {TestPlayerService} from './test-player/test-player.service';
     InfoModalComponent,
     FacultyModalComponent,
     AddTimeTableModalComponent,
-    GroupsModalComponent,
+    AddGroupsModalComponent,
     QuestionAddModalComponent,
     TestModalComponent,
     ResultAddModalComponent,

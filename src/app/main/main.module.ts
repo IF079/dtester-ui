@@ -4,7 +4,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {DeleteConfirmModalComponent} from './entity-table/delete-confirm-modal/delete-confirm-modal.component';
-import {EditGroupsModalComponent} from './entity-table/edit-groups-modal/edit-groups-modal.component';
+import {EditGroupsModalComponent} from './groups/edit-groups-modal/edit-groups-modal.component';
 import {EditSubjectModalComponent} from './subject/edit-subject-modal/edit-subject-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';

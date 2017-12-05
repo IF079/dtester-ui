@@ -2,9 +2,9 @@ import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {Group} from '../../groups/group';
-import {UpdateDeleteEntityService} from '../updateDeleteEntityService/update-delete-entity.service';
-import {GroupsService} from '../../groups/groups-service/groups.service';
+import {Group} from '../group';
+import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
+import {GroupsService} from '../groups-service/groups.service';
 
 @Component({
   selector: 'dtest-edit-groups-modal',

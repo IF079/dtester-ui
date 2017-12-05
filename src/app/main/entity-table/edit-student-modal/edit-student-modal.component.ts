@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/form
 
 import {StudentService} from '../../student/student-service/student.service';
 import {Student} from '../../student/student-entity/student';
-import {UpdateDeleteEntityService} from '../updateDeleteEntityService/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../update-delete-entity-service/update-delete-entity.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 
 @Component({

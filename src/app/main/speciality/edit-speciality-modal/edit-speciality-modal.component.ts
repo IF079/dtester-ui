@@ -2,10 +2,10 @@ import {Component, Inject} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA} from '@angular/material';
 
-import {SpecialityDto} from '../speciality-entity/speciality-dto';
+import {SpecialityDto} from '../speciality-classes/speciality-dto';
 import {SpecialityModalComponent} from '../add-speciality-modal/add-speciality-modal.component';
 import {SpecialityService} from '../speciality-service/speciality.service';
-import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-edit-speciality-modal',

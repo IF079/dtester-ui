@@ -6,7 +6,7 @@ import {Group} from './groups-classes/group';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {AddGroupsModalComponent} from './add-groups-modal/add-groups-modal.component';
-import {UpdateDeleteEntityService} from '../entity-table/updateDeleteEntityService/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-groups',

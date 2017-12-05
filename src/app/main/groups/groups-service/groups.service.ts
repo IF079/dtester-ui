@@ -7,8 +7,8 @@ import {Group} from '../groups-classes/group';
 import {RecordsCount} from '../../shared/entities/recordsCount';
 import {url} from '../../shared/constants/url-constants';
 import {Faculty} from '../../faculties/faculty';
-import {Speciality} from '../../speciality/speciality-entity/speciality';
-import {SpecialityDto} from '../../speciality/speciality-entity/speciality-dto';
+import {Speciality} from '../../speciality/speciality-classes/speciality';
+import {SpecialityDto} from '../../speciality/speciality-classes/speciality-dto';
 
 @Injectable()
 

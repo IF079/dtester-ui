@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 
-import {UpdateDeleteEntityService} from '../updateDeleteEntityService/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-delete-confirm-modal',

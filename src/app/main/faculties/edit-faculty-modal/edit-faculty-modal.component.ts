@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Faculty} from '../../faculties/faculty';
-import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-edit-faculty-modal',

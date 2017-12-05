@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TimeTable} from '../timetable-classes/time-table';
 
 import {TimeTableService} from '../timetable-service/time-table.service';
-import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-edit-timetable-modal',

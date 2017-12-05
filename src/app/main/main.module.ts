@@ -37,7 +37,7 @@ import {TestComponent} from './test/test.component';
 import {TestDetailComponent} from './test-detail/test-detail.component';
 import {TestService} from './test/test.service';
 import {TestDetailService} from './test-detail/test-detail.service';
-import {UpdateDeleteEntityService} from './entity-table/updateDeleteEntityService/update-delete-entity.service';
+import {UpdateDeleteEntityService} from './entity-table/update-delete-entity-service/update-delete-entity.service';
 import {AnswerService} from './test/answer/answer.service';
 import {QuestionService} from './test/question/question.service';
 import {InfoModalService} from './info-modal/info-modal.service';

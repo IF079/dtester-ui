@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {FacultyService} from '../faculty.service';
 import {Faculty} from '../faculty';
-import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-faculty-modal',

@@ -38,7 +38,6 @@ export class LoginService {
   login(credentials: string): Observable<User> {
     return this.auth.login(credentials)
       .do(user => this.setupUser(user));
-
   }
 
   logout(): Observable<User> {
@@ -50,7 +49,6 @@ export class LoginService {
     this.isLoggedIn()
       .finally(() => this.initialized = true)
       .subscribe();
-
   }
 
   private establishHotConnectionForIsLoggedIn(): ConnectableObservable<User> {

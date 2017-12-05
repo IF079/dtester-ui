@@ -49,7 +49,7 @@ import {ResultAddModalComponent} from './test/result/result-add-modal/result-add
 import {EditSpecialityModalComponent} from './speciality/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from './entity-table/edit-student-modal/edit-student-modal.component';
-import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/edit-timetable-modal.component';
+import {EditTimetableModalComponent} from './time-table/edit-timetable-modal/edit-timetable-modal.component';
 import {TestPlayerComponent} from './test-player/test-player.component';
 import {TestPlayerService} from './test-player/test-player.service';
 

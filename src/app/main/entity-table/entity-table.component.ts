@@ -11,7 +11,7 @@ import {DeleteConfirmModalComponent} from './delete-confirm-modal/delete-confirm
 import {EditSubjectModalComponent} from '../subject/edit-subject-modal/edit-subject-modal.component';
 import {UpdateDeleteEntityService} from './updateDeleteEntityService/update-delete-entity.service';
 import {EditGroupsModalComponent} from './edit-groups-modal/edit-groups-modal.component';
-import {EditTimetableModalComponent} from './edit-timetable-modal/edit-timetable-modal.component';
+import {EditTimetableModalComponent} from '../time-table/edit-timetable-modal/edit-timetable-modal.component';
 import {EditSpecialityModalComponent} from '../speciality/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from './edit-student-modal/edit-student-modal.component';

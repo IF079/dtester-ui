@@ -1,9 +1,10 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TimeTable} from '../../time-table/time-table';
-import {UpdateDeleteEntityService} from '../updateDeleteEntityService/update-delete-entity.service';
-import {TimeTableService} from '../../time-table/timetable-service/time-table.service';
+import {TimeTable} from '../time-table';
+
+import {TimeTableService} from '../timetable-service/time-table.service';
+import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-edit-timetable-modal',

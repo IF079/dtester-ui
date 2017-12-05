@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
-import {SubjectModalComponent} from './subject-modal/subject-modal.component';
+import {AddSubjectModalComponent} from './add-subject-modal/add-subject-modal.component';
 import {SubjectService} from './subject-service/subject.service';
 import {Subject} from './subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
@@ -40,7 +40,7 @@ export class SubjectComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(SubjectModalComponent, {
+    const dialogRef = this.dialog.open(AddSubjectModalComponent, {
     });
 
   }

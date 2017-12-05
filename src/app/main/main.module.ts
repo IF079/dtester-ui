@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {DeleteConfirmModalComponent} from './entity-table/delete-confirm-modal/delete-confirm-modal.component';
 import {EditGroupsModalComponent} from './entity-table/edit-groups-modal/edit-groups-modal.component';
-import {EditSubjectModalComponent} from './entity-table/edit-subject-modal/edit-subject-modal.component';
+import {EditSubjectModalComponent} from './subject/edit-subject-modal/edit-subject-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
@@ -17,7 +17,7 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {SubjectComponent} from './subject/subject.component';
-import {SubjectModalComponent} from './subject/subject-modal/subject-modal.component';
+import {AddSubjectModalComponent} from './subject/add-subject-modal/add-subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {TimeTableModalComponent} from './time-table/timetable-modal/time-table-modal.component';
 import {WelcomeComponent} from './welcome/welcome.component';
@@ -66,7 +66,7 @@ import {TestPlayerService} from './test-player/test-player.service';
     StudentComponent,
     StudentDetailComponent,
     SubjectComponent,
-    SubjectModalComponent,
+    AddSubjectModalComponent,
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent,
@@ -98,7 +98,7 @@ import {TestPlayerService} from './test-player/test-player.service';
   entryComponents: [
     DeleteConfirmModalComponent,
     EditSubjectModalComponent,
-    SubjectModalComponent,
+    AddSubjectModalComponent,
     StudentAddModalComponent,
     SpecialityModalComponent,
     InfoModalComponent,

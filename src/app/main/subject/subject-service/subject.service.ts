@@ -3,8 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
-import {Subject} from '../subject';
-import {SubjectDto} from '../subject-dto';
+import {Subject} from '../subject-classes/subject';
+import {SubjectDto} from '../subject-classes/subject-dto';
 import {RecordsCount} from '../../shared/entities/recordsCount';
 import {url} from '../../shared/constants/url-constants';
 

@@ -3,12 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
-import {Subject} from '../../subject/subject';
-import {SubjectDto} from '../../subject/subject-dto';
-import {TimeTable} from '../time-table';
+import {Subject} from '../../subject/subject-classes/subject';
+import {SubjectDto} from '../../subject/subject-classes/subject-dto';
+import {TimeTable} from '../timetable-classes/time-table';
 import {RecordsCount} from '../../shared/entities/recordsCount';
 import {url} from '../../shared/constants/url-constants';
-import {Group} from '../../groups/group';
+import {Group} from '../../groups/groups-classes/group';
 
 @Injectable()
 

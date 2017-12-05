@@ -4,15 +4,15 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {SubjectService} from '../subject-service/subject.service';
 import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
-import {SubjectDto} from '../subject-dto';
+import {SubjectDto} from '../subject-classes/subject-dto';
 
 @Component({
-  selector: 'dtest-subject-modal',
-  templateUrl: './subject-modal.component.html',
-  styleUrls: ['./subject-modal.component.scss']
+  selector: 'dtest-add-subject-modal',
+  templateUrl: './add-subject-modal.component.html',
+  styleUrls: ['./add-subject-modal.component.scss']
 })
 
-export class SubjectModalComponent {
+export class AddSubjectModalComponent {
   subjectForm: FormGroup;
   successMsg = 'Предмет додано успішно. Оновіть сторінку, щоб побачити зміни.';
   isSubjectAdded = false;
@@ -26,7 +26,7 @@ export class SubjectModalComponent {
   btnOk = 'Ок';
   errRequestMsg: string;
 
-  constructor(public dialogRef: MatDialogRef<SubjectModalComponent>,
+  constructor(public dialogRef: MatDialogRef<AddSubjectModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private subjectService: SubjectService,
               private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
     this.createForm();

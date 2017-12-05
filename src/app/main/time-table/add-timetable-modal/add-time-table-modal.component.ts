@@ -4,15 +4,15 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {TimeTableService} from '../timetable-service/time-table.service';
 import {UpdateDeleteEntityService} from '../../entity-table/updateDeleteEntityService/update-delete-entity.service';
-import {TimeTable} from '../time-table';
+import {TimeTable} from '../timetable-classes/time-table';
 
 @Component({
-  selector: 'dtest-time-table-modal',
-  templateUrl: './time-table-modal.component.html',
-  styleUrls: ['./time-table-modal.component.scss']
+  selector: 'dtest-add-time-table-modal',
+  templateUrl: './add-time-table-modal.component.html',
+  styleUrls: ['./add-time-table-modal.component.scss']
 })
 
-export class TimeTableModalComponent implements OnInit {
+export class AddTimeTableModalComponent implements OnInit {
   timeTableForm: FormGroup;
   subjectValues = [];
   groupValues = [];
@@ -32,7 +32,7 @@ export class TimeTableModalComponent implements OnInit {
   btnClose = 'Відмінити';
   btnOk = 'Ок';
 
-  constructor(public dialogRef: MatDialogRef<TimeTableModalComponent>,
+  constructor(public dialogRef: MatDialogRef<AddTimeTableModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private timeTableService: TimeTableService,
               private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
     this.createForm();

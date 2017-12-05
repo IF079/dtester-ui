@@ -2,7 +2,7 @@
 import {mockedForRequest, mockedResponse} from '../../../../../mocks/DeleteUpdate/deleteUpdate.mock.constants';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {inject, TestBed} from '@angular/core/testing';
-import {Group} from '../../groups/group';
+import {Group} from '../../groups/groups-classes/group';
 
 import {url} from '../../shared/constants/url-constants';
 import {UpdateDeleteEntityService} from './update-delete-entity.service';

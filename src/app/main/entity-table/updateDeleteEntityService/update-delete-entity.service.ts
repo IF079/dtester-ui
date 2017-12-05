@@ -5,8 +5,8 @@ import {Observable} from 'rxjs/Observable';
 
 import {url} from '../../shared/constants/url-constants';
 import {Subject} from 'rxjs/Subject';
-import {Group} from '../../groups/group';
-import {TimeTable} from '../../time-table/time-table';
+import {Group} from '../../groups/groups-classes/group';
+import {TimeTable} from '../../time-table/timetable-classes/time-table';
 
 @Injectable()
 export class UpdateDeleteEntityService {

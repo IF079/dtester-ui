@@ -4,22 +4,22 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {DeleteConfirmModalComponent} from './entity-table/delete-confirm-modal/delete-confirm-modal.component';
-import {EditGroupsModalComponent} from './entity-table/edit-groups-modal/edit-groups-modal.component';
-import {EditSubjectModalComponent} from './entity-table/edit-subject-modal/edit-subject-modal.component';
+import {EditGroupsModalComponent} from './groups/edit-groups-modal/edit-groups-modal.component';
+import {EditSubjectModalComponent} from './subject/edit-subject-modal/edit-subject-modal.component';
 import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
 import {FacultiesComponent} from './faculties/faculties.component';
 import {FacultyModalComponent} from './faculties/add-faculty-modal/add-faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
-import {GroupsModalComponent} from './groups/groups-modal/groups-modal.component';
+import {AddGroupsModalComponent} from './groups/add-groups-modal/add-groups-modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {SubjectComponent} from './subject/subject.component';
-import {SubjectModalComponent} from './subject/subject-modal/subject-modal.component';
+import {AddSubjectModalComponent} from './subject/add-subject-modal/add-subject-modal.component';
 import {TimeTableComponent} from './time-table/time-table.component';
-import {TimeTableModalComponent} from './time-table/timetable-modal/time-table-modal.component';
+import {AddTimeTableModalComponent} from './time-table/add-timetable-modal/add-time-table-modal.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {MainMaterialModule} from './main-material.module';
 import {StudentService} from './student/student-service/student.service';
@@ -49,7 +49,7 @@ import {ResultAddModalComponent} from './test/result/result-add-modal/result-add
 import {EditSpecialityModalComponent} from './speciality/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './faculties/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from './entity-table/edit-student-modal/edit-student-modal.component';
-import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/edit-timetable-modal.component';
+import {EditTimetableModalComponent} from './time-table/edit-timetable-modal/edit-timetable-modal.component';
 import {TestPlayerComponent} from './test-player/test-player.component';
 import {TestPlayerService} from './test-player/test-player.service';
 
@@ -61,12 +61,12 @@ import {TestPlayerService} from './test-player/test-player.service';
     FacultiesComponent,
     FacultyModalComponent,
     GroupsComponent,
-    GroupsModalComponent,
+    AddGroupsModalComponent,
     SpecialityComponent,
     StudentComponent,
     StudentDetailComponent,
     SubjectComponent,
-    SubjectModalComponent,
+    AddSubjectModalComponent,
     TimeTableComponent,
     WelcomeComponent,
     EntityTableComponent,
@@ -78,7 +78,7 @@ import {TestPlayerService} from './test-player/test-player.service';
     InfoModalComponent,
     TestComponent,
     TestDetailComponent,
-    TimeTableModalComponent,
+    AddTimeTableModalComponent,
     QuestionAddModalComponent,
     TestModalComponent,
     ResultAddModalComponent,
@@ -98,13 +98,13 @@ import {TestPlayerService} from './test-player/test-player.service';
   entryComponents: [
     DeleteConfirmModalComponent,
     EditSubjectModalComponent,
-    SubjectModalComponent,
+    AddSubjectModalComponent,
     StudentAddModalComponent,
     SpecialityModalComponent,
     InfoModalComponent,
     FacultyModalComponent,
-    TimeTableModalComponent,
-    GroupsModalComponent,
+    AddTimeTableModalComponent,
+    AddGroupsModalComponent,
     QuestionAddModalComponent,
     TestModalComponent,
     ResultAddModalComponent,

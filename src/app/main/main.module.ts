@@ -10,7 +10,7 @@ import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
 import {FacultiesComponent} from './faculties/faculties.component';
-import {FacultyModalComponent} from './faculties/add-faculty-modal/faculty-modal.component';
+import {FacultyModalComponent} from './faculties/add-faculty-modal/add-faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
 import {GroupsModalComponent} from './groups/groups-modal/groups-modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';

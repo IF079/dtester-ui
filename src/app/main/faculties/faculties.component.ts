@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
 
-import {FacultyModalComponent} from './faculty-modal/faculty-modal.component';
+import {FacultyModalComponent} from './add-faculty-modal/faculty-modal.component';
 import {FacultyService} from './faculty.service';
 import {Faculty} from './faculty';
 import {LoggerFactory} from '../../shared/logger/logger.factory';

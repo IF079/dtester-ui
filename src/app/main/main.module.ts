@@ -10,7 +10,7 @@ import {MainComponent} from './main.component';
 import {MainRoutingModule} from './main-routing.module';
 import {NavComponent} from './nav/nav.component';
 import {FacultiesComponent} from './faculties/faculties.component';
-import {FacultyModalComponent} from './faculties/faculty-modal/faculty-modal.component';
+import {FacultyModalComponent} from './faculties/add-faculty-modal/faculty-modal.component';
 import {GroupsComponent} from './groups/groups.component';
 import {GroupsModalComponent} from './groups/groups-modal/groups-modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
@@ -47,7 +47,7 @@ import {QuestionAddModalComponent} from './test/question/question-add-modal/ques
 import {TestModalComponent} from './test/test-modal/test-modal.component';
 import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
 import {EditSpecialityModalComponent} from './speciality/edit-speciality-modal/edit-speciality-modal.component';
-import {EditFacultyModalComponent} from './entity-table/edit-faculty-modal/edit-faculty-modal.component';
+import {EditFacultyModalComponent} from './faculties/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from './entity-table/edit-student-modal/edit-student-modal.component';
 import {EditTimetableModalComponent} from './entity-table/edit-timetable-modal/edit-timetable-modal.component';
 import {TestPlayerComponent} from './test-player/test-player.component';

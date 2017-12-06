@@ -3,6 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {FacultyService} from '../faculty.service';
+import {InfoModalService} from '../../info-modal/info-modal.service';
 import {Faculty} from '../faculty';
 import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity-service/update-delete-entity.service';
 
@@ -30,7 +31,8 @@ export class FacultyModalComponent {
               @Inject(MAT_DIALOG_DATA) public data: any,
               private facultyService: FacultyService,
               private fb: FormBuilder,
-              private delUpdateService: UpdateDeleteEntityService
+              private delUpdateService: UpdateDeleteEntityService,
+              private modalService: InfoModalService
               ) {
     this.facultyForm = this.fb.group({
       name: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(60)])],
@@ -41,13 +43,16 @@ export class FacultyModalComponent {
   addFaculty() {
   const faculty_name = this.facultyForm.get('name').value;
   const faculty_description = this.facultyForm.get('description').value;
+  this.dialogRef.close();
   this.facultyService.addFaculty({faculty_name,  faculty_description}).subscribe(
     (facultyData) => {
-      this.delUpdateService.passInsertedItem<Faculty[]>(facultyData[0]);
-      this.isFacultyAdded = true;
-    },
-    err => {
-      this.errRequestMsg = 'Помилка, можливо даний факультет вже існує';
-    });
+      if (facultyData[0].faculty_id) {
+        this.delUpdateService.passInsertedItem<Faculty[]>(facultyData[0]);
+        this.isFacultyAdded = true;
+        this.modalService.openSuccessDialog('Запис успішно добавлено! Обновіть сторінку для відображення даних.');
+      } else {
+        this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
+      }
+    }, err => this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.'));
   }
 }

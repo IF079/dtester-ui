@@ -3,14 +3,14 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
 import {StudentService} from '../../student/student-service/student.service';
-import {Student} from '../../student/student-entity/student';
-import {UpdateDeleteEntityService} from '../update-delete-entity-service/update-delete-entity.service';
+import {Student} from '../student-classes/student';
+import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity-service/update-delete-entity.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 
 @Component({
   selector: 'dtest-edit-student-modal',
   templateUrl: './edit-student-modal.component.html',
-  styleUrls: ['../../student/add-modal/add-modal.component.scss']
+  styleUrls: ['../add-student-modal/add-modal.component.scss']
 })
 
 export class EditStudentModalComponent implements OnInit {

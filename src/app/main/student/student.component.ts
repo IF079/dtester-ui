@@ -5,9 +5,9 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 
 import {StudentService} from './student-service/student.service';
 import {GroupsService} from '../groups/groups-service/groups.service';
-import {Student} from './student-entity/student';
+import {Student} from './student-classes/student';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
-import {StudentAddModalComponent} from './add-modal/add-modal.component';
+import {StudentAddModalComponent} from './add-student-modal/add-modal.component';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {InfoModalService} from '../info-modal/info-modal.service';
 import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity-service/update-delete-entity.service';

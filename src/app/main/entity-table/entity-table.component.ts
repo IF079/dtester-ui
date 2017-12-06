@@ -5,7 +5,7 @@ import {Group} from '../groups/groups-classes/group';
 import {SubjectDto} from '../subject/subject-classes/subject-dto';
 import {SpecialityDto} from '../speciality/speciality-classes/speciality-dto';
 import {Faculty} from '../faculties/faculty';
-import {Student} from '../student/student-entity/student';
+import {Student} from '../student/student-classes/student';
 import {TimeTable} from '../time-table/timetable-classes/time-table';
 import {DeleteConfirmModalComponent} from './delete-confirm-modal/delete-confirm-modal.component';
 import {EditSubjectModalComponent} from '../subject/edit-subject-modal/edit-subject-modal.component';
@@ -14,7 +14,7 @@ import {EditGroupsModalComponent} from '../groups/edit-groups-modal/edit-groups-
 import {EditTimetableModalComponent} from '../time-table/edit-timetable-modal/edit-timetable-modal.component';
 import {EditSpecialityModalComponent} from '../speciality/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from '../faculties/edit-faculty-modal/edit-faculty-modal.component';
-import {EditStudentModalComponent} from './edit-student-modal/edit-student-modal.component';
+import {EditStudentModalComponent} from '../student/edit-student-modal/edit-student-modal.component';
 
 @Component({
   selector: 'dtest-entity-table',

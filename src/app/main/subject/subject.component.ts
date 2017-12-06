@@ -7,7 +7,7 @@ import {Subject} from './subject-classes/subject';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
-import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity-service/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-subjects',

@@ -3,10 +3,10 @@ import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/observable/forkJoin';
 import {Observable} from 'rxjs/Observable';
 
-import {url} from '../../shared/constants/url-constants';
+import {url} from '../../constants/url-constants';
 import {Subject} from 'rxjs/Subject';
-import {Group} from '../../groups/groups-classes/group';
-import {TimeTable} from '../../time-table/timetable-classes/time-table';
+import {Group} from '../../../groups/groups-classes/group';
+import {TimeTable} from '../../../time-table/timetable-classes/time-table';
 
 @Injectable()
 export class UpdateDeleteEntityService {

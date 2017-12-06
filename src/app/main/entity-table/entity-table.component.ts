@@ -43,75 +43,49 @@ export class EntityTableComponent implements OnChanges, OnInit {
               private delUpdateService: UpdateDeleteEntityService) {
   }
 
+  private updateTableRowArr<T>(data: T, idName: string) {
+    const id = 0;
+    for (let i = 0; i < this.tableRowArr.length; i++) {
+      if (this.tableRowArr[i][id] === data[0][idName]) {
+        this.tableRowArr[i] = Object.values(data[0]);
+        break;
+      }
+    }
+  }
+
   updateSubjectInDom() {
     this.delUpdateService.itemUpdated$.subscribe((subjectData: SubjectDto[]) => {
-      const id = 0;
-      for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === subjectData[0].subject_id) {
-          this.tableRowArr[i] = Object.values(subjectData[0]);
-          break;
-        }
-      }
+      this.updateTableRowArr<SubjectDto[]>(subjectData, 'subject_id');
     });
   }
 
   updateStudentInDom() {
     this.delUpdateService.itemUpdated$.subscribe((studentData: Student[]) => {
-      const id = 0;
-      for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === studentData[0].userId) {
-          this.tableRowArr[i] = Object.values(studentData[0]);
-          break;
-        }
-      }
+      this.updateTableRowArr<Student[]>(studentData, 'userId');
     });
   }
 
   updateSpecialityInDom() {
     this.delUpdateService.itemUpdated$.subscribe((specialityData: SpecialityDto[]) => {
-      const id = 0;
-      for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === specialityData[0].speciality_id) {
-          this.tableRowArr[i] = Object.values(specialityData[0]);
-          break;
-        }
-      }
+      this.updateTableRowArr<SpecialityDto[]>(specialityData, 'speciality_id');
     });
   }
 
   updateFacultyInDom() {
     this.delUpdateService.itemUpdated$.subscribe((facultyData: Faculty[]) => {
-      const id = 0;
-      for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === facultyData[0].faculty_id) {
-          this.tableRowArr[i] = Object.values(facultyData[0]);
-          break;
-        }
-      }
+      this.updateTableRowArr<Faculty[]>(facultyData, 'faculty_id');
     });
   }
 
   updateGroupInDom() {
     this.delUpdateService.itemUpdated$.subscribe((groupData: Group[]) => {
-      const id = 0;
-      for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === groupData[0].group_id) {
-          this.tableRowArr[i] = Object.values(groupData[0]);
-          break;
-        }
-      }
+      this.updateTableRowArr<Group[]>(groupData, 'group_id');
     });
   }
 
   updateTimetableInDom() {
     this.delUpdateService.itemUpdated$.subscribe((timetableData: TimeTable[]) => {
-      const id = 0;
-      for (let i = 0; i < this.tableRowArr.length; i++) {
-        if (this.tableRowArr[i][id] === timetableData[0].timetable_id) {
-          this.tableRowArr[i] = Object.values(timetableData[0]);
-          break;
-        }
-      }
+      this.updateTableRowArr<TimeTable[]>(timetableData, 'timetable_id');
     });
   }
 
@@ -121,7 +95,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     });
   }
 
-  openDialogAndPassDataToIt(rowItem): void {
+  openDialogForUpdate(rowItem): void {
     this.dialog.open(this.componentModalsDictionary[this.entityName], {
       data: rowItem
     });
@@ -147,7 +121,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.updateStudentInDom();
   }
 
-  openDeleteDialogAndPassItemToDelete(item) {
+  openDialogForDelete(item) {
     this.dialog.open(DeleteConfirmModalComponent, {
       data: {item: item, entityName: this.entityName}
     });

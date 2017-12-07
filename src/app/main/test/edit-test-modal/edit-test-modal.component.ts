@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {TestService} from '../test.service';
 import {Test} from '../test';
-import {UpdateDeleteEntityService} from '../../entity-table/update-delete-entity-service/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-edit-test-modal',

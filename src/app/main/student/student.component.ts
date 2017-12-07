@@ -26,6 +26,7 @@ export class StudentComponent implements OnInit {
   students: Student[];
   student: Student;
   headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові'];
+  btnAdd = 'Додати студента';
   errWithDisplayingStudents: string;
   numberOfRecords: number;
   groupId: number;
@@ -105,12 +106,6 @@ export class StudentComponent implements OnInit {
     this.delUpdateService.itemDeleted$.subscribe(() => {
         this.numberOfRecords --;
       });
-  }
-
-  goPage(pageEvent: PageEvent) {
-    this.limit = pageEvent.pageSize;
-    this.offset = ((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize;
-    this.getStudents();
   }
 
   goBack(): void {

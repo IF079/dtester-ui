@@ -22,11 +22,13 @@ import {Result} from '../test/result/result';
 export class WelcomeComponent {
   private anonymousUserUsername = 'анонімний користувач';
 
-  constructor(public loginService: LoginService,
-              private testService: TestService,
-              private subjectService: SubjectService,
-              private resultService: ResultService,
-              private dialog: MatDialog) {
+  constructor(
+    public loginService: LoginService,
+    private testService: TestService,
+    private subjectService: SubjectService,
+    private resultService: ResultService,
+    private dialog: MatDialog
+  ) {
   }
 
   getWelcomeMessage(): string {
@@ -82,21 +84,6 @@ export class WelcomeComponent {
       });
     });
     return localArr;
-  }
-
-  openQuestionAddModal(): void {
-    this.testService.getTests().subscribe(testsData => {
-      const dialogRef = this.dialog.open(QuestionAddModalComponent, {
-        width: '400px',
-        data: {
-          tests: this.parseTests(testsData[0])
-        }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-
-      });
-    });
   }
 
   openTestModal(type: string): void {

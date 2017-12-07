@@ -1,0 +1,12 @@
+<button mat-raised-button
+        color="primary"
+        (click)="goBack()"
+        class="fa fa-long-arrow-left
+        backButton"></button>
+
+<button class="addButton"
+        mat-raised-button
+        color="primary"
+        (click)="openTestModal('add')">{{btnAdd}}</button>
+
+<dtest-entity-table [entityName]="'Answer'" [columnsArray]="headingColumnsOfTable" [entityArray]="answers"></dtest-entity-table>

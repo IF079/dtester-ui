@@ -52,6 +52,9 @@ import {EditStudentModalComponent} from './student/edit-student-modal/edit-stude
 import {EditTimetableModalComponent} from './time-table/edit-timetable-modal/edit-timetable-modal.component';
 import {TestPlayerComponent} from './test-player/test-player.component';
 import {TestPlayerService} from './test-player/test-player.service';
+import {AnswerComponent} from './test/answer/answer.component';
+import {QuestionComponent} from './test/question/question.component';
+import {EditTestModalComponent} from './test/edit-test-modal/edit-test-modal.component';
 
 
 @NgModule({
@@ -86,7 +89,10 @@ import {TestPlayerService} from './test-player/test-player.service';
     EditFacultyModalComponent,
     EditStudentModalComponent,
     EditTimetableModalComponent,
-    TestPlayerComponent
+    TestPlayerComponent,
+    AnswerComponent,
+    QuestionComponent,
+    EditTestModalComponent
   ],
   imports: [
     CommonModule,
@@ -112,7 +118,8 @@ import {TestPlayerService} from './test-player/test-player.service';
     EditSpecialityModalComponent,
     EditFacultyModalComponent,
     EditStudentModalComponent,
-    EditTimetableModalComponent
+    EditTimetableModalComponent,
+    EditTestModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

@@ -54,10 +54,12 @@ import {EditStudentModalComponent} from './student/edit-student-modal/edit-stude
 import {EditTimetableModalComponent} from './time-table/edit-timetable-modal/edit-timetable-modal.component';
 import {TestPlayerComponent} from './test-player/test-player.component';
 import {TestPlayerService} from './test-player/test-player.service';
+import {AddAdminModalComponent} from './admin/add-admin-modal/add-admin-modal.component';
 
 
 @NgModule({
   declarations: [
+    AddAdminModalComponent,
     MainComponent,
     NavComponent,
     FacultiesComponent,
@@ -99,6 +101,7 @@ import {TestPlayerService} from './test-player/test-player.service';
     FormsModule
   ],
   entryComponents: [
+    AddAdminModalComponent,
     DeleteConfirmModalComponent,
     EditSubjectModalComponent,
     AddSubjectModalComponent,

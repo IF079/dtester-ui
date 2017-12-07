@@ -3,8 +3,9 @@
 
 <dtest-entity-table [entityName]="'Subject'" [columnsArray]="headingColumnsOfTable"
                   [entityArray]="subjects" [detailUrl]="'/tests'"></dtest-entity-table>
+
 <mat-paginator [length]="numberOfRecords"
                [pageSize]="limit"
                [pageSizeOptions]="pageSizeOptions"
                (page)="goPage($event)">
-</mat-paginator>
+                </mat-paginator>

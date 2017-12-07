@@ -1,0 +1,9 @@
+<div *ngIf="errWithDisplayingAdmins" class="mat-error">{{errWithDisplayingAdmins}}</div>
+
+<dtest-entity-table [entityName]="'AdminUser'" [columnsArray]="headingColumnsOfTable"
+                    [entityArray]="admins"></dtest-entity-table>
+<mat-paginator [length]="numberOfRecords"
+               [pageSize]="limit"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="goPage($event)">
+</mat-paginator>

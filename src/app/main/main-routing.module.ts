@@ -14,40 +14,38 @@ import {TestPlayerComponent} from './test-player/test-player.component';
 import {AdminGuard} from './admin.guard';
 import {QuestionComponent} from './test/question/question.component';
 import {AnswerComponent} from './test/answer/answer.component';
+import {AdminComponent} from './admin/admin.component';
 
 const mainRoutes = [
-  {
-    path: '',
-    component: MainComponent,
-    children: [
-      {path: 'welcome', component: WelcomeComponent},
-      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-      {
-        path: '',
-        children: [
-          {path: 'groups/:groupId', component: StudentComponent},
-          {path: 'students', redirectTo: '/groups', pathMatch: 'full'},
-          {path: 'student/:id', component: StudentDetailComponent},
-          {path: 'specialities', component: SpecialityComponent},
-          {path: 'subjects', component: SubjectComponent},
-          {path: 'faculties', component: FacultiesComponent},
-          {path: 'groups', component: GroupsComponent},
-          {path: 'timetable', component: TimeTableComponent},
-          {path: 'tests/:subjectId', component: TestComponent},
-          {path: 'questions/:testId', component: QuestionComponent},
-          {path: 'answers/:questionId', component: AnswerComponent}
-        ],
-        canActivate: [AdminGuard]
-      }, {path: 'test-player', component: TestPlayerComponent},
-          {path: '**', redirectTo: 'welcome', pathMath: 'full'}
-        ]
-      }
-
-    ]
-
-
+    {
+      path: '',
+      component: MainComponent,
+      children: [
+        {path: 'welcome', component: WelcomeComponent},
+        {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+        {
+          path: '',
+          children: [
+            {path: 'groups/:groupId', component: StudentComponent},
+            {path: 'students', redirectTo: '/groups', pathMatch: 'full'},
+            {path: 'student/:id', component: StudentDetailComponent},
+            {path: 'specialities', component: SpecialityComponent},
+            {path: 'subjects', component: SubjectComponent},
+            {path: 'faculties', component: FacultiesComponent},
+            {path: 'groups', component: GroupsComponent},
+            {path: 'timetable', component: TimeTableComponent},
+            {path: 'admins', component: AdminComponent},
+            {path: 'tests/:subjectId', component: TestComponent},
+            {path: 'questions/:testId', component: QuestionComponent},
+            {path: 'answers/:questionId', component: AnswerComponent}
+          ],
+          canActivate: [AdminGuard]
+        }, {path: 'test-player', component: TestPlayerComponent},
+        {path: '**', redirectTo: 'welcome', pathMath: 'full'}
+      ]
+    }
+  ]
 ;
-
 
 @NgModule({
   imports: [

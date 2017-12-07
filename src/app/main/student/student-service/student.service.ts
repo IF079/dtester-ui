@@ -17,12 +17,7 @@ export class StudentService {
   constructor(private http: HttpClient) {
   }
 
-  private studentAddedSource = new Subject<Student>();
-  studentAdded$ = this.studentAddedSource.asObservable();
 
-  passAdded(item: Student) {
-    this.studentAddedSource.next(item);
-  }
 
   getStudentsRange(limit: number, offset: number): Observable<[Student[], RecordsCount]> {
     return Observable.forkJoin(

@@ -10,7 +10,7 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {StudentAddModalComponent} from './add-student-modal/add-modal.component';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {InfoModalService} from '../info-modal/info-modal.service';
-import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity-service/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-students',

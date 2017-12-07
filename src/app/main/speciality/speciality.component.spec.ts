@@ -5,7 +5,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {SpecialityComponent} from './speciality.component';
 import {SpecialityService} from './speciality-service/speciality.service';
 import {MainMaterialModule} from '../main-material.module';
-import {UpdateDeleteEntityService} from '../entity-table/update-delete-entity-service/update-delete-entity.service';
+import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {SpecialityServiceMock} from '../../../../mocks/speciality.service.mock';
 
 describe('SpecialityComponent', () => {

@@ -103,7 +103,7 @@ xdescribe('Component: StudentAddModalComponent', () => {
     expect(gradebookId.valid).toBeTruthy();
   });
 
-  it('should set control to invalid if username is allready used and to valid if free',
+  it('should set control to invalid if login is allready used and to valid if free',
     inject([StudentService], (studentService: MockStudentService) => {
     const username = component.form.get('username');
     username.setAsyncValidators(MockAsyncUsernameValidator.createValidator(studentService));

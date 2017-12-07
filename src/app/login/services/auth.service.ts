@@ -19,7 +19,7 @@ export class AuthService {
       authConfig = DEFAULT_AUTH_CONFIG;
     }
     this.isLoggedInParams = authConfig.isLoggedIn;
-    this.loginParams = authConfig.login;
+    this.loginParams = authConfig.username;
     this.logoutParams = authConfig.logout;
   }
 

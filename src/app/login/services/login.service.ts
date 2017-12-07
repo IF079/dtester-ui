@@ -36,7 +36,7 @@ export class LoginService {
   }
 
   login(credentials: string): Observable<User> {
-    return this.auth.login(credentials)
+    return this.auth.username(credentials)
       .do(user => this.setupUser(user));
   }
 

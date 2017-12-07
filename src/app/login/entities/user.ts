@@ -6,7 +6,7 @@ export class User {
   roles: string[];
   constructor(id: string = '', username: string = '', roles: string[] = ['']) {
     this.id = id;
-    this.username = username;
+    this.login = username;
     this.roles = roles;
   }
 
@@ -15,7 +15,7 @@ export class User {
   }
 
   clone(): User {
-    return new User(this.id, this.username, Array.from(this.roles));
+    return new User(this.id, this.login, Array.from(this.roles));
   }
 
   isAdmin(): boolean {

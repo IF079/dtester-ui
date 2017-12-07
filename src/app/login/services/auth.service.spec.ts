@@ -29,8 +29,8 @@ describe('Authorization service', () => {
     auth.isLoggedIn().subscribe((res: any) => {
       done();
       // Assert
-      expect(res.username).toEqual('muron');
-      expect(res.roles[0]).toEqual('login');
+      expect(res.login).toEqual('muron');
+      expect(res.roles[0]).toEqual('username');
       expect(res.roles[1]).toEqual('student');
     });
     const getLoggedInResponse = httpMock.expectOne(`${DEFAULT_AUTH_CONFIG.isLoggedIn}`);
@@ -39,27 +39,27 @@ describe('Authorization service', () => {
     getLoggedInResponse.flush({
       response: 'logged',
       id: '1',
-      username: 'muron',
-      roles: ['login', 'student']
+      login: 'muron',
+      roles: ['username', 'student']
     });
     httpMock.verify();
   });
   it('should send request to login', (done) => {
     // Act
-    auth.login(this.credentials).subscribe((res: any) => {
+    auth.username(this.credentials).subscribe((res: any) => {
       done();
       // Assert
-      expect(res.username).toEqual('muron');
-      expect(res.roles[0]).toEqual('login');
+      expect(res.login).toEqual('muron');
+      expect(res.roles[0]).toEqual('username');
       expect(res.roles[1]).toEqual('student');
     });
-    const getLoginResponse = httpMock.expectOne(`${DEFAULT_AUTH_CONFIG.login}`);
+    const getLoginResponse = httpMock.expectOne(`${DEFAULT_AUTH_CONFIG.username}`);
     // Arrange
     getLoginResponse.flush({
       response: 'ok',
       id: '1',
-      username: 'muron',
-      roles: ['login', 'student']
+      login: 'muron',
+      roles: ['username', 'student']
     });
   });
   it('should logout user', (done) => {

@@ -16,7 +16,7 @@ export class StudentDto {
 
   constructor(student: Student, otherDtoInfo: OtherDtoInfo) {
     this.user_id = student.userId;
-    this.username = otherDtoInfo.username;
+    this.login = otherDtoInfo.username;
     this.password = otherDtoInfo.password;
     this.password_confirm = otherDtoInfo.passwordConfirm;
     this.email = otherDtoInfo.email;

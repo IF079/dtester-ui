@@ -6,6 +6,8 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {generalConst} from '../shared/constants/general-constants';
+import {AddSubjectModalComponent} from '../subject/add-subject-modal/add-subject-modal.component';
+import {AddAdminModalComponent} from './add-admin-modal/add-admin-modal.component';
 
 @Component({
   selector: 'dtest-admin',
@@ -22,6 +24,8 @@ export class AdminComponent implements OnInit {
   headingColumnsOfTable = ['№', 'Логін', 'Поштова скринька'];
   errWithDisplayingAdmins: string;
   numberOfRecords: number;
+  btnAdd = 'Додати адміністратора';
+
   constructor(
     private adminService: AdminService,
     private delUpdateService: UpdateDeleteEntityService,
@@ -30,6 +34,10 @@ export class AdminComponent implements OnInit {
 
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(AddAdminModalComponent, {
+    });
+  }
 
   getAdmins() {
     this.adminService.getAdminsRange(this.limit, this.offset).subscribe(data => {
@@ -53,7 +61,6 @@ export class AdminComponent implements OnInit {
 
 
   ngOnInit() {
-
     this.getAdmins();
   }
 }

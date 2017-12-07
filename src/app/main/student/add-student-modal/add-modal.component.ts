@@ -104,7 +104,7 @@ export class StudentAddModalComponent {
       gradebookId: student.gradebookId,
       photo: this.dropPhoto || ''
     }, {
-      username: student.username,
+      username: student.login,
       email: student.email,
       password: student.passwords.password,
       passwordConfirm: student.passwords.passwordConfirm

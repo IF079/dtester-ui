@@ -17,6 +17,7 @@ import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
 import {AdminComponent} from './admin/admin.component';
 import {AdminService} from './admin/admin-services/admin.service';
+
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {SubjectComponent} from './subject/subject.component';
 import {AddSubjectModalComponent} from './subject/add-subject-modal/add-subject-modal.component';
@@ -54,6 +55,7 @@ import {EditStudentModalComponent} from './student/edit-student-modal/edit-stude
 import {EditTimetableModalComponent} from './time-table/edit-timetable-modal/edit-timetable-modal.component';
 import {TestPlayerComponent} from './test-player/test-player.component';
 import {TestPlayerService} from './test-player/test-player.service';
+import {AddAdminModalComponent} from './admin/add-admin-modal/add-admin-modal.component';
 
 
 @NgModule({
@@ -63,6 +65,7 @@ import {TestPlayerService} from './test-player/test-player.service';
     FacultiesComponent,
     FacultyModalComponent,
     AdminComponent,
+    AddAdminModalComponent,
     GroupsComponent,
     AddGroupsModalComponent,
     SpecialityComponent,
@@ -100,6 +103,7 @@ import {TestPlayerService} from './test-player/test-player.service';
   ],
   entryComponents: [
     DeleteConfirmModalComponent,
+    AddAdminModalComponent,
     EditSubjectModalComponent,
     AddSubjectModalComponent,
     StudentAddModalComponent,

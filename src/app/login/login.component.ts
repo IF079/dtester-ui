@@ -36,7 +36,7 @@ export class LoginComponent {
 
   login() {
     if (this.isFormValid()) {
-      this.loginService.login(this.loginForm.value)
+      this.loginService.username(this.loginForm.value)
         .subscribe(
           () => {
               this.router.navigate([this.getReturnUrl()]);

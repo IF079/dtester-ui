@@ -21,7 +21,7 @@ describe('Login Service', () => {
     expect(service).toBeTruthy();
   }));
   it('should setup User', () => {
-    expect(loginService.login('user')).toBeTruthy();
+    expect(loginService.username('user')).toBeTruthy();
   });
   it('should check if User logged in', () => {
     expect(loginService.isLoggedIn()).toBeTruthy();

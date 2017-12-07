@@ -6,7 +6,7 @@ import {DEFAULT_LOGIN_URL_CONFIG} from './config/login-url.default.config';
 
 const loginRoutes = [
   {
-    path: DEFAULT_LOGIN_URL_CONFIG.login,
+    path: DEFAULT_LOGIN_URL_CONFIG.username,
     component: LoginComponent
   }
 ];

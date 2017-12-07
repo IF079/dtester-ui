@@ -42,7 +42,6 @@ export class SubjectComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(AddSubjectModalComponent, {
     });
-
   }
 
   goPage(pageEvent: PageEvent) {

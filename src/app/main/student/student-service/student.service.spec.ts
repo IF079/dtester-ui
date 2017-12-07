@@ -136,7 +136,7 @@ xdescribe('StudentService', () => {
     http.verify();
   });
 
-  it('should return boolean response is username already used, or not', (done) => {
+  it('should return boolean response is login already used, or not', (done) => {
     service.checkUserName('testUsername').subscribe(response => {
       done();
       expect(typeof response.response).toBe('boolean');

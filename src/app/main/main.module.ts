@@ -15,6 +15,8 @@ import {GroupsComponent} from './groups/groups.component';
 import {AddGroupsModalComponent} from './groups/add-groups-modal/add-groups-modal.component';
 import {SpecialityComponent} from './speciality/speciality.component';
 import {StudentComponent} from './student/student.component';
+import {AdminComponent} from './admin/admin.component';
+import {AdminService} from './admin/admin-services/admin.service';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {SubjectComponent} from './subject/subject.component';
 import {AddSubjectModalComponent} from './subject/add-subject-modal/add-subject-modal.component';
@@ -60,6 +62,7 @@ import {TestPlayerService} from './test-player/test-player.service';
     NavComponent,
     FacultiesComponent,
     FacultyModalComponent,
+    AdminComponent,
     GroupsComponent,
     AddGroupsModalComponent,
     SpecialityComponent,
@@ -131,7 +134,8 @@ import {TestPlayerService} from './test-player/test-player.service';
     InfoModalService,
     ResultService,
     TestPlayerService,
-    StudentService
+    StudentService,
+    AdminService
   ]
 })
 export class MainModule {

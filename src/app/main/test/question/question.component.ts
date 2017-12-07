@@ -45,7 +45,7 @@ export class QuestionComponent implements OnInit {
       if (data[0]) {
         this.questions = data[0];
         this.questions.forEach(question => {
-          question.type = this.questionTypes[question.type];
+          question.type = this.questionTypes[question.type - 1];
           delete question.testId;
           delete question.attachment;
         });

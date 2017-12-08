@@ -4,15 +4,6 @@
     <div class="container">
       <div class="row" id="addQuestion">
         <mat-form-field>
-          <mat-select [placeholder]="placeholders.testName" formControlName="testId">
-            <mat-option *ngFor="let test of tests" [value]="test.value">
-              {{test.text}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="!form.controls['testId'].valid && form.controls['testId'].touched">{{errorEmptyInput}}
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
           <input matInput [placeholder]="placeholders.questionText" formControlName="questionText">
           <mat-error *ngIf="!form.controls['questionText'].valid && form.controls['questionText'].touched">
             {{errorQuestionText}}
@@ -20,8 +11,8 @@
         </mat-form-field>
         <mat-form-field>
           <mat-select [placeholder]="placeholders.level" formControlName="level">
-            <mat-option *ngFor="let level of levels" [value]="level.value">
-              {{level.text}}
+            <mat-option *ngFor="let level of levels" [value]="level">
+              {{level}}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="!form.controls['level'].valid && form.controls['level'].touched">{{errorEmptyInput}}
@@ -41,33 +32,10 @@
           <a mat-button>Файл</a>
         </label>
       </div>
-      <div class="row" id="addAnswers">
-        <h4>Відповіді</h4>
-        <span class="description">*обов'язково повинна бути 1 правильна відповідь</span>
-        <table *ngIf="answers" id="answers">
-          <tr class="answer" *ngFor="let answer of answers">
-            <td>{{answer.text}}</td>
-            <td>
-              <i *ngIf="answer.isTrue; else falseBlock" color="green" class="fa fa-check"></i>
-              <ng-template #falseBlock>
-                <i color="red" class="fa fa-ban"></i>
-              </ng-template>
-              <i class="fa fa-times" (click)="deleteAnswer(answer.text)"></i>
-            </td>
-          </tr>
-        </table>
-        <mat-form-field>
-          <input matInput #answerInput [placeholder]="placeholders.answer"
-                 (keyup.enter)="addAnswer(answerInput.value, isTrue.checked); answerInput.value=''">
-          <mat-checkbox #isTrue matSuffix color="primary"></mat-checkbox>
-          <mat-error *ngIf="!check()">{{errorAnswersAmount}}</mat-error>
-        </mat-form-field>
-      </div>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button type="submit" class="modal-button" mat-raised-button color="primary" [disabled]="!checkAnswers()">Добавити
-    </button>
+    <button type="submit" class="modal-button" mat-raised-button color="primary">Добавити</button>
     <button mat-button mat-dialog-close tabindex="-1">Відмінити</button>
   </mat-dialog-actions>
 </form>

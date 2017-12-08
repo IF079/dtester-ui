@@ -33,9 +33,16 @@ export class AdminComponent implements OnInit {
     private delUpdateService: UpdateDeleteEntityService,
     private dialog: MatDialog
   ) {
-
+    this.updateNumberOfRecords();
   }
-
+  updateNumberOfRecords() {
+    this.delUpdateService.itemDeleted$.subscribe((res) => {
+      this.numberOfRecords --;
+    });
+    this.delUpdateService.itemInserted$.subscribe(() => {
+      this.numberOfRecords ++;
+    });
+  }
   getAdmins() {
     this.adminService.getAdminsRange(this.limit, this.offset).subscribe(data => {
         this.admins = data[0].map(admin => ({

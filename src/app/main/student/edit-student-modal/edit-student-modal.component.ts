@@ -72,7 +72,6 @@ export class EditStudentModalComponent implements OnInit {
   }
 
   createForm(): void {
-    this.dialogRef.updateSize('800px');
     this.form = this.formBuilder.group({
       'sname': [null, Validators.required],
       'name': [null, Validators.required],

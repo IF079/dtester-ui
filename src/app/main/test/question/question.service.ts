@@ -27,10 +27,14 @@ export class QuestionService {
     return this.http.get(`${url.questionUrl}${url.getQuestionIdsByLevelRand}/${testId}/${level}/${number}`);
   }
 
-  getRecordsRangeByTest(testId: number, limit: number, offset: number): Observable<[Question[], RecordsCount]> {
+  getRecordsRangeByTest(testId: number, limit: number, offset: number, wi?: string): Observable<[Question[], RecordsCount]> {
     return Observable.forkJoin(
-      this.http.get<QuestionDto[]>(`${url.questionUrl}${url.getRecordsRangeByTest}/${testId}/${limit}/${offset}`)
-        .map(questionDtoArr => questionDtoArr.map(questionDto => new Question(questionDto))),
+      this.http.get<any>(`${url.questionUrl}${url.getRecordsRangeByTest}/${testId}/${limit}/${offset}/`)
+        .map(questionDtoArr => {
+          if (questionDtoArr.response !== 'no records') {
+            return questionDtoArr.map(questionDto => new Question(questionDto));
+          }
+        }),
       this.http.get<RecordsCount>(`${url.questionUrl}${url.countRecordsByTest}/${testId}`)
     );
   }

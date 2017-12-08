@@ -12,8 +12,6 @@ import {Test} from '../test';
   styleUrls: ['./test-modal.component.scss']
 })
 export class TestModalComponent {
-  type = this.data.type;
-  subjects = this.data.subjects;
   viewTestArray: Test[];
   tasks = this.setArrayOfDigit(30);
   attempts = this.setArrayOfDigit(10);
@@ -21,14 +19,14 @@ export class TestModalComponent {
   status = [{value: 1, text: 'Доступний'}, {value: 0, text: 'Недоступний'}];
   placeholders = {
     testName: 'Назва',
-    subjectName: 'Предмет',
     tasks: 'Кількість завдань',
-    timeForTest: 'Час для виконання тесту',
+    timeForTest: 'Час для виконання тесту (хв)',
     enabled: 'Статус',
     attempts: 'Кількість спроб'
   };
   form: FormGroup;
   errorEmptyInput = 'Заповніть поле!';
+  errorNumInput = 'Поле повинне бути заповнене, та містити тільки цифри!';
   errorTestName = 'Поле повинно бути заповнене, та займати до 60 символів!';
 
   constructor(
@@ -40,9 +38,8 @@ export class TestModalComponent {
   ) {
     this.form = formBuilder.group({
       'testName': [null, [Validators.required, Validators.maxLength(60)]],
-      'subjectId': [null, Validators.required],
-      'tasks': [null, Validators.required],
-      'timeForTest': [null, Validators.required],
+      'tasks': [null, [Validators.required, Validators.pattern(/^\d{1,3}$/)]],
+      'timeForTest': [null, [Validators.required, Validators.pattern(/^\d{1,3}$/)]],
       'enabled': [null, Validators.required],
       'attempts': [null, Validators.required]
     });
@@ -57,10 +54,11 @@ export class TestModalComponent {
   }
 
   onSubmit(test: Test): void {
+    console.log(test);
     this.dialogRef.close();
     this.testService.addTest({
       testName: test.testName,
-      subjectId: test.subjectId,
+      subjectId: this.data.subjectId,
       tasks: test.tasks,
       timeForTest: test.timeForTest,
       enabled: test.enabled,

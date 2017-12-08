@@ -2,9 +2,10 @@
 <button class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
 
 <dtest-entity-table [entityName]="'Subject'" [columnsArray]="headingColumnsOfTable"
-                    [entityArray]="subjects"></dtest-entity-table>
+                  [entityArray]="subjects" [detailUrl]="'/tests'"></dtest-entity-table>
+
 <mat-paginator [length]="numberOfRecords"
                [pageSize]="limit"
                [pageSizeOptions]="pageSizeOptions"
                (page)="goPage($event)">
-</mat-paginator>
+                </mat-paginator>

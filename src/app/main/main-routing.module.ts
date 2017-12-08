@@ -9,9 +9,11 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
-import {TestDetailComponent} from './test-detail/test-detail.component';
+import {TestComponent} from './test/test.component';
 import {TestPlayerComponent} from './test-player/test-player.component';
 import {AdminGuard} from './admin.guard';
+import {QuestionComponent} from './test/question/question.component';
+import {AnswerComponent} from './test/answer/answer.component';
 import {AdminComponent} from './admin/admin.component';
 
 const mainRoutes = [
@@ -33,18 +35,17 @@ const mainRoutes = [
             {path: 'groups', component: GroupsComponent},
             {path: 'timetable', component: TimeTableComponent},
             {path: 'admins', component: AdminComponent},
+            {path: 'tests/:subjectId', component: TestComponent},
+            {path: 'questions/:testId', component: QuestionComponent},
+            {path: 'answers/:questionId', component: AnswerComponent}
           ],
           canActivate: [AdminGuard]
         }, {path: 'test-player', component: TestPlayerComponent},
         {path: '**', redirectTo: 'welcome', pathMath: 'full'}
       ]
     }
-
   ]
-
-
 ;
-
 
 @NgModule({
   imports: [

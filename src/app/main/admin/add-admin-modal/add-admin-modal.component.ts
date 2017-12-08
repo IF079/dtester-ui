@@ -6,6 +6,7 @@ import {AdminService} from '../admin-services/admin.service';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {Admin} from '../admin-classes/Admin';
 import {AsyncEmailValidator, AsyncUsernameValidator} from '../admin-async-validators/async.admin.validator';
+import {SubjectDto} from '../../subject/subject-classes/subject-dto';
 
 
 @Component({
@@ -17,7 +18,7 @@ import {AsyncEmailValidator, AsyncUsernameValidator} from '../admin-async-valida
 export class AddAdminModalComponent {
   passwordVisible = false;
 
-  addAdminForm: FormGroup;
+  form: FormGroup;
   successMsg = 'Адміністратора додано успішно. Оновіть сторінку, щоб побачити зміни.';
   isAdminAdded = false;
   placeholders = {
@@ -34,8 +35,9 @@ export class AddAdminModalComponent {
   errorInvalidPassword = 'Пароль повинен займати 8-20 знаків (букви та цифри обов\'язкові)!';
   errorInvalidPasswordConfirm = 'Паролі не збігаються!';
   errorInvalidEmail = 'Некоректна адреса!';
-  errorInvalidUsername = 'Логін повинен займати 6-16 символів!';
+  errorInvalidUsername = 'Логін повинен займати 5-16 символів!';
   errorUsernameIsTaken = 'Такий логін вже використовується!';
+  errorEmailIsTaken = 'Така адреса вже використовується!';
 
   constructor(public dialogRef: MatDialogRef<AddAdminModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService,
@@ -44,14 +46,14 @@ export class AddAdminModalComponent {
   }
 
   createForm(): void {
-    this.addAdminForm = this.formBuilder.group({
-      username: [null, {updateOn: 'blur', validators: [Validators.required, Validators.minLength(6), Validators.maxLength(16)],
+    this.form = this.formBuilder.group({
+      username: [null, {updateOn: 'blur', validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)],
         asyncValidators: [AsyncUsernameValidator.createValidator(this.adminService)]}],
       email: [null, {updateOn: 'blur', validators: [Validators.required, Validators.email],
         asyncValidators: [AsyncEmailValidator.createValidator(this.adminService)]}],
       passwords: this.formBuilder.group({
-        password: ['', Validators.required],
-        passwordConfirm: ['', Validators.required, [Validators.required, Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/)]]
+        password: [null, [Validators.required, Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/)]],
+        passwordConfirm: [null, Validators.required]
       }, {
         validator: this.validatePasswordConfirm
       })
@@ -69,23 +71,23 @@ export class AddAdminModalComponent {
   }
 
   isFormValid(): boolean {
-    return this.addAdminForm.valid;
+    return this.form.valid;
   }
 
   get username() {
-    return this.addAdminForm.get('username');
+    return this.form.get('username');
   }
 
   get email() {
-    return this.addAdminForm.get('email');
+    return this.form.get('email');
   }
 
   get password() {
-    return this.addAdminForm.controls['passwords'].get('password');
+    return this.form.controls['passwords'].get('password');
   }
 
   get passwordConfirm() {
-    return this.addAdminForm.controls['passwords'].get('passwordConfirm');
+    return this.form.controls['passwords'].get('passwordConfirm');
   }
 
   addAdmin() {
@@ -96,6 +98,7 @@ export class AddAdminModalComponent {
 
     this.adminService.addAdmin({email, username, password, password_confirm}).subscribe(admin => {
         this.isAdminAdded = true;
+        this.delUpdateService.passInsertedItem<Admin>(admin);
       },
       err => {
         console.log(err);

@@ -29,8 +29,12 @@ export class AnswerService {
   }
 
   getAnswersByQuestionId(questionId: number): Observable<Answer[]> {
-    return this.http.get<AnswerDto[]>(`${url.answerUrl}${url.getAnswersByQuestion}/${questionId}`)
-      .map( answerDtoArr => answerDtoArr.map( answerDto => new Answer(answerDto) ) );
+    return this.http.get<any>(`${url.answerUrl}${url.getAnswersByQuestion}/${questionId}`)
+      .map( answerDtoArr => {
+        if (answerDtoArr.response !== 'no records') {
+          return answerDtoArr.map( answerDto => new Answer(answerDto));
+        }
+    });
   }
 
   setAnswer(answer: Answer): Observable<any> {

@@ -15,6 +15,7 @@ import {EditTimetableModalComponent} from '../time-table/edit-timetable-modal/ed
 import {EditSpecialityModalComponent} from '../speciality/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from '../faculties/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from '../student/edit-student-modal/edit-student-modal.component';
+import {EditTestModalComponent} from '../test/edit-test-modal/edit-test-modal.component';
 
 @Component({
   selector: 'dtest-entity-table',
@@ -28,6 +29,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
+  @Input() buttons: [{templateClass: string, link: string}];
 
   componentModalsDictionary = {
     Subject: EditSubjectModalComponent,
@@ -35,7 +37,8 @@ export class EntityTableComponent implements OnChanges, OnInit {
     Speciality: EditSpecialityModalComponent,
     Faculty: EditFacultyModalComponent,
     Student: EditStudentModalComponent,
-    TimeTable: EditTimetableModalComponent
+    TimeTable: EditTimetableModalComponent,
+    Test: EditTestModalComponent
   };
 
   constructor(public dialog: MatDialog,
@@ -112,6 +115,15 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   ngOnInit() {
+    if (this.buttons) {
+      for (let i = 0; i < this.buttons.length + 2; i++) {
+        this.columnsArray.push('');
+      }
+    } else {
+      for (let i = 0; i < 2; i++) {
+        this.columnsArray.push('');
+      }
+    }
     this.updateSubjectInDom();
     this.updateSpecialityInDom();
     this.deleteItemInDom();
@@ -131,5 +143,9 @@ export class EntityTableComponent implements OnChanges, OnInit {
     if (this.detailUrl) {
       this.router.navigate([this.detailUrl, item[0]]);
     }
+  }
+
+  go(link: string, item: any[]) {
+    this.router.navigate([link, item[0]]);
   }
 }

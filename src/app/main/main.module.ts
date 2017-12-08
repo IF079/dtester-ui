@@ -60,6 +60,7 @@ import {AddAdminModalComponent} from './admin/add-admin-modal/add-admin-modal.co
 import {AnswerComponent} from './test/answer/answer.component';
 import {QuestionComponent} from './test/question/question.component';
 import {EditTestModalComponent} from './test/edit-test-modal/edit-test-modal.component';
+import {EditAdminModalComponent} from './admin/edit-admin-modal/edit-admin-modal.component';
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import {EditTestModalComponent} from './test/edit-test-modal/edit-test-modal.com
     TestPlayerComponent,
     AnswerComponent,
     QuestionComponent,
-    EditTestModalComponent
+    EditTestModalComponent,
+    EditAdminModalComponent
   ],
   imports: [
     CommonModule,
@@ -127,7 +129,8 @@ import {EditTestModalComponent} from './test/edit-test-modal/edit-test-modal.com
     EditFacultyModalComponent,
     EditStudentModalComponent,
     EditTimetableModalComponent,
-    EditTestModalComponent
+    EditTestModalComponent,
+    EditAdminModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

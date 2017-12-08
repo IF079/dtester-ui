@@ -16,6 +16,8 @@ import {EditSpecialityModalComponent} from '../speciality/edit-speciality-modal/
 import {EditFacultyModalComponent} from '../faculties/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from '../student/edit-student-modal/edit-student-modal.component';
 import {EditTestModalComponent} from '../test/edit-test-modal/edit-test-modal.component';
+import {EditAdminModalComponent} from '../admin/edit-admin-modal/edit-admin-modal.component';
+import {Admin} from '../admin/admin-classes/Admin';
 
 @Component({
   selector: 'dtest-entity-table',
@@ -39,7 +41,8 @@ export class EntityTableComponent implements OnChanges, OnInit {
     Faculty: EditFacultyModalComponent,
     Student: EditStudentModalComponent,
     TimeTable: EditTimetableModalComponent,
-    Test: EditTestModalComponent
+    Test: EditTestModalComponent,
+    AdminUser: EditAdminModalComponent
   };
 
   constructor(public dialog: MatDialog,
@@ -69,7 +72,11 @@ export class EntityTableComponent implements OnChanges, OnInit {
       this.updateTableRowArr<SubjectDto[]>(subjectData, 'subject_id');
     });
   }
-
+  updateAdminInDom() {
+    this.delUpdateService.itemUpdated$.subscribe((adminData: Admin[]) => {
+      this.updateTableRowArr<Admin[]>(adminData, 'id');
+    });
+  }
   updateStudentInDom() {
     this.delUpdateService.itemUpdated$.subscribe((studentData: Student[]) => {
       this.updateTableRowArr<Student[]>(studentData, 'userId');
@@ -132,6 +139,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
         this.columnsArray.push('');
       }
     }
+    this.updateAdminInDom();
     this.updateSubjectInDom();
     this.updateSpecialityInDom();
     this.deleteItemInDom();

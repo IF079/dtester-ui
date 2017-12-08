@@ -43,6 +43,7 @@ export class AdminComponent implements OnInit {
       this.numberOfRecords ++;
     });
   }
+
   getAdmins() {
     this.adminService.getAdminsRange(this.limit, this.offset).subscribe(data => {
         this.admins = data[0].map(admin => ({

@@ -28,6 +28,10 @@ export class AdminService {
     );
   }
 
+  getAdmin(id: number): Observable<Admin[]> {
+    return this.http.get<Admin[]>(`${url.adminUser}${url.getRecords}/${id}`);
+  }
+
   addAdmin(data): Observable<any> {
     return this.http.post(`${url.adminUser}${url.insertData}`, data);
   }

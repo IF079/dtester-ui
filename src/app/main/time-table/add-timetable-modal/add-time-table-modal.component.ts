@@ -16,6 +16,8 @@ export class AddTimeTableModalComponent implements OnInit {
   timeTableForm: FormGroup;
   subjectValues = [];
   groupValues = [];
+  groupDictionary = {};
+  subjectDictionary = {};
   isTimeTableAdded = false;
   successMsg = 'Розклад додано успішно. Оновіть сторінку, щоб побачити зміни.';
   errorRequired = 'Заповніть поле!';
@@ -33,9 +35,10 @@ export class AddTimeTableModalComponent implements OnInit {
   btnOk = 'Ок';
 
   constructor(public dialogRef: MatDialogRef<AddTimeTableModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private timeTableService: TimeTableService,
+              @Inject(MAT_DIALOG_DATA) public data: any, private timetableService: TimeTableService,
               private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
     this.createForm();
+    this.loadGroupsAndSubjects();
   }
 
   createForm(): void {
@@ -48,6 +51,14 @@ export class AddTimeTableModalComponent implements OnInit {
       timeOfStart: ['', Validators.required],
       dateOfEnd: ['', Validators.required],
       timeOfEnd: ['', Validators.required]
+    });
+  }
+  loadGroupsAndSubjects() {
+    this.timetableService.getGroupsAndSubjects().subscribe(data => {
+      data[0].forEach(groupItem => this.groupDictionary[groupItem.group_id] = groupItem.group_name);
+      this.groupValues = Object.values(this.groupDictionary);
+      data[1].forEach(subjectItem => this.subjectDictionary[subjectItem.id] = subjectItem.name);
+      this.subjectValues = Object.values(this.subjectDictionary);
     });
   }
 
@@ -106,8 +117,12 @@ export class AddTimeTableModalComponent implements OnInit {
       }
     }
 
-    this.timeTableService.addTimeTable({group_id, subject_id, start_date, start_time, end_date, end_time}).subscribe(
-      (timeTableData) => {
+    this.timetableService.addTimeTable({group_id, subject_id, start_date, start_time, end_date, end_time}).subscribe(
+      (timeTableData: TimeTable[]) => {
+        timeTableData.forEach((timeTableItem)  => {
+          timeTableItem.group_id = this.groupDictionary[timeTableItem.group_id];
+          timeTableItem.subject_id = this.subjectDictionary[timeTableItem.subject_id];
+        });
         this.delUpdateService.passInsertedItem<TimeTable[]>(timeTableData);
         this.isTimeTableAdded = true;
       },

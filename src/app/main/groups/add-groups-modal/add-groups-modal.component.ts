@@ -16,6 +16,8 @@ export class AddGroupsModalComponent implements OnInit {
   groupForm: FormGroup;
   facultyValues = [];
   specialityValues = [];
+  facultyDictionary = {};
+  specialityDictionary = {};
   isGroupAdded = false;
   placeholders = {
     groupName: 'Назва групи',
@@ -33,6 +35,7 @@ export class AddGroupsModalComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any, private groupsService: GroupsService,
               private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
     this.createForm();
+    this.loadFacultiesAndSpecialities();
   }
 
   createForm(): void {
@@ -42,6 +45,14 @@ export class AddGroupsModalComponent implements OnInit {
       groupName: ['', Validators.required],
       facultyName: ['', Validators.required, ],
       specialityName: ['', Validators.required, ]
+    });
+  }
+  loadFacultiesAndSpecialities() {
+    this.groupsService.getFacultiesAndSpecialities().subscribe(data => {
+      data[0].forEach(facultyItem => this.facultyDictionary[facultyItem.faculty_id] = facultyItem.faculty_name);
+      this.facultyValues = Object.values(this.facultyDictionary);
+      data[1].forEach(specialityItem => this.specialityDictionary[specialityItem.specialityId] = specialityItem.specialityName);
+      this.specialityValues = Object.values(this.specialityDictionary);
     });
   }
 
@@ -85,8 +96,12 @@ export class AddGroupsModalComponent implements OnInit {
       }
     }
     this.groupsService.addGroup({group_name, faculty_id, speciality_id}).subscribe(
-      (groupData) => {
-        this.delUpdateService.passInsertedItem<Group[]>(groupData[0]);
+      (groupData: Group[]) => {
+        groupData.forEach((group) => {
+          group.faculty_id = this.facultyDictionary[group.faculty_id];
+          group.speciality_id =  this.specialityDictionary[group.speciality_id];
+        });
+        this.delUpdateService.passInsertedItem<Group[]>(groupData);
         this.isGroupAdded = true;
       },
       (err) => {

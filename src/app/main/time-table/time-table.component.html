@@ -1,7 +1,7 @@
 <div *ngIf="errWithDisplayingTimeTables" class="mat-error">{{errWithDisplayingTimeTables}}</div>
 <button class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
 <dtest-entity-table [entityName]="'TimeTable'" [columnsArray]="headingColumnsOfTable"
-                  [entityArray]="timetables"></dtest-entity-table>
+                  [entityArray]="timetables" [pageSize]="limit"></dtest-entity-table>
 <mat-paginator [length]="numberOfRecords"
                [pageSize]="limit"
                [pageSizeOptions]="pageSizeOptions"

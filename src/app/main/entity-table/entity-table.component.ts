@@ -60,7 +60,6 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.delUpdateService.itemInserted$.subscribe((data) => {
       if (this.tableRowArr.length < this.pageSize) {
         this.tableRowArr.push(Object.values(data[0]));
-        console.log(data[0]);
       }
     });
   }

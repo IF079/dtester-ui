@@ -1,7 +1,6 @@
 <form [formGroup]="facultyForm" (ngSubmit)="addFaculty()">
-  <h2 mat-dialog-title *ngIf="!isFacultyAdded">Додати Факультет</h2>
-  <mat-dialog-content *ngIf="isFacultyAdded">{{successMsg}}</mat-dialog-content>
-  <mat-dialog-content *ngIf="!isFacultyAdded">
+  <h2 mat-dialog-title>Додати Факультет</h2>
+  <mat-dialog-content>
     <mat-form-field>
       <textarea [formControl]="facultyForm.controls['name']" matInput placeholder="{{placeholders.name}}"></textarea>
       <mat-error>
@@ -22,7 +21,4 @@
       <button mat-button mat-dialog-close color="primary">Відмінити</button>
     </mat-dialog-actions>
   </mat-dialog-content>
-    <mat-dialog-actions *ngIf="isFacultyAdded">
-    <button mat-raised-button mat-dialog-close color="primary">{{btnOk}}</button>
-  </mat-dialog-actions>
 </form>

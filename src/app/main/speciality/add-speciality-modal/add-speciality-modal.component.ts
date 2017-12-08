@@ -1,10 +1,12 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 import {SpecialityService} from '../speciality-service/speciality.service';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {SpecialityDto} from '../speciality-classes/speciality-dto';
+import {InfoModalService} from '../../info-modal/info-modal.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-speciality-modal',
@@ -22,16 +24,14 @@ export class SpecialityModalComponent {
   errorRequired = 'Заповніть поле!';
   errorCodePattern = 'Дані повинні бути вигляду (1.2345678)';
   title = 'Додати спеціальність';
-  titleSuccess = 'Запис успішно додано';
   btnClose = 'Відмінити';
-  errorMessage = '';
-  btnOk = 'Ок';
-  isAdded = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef: MatDialogRef<SpecialityModalComponent>,
               public specialityService: SpecialityService,
               protected fb: FormBuilder,
-              protected delUpdateService: UpdateDeleteEntityService) {
+              protected delUpdateService: UpdateDeleteEntityService,
+              protected modalService: InfoModalService) {
     this.createForm();
   }
   createForm(): void {
@@ -42,15 +42,16 @@ export class SpecialityModalComponent {
   }
 
   addSpeciality(speciality) {
+    this.dialogRef.close();
     this.specialityService.addSpeciality( {
       specialityCode: speciality.code,
       specialityName: speciality.name,
     }).subscribe(specialityData => {
       this.delUpdateService.passInsertedItem<SpecialityDto[]>(specialityData);
-      this.isAdded = true;
+      this.modalService.openSuccessDialog(generalConst.addMsg);
     },
       () => {
-      this.errorMessage = 'Спеціальність з такими даними вже існує';
+        this.modalService.openErrorDialog(generalConst.errorMsg);
       });
   }
 }

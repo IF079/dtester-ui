@@ -29,6 +29,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
+  @Input() pageSize: number;
   @Input() buttons: [{templateClass: string, link: string}];
 
   componentModalsDictionary = {
@@ -54,6 +55,14 @@ export class EntityTableComponent implements OnChanges, OnInit {
         break;
       }
     }
+  }
+  insertItemInDom() {
+    this.delUpdateService.itemInserted$.subscribe((data) => {
+      if (this.tableRowArr.length < this.pageSize) {
+        this.tableRowArr.push(Object.values(data[0]));
+        console.log(data[0]);
+      }
+    });
   }
 
   updateSubjectInDom() {
@@ -131,6 +140,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.updateFacultyInDom();
     this.updateTimetableInDom();
     this.updateStudentInDom();
+    this.insertItemInDom();
   }
 
   openDialogForDelete(item) {

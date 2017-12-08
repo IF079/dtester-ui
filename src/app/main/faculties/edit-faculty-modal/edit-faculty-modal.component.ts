@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Faculty} from '../../faculties/faculty';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
+import {InfoModalService} from '../../info-modal/info-modal.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-edit-faculty-modal',
@@ -12,9 +14,6 @@ import {UpdateDeleteEntityService} from '../../shared/services/update-delete-ent
 
 export class EditFacultyModalComponent {
   facultyForm: FormGroup;
-  isUpdated = false;
-  errorMessage = '';
-  btnOk = 'Ок';
   placeholders = {
     name: 'Назва факультету',
     description: 'Опис факультету'
@@ -22,13 +21,13 @@ export class EditFacultyModalComponent {
   btnUpd = 'Редагувати';
   btnClose = 'Відмінити';
   title = 'Редагувати факультет';
-  titleUpdated = 'Запис успішно відредаговано';
   errorRequired = 'Заповніть поле!';
 
   constructor(public dialogRef: MatDialogRef<EditFacultyModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public delUpdateService: UpdateDeleteEntityService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private modalService: InfoModalService) {
     this.createForm();
   }
 
@@ -40,6 +39,7 @@ export class EditFacultyModalComponent {
   }
 
   editEntityRecord() {
+    this.dialogRef.close();
     const id = this.data[0];
     const entityName = 'Faculty';
     const faculty_name = this.facultyForm.get('name').value;
@@ -47,9 +47,9 @@ export class EditFacultyModalComponent {
     this.delUpdateService.updateEntity(id, entityName,
       {faculty_name, faculty_description}).subscribe((facultyData: Faculty[]) => {
         this.delUpdateService.passUpdatedItem<Faculty[]>(facultyData);
-        this.isUpdated = true;
+      this.modalService.openSuccessDialog(generalConst.updateMsg);
       }, () => {
-        this.errorMessage = 'Факультет з такими даними вже існує';
+      this.modalService.openErrorDialog(generalConst.errorMsg);
       }
     );
   }

@@ -6,7 +6,7 @@
   </button>
 </div>
 <dtest-entity-table [entityName]="'Speciality'" [columnsArray]="headingColumnsOfTable"
-                  [entityArray]="specialities"></dtest-entity-table>
+                  [entityArray]="specialities" [pageSize]="limit"></dtest-entity-table>
 <mat-paginator [length]="numberOfRecords"
                [pageSize]="limit"
                [pageSizeOptions]="pageSizeOptions"

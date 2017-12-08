@@ -6,6 +6,7 @@ import {SpecialityDto} from '../speciality-classes/speciality-dto';
 import {SpecialityModalComponent} from '../add-speciality-modal/add-speciality-modal.component';
 import {SpecialityService} from '../speciality-service/speciality.service';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-edit-speciality-modal',
@@ -14,16 +15,8 @@ import {UpdateDeleteEntityService} from '../../shared/services/update-delete-ent
 })
 
 export class EditSpecialityModalComponent extends SpecialityModalComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) data: any,
-              specialityService: SpecialityService,
-              fb: FormBuilder,
-              delUpdateService: UpdateDeleteEntityService) {
-    super(data, specialityService, fb, delUpdateService);
-  }
   btnUpd = 'Редагувати';
   title = 'Редагувати спеціальність';
-  titleUpdated = 'Запис успішно відредаговано';
-  isUpdated = false;
 
   createForm(): void {
     this.specialityForm = this.fb.group({
@@ -33,6 +26,7 @@ export class EditSpecialityModalComponent extends SpecialityModalComponent {
   }
 
   editEntityRecord() {
+    this.dialogRef.close();
     const id = this.data[0];
     const entityName = 'Speciality';
     const speciality_code = this.specialityForm.get('code').value;
@@ -40,10 +34,10 @@ export class EditSpecialityModalComponent extends SpecialityModalComponent {
     this.delUpdateService.updateEntity(id, entityName,
       {speciality_code, speciality_name}).subscribe((specialityData: SpecialityDto[]) => {
         this.delUpdateService.passUpdatedItem<SpecialityDto[]>(specialityData);
-        this.isUpdated = true;
+        this.modalService.openSuccessDialog(generalConst.updateMsg);
       },
       () => {
-        this.errorMessage = 'Спеціальність з такими даними вже існує';
+        this.modalService.openErrorDialog(generalConst.errorMsg);
       }
     );
   }

@@ -1,7 +1,6 @@
 <form [formGroup]="specialityForm" (ngSubmit)="editEntityRecord()">
-  <h2 mat-dialog-title *ngIf="!isUpdated">{{title}}</h2>
-  <h2 mat-dialog-title *ngIf="isUpdated">{{titleUpdated}}</h2>
-  <mat-dialog-content *ngIf="!isUpdated">
+  <h2 mat-dialog-title>{{title}}</h2>
+  <mat-dialog-content>
     <mat-form-field>
       <input matInput [formControl]="specialityForm.controls['code']" placeholder="{{placeholders.code}}">
       <mat-error>
@@ -15,21 +14,13 @@
         <div *ngIf="specialityForm.controls['name'].hasError('required')">{{errorRequired}}</div>
       </mat-error>
     </mat-form-field>
-    <mat-error>
-      <div *ngIf="errorMessage">{{errorMessage}}</div>
-    </mat-error>
   </mat-dialog-content>
-  <mat-dialog-actions *ngIf="!isUpdated">
+  <mat-dialog-actions>
     <div class="btn-center">
       <button [disabled]="!specialityForm.valid" type="submit" class="modal-button" mat-raised-button color="primary">
         {{btnUpd}}
       </button>
       <button mat-button mat-dialog-close>{{btnClose}}</button>
-    </div>
-  </mat-dialog-actions>
-  <mat-dialog-actions *ngIf="isUpdated">
-    <div class="btn-center">
-      <button mat-raised-button mat-dialog-close color="primary">{{btnOk}}</button>
     </div>
   </mat-dialog-actions>
 </form>

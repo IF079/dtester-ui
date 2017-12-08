@@ -6,6 +6,7 @@ import {FacultyService} from '../faculty.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {Faculty} from '../faculty';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-faculty-modal',
@@ -15,14 +16,11 @@ import {UpdateDeleteEntityService} from '../../shared/services/update-delete-ent
 
 export class FacultyModalComponent {
   facultyForm: FormGroup;
-  successMsg = 'Факультет успішно добавлено в кінець списку';
-  isFacultyAdded = false;
   placeholders = {
     name: 'Назва Факультету',
     description: 'Опис Факультету'
   };
   btnAdd = 'Додати Факультет';
-  btnOk = 'Ок';
   errRequestMsg: string;
   errorRequired = 'Заповніть поле! (мін.3-макс.60 знаків)';
   errorRequiredInformation = 'Заповніть поле! (мін.3-макс.120 знаків)';
@@ -46,13 +44,8 @@ export class FacultyModalComponent {
   this.dialogRef.close();
   this.facultyService.addFaculty({faculty_name,  faculty_description}).subscribe(
     (facultyData) => {
-      if (facultyData[0].faculty_id) {
-        this.delUpdateService.passInsertedItem<Faculty[]>(facultyData[0]);
-        this.isFacultyAdded = true;
-        this.modalService.openSuccessDialog('Запис успішно добавлено! Обновіть сторінку для відображення даних.');
-      } else {
-        this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
-      }
-    }, err => this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.'));
+      this.delUpdateService.passInsertedItem<Faculty[]>(facultyData);
+      this.modalService.openSuccessDialog(generalConst.addMsg);
+    }, () => this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.'));
   }
 }

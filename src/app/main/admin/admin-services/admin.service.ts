@@ -20,7 +20,7 @@ export class AdminService {
       this.http.get<RecordsCount>(`${url.adminUser}${url.getCount}`)
     );
   }
-  
+
   getAdminsRange(limit: number, offset: number): Observable<[Admin[], RecordsCount]> {
     return Observable.forkJoin(
       this.http.get<Admin[]>(`${url.adminUser}${url.getRecordsRange}/${limit}/${offset}`),
@@ -30,5 +30,12 @@ export class AdminService {
 
   addAdmin(data): Observable<any> {
     return this.http.post(`${url.adminUser}${url.insertData}`, data);
+  }
+  checkUserName(username: string): Observable<any> {
+    return this.http.get(`${url.adminUser}${url.checkUserName}/${username}`);
+  }
+
+  checkEmailAddress(email: string): Observable<any> {
+    return this.http.get(`${url.adminUser}${url.checkEmailAddress}/${email}`);
   }
 }

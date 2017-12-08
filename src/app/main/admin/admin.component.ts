@@ -6,6 +6,7 @@ import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {generalConst} from '../shared/constants/general-constants';
+import {AddAdminModalComponent} from './add-admin-modal/add-admin-modal.component';
 
 @Component({
   selector: 'dtest-admin',
@@ -22,15 +23,26 @@ export class AdminComponent implements OnInit {
   headingColumnsOfTable = ['№', 'Логін', 'Поштова скринька'];
   errWithDisplayingAdmins: string;
   numberOfRecords: number;
+  btnAdd = 'Додати адміністратора';
+  openDialog() {
+    const dialogRef = this.dialog.open(AddAdminModalComponent, {
+    });
+  }
   constructor(
     private adminService: AdminService,
     private delUpdateService: UpdateDeleteEntityService,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {
-
+    this.updateNumberOfRecords();
   }
-
-
+  updateNumberOfRecords() {
+    this.delUpdateService.itemDeleted$.subscribe((res) => {
+      this.numberOfRecords --;
+    });
+    this.delUpdateService.itemInserted$.subscribe(() => {
+      this.numberOfRecords ++;
+    });
+  }
   getAdmins() {
     this.adminService.getAdminsRange(this.limit, this.offset).subscribe(data => {
         this.admins = data[0].map(admin => ({

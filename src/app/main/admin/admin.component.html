@@ -1,6 +1,7 @@
 <div *ngIf="errWithDisplayingAdmins" class="mat-error">{{errWithDisplayingAdmins}}</div>
+<button class="addButton" mat-raised-button color="primary" (click)="openDialog()">{{btnAdd}}</button>
 
-<dtest-entity-table [entityName]="'AdminUser'" [columnsArray]="headingColumnsOfTable"
+<dtest-entity-table [entityName]="'AdminUser'" [] [columnsArray]="headingColumnsOfTable"
                     [entityArray]="admins"></dtest-entity-table>
 <mat-paginator [length]="numberOfRecords"
                [pageSize]="limit"

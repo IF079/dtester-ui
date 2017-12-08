@@ -40,6 +40,9 @@
             {{errorInvalidPasswordConfirm}}
           </mat-error>
         </mat-form-field>
+        <mat-error *ngIf="errorRequestMsg">
+          {{errorRequestMsg}}
+        </mat-error>
       </div>
     </mat-card>
   </mat-dialog-content>

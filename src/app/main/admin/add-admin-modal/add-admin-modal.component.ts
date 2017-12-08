@@ -47,10 +47,14 @@ export class AddAdminModalComponent {
 
   createForm(): void {
     this.form = this.formBuilder.group({
-      username: [null, {updateOn: 'blur', validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)],
-        asyncValidators: [AsyncUsernameValidator.createValidator(this.adminService)]}],
-      email: [null, {updateOn: 'blur', validators: [Validators.required, Validators.email],
-        asyncValidators: [AsyncEmailValidator.createValidator(this.adminService)]}],
+      username: [null, {
+        updateOn: 'blur', validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)],
+        asyncValidators: [AsyncUsernameValidator.createValidator(this.adminService)]
+      }],
+      email: [null, {
+        updateOn: 'blur', validators: [Validators.required, Validators.email],
+        asyncValidators: [AsyncEmailValidator.createValidator(this.adminService)]
+      }],
       passwords: this.formBuilder.group({
         password: [null, [Validators.required, Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/)]],
         passwordConfirm: [null, Validators.required]
@@ -60,7 +64,7 @@ export class AddAdminModalComponent {
     });
   }
 
-  validatePasswordConfirm (control: AbstractControl) {
+  validatePasswordConfirm(control: AbstractControl) {
     const password = control.get('password').value;
     const passwordConfirm = control.get('passwordConfirm').value;
     if (password !== passwordConfirm) {
@@ -95,10 +99,11 @@ export class AddAdminModalComponent {
     const email = this.email.value;
     const password = this.password.value;
     const password_confirm = this.passwordConfirm.value;
-
-    this.adminService.addAdmin({email, username, password, password_confirm}).subscribe(admin => {
+    const arrForAdmin = [];
+    this.adminService.addAdmin({email, username, password, password_confirm}).subscribe(adminData => {
         this.isAdminAdded = true;
-        this.delUpdateService.passInsertedItem<Admin>(admin);
+        arrForAdmin.push(adminData);
+        this.delUpdateService.passInsertedItem<Admin[]>(arrForAdmin);
       },
       err => {
         console.log(err);

@@ -3,10 +3,12 @@
         color="primary"
         (click)="goBack()"
         class="fa fa-long-arrow-left backButton"></button>
+
 <button mat-raised-button
         color="primary"
         (click)="openAddDialog()"
         class="addButton">{{btnAdd}}</button>
+        
 <dtest-entity-table [entityArray]="students" [entityName]="'Student'" [columnsArray]="headingColumnsOfTable"
                   [detailUrl]="'/student'"></dtest-entity-table>
 

@@ -4,10 +4,10 @@ import {ActivatedRoute} from '@angular/router';
 
 import {SubjectService} from '../subject/subject-service/subject.service';
 import {TestPlayerService} from './test-player.service';
-import {TestDetailService} from '../test-detail/test-detail.service';
+import {TestDetailService} from '../test/test-detail/test-detail.service';
 import {Question} from '../test/question/question';
 import {Answer} from '../test/answer/answer';
-import {TestDetail} from '../test-detail/test-detail';
+import {TestDetail} from '../test/test-detail/test-detail';
 import {Test} from '../test/test';
 import {TestService} from '../test/test.service';
 import {generalConst} from '../shared/constants/general-constants';

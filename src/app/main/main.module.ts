@@ -36,9 +36,9 @@ import {TimeTableService} from './time-table/timetable-service/time-table.servic
 import {StudentAddModalComponent} from './student/add-student-modal/add-modal.component';
 import {InfoModalComponent} from './info-modal/info-modal.component';
 import {TestComponent} from './test/test.component';
-import {TestDetailComponent} from './test-detail/test-detail.component';
+import {TestDetailComponent} from './test/test-detail/test-detail.component';
 import {TestService} from './test/test.service';
-import {TestDetailService} from './test-detail/test-detail.service';
+import {TestDetailService} from './test/test-detail/test-detail.service';
 import {UpdateDeleteEntityService} from './shared/services/update-delete-entity-service/update-delete-entity.service';
 import {AnswerService} from './test/answer/answer.service';
 import {QuestionService} from './test/question/question.service';
@@ -54,9 +54,7 @@ import {EditStudentModalComponent} from './student/edit-student-modal/edit-stude
 import {EditTimetableModalComponent} from './time-table/edit-timetable-modal/edit-timetable-modal.component';
 import {TestPlayerComponent} from './test-player/test-player.component';
 import {TestPlayerService} from './test-player/test-player.service';
-
 import {AddAdminModalComponent} from './admin/add-admin-modal/add-admin-modal.component';
-
 import {AnswerComponent} from './test/answer/answer.component';
 import {QuestionComponent} from './test/question/question.component';
 import {EditTestModalComponent} from './test/edit-test-modal/edit-test-modal.component';

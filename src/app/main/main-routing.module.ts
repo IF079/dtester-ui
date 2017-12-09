@@ -15,6 +15,7 @@ import {AdminGuard} from './admin.guard';
 import {QuestionComponent} from './test/question/question.component';
 import {AnswerComponent} from './test/answer/answer.component';
 import {AdminComponent} from './admin/admin.component';
+import {TestDetailComponent} from './test/test-detail/test-detail.component';
 
 const mainRoutes = [
     {
@@ -37,7 +38,8 @@ const mainRoutes = [
             {path: 'admins', component: AdminComponent},
             {path: 'tests/:subjectId', component: TestComponent},
             {path: 'questions/:testId', component: QuestionComponent},
-            {path: 'answers/:questionId', component: AnswerComponent}
+            {path: 'answers/:questionId', component: AnswerComponent},
+            {path: 'test/:testId', component: TestDetailComponent}
           ],
           canActivate: [AdminGuard]
         }, {path: 'test-player', component: TestPlayerComponent},

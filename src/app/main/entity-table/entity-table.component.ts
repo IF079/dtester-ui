@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
+
 import {Group} from '../groups/groups-classes/group';
 import {SubjectDto} from '../subject/subject-classes/subject-dto';
 import {SpecialityDto} from '../speciality/speciality-classes/speciality-dto';
@@ -16,6 +17,12 @@ import {EditSpecialityModalComponent} from '../speciality/edit-speciality-modal/
 import {EditFacultyModalComponent} from '../faculties/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from '../student/edit-student-modal/edit-student-modal.component';
 import {EditTestModalComponent} from '../test/edit-test-modal/edit-test-modal.component';
+import {EditAdminModalComponent} from '../admin/edit-admin-modal/edit-admin-modal.component';
+import {Admin} from '../admin/admin-classes/Admin';
+import {TestDto} from '../test/test-dto';
+import {EditQuestionModalComponent} from '../test/question/edit-question-modal/edit-question-modal.component';
+import {QuestionDto} from '../test/question/question-dto';
+
 
 @Component({
   selector: 'dtest-entity-table',
@@ -39,7 +46,9 @@ export class EntityTableComponent implements OnChanges, OnInit {
     Faculty: EditFacultyModalComponent,
     Student: EditStudentModalComponent,
     TimeTable: EditTimetableModalComponent,
-    Test: EditTestModalComponent
+    Test: EditTestModalComponent,
+    AdminUser: EditAdminModalComponent,
+    Question: EditQuestionModalComponent
   };
 
   constructor(public dialog: MatDialog,
@@ -64,9 +73,26 @@ export class EntityTableComponent implements OnChanges, OnInit {
     });
   }
 
+  updateTestInDom() {
+    this.delUpdateService.itemUpdated$.subscribe((testData: TestDto[]) => {
+      this.updateTableRowArr<TestDto[]>(testData, 'test_id');
+    });
+  }
+  updateQuestionInDom() {
+    this.delUpdateService.itemUpdated$.subscribe((questionData: QuestionDto[]) => {
+      this.updateTableRowArr<QuestionDto[]>(questionData, 'question_id');
+    });
+  }
+
   updateSubjectInDom() {
     this.delUpdateService.itemUpdated$.subscribe((subjectData: SubjectDto[]) => {
       this.updateTableRowArr<SubjectDto[]>(subjectData, 'subject_id');
+    });
+  }
+
+  updateAdminInDom() {
+    this.delUpdateService.itemUpdated$.subscribe((adminData: Admin[]) => {
+      this.updateTableRowArr<Admin[]>(adminData, 'id');
     });
   }
 
@@ -132,6 +158,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
         this.columnsArray.push('');
       }
     }
+    this.updateAdminInDom();
     this.updateSubjectInDom();
     this.updateSpecialityInDom();
     this.deleteItemInDom();
@@ -139,6 +166,8 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.updateFacultyInDom();
     this.updateTimetableInDom();
     this.updateStudentInDom();
+    this.updateTestInDom();
+    this.updateQuestionInDom();
     this.insertItemInDom();
   }
 

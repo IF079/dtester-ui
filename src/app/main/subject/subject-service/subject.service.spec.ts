@@ -29,7 +29,7 @@ describe('Subject Service', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should return array of subjects and number of records', (done) => {
+  it('should return  array of subjects with a given limit and number of records', (done) => {
     // act
     subjectService.getSubjectsRange(mockedForPagination.limit, mockedForPagination.offset).subscribe((res: any) => {
       done();

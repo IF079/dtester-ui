@@ -10,14 +10,13 @@ import {SubjectDto} from '../../subject/subject-classes/subject-dto';
 
 
 @Component({
-  selector: 'dtest-add-admin-modal',
-  templateUrl: './add-admin-modal.component.html',
-  styleUrls: ['./add-admin-modal.component.scss']
+  selector: 'dtest-edit-admin-modal',
+  templateUrl: './edit-admin-modal.component.html',
+  styleUrls: ['./edit-admin-modal.component.scss']
 })
 
-export class AddAdminModalComponent {
+export class EditAdminModalComponent {
   passwordVisible = false;
-
   form: FormGroup;
   successMsg = 'Адміністратора додано успішно. Оновіть сторінку, щоб побачити зміни.';
   isAdminAdded = false;
@@ -27,7 +26,7 @@ export class AddAdminModalComponent {
     password: 'Пароль',
     passwordConfirm: 'Підтвердіть пароль'
   };
-  btnAdd = 'Додати адміністратора';
+  editBtn = 'Редагувати адміністратора';
   errorRequired = 'Заповніть поле!';
   btnClose = 'Відмінити';
   btnOk = 'Ок';
@@ -39,21 +38,22 @@ export class AddAdminModalComponent {
   errorUsernameIsTaken = 'Такий логін вже використовується!';
   errorEmailIsTaken = 'Така адреса вже використовується!';
 
-  constructor(public dialogRef: MatDialogRef<AddAdminModalComponent>,
+  constructor(public dialogRef: MatDialogRef<EditAdminModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService,
               private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
     this.createForm();
   }
 
+
   createForm(): void {
+    const username = this.data[1];
+    const email = this.data[2];
     this.form = this.formBuilder.group({
-      username: [null, {
-        updateOn: 'blur', validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)],
-        asyncValidators: [AsyncUsernameValidator.createValidator(this.adminService)]
+      username: [username, {
+        updateOn: 'blur', validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)]
       }],
-      email: [null, {
-        updateOn: 'blur', validators: [Validators.required, Validators.email],
-        asyncValidators: [AsyncEmailValidator.createValidator(this.adminService)]
+      email: [email, {
+        updateOn: 'blur', validators: [Validators.required, Validators.email]
       }],
       passwords: this.formBuilder.group({
         password: [null, [Validators.required, Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/)]],
@@ -94,21 +94,26 @@ export class AddAdminModalComponent {
     return this.form.controls['passwords'].get('passwordConfirm');
   }
 
-  addAdmin() {
+  editAdmin() {
     const username = this.username.value;
     const email = this.email.value;
     const password = this.password.value;
     const password_confirm = this.passwordConfirm.value;
-    const arrForAdmin = [];
-    this.adminService.addAdmin({email, username, password, password_confirm}).subscribe(adminData => {
-        console.log(adminData);
-        this.isAdminAdded = true;
-        arrForAdmin.push(adminData);
-        this.delUpdateService.passInsertedItem<Admin[]>(arrForAdmin);
+    const arrForAdmin: Admin[] = [];
+    const entityName = 'AdminUser';
+    const id = this.data[0];
+    this.delUpdateService.updateEntity(id, entityName, {
+      email,
+      username,
+      password,
+      password_confirm
+    }).subscribe(adminData => {
+        arrForAdmin.push({id, email, username});
+        this.delUpdateService.passUpdatedItem<Admin[]>(arrForAdmin);
+        this.dialogRef.close();
       },
       err => {
-        console.log(err);
-        this.errorRequestMsg = 'Відбулась помилка на сервері';
+        this.errorRequestMsg = `Даний логін або дана електорнна пошта вже існує, або відбулась інша помилка на сервері`;
       }
     );
   }

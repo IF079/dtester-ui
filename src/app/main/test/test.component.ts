@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Location} from '@angular/common';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog} from '@angular/material';
 
 import {TestService} from './test.service';
 import {Test} from './test';
 import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {SubjectService} from '../subject/subject-service/subject.service';
-import {TestModalComponent} from '../test/test-modal/test-modal.component';
+import {TestModalComponent} from './add-test-modal/add-test-modal.component';
 import {Subject} from '../subject/subject-classes/subject';
 import {InfoModalService} from '../info-modal/info-modal.service';
 
@@ -18,7 +18,7 @@ import {InfoModalService} from '../info-modal/info-modal.service';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
-  limit = 10;
+  limit = 100;
   offset = 0;
   log = LoggerFactory.create(TestComponent);
   tests: Test[];
@@ -26,9 +26,9 @@ export class TestComponent implements OnInit {
   subjectId: number;
   numberOfRecords: number;
   errWithDisplayingStudents: string;
-  headingColumnsOfTable = ['№', 'Назва', 'Кількість завдань', 'Час на виконання (хв)', 'Статус', 'Кідькість спроб'];
+  headingColumnsOfTable = ['№', 'Назва', 'Кількість завдань', 'Час на виконання (хв)', 'Статус', 'Кількість спроб'];
   btnAdd = 'Додати тест';
-  testStatuss = [];
+  testStatus = [];
   buttons = [{
     templateClass: 'fa-list',
     link: '/questions'
@@ -42,7 +42,7 @@ export class TestComponent implements OnInit {
     private dialog: MatDialog,
     private infoModal: InfoModalService
   ) {
-    this.testStatuss = ['Недоступний', 'Доступний'];
+    this.testStatus = ['Недоступний', 'Доступний'];
   }
 
   parseSubjects(subject: Subject[]): any[] {
@@ -84,7 +84,7 @@ export class TestComponent implements OnInit {
         this.tests = data;
         this.tests.forEach(test => {
           delete test.subjectId;
-          test.enabled = this.testStatuss[test.enabled];
+          test.enabled = this.testStatus[test.enabled];
         });
       } else {
         this.infoModal.openInfoDialog('Увага', 'На даний момент тут немає записів.');

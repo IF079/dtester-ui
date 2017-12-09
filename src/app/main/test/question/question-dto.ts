@@ -5,7 +5,7 @@ export class QuestionDto {
   test_id: number;
   question_text: string;
   level: number;
-  type: number;
+  type: string;
   attachment: string;
 
   constructor(question: Question) {

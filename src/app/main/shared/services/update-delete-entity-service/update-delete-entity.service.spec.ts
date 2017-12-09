@@ -45,10 +45,11 @@ describe('Delete Update Service Service', () => {
     });
   });
 
-  it('should give response ok after successful delete', () => {
+  it('should give response ok after successful delete', (done) => {
 
     updateDeleteEntityService.deleteEntity(mockedForRequest.id, mockedForRequest.entityName).subscribe((resp) => {
       expect(resp.response).toEqual(mockedResponse.afterDelete.response);
+      done();
     });
 
     const deleteEntityRequest = httpMock.expectOne(`/${mockedForRequest.entityName}${url.delete}/${mockedForRequest.id}`);
@@ -56,13 +57,14 @@ describe('Delete Update Service Service', () => {
     httpMock.verify();
   });
 
-  it('should give response of group id, group name, speciality id, faculty id', () => {
+  it('should give response of group id, group name, speciality id, faculty id', (done) => {
 
     updateDeleteEntityService.updateEntity(mockedForRequest.id, mockedForRequest.entityName, mockedForRequest.updateData).subscribe((resp) => {
       expect(resp[0].group_id).toEqual(mockedResponse.afterUpdate[0].group_id);
       expect(resp[0].group_name).toEqual(mockedResponse.afterUpdate[0].group_name);
       expect(resp[0].speciality_id).toEqual(mockedResponse.afterUpdate[0].speciality_id);
       expect(resp[0].faculty_id).toEqual(mockedResponse.afterUpdate[0].faculty_id);
+      done();
     });
 
     const updateEntityRequest = httpMock.expectOne(`/${mockedForRequest.entityName}${url.update}/${mockedForRequest.id}`);

@@ -12,7 +12,8 @@
 <dtest-entity-table [entityName]="'Question'"
                     [columnsArray]="headingColumnsOfTable"
                     [entityArray]="questions"
-                    [buttons]="buttons"></dtest-entity-table>
+                    [buttons]="buttons"
+                    [pageSize]="limit"></dtest-entity-table>
 
 <mat-paginator [length]="numberOfRecords"
                 [pageSize]="limit"

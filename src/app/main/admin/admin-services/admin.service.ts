@@ -14,12 +14,6 @@ export class AdminService {
   constructor(private http: HttpClient) {
   }
 
-  getAdmins(): Observable<[Admin[], RecordsCount]> {
-    return Observable.forkJoin(
-      this.http.get<Admin[]>(`${url.adminUser}${url.getRecords}`),
-      this.http.get<RecordsCount>(`${url.adminUser}${url.getCount}`)
-    );
-  }
 
   getAdminsRange(limit: number, offset: number): Observable<[Admin[], RecordsCount]> {
     return Observable.forkJoin(
@@ -31,6 +25,7 @@ export class AdminService {
   addAdmin(data): Observable<any> {
     return this.http.post(`${url.adminUser}${url.insertData}`, data);
   }
+
   checkUserName(username: string): Observable<any> {
     return this.http.get(`${url.adminUser}${url.checkUserName}/${username}`);
   }

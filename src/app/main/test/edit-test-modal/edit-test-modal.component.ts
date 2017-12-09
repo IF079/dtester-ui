@@ -6,15 +6,18 @@ import {InfoModalService} from '../../info-modal/info-modal.service';
 import {TestService} from '../test.service';
 import {Test} from '../test';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
+import {generalConst} from '../../shared/constants/general-constants';
+import {TestDto} from '../test-dto';
 
 @Component({
   selector: 'dtest-edit-test-modal',
   templateUrl: './edit-test-modal.component.html',
-  styleUrls: ['../test-modal/test-modal.component.scss']
+  styleUrls: ['../add-test-modal/add-test-modal.component.scss']
 })
 export class EditTestModalComponent implements OnInit {
   attempts = this.setArrayOfDigit(10);
   viewHeadersArray = ['Тема', 'Завдань', 'Час', 'Спроби', 'Статус'];
+  title = 'Редагувати тест';
   status = [{value: 1, text: 'Доступний'}, {value: 0, text: 'Недоступний'}];
   placeholders = {
     testName: 'Назва',
@@ -90,10 +93,13 @@ export class EditTestModalComponent implements OnInit {
           time_for_test,
           enabled,
           attempts
-        }).subscribe(data => {
-          this.modalService.openSuccessDialog('Зміни успішно збережено!');
+        }).subscribe((testData: TestDto[]) => {
+          delete testData[0].subject_id;
+          testData[0].enabled = this.status.find(item => item.value === +testData[0].enabled).text;
+          this.delUpdateService.passUpdatedItem<TestDto[]>(testData);
+          this.modalService.openSuccessDialog(generalConst.updateMsg);
         },
-        err => this.infoModal.openErrorDialog('Не вдалось змінити дані на сервері. Спробуйте, будь ласка, пізніше!'));
+        err => this.infoModal.openErrorDialog(generalConst.errorMsg));
       });
     }
   }

@@ -5,7 +5,7 @@ export class Question {
   testId: number;
   questionText: string;
   level: number;
-  type: number;
+  type: string;
   attachment: string;
 
   constructor(questionDto: QuestionDto) {

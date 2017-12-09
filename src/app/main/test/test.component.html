@@ -8,5 +8,8 @@
         color="primary"
         (click)="openTestModal()">{{btnAdd}}</button>
 
-<dtest-entity-table [entityName]="'Test'" [columnsArray]="headingColumnsOfTable" [entityArray]="tests"
-                    [buttons]="buttons" [pageSize]="limit"></dtest-entity-table>
+<dtest-entity-table [entityName]="'Test'"
+                    [columnsArray]="headingColumnsOfTable"
+                    [entityArray]="tests"
+                    [detailUrl]="'/test'"
+                    [buttons]="buttons"></dtest-entity-table>

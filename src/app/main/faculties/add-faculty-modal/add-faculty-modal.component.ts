@@ -46,6 +46,6 @@ export class FacultyModalComponent {
     (facultyData) => {
       this.delUpdateService.passInsertedItem<Faculty[]>(facultyData);
       this.modalService.openSuccessDialog(generalConst.addMsg);
-    }, () => this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.'));
+    }, () => this.modalService.openErrorDialog(generalConst.errorMsg));
   }
 }

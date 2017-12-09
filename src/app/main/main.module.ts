@@ -105,7 +105,7 @@ import {AddAnswerModalComponent} from './test/answer/add-answer-modal/add-answer
     EditTestModalComponent,
     EditAdminModalComponent,
     EditQuestionModalComponent,
-    TestDetailAddModalComponent
+    TestDetailAddModalComponent,
     AddAnswerModalComponent
 
   ],
@@ -138,7 +138,7 @@ import {AddAnswerModalComponent} from './test/answer/add-answer-modal/add-answer
     EditTestModalComponent,
     EditAdminModalComponent,
     EditQuestionModalComponent,
-    TestDetailAddModalComponent
+    TestDetailAddModalComponent,
     AddAnswerModalComponent
   ],
   providers: [

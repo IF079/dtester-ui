@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Location} from '@angular/common';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog} from '@angular/material';
 
 import {AnswerService} from './answer.service';
 import {Answer} from './answer';
-import {generalConst} from '../../shared/constants/general-constants';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {AddAnswerModalComponent} from './add-answer-modal/add-answer-modal.component';
 
@@ -25,7 +24,7 @@ export class AnswerComponent implements OnInit {
   headingColumnsOfTable = ['№', 'Статус', 'Текст'];
   numberOfRecords: number;
   btnAdd = 'Добавити відповідь';
-  answerStatuss = [];
+  answerStatuses = [];
 
   constructor(
     private answerService: AnswerService,
@@ -34,7 +33,7 @@ export class AnswerComponent implements OnInit {
     private dialog: MatDialog,
     private infoModal: InfoModalService
   ) {
-    this.answerStatuss = ['Неправильна', 'Правильна']
+    this.answerStatuses = ['Неправильна', 'Правильна'];
   }
 
   getAnswers(): void {
@@ -44,7 +43,7 @@ export class AnswerComponent implements OnInit {
         this.answers.forEach(answer => {
           delete answer.questionId;
           delete answer.attachment;
-          answer.trueAnswer = this.answerStatuss[answer.trueAnswer];
+          answer.trueAnswer = this.answerStatuses[answer.trueAnswer];
         });
       } else {
         this.infoModal.openInfoDialog('Увага', 'На даний момент тут немає записів.');

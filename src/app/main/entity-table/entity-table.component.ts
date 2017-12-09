@@ -89,11 +89,13 @@ export class EntityTableComponent implements OnChanges, OnInit {
       this.updateTableRowArr<SubjectDto[]>(subjectData, 'subject_id');
     });
   }
+
   updateAdminInDom() {
     this.delUpdateService.itemUpdated$.subscribe((adminData: Admin[]) => {
       this.updateTableRowArr<Admin[]>(adminData, 'id');
     });
   }
+
   updateStudentInDom() {
     this.delUpdateService.itemUpdated$.subscribe((studentData: Student[]) => {
       this.updateTableRowArr<Student[]>(studentData, 'userId');

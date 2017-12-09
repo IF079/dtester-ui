@@ -46,6 +46,7 @@ export class AdminComponent implements OnInit {
 
   getAdmins() {
     this.adminService.getAdminsRange(this.limit, this.offset).subscribe(data => {
+      console.log(data[0]);
         this.admins = data[0].map(admin => ({
           id: admin.id,
           username: admin.username,

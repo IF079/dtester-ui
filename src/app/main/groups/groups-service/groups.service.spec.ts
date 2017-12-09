@@ -32,12 +32,13 @@ describe('Groups Service', () => {
   it(`should return  array of  all the groups and number of records for groups`, (done) => {
     // act
     groupsService.getGroups().subscribe((res) => {
-      done();
+
       // assert
       for (let i = 0; i < mockedResponse.allGroups.length; i++) {
         expect(res[0][i].group_name).toEqual(mockedResponse.allGroups[i].group_name);
       }
       expect(res[1].numberOfRecords).toEqual(mockedNumberOfRecordsAll.numberOfRecords);
+      done();
     });
 
     const getGroups = httpMock.expectOne(`${url.groupUrl}${url.getRecords}`);
@@ -50,7 +51,7 @@ describe('Groups Service', () => {
   it(`should return   array of all the faculties and  array of all the specialites`, (done) => {
     // act
     groupsService.getFacultiesAndSpecialities().subscribe((res) => {
-      done();
+
       // assert
       for (let i = 0; i < mockedResponse.allFaculties.length; i++) {
         expect(res[0][i].faculty_name).toEqual(mockedResponse.allFaculties[i].faculty_name);
@@ -58,6 +59,7 @@ describe('Groups Service', () => {
       for (let i = 0; i < mockedResponse.allSpecialities.length; i++) {
         expect(res[1][i].specialityName).toEqual(mockedResponse.allSpecialities[i].speciality_name);
       }
+      done();
     });
 
     const getAllFaculties = httpMock.expectOne(`${url.facultyUrl}${url.getRecords}`);
@@ -71,7 +73,6 @@ describe('Groups Service', () => {
    and  array of all the specialites  and number of records for groups`, (done) => {
     // act
     groupsService.getGroupsRange(mockedForPagination.limit, mockedForPagination.offset).subscribe((res) => {
-      done();
       // assert
       for (let i = 0; i < mockedForPagination.limit; i++) {
         expect(res[0][i].group_name).toEqual(mockedResponse.allGroups[i].group_name);
@@ -83,6 +84,7 @@ describe('Groups Service', () => {
         expect(res[2][i].specialityName).toEqual(mockedResponse.allSpecialities[i].speciality_name);
       }
       expect(res[3].numberOfRecords).toEqual(mockedNumberOfRecordsWithLimit.numberOfRecords);
+      done();
     });
 
     const getGroupsRange = httpMock.expectOne(`${url.groupUrl}${url.getRecordsRange}/${mockedForPagination.limit}/${mockedForPagination.offset}`);
@@ -99,12 +101,12 @@ describe('Groups Service', () => {
   it('should return group id, group name, speciality_id, faculty_id after inserting group', (done) => {
     // act
     groupsService.addGroup(mockedForInsert).subscribe((res: any) => {
-      done();
       // assert
       expect(res[0].group_id).toEqual(mockedResponse.afterInsert[0].group_id);
       expect(res[0].group_name).toEqual(mockedResponse.afterInsert[0].group_name);
       expect(res[0].speciality_id).toEqual(mockedResponse.afterInsert[0].speciality_id);
       expect(res[0].faculty_id).toEqual(mockedResponse.afterInsert[0].faculty_id);
+      done();
     });
 
     const addGroupsRequest = httpMock.expectOne(`${url.groupUrl}${url.insertData}`);

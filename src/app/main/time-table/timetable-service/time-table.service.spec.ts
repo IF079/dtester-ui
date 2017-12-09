@@ -33,7 +33,7 @@ describe('TimeTable Service', () => {
   it(`should return   array of all the groups and  array of all the subjects`, (done) => {
     // act
     timeTableService.getGroupsAndSubjects().subscribe((res) => {
-      done();
+
       // assert
       for (let i = 0; i < mockedResponse.allGroups.length; i++) {
         expect(res[0][i].group_name).toEqual(mockedResponse.allGroups[i].group_name);
@@ -41,6 +41,7 @@ describe('TimeTable Service', () => {
       for (let i = 0; i < mockedResponse.allSubjects.length; i++) {
         expect(res[1][i].name).toEqual(mockedResponse.allSubjects[i].subject_name);
       }
+      done();
     });
 
     const getAllGroups = httpMock.expectOne(`${url.groupUrl}${url.getRecords}`);
@@ -54,7 +55,7 @@ describe('TimeTable Service', () => {
    and  array of all the subjects  and number of records for timetables`, (done) => {
     // act
     timeTableService.getTimeTablesRange(mockedForPagination.limit, mockedForPagination.offset).subscribe((res) => {
-      done();
+
       // assert
       for (let i = 0; i < mockedForPagination.limit; i++) {
         expect(res[0][i].start_time).toEqual(mockedResponse.allTimeTables[i].start_time);
@@ -66,6 +67,7 @@ describe('TimeTable Service', () => {
         expect(res[2][i].name).toEqual(mockedResponse.allSubjects[i].subject_name);
       }
       expect(res[3].numberOfRecords).toEqual(mockedNumberOfRecordsWithLimit.numberOfRecords);
+      done();
     });
 
     const getTimeTablesRange = httpMock.expectOne(`${url.timeTableUrl}${url.getRecordsRange}/${mockedForPagination.limit}/${mockedForPagination.offset}`);
@@ -83,7 +85,6 @@ describe('TimeTable Service', () => {
   start date, start time, end date, end time after inserting group`, (done) => {
     // act
     timeTableService.addTimeTable(mockedForInsert).subscribe((res: any) => {
-      done();
       // assert
       expect(res[0].timetable_id).toEqual(mockedResponse.afterInsert[0].timetable_id);
       expect(res[0].group_id).toEqual(mockedResponse.afterInsert[0].group_id);
@@ -92,6 +93,7 @@ describe('TimeTable Service', () => {
       expect(res[0].start_time).toEqual(mockedResponse.afterInsert[0].start_time);
       expect(res[0].end_date).toEqual(mockedResponse.afterInsert[0].end_date);
       expect(res[0].end_time).toEqual(mockedResponse.afterInsert[0].end_time);
+      done();
     });
 
     const addGroupsRequest = httpMock.expectOne(`${url.timeTableUrl}${url.insertData}`);

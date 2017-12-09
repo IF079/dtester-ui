@@ -97,7 +97,6 @@ export class EditTestModalComponent implements OnInit {
           delete testData[0].subject_id;
           testData[0].enabled = this.status.find(item => item.value === +testData[0].enabled).text;
           this.delUpdateService.passUpdatedItem<TestDto[]>(testData);
-          console.log(testData[0].enabled);
           this.modalService.openSuccessDialog(generalConst.updateMsg);
         },
         err => this.infoModal.openErrorDialog(generalConst.errorMsg));

@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material';
 
 import {LoginService} from '../../login/services/login.service';
 import {User} from '../../login/entities/user';
-import {QuestionAddModalComponent} from '../test/question/question-add-modal/question-add-modal.component';
+import {QuestionAddModalComponent} from '../test/question/add-question-modal/add-question-modal.component';
 import {TestModalComponent} from '../test/add-test-modal/add-test-modal.component';
 import {ResultAddModalComponent} from '../test/result/result-add-modal/result-add-modal.component';
 import {TestService} from '../test/test.service';

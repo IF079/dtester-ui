@@ -45,7 +45,7 @@ import {QuestionService} from './test/question/question.service';
 import {InfoModalService} from './info-modal/info-modal.service';
 import {ResultService} from './test/result/result.service';
 import {SpecialityModalComponent} from './speciality/add-speciality-modal/add-speciality-modal.component';
-import {QuestionAddModalComponent} from './test/question/question-add-modal/question-add-modal.component';
+import {QuestionAddModalComponent} from './test/question/add-question-modal/add-question-modal.component';
 import {TestModalComponent} from './test/add-test-modal/add-test-modal.component';
 import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
 import {EditSpecialityModalComponent} from './speciality/edit-speciality-modal/edit-speciality-modal.component';
@@ -59,6 +59,7 @@ import {AnswerComponent} from './test/answer/answer.component';
 import {QuestionComponent} from './test/question/question.component';
 import {EditTestModalComponent} from './test/edit-test-modal/edit-test-modal.component';
 import {EditAdminModalComponent} from './admin/edit-admin-modal/edit-admin-modal.component';
+import {EditQuestionModalComponent} from './test/question/edit-question-modal/edit-question-modal.component';
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import {EditAdminModalComponent} from './admin/edit-admin-modal/edit-admin-modal
     AnswerComponent,
     QuestionComponent,
     EditTestModalComponent,
-    EditAdminModalComponent
+    EditAdminModalComponent,
+    EditQuestionModalComponent
   ],
   imports: [
     CommonModule,
@@ -128,7 +130,8 @@ import {EditAdminModalComponent} from './admin/edit-admin-modal/edit-admin-modal
     EditStudentModalComponent,
     EditTimetableModalComponent,
     EditTestModalComponent,
-    EditAdminModalComponent
+    EditAdminModalComponent,
+    EditQuestionModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

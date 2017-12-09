@@ -7,7 +7,7 @@ import {QuestionService} from './question.service';
 import {Question} from './question';
 import {generalConst} from '../../shared/constants/general-constants';
 import {InfoModalService} from '../../info-modal/info-modal.service';
-import {QuestionAddModalComponent} from './question-add-modal/question-add-modal.component';
+import {QuestionAddModalComponent} from './add-question-modal/add-question-modal.component';
 
 @Component({
   selector: 'dtest-question',
@@ -45,7 +45,7 @@ export class QuestionComponent implements OnInit {
       if (data[0]) {
         this.questions = data[0];
         this.questions.forEach(question => {
-          question.type = this.questionTypes[question.type - 1];
+          question.type = this.questionTypes[question.type];
           delete question.testId;
           delete question.attachment;
         });
@@ -59,12 +59,10 @@ export class QuestionComponent implements OnInit {
 
   openQuestionAddModal(): void {
     const dialogRef = this.dialog.open(QuestionAddModalComponent, {
-      width: '400px',
       data: {
         testId: this.testId
       }
     });
-
     dialogRef.afterClosed().subscribe(result => {
     });
   }

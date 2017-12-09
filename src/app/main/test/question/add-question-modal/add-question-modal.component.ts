@@ -6,11 +6,13 @@ import {QuestionService} from '../question.service';
 import {InfoModalService} from '../../../info-modal/info-modal.service';
 import {Question} from '../question';
 import {AnswerService} from '../../answer/answer.service';
+import {UpdateDeleteEntityService} from '../../../shared/services/update-delete-entity-service/update-delete-entity.service';
+import {generalConst} from '../../../shared/constants/general-constants';
 
 @Component({
-  selector: 'dtest-question-add-modal',
-  templateUrl: './question-add-modal.component.html',
-  styleUrls: ['./question-add-modal.component.scss']
+  selector: 'dtest-add-question-modal',
+  templateUrl: './add-question-modal.component.html',
+  styleUrls: ['./add-question-modal.component.scss']
 })
 export class QuestionAddModalComponent {
 
@@ -40,11 +42,11 @@ export class QuestionAddModalComponent {
     private answerService: AnswerService,
     private formBuilder: FormBuilder,
     private modalService: InfoModalService,
+    private delUpdateService: UpdateDeleteEntityService,
     public dialogRef: MatDialogRef<QuestionAddModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = formBuilder.group({
-      'testId': [null, Validators.required],
       'questionText': [null, [Validators.required, Validators.maxLength(250)]],
       'level': [null, Validators.required],
       'type': [null, Validators.required]
@@ -53,7 +55,6 @@ export class QuestionAddModalComponent {
 
   fileSelect(event): void {
     const reader = new FileReader();
-
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = () => {
       this.attachment = reader.result;
@@ -68,14 +69,18 @@ export class QuestionAddModalComponent {
       level: question.level,
       type: question.type,
       attachment: this.attachment || ''
-    }).subscribe(questionResp => {
-      if (questionResp[0]) {
-        this.modalService.openSuccessDialog('Запитання успішно добавлено!');
-      } else {
-        this.modalService.openErrorDialog('Щось пішло не так, як було заплановано! Спробуйте, будь ласка, пізніше.');
-      }
+    }).subscribe(questionData => {
+      delete questionData[0].test_id;
+      delete questionData[0].attachment;
+      questionData[0].type = this.types.find(item => item.value === +questionData[0].type).text;
+      this.delUpdateService.passInsertedItem(questionData);
+      this.modalService.openSuccessDialog(generalConst.addMsg);
+      console.log(+questionData[0].type);
+      }, () => {
+      this.modalService.openErrorDialog(generalConst.errorMsg);
     });
-  }
+    }
+
 
   onNoClick(): void {
     this.dialogRef.close();

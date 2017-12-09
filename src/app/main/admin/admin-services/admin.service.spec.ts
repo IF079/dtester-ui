@@ -77,9 +77,10 @@ describe('Admin Service', () => {
   });
 
   it('should return boolean response is email already used, or not', (done) => {
+    // act
     adminService.checkEmailAddress(mockedForCheckFunctionality.email).subscribe(response => {
       // assert
-      expect(response.response).toBe('boolean');
+      expect(typeof response.response).toBe('boolean');
       done();
     });
     const checkEmailRequest = httpMock.expectOne(`${url.adminUser}${url.checkEmailAddress}/${mockedForCheckFunctionality.email}`);

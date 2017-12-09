@@ -51,7 +51,7 @@ export class AddAnswerModalComponent {
     };
   }
 
-  onSubmit(answer: Answer) {
+  onSubmit(answer: Answer): void {
     this.dialogRef.close();
     this.answerService.setAnswer({
       questionId: this.data.questionId,
@@ -59,11 +59,10 @@ export class AddAnswerModalComponent {
       answerText: answer.answerText,
       attachment: this.attachment || ''
     }).subscribe(answerData => {
-      delete answerData.questionId;
-      delete answerData.attachment;
-      answerData[0].trueAnswer = this.trueAnswers.find(item => item.value === +answerData[0].trueAnswer).text;
+      delete answerData[0].question_id;
+      delete answerData[0].attachment;
+      answerData[0].true_answer = this.trueAnswers.find(item => item.value === +answerData[0].true_answer).text;
       this.delUpdateService.passInsertedItem(answerData);
-      console.log(answerData[0]);
       this.modalService.openSuccessDialog(generalConst.addMsg);
     }, () => {
       this.modalService.openErrorDialog(generalConst.errorMsg);

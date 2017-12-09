@@ -54,7 +54,6 @@ export class AnswerComponent implements OnInit {
 
   openAddAnswerModal(): void {
     const dialogRef = this.dialog.open(AddAnswerModalComponent, {
-      width: '400px',
       data: {
         questionId: this.questionId
       }

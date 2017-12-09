@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
@@ -15,7 +15,7 @@ import { generalConst } from '../../../shared/constants/general-constants';
   templateUrl: './edit-test-detail-modal.component.html',
   styleUrls: ['../add-test-detail-modal/add-test-detail-modal.component.scss']
 })
-export class EditTestDetailModalComponent {
+export class EditTestDetailModalComponent implements OnInit{
   levels = this.setArrayOfDigit(10);
   placeholders = {
     level: 'Рівень',
@@ -118,6 +118,10 @@ export class EditTestDetailModalComponent {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  ngOnInit() {
+    this.dialogRef.updateSize('400px');
   }
 
 }

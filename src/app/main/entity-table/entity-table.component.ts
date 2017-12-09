@@ -16,6 +16,7 @@ import {EditSpecialityModalComponent} from '../speciality/edit-speciality-modal/
 import {EditFacultyModalComponent} from '../faculties/edit-faculty-modal/edit-faculty-modal.component';
 import {EditStudentModalComponent} from '../student/edit-student-modal/edit-student-modal.component';
 import {EditTestModalComponent} from '../test/edit-test-modal/edit-test-modal.component';
+import {TestDto} from '../test/test-dto';
 
 @Component({
   selector: 'dtest-entity-table',
@@ -61,6 +62,12 @@ export class EntityTableComponent implements OnChanges, OnInit {
       if (this.tableRowArr.length < this.pageSize) {
         this.tableRowArr.push(Object.values(data[0]));
       }
+    });
+  }
+
+  updateTestInDom() {
+    this.delUpdateService.itemUpdated$.subscribe((testData: TestDto[]) => {
+      this.updateTableRowArr<TestDto[]>(testData, 'test_id');
     });
   }
 
@@ -139,6 +146,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.updateFacultyInDom();
     this.updateTimetableInDom();
     this.updateStudentInDom();
+    this.updateTestInDom();
     this.insertItemInDom();
   }
 

@@ -46,7 +46,7 @@ import {InfoModalService} from './info-modal/info-modal.service';
 import {ResultService} from './test/result/result.service';
 import {SpecialityModalComponent} from './speciality/add-speciality-modal/add-speciality-modal.component';
 import {QuestionAddModalComponent} from './test/question/question-add-modal/question-add-modal.component';
-import {TestModalComponent} from './test/test-modal/test-modal.component';
+import {TestModalComponent} from './test/add-test-modal/add-test-modal.component';
 import {ResultAddModalComponent} from './test/result/result-add-modal/result-add-modal.component';
 import {EditSpecialityModalComponent} from './speciality/edit-speciality-modal/edit-speciality-modal.component';
 import {EditFacultyModalComponent} from './faculties/edit-faculty-modal/edit-faculty-modal.component';
@@ -54,9 +54,7 @@ import {EditStudentModalComponent} from './student/edit-student-modal/edit-stude
 import {EditTimetableModalComponent} from './time-table/edit-timetable-modal/edit-timetable-modal.component';
 import {TestPlayerComponent} from './test-player/test-player.component';
 import {TestPlayerService} from './test-player/test-player.service';
-
 import {AddAdminModalComponent} from './admin/add-admin-modal/add-admin-modal.component';
-
 import {AnswerComponent} from './test/answer/answer.component';
 import {QuestionComponent} from './test/question/question.component';
 import {EditTestModalComponent} from './test/edit-test-modal/edit-test-modal.component';

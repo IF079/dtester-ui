@@ -59,6 +59,7 @@ import {AnswerComponent} from './test/answer/answer.component';
 import {QuestionComponent} from './test/question/question.component';
 import {EditTestModalComponent} from './test/edit-test-modal/edit-test-modal.component';
 import {EditAdminModalComponent} from './admin/edit-admin-modal/edit-admin-modal.component';
+import {AddAnswerModalComponent} from './test/answer/add-answer-modal/add-answer-modal.component';
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import {EditAdminModalComponent} from './admin/edit-admin-modal/edit-admin-modal
     AnswerComponent,
     QuestionComponent,
     EditTestModalComponent,
-    EditAdminModalComponent
+    EditAdminModalComponent,
+    AddAnswerModalComponent
   ],
   imports: [
     CommonModule,
@@ -128,7 +130,8 @@ import {EditAdminModalComponent} from './admin/edit-admin-modal/edit-admin-modal
     EditStudentModalComponent,
     EditTimetableModalComponent,
     EditTestModalComponent,
-    EditAdminModalComponent
+    EditAdminModalComponent,
+    AddAnswerModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

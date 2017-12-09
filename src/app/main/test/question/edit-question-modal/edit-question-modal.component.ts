@@ -26,9 +26,9 @@ export class EditQuestionModalComponent {
   };
   levels = [1, 2, 3];
   types = [
-    {value: 1, text: 'Простий вибір'},
-    {value: 2, text: 'Мульти-вибір'},
-    {value: 3, text: 'Поле вводу'},
+    {value: 0, text: 'Простий вибір'},
+    {value: 1, text: 'Мульти-вибір'},
+    {value: 2, text: 'Поле вводу'},
   ];
   attachment: string;
   answers = [];

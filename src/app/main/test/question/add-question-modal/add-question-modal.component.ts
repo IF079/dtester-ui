@@ -75,7 +75,6 @@ export class QuestionAddModalComponent {
       questionData[0].type = this.types.find(item => item.value === +questionData[0].type).text;
       this.delUpdateService.passInsertedItem(questionData);
       this.modalService.openSuccessDialog(generalConst.addMsg);
-      console.log(+questionData[0].type);
       }, () => {
       this.modalService.openErrorDialog(generalConst.errorMsg);
     });

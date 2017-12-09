@@ -7,6 +7,7 @@ import {AnswerService} from './answer.service';
 import {Answer} from './answer';
 import {generalConst} from '../../shared/constants/general-constants';
 import {InfoModalService} from '../../info-modal/info-modal.service';
+import {AddAnswerModalComponent} from './add-answer-modal/add-answer-modal.component';
 
 
 @Component({
@@ -50,6 +51,18 @@ export class AnswerComponent implements OnInit {
       }
     },
     err => this.infoModal.openErrorDialog('Не вдалось завантажити дані з сервера. Спробуйте, будь ласка, пізніше!'));
+  }
+
+  openAddAnswerModal(): void {
+    const dialogRef = this.dialog.open(AddAnswerModalComponent, {
+      width: '400px',
+      data: {
+        questionId: this.questionId
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   goBack(): void {

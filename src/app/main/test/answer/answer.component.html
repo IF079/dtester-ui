@@ -7,6 +7,8 @@
 <button class="addButton"
         mat-raised-button
         color="primary"
-        (click)="openTestModal('add')">{{btnAdd}}</button>
+        (click)="openAddAnswerModal()">{{btnAdd}}</button>
 
-<dtest-entity-table [entityName]="'Answer'" [columnsArray]="headingColumnsOfTable" [entityArray]="answers"></dtest-entity-table>
+<dtest-entity-table [entityName]="'Answer'"
+                    [columnsArray]="headingColumnsOfTable"
+                    [entityArray]="answers"></dtest-entity-table>

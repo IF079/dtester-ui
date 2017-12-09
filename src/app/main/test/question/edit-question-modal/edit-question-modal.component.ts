@@ -44,12 +44,13 @@ export class EditQuestionModalComponent {
               private delUpdateService: UpdateDeleteEntityService,
               public dialogRef: MatDialogRef<EditQuestionModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.currentQuestion = this.data;
+    this.currentQuestion = data;
     this.createForm();
+    const curentType = data[3] ? this.types.find(type => type.text === data[3]).value : null;
     this.form.patchValue({
       questionText: data[1],
       level: +data[2],
-      type: data[3],
+      type: curentType,
       attachment: data[4]
     });
   }

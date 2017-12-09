@@ -107,8 +107,8 @@ import {EditTestDetailModalComponent} from './test/test-detail/edit-test-detail-
     EditAdminModalComponent,
     EditQuestionModalComponent,
     AddTestDetailModalComponent,
-    AddAnswerModalComponent,
-    EditTestDetailModalComponent
+    EditTestDetailModalComponent,
+    AddAnswerModalComponent
   ],
   imports: [
     CommonModule,
@@ -139,11 +139,9 @@ import {EditTestDetailModalComponent} from './test/test-detail/edit-test-detail-
     EditTestModalComponent,
     EditAdminModalComponent,
     EditQuestionModalComponent,
-    AddTestDetailModalComponent,
     EditTestDetailModalComponent,
-    AddAnswerModalComponent,
     AddTestDetailModalComponent,
-    EditTestDetailModalComponent
+    AddAnswerModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

@@ -40,7 +40,13 @@ export const mockedResponse = {
     logins: '4',
     password: '33d877ebc4a7381e5a3398ad16fa9c3eeb6f16598cea1ab569f0b00aaa3dad19',
     username: 'username5'
-  }]
+  }],
+  checkUsername: {
+    response: true
+  },
+  checkEmail: {
+    response: false
+  }
 };
 
 export const mockedNumberOfRecordsWithLimit = {
@@ -51,6 +57,10 @@ export const mockedForInsert = {
   username: 'username6',
   password: 'ab123456',
   password_confirm: 'ab123456'
+};
+export const mockedForCheckFunctionality = {
+  username: 'username1',
+  email: 'username1@gmail.com'
 };
 
 export const mockedForPagination = {

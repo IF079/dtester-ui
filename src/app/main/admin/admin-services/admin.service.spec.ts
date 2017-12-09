@@ -2,7 +2,8 @@
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {inject, TestBed} from '@angular/core/testing';
 import {
-  mockedForInsert, mockedForPagination,  mockedNumberOfRecordsWithLimit,
+  mockedForCheckFunctionality,
+  mockedForInsert, mockedForPagination, mockedNumberOfRecordsWithLimit,
   mockedResponse
 } from '../../../../../mocks/admin/admin.mock.constants';
 
@@ -34,7 +35,6 @@ describe('Admin Service', () => {
   it('should return limited array of  admins with a  given limit and number of records', (done) => {
     // act
     adminService.getAdminsRange(mockedForPagination.limit, mockedForPagination.offset).subscribe((res: any) => {
-
       // assert
       for (let i = 0; i < mockedForPagination.limit; i++) {
         expect(res[0][i].username).toEqual(mockedResponse.allAdmins[i].username);
@@ -61,5 +61,29 @@ describe('Admin Service', () => {
     const addAdminRequest = httpMock.expectOne(`${url.adminUser}${url.insertData}`);
     // arrange
     addAdminRequest.flush(mockedResponse.afterInsert);
+  });
+
+  it('should return boolean response is username already used, or not', (done) => {
+    // act
+    adminService.checkUserName(mockedForCheckFunctionality.username).subscribe(response => {
+      // assert
+      expect(typeof response.response).toBe('boolean');
+      done();
+    });
+
+    const checkUserNameRequest = httpMock.expectOne(`${url.adminUser}${url.checkUserName}/${mockedForCheckFunctionality.username}`);
+    // arrange
+    checkUserNameRequest.flush(mockedResponse.checkUsername);
+  });
+
+  it('should return boolean response is email already used, or not', (done) => {
+    adminService.checkEmailAddress(mockedForCheckFunctionality.email).subscribe(response => {
+      // assert
+      expect(response.response).toBe('boolean');
+      done();
+    });
+    const checkEmailRequest = httpMock.expectOne(`${url.adminUser}${url.checkEmailAddress}/${mockedForCheckFunctionality.email}`);
+    // arrange
+    checkEmailRequest.flush(mockedResponse.checkEmail);
   });
 });

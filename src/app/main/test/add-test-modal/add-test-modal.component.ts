@@ -5,16 +5,19 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {TestService} from '../test.service';
 import {Test} from '../test';
+import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-test-modal',
-  templateUrl: './test-modal.component.html',
-  styleUrls: ['./test-modal.component.scss']
+  templateUrl: './add-test-modal.component.html',
+  styleUrls: ['./add-test-modal.component.scss']
 })
 export class TestModalComponent {
   viewTestArray: Test[];
   tasks = this.setArrayOfDigit(30);
   attempts = this.setArrayOfDigit(10);
+  title = 'Додати тест';
   viewHeadersArray = ['Тема', 'Завдань', 'Час', 'Спроби', 'Статус'];
   status = [{value: 1, text: 'Доступний'}, {value: 0, text: 'Недоступний'}];
   placeholders = {
@@ -34,6 +37,7 @@ export class TestModalComponent {
     private formBuilder: FormBuilder,
     private modalService: InfoModalService,
     public dialogRef: MatDialogRef<TestModalComponent>,
+    private delUpdateService: UpdateDeleteEntityService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = formBuilder.group({
@@ -54,7 +58,6 @@ export class TestModalComponent {
   }
 
   onSubmit(test: Test): void {
-    console.log(test);
     this.dialogRef.close();
     this.testService.addTest({
       testName: test.testName,
@@ -63,12 +66,13 @@ export class TestModalComponent {
       timeForTest: test.timeForTest,
       enabled: test.enabled,
       attempts: test.attempts
-    }).subscribe(data => {
-      if (data[0]) {
-        this.modalService.openSuccessDialog('Тест успішно добавлено!');
-      } else {
-        this.modalService.openErrorDialog('Щось пішло не так, як було заплановано! Спробуйте, будь ласка, пізніше.');
-      }
+    }).subscribe(testData => {
+      delete testData[0].subject_id;
+      testData[0].enabled = this.status.find(item => item.value === +testData[0].enabled).text;
+      this.delUpdateService.passInsertedItem(testData);
+      this.modalService.openSuccessDialog(generalConst.addMsg);
+      }, () => {
+      this.modalService.openErrorDialog(generalConst.errorMsg);
     });
   }
 

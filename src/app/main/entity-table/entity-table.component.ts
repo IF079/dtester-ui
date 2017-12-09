@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
+
 import {Group} from '../groups/groups-classes/group';
 import {SubjectDto} from '../subject/subject-classes/subject-dto';
 import {SpecialityDto} from '../speciality/speciality-classes/speciality-dto';
@@ -18,6 +19,8 @@ import {EditStudentModalComponent} from '../student/edit-student-modal/edit-stud
 import {EditTestModalComponent} from '../test/edit-test-modal/edit-test-modal.component';
 import {EditAdminModalComponent} from '../admin/edit-admin-modal/edit-admin-modal.component';
 import {Admin} from '../admin/admin-classes/Admin';
+import {TestDto} from '../test/test-dto';
+
 
 @Component({
   selector: 'dtest-entity-table',
@@ -64,6 +67,12 @@ export class EntityTableComponent implements OnChanges, OnInit {
       if (this.tableRowArr.length < this.pageSize) {
         this.tableRowArr.push(Object.values(data[0]));
       }
+    });
+  }
+
+  updateTestInDom() {
+    this.delUpdateService.itemUpdated$.subscribe((testData: TestDto[]) => {
+      this.updateTableRowArr<TestDto[]>(testData, 'test_id');
     });
   }
 
@@ -147,6 +156,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.updateFacultyInDom();
     this.updateTimetableInDom();
     this.updateStudentInDom();
+    this.updateTestInDom();
     this.insertItemInDom();
   }
 

@@ -7,7 +7,7 @@ import {TestDetailService} from './test-detail.service';
 import {TestDetail} from './test-detail';
 import {generalConst} from '../../shared/constants/general-constants';
 import {InfoModalService} from '../../info-modal/info-modal.service';
-import {TestDetailAddModalComponent} from './test-detail-add-modal/test-detail-add-modal.component';
+import {AddTestDetailModalComponent} from './add-test-detail-modal/add-test-detail-modal.component';
 import {TestService} from '../test.service';
 
 @Component({
@@ -62,7 +62,7 @@ export class TestDetailComponent implements OnInit {
 
   openTestDetailModal(): void {
     this.testService.getTest(this.testId).subscribe(test => {
-      const dialogRef = this.dialog.open(TestDetailAddModalComponent, {
+      const dialogRef = this.dialog.open(AddTestDetailModalComponent, {
         width: '400px',
         data: {
           testId: this.testId,

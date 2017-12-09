@@ -34,7 +34,6 @@ export class EditTestModalComponent implements OnInit {
   constructor(
     private testService: TestService,
     private formBuilder: FormBuilder,
-    private modalService: InfoModalService,
     public dialogRef: MatDialogRef<EditTestModalComponent>,
     private delUpdateService: UpdateDeleteEntityService,
     private infoModal: InfoModalService,
@@ -97,7 +96,7 @@ export class EditTestModalComponent implements OnInit {
           delete testData[0].subject_id;
           testData[0].enabled = this.status.find(item => item.value === +testData[0].enabled).text;
           this.delUpdateService.passUpdatedItem<TestDto[]>(testData);
-          this.modalService.openSuccessDialog(generalConst.updateMsg);
+          this.infoModal.openSuccessDialog(generalConst.updateMsg);
         },
         err => this.infoModal.openErrorDialog(generalConst.errorMsg));
       });

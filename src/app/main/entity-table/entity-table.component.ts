@@ -22,6 +22,7 @@ import {Admin} from '../admin/admin-classes/Admin';
 import {TestDto} from '../test/test-dto';
 import {EditQuestionModalComponent} from '../test/question/edit-question-modal/edit-question-modal.component';
 import {QuestionDto} from '../test/question/question-dto';
+import {EditTestDetailModalComponent} from '../test/test-detail/edit-test-detail-modal/edit-test-detail-modal.component';
 
 
 @Component({
@@ -48,7 +49,8 @@ export class EntityTableComponent implements OnChanges, OnInit {
     TimeTable: EditTimetableModalComponent,
     Test: EditTestModalComponent,
     AdminUser: EditAdminModalComponent,
-    Question: EditQuestionModalComponent
+    Question: EditQuestionModalComponent,
+    TestDetail: EditTestDetailModalComponent
   };
 
   constructor(public dialog: MatDialog,

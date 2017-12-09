@@ -5,13 +5,15 @@ import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/form
 import {TestDetailService} from '../test-detail.service';
 import {InfoModalService} from '../../../info-modal/info-modal.service';
 import {TestDetail} from '../test-detail';
+import {TestDetailValidator} from '../test-detail-validator';
+import { generalConst } from '../../../shared/constants/general-constants';
 
 @Component({
-  selector: 'dtest-test-detail-add-modal',
-  templateUrl: './test-detail-add-modal.component.html',
-  styleUrls: ['./test-detail-add-modal.component.scss']
+  selector: 'dtest-add-test-detail-modal',
+  templateUrl: './add-test-detail-modal.component.html',
+  styleUrls: ['./add-test-detail-modal.component.scss']
 })
-export class TestDetailAddModalComponent {
+export class AddTestDetailModalComponent {
   levels = this.setArrayOfDigit(10);
   placeholders = {
     level: 'Рівень',
@@ -22,7 +24,7 @@ export class TestDetailAddModalComponent {
   nowTasks = this.data.nowTasks;
   existLevels = this.data.levels;
   form: FormGroup;
-  errorLevelExist = 'Рівен вже існує!';
+  errorLevelExist = 'Рівень вже існує!';
   errorEmptyInput = 'Заповніть поле!';
   errorTasksAmount = 'Перевищена кількість запитань!';
   errorOnlyDigits = 'Букви та символи недопустимі!';
@@ -31,7 +33,7 @@ export class TestDetailAddModalComponent {
     private testDetailService: TestDetailService,
     private formBuilder: FormBuilder,
     private modalService: InfoModalService,
-    public dialogRef: MatDialogRef<TestDetailAddModalComponent>,
+    public dialogRef: MatDialogRef<AddTestDetailModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = formBuilder.group({
@@ -46,13 +48,13 @@ export class TestDetailAddModalComponent {
     this.testDetailService.addTestDetail({
       testId: this.data.testId,
       level: testDetail.level,
-      tasks: testDetail.tasks,
+      tasks: testDetail.tasks || 0,
       rate: testDetail.rate
     }).subscribe(testDetailResp => {
       if (testDetailResp[0]) {
-        this.modalService.openSuccessDialog('Деталі тесту успішно добавлено!');
+        this.modalService.openSuccessDialog(generalConst.addMsg);
       } else {
-        this.modalService.openErrorDialog('Щось пішло не так, як було заплановано! Спробуйте, будь ласка, пізніше.');
+        this.modalService.openErrorDialog(generalConst.errorWithDisplayData);
       }
     });
   }
@@ -73,20 +75,4 @@ export class TestDetailAddModalComponent {
     this.dialogRef.close();
   }
 
-}
-
-class TestDetailValidator {
-  static createTasksValidator(now: number, max: number) {
-    return (control: AbstractControl) => {
-      const tasksAmount = control ? +control.value : 0;
-      return tasksAmount + now > max ? {invalidTasksAmount: true} : null;
-    };
-  }
-
-  static createLevelValidator(levels: string[]) {
-    return (control: AbstractControl) => {
-      const controlLevel = '' + control.value;
-      return levels.indexOf(controlLevel) > -1 ? {levelAlreadyExist: true} : null;
-    };
-  }
 }

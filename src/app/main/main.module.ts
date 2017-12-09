@@ -60,8 +60,9 @@ import {QuestionComponent} from './test/question/question.component';
 import {EditTestModalComponent} from './test/edit-test-modal/edit-test-modal.component';
 import {EditAdminModalComponent} from './admin/edit-admin-modal/edit-admin-modal.component';
 import {EditQuestionModalComponent} from './test/question/edit-question-modal/edit-question-modal.component';
-import {TestDetailAddModalComponent} from './test/test-detail/test-detail-add-modal/test-detail-add-modal.component';
+import {AddTestDetailModalComponent} from './test/test-detail/add-test-detail-modal/add-test-detail-modal.component';
 import {AddAnswerModalComponent} from './test/answer/add-answer-modal/add-answer-modal.component';
+import {EditTestDetailModalComponent} from './test/test-detail/edit-test-detail-modal/edit-test-detail-modal.component';
 
 
 
@@ -105,8 +106,6 @@ import {AddAnswerModalComponent} from './test/answer/add-answer-modal/add-answer
     EditTestModalComponent,
     EditAdminModalComponent,
     EditQuestionModalComponent,
-    TestDetailAddModalComponent
-    AddAnswerModalComponent
 
   ],
   imports: [
@@ -138,7 +137,8 @@ import {AddAnswerModalComponent} from './test/answer/add-answer-modal/add-answer
     EditTestModalComponent,
     EditAdminModalComponent,
     EditQuestionModalComponent,
-    TestDetailAddModalComponent
+    AddTestDetailModalComponent,
+    EditTestDetailModalComponent,
     AddAnswerModalComponent
   ],
   providers: [

@@ -101,6 +101,7 @@ export class AddAdminModalComponent {
     const password_confirm = this.passwordConfirm.value;
     const arrForAdmin = [];
     this.adminService.addAdmin({email, username, password, password_confirm}).subscribe(adminData => {
+        console.log(adminData);
         this.isAdminAdded = true;
         arrForAdmin.push(adminData);
         this.delUpdateService.passInsertedItem<Admin[]>(arrForAdmin);

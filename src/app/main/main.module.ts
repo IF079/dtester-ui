@@ -63,6 +63,7 @@ import {EditQuestionModalComponent} from './test/question/edit-question-modal/ed
 import {AddTestDetailModalComponent} from './test/test-detail/add-test-detail-modal/add-test-detail-modal.component';
 import {AddAnswerModalComponent} from './test/answer/add-answer-modal/add-answer-modal.component';
 import {EditTestDetailModalComponent} from './test/test-detail/edit-test-detail-modal/edit-test-detail-modal.component';
+import { EditAnswerModalComponent } from './test/answer/edit-answer-modal/edit-answer-modal.component';
 
 
 
@@ -108,7 +109,8 @@ import {EditTestDetailModalComponent} from './test/test-detail/edit-test-detail-
     EditQuestionModalComponent,
     AddTestDetailModalComponent,
     EditTestDetailModalComponent,
-    AddAnswerModalComponent
+    AddAnswerModalComponent,
+    EditAnswerModalComponent
   ],
   imports: [
     CommonModule,
@@ -141,7 +143,8 @@ import {EditTestDetailModalComponent} from './test/test-detail/edit-test-detail-
     EditQuestionModalComponent,
     EditTestDetailModalComponent,
     AddTestDetailModalComponent,
-    AddAnswerModalComponent
+    AddAnswerModalComponent,
+    EditAnswerModalComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},

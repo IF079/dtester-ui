@@ -88,8 +88,8 @@ describe('Groups Service', () => {
       done();
     });
 
-    const getGroupsRange = httpMock.expectOne(`${url.groupUrl}${url.getRecordsRange}/
-    ${mockedForPagination.limit}/${mockedForPagination.offset}`);
+    const getGroupsRange = httpMock.expectOne(
+      `${url.groupUrl}${url.getRecordsRange}/${mockedForPagination.limit}/${mockedForPagination.offset}`);
     const getAllFaculties = httpMock.expectOne(`${url.facultyUrl}${url.getRecords}`);
     const getAllSpecialities = httpMock.expectOne(`${url.specialityUrl}${url.getRecords}`);
     const getGroupsNumberOfRecords = httpMock.expectOne(`${url.groupUrl}${url.getCount}`);

@@ -71,8 +71,8 @@ describe('TimeTable Service', () => {
       done();
     });
 
-    const getTimeTablesRange = httpMock.expectOne(`${url.timeTableUrl}${url.getRecordsRange}/
-    ${mockedForPagination.limit}/${mockedForPagination.offset}`);
+    const getTimeTablesRange = httpMock.expectOne(
+      `${url.timeTableUrl}${url.getRecordsRange}/${mockedForPagination.limit}/${mockedForPagination.offset}`);
     const getAllGroups = httpMock.expectOne(`${url.groupUrl}${url.getRecords}`);
     const getAllSubjects = httpMock.expectOne(`${url.subjectUrl}${url.getRecords}`);
     const getGroupsNumberOfRecords = httpMock.expectOne(`${url.timeTableUrl}${url.getCount}`);

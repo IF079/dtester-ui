@@ -1,7 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="addAdmin()">
-  <h2 mat-dialog-title *ngIf="!isAdminAdded">Додайте запис</h2>
-  <mat-dialog-content *ngIf="isAdminAdded">{{successMsg}}</mat-dialog-content>
-  <mat-dialog-content *ngIf="!isAdminAdded">
+  <h2 mat-dialog-title>Додайте запис</h2>
+  <mat-dialog-content>
     <mat-card>
       <mat-form-field>
         <input matInput placeholder="{{placeholders.username}}" formControlName="username">
@@ -40,19 +39,14 @@
             {{errorInvalidPasswordConfirm}}
           </mat-error>
         </mat-form-field>
-        <mat-error *ngIf="errorRequestMsg">
-          {{errorRequestMsg}}
-        </mat-error>
       </div>
     </mat-card>
   </mat-dialog-content>
-  <mat-dialog-actions *ngIf="!isAdminAdded">
+  <mat-dialog-actions>
     <button type="submit" class="modal-button" [disabled]="!isFormValid()" mat-raised-button color="primary">
       {{btnAdd}}
     </button>
     <button mat-button mat-dialog-close>{{btnClose}}</button>
   </mat-dialog-actions>
-  <mat-dialog-actions *ngIf="isAdminAdded">
-    <button mat-raised-button mat-dialog-close color="primary">{{btnOk}}</button>
-  </mat-dialog-actions>
+
 </form>

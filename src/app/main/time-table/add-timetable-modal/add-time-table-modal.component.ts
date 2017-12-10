@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TimeTableService} from '../timetable-service/time-table.service';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {TimeTable} from '../timetable-classes/time-table';
+import {InfoModalService} from '../../info-modal/info-modal.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-add-time-table-modal',
@@ -18,8 +20,6 @@ export class AddTimeTableModalComponent implements OnInit {
   groupValues = [];
   groupDictionary = {};
   subjectDictionary = {};
-  isTimeTableAdded = false;
-  successMsg = 'Розклад додано успішно. Оновіть сторінку, щоб побачити зміни.';
   errorRequired = 'Заповніть поле!';
   errRequestMsg: string;
   placeholders = {
@@ -32,11 +32,11 @@ export class AddTimeTableModalComponent implements OnInit {
   };
   btnAdd = 'Додати розклад';
   btnClose = 'Відмінити';
-  btnOk = 'Ок';
 
   constructor(public dialogRef: MatDialogRef<AddTimeTableModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private timetableService: TimeTableService,
-              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
+              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService,
+              private modalService: InfoModalService) {
     this.createForm();
     this.loadGroupsAndSubjects();
   }
@@ -116,7 +116,7 @@ export class AddTimeTableModalComponent implements OnInit {
         break;
       }
     }
-
+    this.dialogRef.close();
     this.timetableService.addTimeTable({group_id, subject_id, start_date, start_time, end_date, end_time}).subscribe(
       (timeTableData: TimeTable[]) => {
         timeTableData.forEach((timeTableItem)  => {
@@ -124,11 +124,12 @@ export class AddTimeTableModalComponent implements OnInit {
           timeTableItem.subject_id = this.subjectDictionary[timeTableItem.subject_id];
         });
         this.delUpdateService.passInsertedItem<TimeTable[]>(timeTableData);
-        this.isTimeTableAdded = true;
+        this.modalService.openSuccessDialog(generalConst.addMsg);
       },
       (err) => {
-        this.errRequestMsg = `Розклад для такої групи і предмету вже можливо існує, дати розкладу такі вже є,
-        або виникла інша помилка на сервері`;
+        console.log(err);
+        this.modalService.openErrorDialog(generalConst.errMsgForTimeTables);
+
       }
     );
 

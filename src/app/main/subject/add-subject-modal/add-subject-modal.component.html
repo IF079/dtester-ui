@@ -1,7 +1,6 @@
 <form [formGroup]="subjectForm" (ngSubmit)="addSubject()">
-  <h2 mat-dialog-title *ngIf="!isSubjectAdded">Додайте запис</h2>
-  <mat-dialog-content *ngIf="isSubjectAdded">{{successMsg}}</mat-dialog-content>
-  <mat-dialog-content *ngIf="!isSubjectAdded">
+  <h2 mat-dialog-title >Додайте запис</h2>
+  <mat-dialog-content>
     <mat-card>
       <mat-form-field>
         <input formControlName="name" matInput placeholder="{{placeholders.name}}">
@@ -20,13 +19,10 @@
       </mat-error>
     </mat-card>
   </mat-dialog-content>
-  <mat-dialog-actions *ngIf="!isSubjectAdded">
+  <mat-dialog-actions>
     <button type="submit" class="modal-button" [disabled]="!isFormValid()" mat-raised-button color="primary">
       {{btnAdd}}
     </button>
     <button mat-button mat-dialog-close>{{btnClose}}</button>
-  </mat-dialog-actions>
-  <mat-dialog-actions *ngIf="isSubjectAdded">
-    <button mat-raised-button mat-dialog-close color="primary">{{btnOk}}</button>
   </mat-dialog-actions>
 </form>

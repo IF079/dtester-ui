@@ -7,6 +7,8 @@ import {UpdateDeleteEntityService} from '../../shared/services/update-delete-ent
 import {Admin} from '../admin-classes/Admin';
 import {AsyncEmailValidator, AsyncUsernameValidator} from '../admin-async-validators/async.admin.validator';
 import {SubjectDto} from '../../subject/subject-classes/subject-dto';
+import {InfoModalService} from '../../info-modal/info-modal.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 
 @Component({
@@ -19,8 +21,6 @@ export class AddAdminModalComponent {
   passwordVisible = false;
 
   form: FormGroup;
-  successMsg = 'Адміністратора додано успішно. Оновіть сторінку, щоб побачити зміни.';
-  isAdminAdded = false;
   placeholders = {
     username: 'Логін',
     email: 'Поштова скринька',
@@ -30,8 +30,6 @@ export class AddAdminModalComponent {
   btnAdd = 'Додати адміністратора';
   errorRequired = 'Заповніть поле!';
   btnClose = 'Відмінити';
-  btnOk = 'Ок';
-  errorRequestMsg: string;
   errorInvalidPassword = 'Пароль повинен займати 8-20 знаків (букви та цифри обов\'язкові)!';
   errorInvalidPasswordConfirm = 'Паролі не збігаються!';
   errorInvalidEmail = 'Некоректна адреса!';
@@ -41,7 +39,8 @@ export class AddAdminModalComponent {
 
   constructor(public dialogRef: MatDialogRef<AddAdminModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService,
-              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
+              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService,
+              private modalService: InfoModalService) {
     this.createForm();
   }
 
@@ -100,16 +99,16 @@ export class AddAdminModalComponent {
     const password = this.password.value;
     const password_confirm = this.passwordConfirm.value;
     const arrForAdmin = [];
+    this.dialogRef.close();
     this.adminService.addAdmin({email, username, password, password_confirm}).subscribe(adminData => {
         console.log(adminData);
-        this.isAdminAdded = true;
         arrForAdmin.push(adminData);
         this.delUpdateService.passInsertedItem<Admin[]>(arrForAdmin);
+        this.modalService.openSuccessDialog(generalConst.addMsg);
       },
       err => {
-        console.log(err);
-        this.errorRequestMsg = 'Відбулась помилка на сервері';
-      }
+       this.modalService.openErrorDialog(generalConst.errorMsg);
+       }
     );
   }
 }

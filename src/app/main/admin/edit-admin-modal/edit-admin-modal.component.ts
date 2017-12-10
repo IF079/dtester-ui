@@ -7,6 +7,8 @@ import {UpdateDeleteEntityService} from '../../shared/services/update-delete-ent
 import {Admin} from '../admin-classes/Admin';
 import {AsyncEmailValidator, AsyncUsernameValidator} from '../admin-async-validators/async.admin.validator';
 import {SubjectDto} from '../../subject/subject-classes/subject-dto';
+import {InfoModalService} from '../../info-modal/info-modal.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 
 @Component({
@@ -40,7 +42,8 @@ export class EditAdminModalComponent {
 
   constructor(public dialogRef: MatDialogRef<EditAdminModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService,
-              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
+              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService,
+              private modalService: InfoModalService) {
     this.createForm();
   }
 
@@ -102,6 +105,7 @@ export class EditAdminModalComponent {
     const arrForAdmin: Admin[] = [];
     const entityName = 'AdminUser';
     const id = this.data[0];
+    this.dialogRef.close();
     this.delUpdateService.updateEntity(id, entityName, {
       email,
       username,
@@ -110,10 +114,10 @@ export class EditAdminModalComponent {
     }).subscribe(adminData => {
         arrForAdmin.push({id, email, username});
         this.delUpdateService.passUpdatedItem<Admin[]>(arrForAdmin);
-        this.dialogRef.close();
+        this.modalService.openSuccessDialog(generalConst.updateMsg);
       },
       err => {
-        this.errorRequestMsg = `Даний логін або дана електорнна пошта вже існує, або відбулась інша помилка на сервері`;
+        this.modalService.openErrorDialog(generalConst.errMsgForAdmins);
       }
     );
   }

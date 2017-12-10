@@ -5,6 +5,8 @@ import {TimeTable} from '../timetable-classes/time-table';
 
 import {TimeTableService} from '../timetable-service/time-table.service';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
+import {InfoModalService} from '../../info-modal/info-modal.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-edit-timetable-modal',
@@ -34,7 +36,8 @@ export class EditTimetableModalComponent {
 
   constructor(public dialogRef: MatDialogRef<EditTimetableModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private delUpdateService: UpdateDeleteEntityService,
-              private formBuilder: FormBuilder, private timetableService: TimeTableService) {
+              private formBuilder: FormBuilder, private timetableService: TimeTableService,
+              private modalService: InfoModalService) {
     this.loadGroupsAndSubjects();
     this.createForm();
   }
@@ -118,6 +121,7 @@ export class EditTimetableModalComponent {
         break;
       }
     }
+    this.dialogRef.close();
     this.delUpdateService.updateEntity(timetableId, entityName, {
       group_id,
       subject_id,
@@ -132,11 +136,10 @@ export class EditTimetableModalComponent {
           timeTableItem.subject_id = this.subjectDictionary[timeTableItem.subject_id];
         });
         this.delUpdateService.passUpdatedItem<TimeTable[]>(updatedTimetableResponse);
-        this.dialogRef.close();
+        this.modalService.openSuccessDialog(generalConst.updateMsg);
       },
       (err) => {
-        this.errRequestMsg = `Розклад для такої групи і предмету вже можливо існує, дати розкладу такі вже є,
-        або виникла інша помилка на сервері`;
+        this.modalService.openErrorDialog(generalConst.errMsgForTimeTables);
       }
     );
   }

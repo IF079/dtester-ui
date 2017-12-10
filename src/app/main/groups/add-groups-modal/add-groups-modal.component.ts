@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GroupsService} from '../groups-service/groups.service';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {Group} from '../groups-classes/group';
+import {InfoModalService} from '../../info-modal/info-modal.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-add-groups-modal',
@@ -18,7 +20,6 @@ export class AddGroupsModalComponent implements OnInit {
   specialityValues = [];
   facultyDictionary = {};
   specialityDictionary = {};
-  isGroupAdded = false;
   placeholders = {
     groupName: 'Назва групи',
     facultyName: 'Назва факультету',
@@ -29,11 +30,11 @@ export class AddGroupsModalComponent implements OnInit {
   btnClose = 'Відмінити';
   btnOk = 'Ок';
   btnAdd = 'Додати групу';
-  errRequestMsg: string;
 
   constructor(public dialogRef: MatDialogRef<AddGroupsModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private groupsService: GroupsService,
-              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService) {
+              private formBuilder: FormBuilder, private delUpdateService: UpdateDeleteEntityService,
+              private modalService: InfoModalService) {
     this.createForm();
     this.loadFacultiesAndSpecialities();
   }
@@ -95,6 +96,7 @@ export class AddGroupsModalComponent implements OnInit {
         break;
       }
     }
+    this.dialogRef.close();
     this.groupsService.addGroup({group_name, faculty_id, speciality_id}).subscribe(
       (groupData: Group[]) => {
         groupData.forEach((group) => {
@@ -102,10 +104,10 @@ export class AddGroupsModalComponent implements OnInit {
           group.speciality_id =  this.specialityDictionary[group.speciality_id];
         });
         this.delUpdateService.passInsertedItem<Group[]>(groupData);
-        this.isGroupAdded = true;
-      },
+        this.modalService.openSuccessDialog(generalConst.addMsg);
+     },
       (err) => {
-        this.errRequestMsg = `Проблеми зі з'єднанням на сервері або якась інша помилка`;
+        this.modalService.openErrorDialog(generalConst.errMsgForGroups);
       }
     );
 

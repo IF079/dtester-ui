@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Group} from '../groups-classes/group';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {GroupsService} from '../groups-service/groups.service';
+import {InfoModalService} from '../../info-modal/info-modal.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-edit-groups-modal',
@@ -25,11 +27,11 @@ export class EditGroupsModalComponent {
   specialityValues = [];
   btnEdit = 'Редагувати групу';
   btnClose = 'Відмінити';
-  errRequestMsg: string;
 
   constructor(public dialogRef: MatDialogRef<EditGroupsModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private delUpdateService: UpdateDeleteEntityService,
-              private formBuilder: FormBuilder, private groupsService: GroupsService) {
+              private formBuilder: FormBuilder, private groupsService: GroupsService,
+              private modalService: InfoModalService) {
     this.loadFacultiesAndSpecialities();
     this.createForm();
   }
@@ -90,18 +92,19 @@ export class EditGroupsModalComponent {
         break;
       }
     }
+    this.dialogRef.close();
     this.delUpdateService.updateEntity(groupId, entityName, {group_name, faculty_id, speciality_id}).subscribe(
       (updatedGroupResponse: Group[]) => {
         updatedGroupResponse.forEach((group) => {
             group.faculty_id = this.facultyDictionary[group.faculty_id];
             group.speciality_id =  this.specialityDictionary[group.speciality_id];
         });
-
         this.delUpdateService.passUpdatedItem<Group[]>(updatedGroupResponse);
-        this.dialogRef.close();
+        this.modalService.openSuccessDialog(generalConst.updateMsg);
+
       },
       (err) => {
-        this.errRequestMsg = `Дана група вже існує, або проблеми зі з'єднанням на сервері або якась інша помилка`;
+        this.modalService.openSuccessDialog(generalConst.errorUpdateMsg);
       }
     );
 

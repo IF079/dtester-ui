@@ -16,6 +16,7 @@ import {TestService} from '../test.service';
   styleUrls: ['./test-detail.component.scss']
 })
 export class TestDetailComponent implements OnInit {
+  limit = 100;
   testDetails: TestDetail[];
   testDetail: TestDetail;
   numberOfRecords: number;

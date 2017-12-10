@@ -6,7 +6,8 @@ import {TestDetailService} from '../test-detail.service';
 import {InfoModalService} from '../../../info-modal/info-modal.service';
 import {TestDetail} from '../test-detail';
 import {TestDetailValidator} from '../test-detail-validator';
-import { generalConst } from '../../../shared/constants/general-constants';
+import {generalConst} from '../../../shared/constants/general-constants';
+import {UpdateDeleteEntityService} from '../../../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-add-test-detail-modal',
@@ -29,13 +30,12 @@ export class AddTestDetailModalComponent {
   errorTasksAmount = 'Перевищена кількість запитань!';
   errorOnlyDigits = 'Букви та символи недопустимі!';
 
-  constructor(
-    private testDetailService: TestDetailService,
-    private formBuilder: FormBuilder,
-    private modalService: InfoModalService,
-    public dialogRef: MatDialogRef<AddTestDetailModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
+  constructor(private testDetailService: TestDetailService,
+              private formBuilder: FormBuilder,
+              private modalService: InfoModalService,
+              private delUpdateService: UpdateDeleteEntityService,
+              public dialogRef: MatDialogRef<AddTestDetailModalComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = formBuilder.group({
       'level': [null, [Validators.required, TestDetailValidator.createLevelValidator(this.existLevels)]],
       'tasks': [null, [TestDetailValidator.createTasksValidator(this.nowTasks, this.maxTasks), Validators.pattern(/^\d{1,3}$/)]],
@@ -51,11 +51,11 @@ export class AddTestDetailModalComponent {
       tasks: testDetail.tasks || 0,
       rate: testDetail.rate
     }).subscribe(testDetailResp => {
-      if (testDetailResp[0]) {
-        this.modalService.openSuccessDialog(generalConst.addMsg);
-      } else {
-        this.modalService.openErrorDialog(generalConst.errorWithDisplayData);
-      }
+      delete testDetailResp[0].test_id;
+      this.delUpdateService.passInsertedItem(testDetailResp);
+      this.modalService.openSuccessDialog(generalConst.addMsg);
+    }, () => {
+      this.modalService.openErrorDialog(generalConst.errorWithDisplayData);
     });
   }
 

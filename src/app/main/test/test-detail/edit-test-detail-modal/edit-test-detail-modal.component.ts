@@ -7,15 +7,17 @@ import {InfoModalService} from '../../../info-modal/info-modal.service';
 import {TestDetail} from '../test-detail';
 import {TestService} from '../../test.service';
 import {TestDetailValidator} from '../test-detail-validator';
-import { UpdateDeleteEntityService } from '../../../shared/services/update-delete-entity-service/update-delete-entity.service';
-import { generalConst } from '../../../shared/constants/general-constants';
+import {UpdateDeleteEntityService} from '../../../shared/services/update-delete-entity-service/update-delete-entity.service';
+import {generalConst} from '../../../shared/constants/general-constants';
+import {TestDto} from '../../test-dto';
+import {TestDetailDto} from '../test-detail-dto';
 
 @Component({
   selector: 'dtest-edit-test-detail-modal',
   templateUrl: './edit-test-detail-modal.component.html',
   styleUrls: ['../add-test-detail-modal/add-test-detail-modal.component.scss']
 })
-export class EditTestDetailModalComponent implements OnInit{
+export class EditTestDetailModalComponent implements OnInit {
   levels = this.setArrayOfDigit(10);
   placeholders = {
     level: 'Рівень',
@@ -32,15 +34,13 @@ export class EditTestDetailModalComponent implements OnInit{
   errorTasksAmount = 'Перевищена кількість запитань!';
   errorOnlyDigits = 'Букви та символи недопустимі!';
 
-  constructor(
-    private testDetailService: TestDetailService,
-    private testService: TestService,
-    private formBuilder: FormBuilder,
-    private modalService: InfoModalService,
-    public dialogRef: MatDialogRef<EditTestDetailModalComponent>,
-    private delUpdateService: UpdateDeleteEntityService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
+  constructor(private testDetailService: TestDetailService,
+              private testService: TestService,
+              private formBuilder: FormBuilder,
+              private modalService: InfoModalService,
+              public dialogRef: MatDialogRef<EditTestDetailModalComponent>,
+              private delUpdateService: UpdateDeleteEntityService,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
     this.getMaxAndCurentTypesValue();
     this.form = formBuilder.group({
       'level': [null, Validators.required],
@@ -63,21 +63,21 @@ export class EditTestDetailModalComponent implements OnInit{
     const rate = +this.form.get('rate').value;
     this.dialogRef.close();
     if (!(
-      level === +this.data[1] &&
-      tasks === +this.data[2] &&
-      rate === +this.data[3]
-    )) {
+        level === +this.data[1] &&
+        tasks === +this.data[2] &&
+        rate === +this.data[3]
+      )) {
       this.delUpdateService.updateEntity(id, entityName, {
         test_id,
         level,
         tasks,
         rate
-      }).subscribe(testDetailResp => {
-        if (testDetailResp[0]) {
-          this.modalService.openSuccessDialog(generalConst.updateMsg);
-        } else {
-          this.modalService.openErrorDialog(generalConst.errorMsg);
-        }
+      }).subscribe((testDetailResp: TestDetailDto[]) => {
+        delete testDetailResp[0].test_id;
+        this.delUpdateService.passUpdatedItem<TestDetailDto[]>(testDetailResp);
+        this.modalService.openSuccessDialog(generalConst.updateMsg);
+      }, () => {
+        this.modalService.openErrorDialog(generalConst.errorMsg);
       });
     }
   }
@@ -89,7 +89,9 @@ export class EditTestDetailModalComponent implements OnInit{
         const levels = [];
         let now = 0;
         testDetails.forEach(td => {
-          if (td.id !== this.data[0]) { now += +td.tasks; }
+          if (td.id !== this.data[0]) {
+            now += +td.tasks;
+          }
           levels.push('' + td.level);
         });
         this.nowTasks = now;
@@ -98,7 +100,7 @@ export class EditTestDetailModalComponent implements OnInit{
           this.maxTasks = test[0].tasks;
           this.form.get('level').setValidators(TestDetailValidator.createEditLevelValidator(this.data[1], this.existLevels));
           this.form.get('tasks').setValidators([TestDetailValidator.createTasksValidator(this.nowTasks, this.maxTasks),
-                                                Validators.pattern(/^\d{1,3}$/)]);
+            Validators.pattern(/^\d{1,3}$/)]);
         });
       });
     });

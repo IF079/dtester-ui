@@ -23,6 +23,7 @@ import {TestDto} from '../test/test-dto';
 import {EditQuestionModalComponent} from '../test/question/edit-question-modal/edit-question-modal.component';
 import {QuestionDto} from '../test/question/question-dto';
 import {EditTestDetailModalComponent} from '../test/test-detail/edit-test-detail-modal/edit-test-detail-modal.component';
+import {TestDetailDto} from '../test/test-detail/test-detail-dto';
 
 
 @Component({
@@ -38,7 +39,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   @Input() columnsArray: string[];
   @Input() detailUrl: string;
   @Input() pageSize: number;
-  @Input() buttons: [{templateClass: string, link: string}];
+  @Input() buttons: [{ templateClass: string, link: string }];
 
   componentModalsDictionary = {
     Subject: EditSubjectModalComponent,
@@ -67,6 +68,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
       }
     }
   }
+
   insertItemInDom() {
     this.delUpdateService.itemInserted$.subscribe((data) => {
       if (!this.pageSize || this.tableRowArr.length < this.pageSize) {
@@ -75,11 +77,18 @@ export class EntityTableComponent implements OnChanges, OnInit {
     });
   }
 
+  updateTestDetailInDom() {
+    this.delUpdateService.itemUpdated$.subscribe((testDetailData: TestDetailDto[]) => {
+      this.updateTableRowArr<TestDetailDto[]>(testDetailData, 'id');
+    });
+  }
+
   updateTestInDom() {
     this.delUpdateService.itemUpdated$.subscribe((testData: TestDto[]) => {
       this.updateTableRowArr<TestDto[]>(testData, 'test_id');
     });
   }
+
   updateQuestionInDom() {
     this.delUpdateService.itemUpdated$.subscribe((questionData: QuestionDto[]) => {
       this.updateTableRowArr<QuestionDto[]>(questionData, 'question_id');
@@ -170,6 +179,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.updateStudentInDom();
     this.updateTestInDom();
     this.updateQuestionInDom();
+    this.updateTestDetailInDom();
     this.insertItemInDom();
   }
 

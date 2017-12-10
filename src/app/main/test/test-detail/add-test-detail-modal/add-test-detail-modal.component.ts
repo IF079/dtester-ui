@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {TestDetailService} from '../test-detail.service';
 import {InfoModalService} from '../../../info-modal/info-modal.service';
@@ -74,5 +74,4 @@ export class AddTestDetailModalComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }

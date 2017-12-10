@@ -6,7 +6,6 @@ import 'rxjs/add/observable/forkJoin';
 import {Answer} from './answer';
 import {AnswerDto} from './answer-dto';
 import {RecordsCount} from '../../shared/entities/recordsCount';
-import {LoggerFactory} from '../../../shared/logger/logger.factory';
 import {url} from '../../shared/constants/url-constants';
 
 @Injectable()
@@ -41,5 +40,3 @@ export class AnswerService {
     return this.http.post(`${url.answerUrl}${url.insertData}`, new AnswerDto(answer));
   }
 }
-
-const log = LoggerFactory.create(AnswerService);

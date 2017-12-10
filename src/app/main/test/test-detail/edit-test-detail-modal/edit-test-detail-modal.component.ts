@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {TestDetailService} from '../test-detail.service';
 import {InfoModalService} from '../../../info-modal/info-modal.service';
@@ -9,7 +9,6 @@ import {TestService} from '../../test.service';
 import {TestDetailValidator} from '../test-detail-validator';
 import {UpdateDeleteEntityService} from '../../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {generalConst} from '../../../shared/constants/general-constants';
-import {TestDto} from '../../test-dto';
 import {TestDetailDto} from '../test-detail-dto';
 
 @Component({
@@ -125,5 +124,4 @@ export class EditTestDetailModalComponent implements OnInit {
   ngOnInit() {
     this.dialogRef.updateSize('400px');
   }
-
 }

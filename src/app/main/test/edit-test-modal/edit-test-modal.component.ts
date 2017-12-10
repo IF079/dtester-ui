@@ -16,7 +16,6 @@ import {TestDto} from '../test-dto';
 })
 export class EditTestModalComponent implements OnInit {
   attempts = this.setArrayOfDigit(10);
-  viewHeadersArray = ['Тема', 'Завдань', 'Час', 'Спроби', 'Статус'];
   title = 'Редагувати тест';
   status = [{value: 1, text: 'Доступний'}, {value: 0, text: 'Недоступний'}];
   placeholders = {
@@ -110,5 +109,4 @@ export class EditTestModalComponent implements OnInit {
   ngOnInit() {
     this.dialogRef.updateSize('400px');
   }
-
 }

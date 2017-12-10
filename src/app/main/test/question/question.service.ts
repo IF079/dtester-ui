@@ -38,5 +38,4 @@ export class QuestionService {
       this.http.get<RecordsCount>(`${url.questionUrl}${url.countRecordsByTest}/${testId}`)
     );
   }
-
 }

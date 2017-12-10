@@ -43,7 +43,8 @@ describe('Admin Service', () => {
       done();
     });
 
-    const getAdminsRange = httpMock.expectOne(`${url.adminUser}${url.getRecordsRange}/${mockedForPagination.limit}/${mockedForPagination.offset}`);
+    const getAdminsRange = httpMock.expectOne(`${url.adminUser}${url.getRecordsRange}/
+    ${mockedForPagination.limit}/${mockedForPagination.offset}`);
     const getAdminsNumberOfRecords = httpMock.expectOne(`${url.adminUser}${url.getCount}`);
     // arrange
     getAdminsRange.flush(mockedResponse.allAdmins.slice(mockedForPagination.offset, mockedForPagination.limit));

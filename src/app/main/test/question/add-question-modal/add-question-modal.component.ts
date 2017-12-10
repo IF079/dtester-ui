@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {QuestionService} from '../question.service';
 import {InfoModalService} from '../../../info-modal/info-modal.service';
@@ -15,8 +15,6 @@ import {generalConst} from '../../../shared/constants/general-constants';
   styleUrls: ['./add-question-modal.component.scss']
 })
 export class QuestionAddModalComponent {
-
-  tests = this.data.tests;
   placeholders = {
     testName: 'Тест',
     questionText: 'Запитання',
@@ -37,15 +35,13 @@ export class QuestionAddModalComponent {
   errorEmptyInput = 'Заповніть поле!';
   errorQuestionText = 'Поле повинно бути заповнене, та займати до 250 символів!';
 
-  constructor(
-    private questionService: QuestionService,
-    private answerService: AnswerService,
-    private formBuilder: FormBuilder,
-    private modalService: InfoModalService,
-    private delUpdateService: UpdateDeleteEntityService,
-    public dialogRef: MatDialogRef<QuestionAddModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
+  constructor(private questionService: QuestionService,
+              private answerService: AnswerService,
+              private formBuilder: FormBuilder,
+              private modalService: InfoModalService,
+              private delUpdateService: UpdateDeleteEntityService,
+              public dialogRef: MatDialogRef<QuestionAddModalComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = formBuilder.group({
       'questionText': [null, [Validators.required, Validators.maxLength(250)]],
       'level': [null, Validators.required],
@@ -75,14 +71,12 @@ export class QuestionAddModalComponent {
       questionData[0].type = this.types.find(item => item.value === +questionData[0].type).text;
       this.delUpdateService.passInsertedItem(questionData);
       this.modalService.openSuccessDialog(generalConst.addMsg);
-      }, () => {
+    }, () => {
       this.modalService.openErrorDialog(generalConst.errorMsg);
     });
-    }
-
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }

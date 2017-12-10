@@ -59,7 +59,8 @@ describe('Delete Update Service Service', () => {
 
   it('should give response of group id, group name, speciality id, faculty id', (done) => {
 
-    updateDeleteEntityService.updateEntity(mockedForRequest.id, mockedForRequest.entityName, mockedForRequest.updateData).subscribe((resp) => {
+    updateDeleteEntityService.updateEntity(mockedForRequest.id, mockedForRequest.entityName, mockedForRequest.updateData)
+      .subscribe((resp) => {
       expect(resp[0].group_id).toEqual(mockedResponse.afterUpdate[0].group_id);
       expect(resp[0].group_name).toEqual(mockedResponse.afterUpdate[0].group_name);
       expect(resp[0].speciality_id).toEqual(mockedResponse.afterUpdate[0].speciality_id);

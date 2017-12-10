@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Location} from '@angular/common';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog, PageEvent} from '@angular/material';
 
 import {QuestionService} from './question.service';
 import {Question} from './question';
-import {generalConst} from '../../shared/constants/general-constants';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {QuestionAddModalComponent} from './add-question-modal/add-question-modal.component';
 
@@ -83,5 +82,4 @@ export class QuestionComponent implements OnInit {
       this.getQuestions();
     });
   }
-
 }

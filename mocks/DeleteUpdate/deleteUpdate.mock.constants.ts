@@ -22,7 +22,7 @@ export const mockedResponse = {
   afterDelete: {
     response: 'ok'
   },
-  afterUpdate:[{
+  afterUpdate: [{
     group_id: 3,
     group_name: 'Kim-17-8',
     speciality_id: 10,

@@ -6,7 +6,6 @@ import {MatDialog} from '@angular/material';
 import {TestDetailService} from './test-detail.service';
 import {TestDetail} from './test-detail';
 import {generalConst} from '../../shared/constants/general-constants';
-import {InfoModalService} from '../../info-modal/info-modal.service';
 import {AddTestDetailModalComponent} from './add-test-detail-modal/add-test-detail-modal.component';
 import {TestService} from '../test.service';
 
@@ -18,7 +17,6 @@ import {TestService} from '../test.service';
 export class TestDetailComponent implements OnInit {
   limit = 100;
   testDetails: TestDetail[];
-  testDetail: TestDetail;
   numberOfRecords: number;
   testId: number;
   nowTasks = 0;
@@ -33,7 +31,6 @@ export class TestDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private dialog: MatDialog,
-    private infoModal: InfoModalService
   ) {
   }
 
@@ -88,5 +85,4 @@ export class TestDetailComponent implements OnInit {
       this.getTestDetails();
     });
   }
-
 }

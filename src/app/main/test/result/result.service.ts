@@ -34,5 +34,4 @@ export class ResultService {
         .map(testDtoArr => testDtoArr.map(testDto => new Test(testDto)))
     );
   }
-
 }

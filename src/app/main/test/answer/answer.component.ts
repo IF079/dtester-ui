@@ -73,5 +73,4 @@ export class AnswerComponent implements OnInit {
       this.getAnswers();
     });
   }
-
 }

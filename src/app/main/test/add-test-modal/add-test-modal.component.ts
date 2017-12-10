@@ -18,7 +18,6 @@ export class TestModalComponent {
   tasks = this.setArrayOfDigit(30);
   attempts = this.setArrayOfDigit(10);
   title = 'Додати тест';
-  viewHeadersArray = ['Тема', 'Завдань', 'Час', 'Спроби', 'Статус'];
   status = [{value: 1, text: 'Доступний'}, {value: 0, text: 'Недоступний'}];
   placeholders = {
     testName: 'Назва',

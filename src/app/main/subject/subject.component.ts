@@ -1,19 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog, PageEvent} from '@angular/material';
 
 import {AddSubjectModalComponent} from './add-subject-modal/add-subject-modal.component';
 import {SubjectService} from './subject-service/subject.service';
 import {Subject} from './subject-classes/subject';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
-import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-subjects',
   templateUrl: './subject.component.html',
-  styleUrls: ['./subject.component.scss'],
-  providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
+  styleUrls: ['./subject.component.scss']
 })
 
 export class SubjectComponent implements OnInit {
@@ -65,5 +62,3 @@ export class SubjectComponent implements OnInit {
     this.getSubjects();
   }
 }
-
-const log = LoggerFactory.create(SubjectComponent);

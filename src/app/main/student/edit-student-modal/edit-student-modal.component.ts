@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
-import {StudentService} from '../../student/student-service/student.service';
+import {StudentService} from '../student-service/student.service';
 import {Student} from '../student-classes/student';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
@@ -162,5 +162,4 @@ export class EditStudentModalComponent implements OnInit {
   ngOnInit() {
     this.dialogRef.updateSize('800px');
   }
-
 }

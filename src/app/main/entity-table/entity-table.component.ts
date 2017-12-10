@@ -150,7 +150,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.entityArray.currentValue) {
+    if (changes.entityArray && changes.entityArray.currentValue) {
       const localArray = [];
       for (const item of this.entityArray) {
         localArray.push(Object.values(item));

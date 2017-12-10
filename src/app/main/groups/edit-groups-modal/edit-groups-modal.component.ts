@@ -107,6 +107,5 @@ export class EditGroupsModalComponent {
         this.modalService.openSuccessDialog(generalConst.errorUpdateMsg);
       }
     );
-
   }
 }

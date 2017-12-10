@@ -1,11 +1,11 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 import {SubjectDto} from '../subject-classes/subject-dto';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {generalConst} from '../../shared/constants/general-constants';
-
 
 @Component({
   selector: 'dtest-edit-subject-modal',

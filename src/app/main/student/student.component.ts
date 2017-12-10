@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {Location} from '@angular/common';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
 import {StudentService} from './student-service/student.service';
 import {GroupsService} from '../groups/groups-service/groups.service';
 import {Student} from './student-classes/student';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {StudentAddModalComponent} from './add-student-modal/add-modal.component';
-import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {InfoModalService} from '../info-modal/info-modal.service';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 
@@ -16,7 +14,6 @@ import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity
   selector: 'dtest-students',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.scss'],
-  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
 
 export class StudentComponent implements OnInit {
@@ -120,5 +117,3 @@ export class StudentComponent implements OnInit {
     });
   }
 }
-
-const log = LoggerFactory.create(StudentComponent);

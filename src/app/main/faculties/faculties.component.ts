@@ -1,19 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog, PageEvent} from '@angular/material';
 
 import {FacultyModalComponent} from './add-faculty-modal/add-faculty-modal.component';
 import {FacultyService} from './faculty.service';
 import {Faculty} from './faculty';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
-import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-faculties',
   templateUrl: './faculties.component.html',
-  styleUrls: ['./faculties.component.scss'],
-  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
+  styleUrls: ['./faculties.component.scss']
 })
 
 export class FacultiesComponent implements OnInit {
@@ -73,5 +70,3 @@ export class FacultiesComponent implements OnInit {
     this.getFacultiesRange();
   }
 }
-
-const log = LoggerFactory.create(FacultiesComponent);

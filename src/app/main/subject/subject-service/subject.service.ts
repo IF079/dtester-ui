@@ -41,6 +41,5 @@ export class SubjectService {
   getQuestionIdsByLevelRand(id: number, level: any, tasks: any): Observable<any> {
     return this.http.post(`${url.question}${url.getQuestionIdsByLevelRand}`, id, level);
   }
-
 }
 

@@ -2,12 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
-import {Subject} from 'rxjs/Subject';
 
 import {Student} from '../student-classes/student';
 import {StudentDto, OtherDtoInfo} from '../student-classes/student-dto';
 import {RecordsCount} from '../../shared/entities/recordsCount';
-import {LoggerFactory} from '../../../shared/logger/logger.factory';
 import {url} from '../../shared/constants/url-constants';
 
 @Injectable()
@@ -16,8 +14,6 @@ export class StudentService {
 
   constructor(private http: HttpClient) {
   }
-
-
 
   getStudentsRange(limit: number, offset: number): Observable<[Student[], RecordsCount]> {
     return Observable.forkJoin(
@@ -58,5 +54,3 @@ export class StudentService {
     return this.http.get(`${url.adminUser}${url.checkEmailAddress}/${email}`);
   }
 }
-
-const log = LoggerFactory.create(StudentService);

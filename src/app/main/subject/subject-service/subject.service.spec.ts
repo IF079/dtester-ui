@@ -1,5 +1,6 @@
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {inject, TestBed} from '@angular/core/testing';
+
 import {
   mockedForInsert, mockedForPagination,  mockedNumberOfRecordsWithLimit,
   mockedResponse
@@ -40,7 +41,8 @@ describe('Subject Service', () => {
       expect(res[1].numberOfRecords).toEqual(mockedNumberOfRecordsWithLimit.numberOfRecords);
     });
 
-    const getSubjectsRange = httpMock.expectOne(`${url.subjectUrl}${url.getRecordsRange}/${mockedForPagination.limit}/${mockedForPagination.offset}`);
+    const getSubjectsRange = httpMock.expectOne(`${url.subjectUrl}${url.getRecordsRange}
+    /${mockedForPagination.limit}/${mockedForPagination.offset}`);
     const getSubjectsNumberOfRecords = httpMock.expectOne(`${url.subjectUrl}${url.getCount}`);
     // arrange
     getSubjectsRange.flush(mockedResponse.allSubjects.slice(mockedForPagination.offset, mockedForPagination.limit));

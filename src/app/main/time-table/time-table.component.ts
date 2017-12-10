@@ -1,18 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog, PageEvent} from '@angular/material';
 
 import {TimeTableService} from './timetable-service/time-table.service';
 import {TimeTable} from './timetable-classes/time-table';
 import {generalConst} from '../shared/constants/general-constants';
-import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {AddTimeTableModalComponent} from './add-timetable-modal/add-time-table-modal.component';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
   selector: 'dtest-time-table',
   templateUrl: './time-table.component.html',
-  styleUrls: ['./time-table.component.scss'],
-  providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
+  styleUrls: ['./time-table.component.scss']
 })
 
 export class TimeTableComponent implements OnInit {

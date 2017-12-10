@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -14,7 +14,7 @@ import {generalConst} from '../../shared/constants/general-constants';
   styleUrls: ['./add-time-table-modal.component.scss']
 })
 
-export class AddTimeTableModalComponent implements OnInit {
+export class AddTimeTableModalComponent {
   timeTableForm: FormGroup;
   subjectValues = [];
   groupValues = [];
@@ -90,9 +90,6 @@ export class AddTimeTableModalComponent implements OnInit {
     return this.timeTableForm.valid;
   }
 
-  ngOnInit() {
-  }
-
   addTimeTable() {
     const groupName = this.groupName.value;
     const subjectName = this.subjectName.value;
@@ -132,7 +129,5 @@ export class AddTimeTableModalComponent implements OnInit {
 
       }
     );
-
-
   }
 }

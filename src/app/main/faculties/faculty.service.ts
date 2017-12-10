@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
-import {Subject} from 'rxjs/Subject';
 
 import {Faculty} from './faculty';
 import {RecordsCount} from '../shared/entities/recordsCount';

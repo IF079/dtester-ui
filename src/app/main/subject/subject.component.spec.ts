@@ -1,13 +1,13 @@
-import {TestBed, ComponentFixture, async, inject} from '@angular/core/testing';
+import {TestBed, ComponentFixture, async} from '@angular/core/testing';
 import {MainMaterialModule} from '../main-material.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {By} from '@angular/platform-browser';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 import 'rxjs/add/observable/of';
+
 import {MockSubjectService} from '../../../../mocks/subject/subject.service.mock';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
-
-import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {SubjectComponent} from './subject.component';
 import {SubjectService} from './subject-service/subject.service';
 

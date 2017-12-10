@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -14,7 +14,7 @@ import {generalConst} from '../../shared/constants/general-constants';
   styleUrls: ['./add-groups-modal.component.scss']
 })
 
-export class AddGroupsModalComponent implements OnInit {
+export class AddGroupsModalComponent {
   groupForm: FormGroup;
   facultyValues = [];
   specialityValues = [];
@@ -25,10 +25,8 @@ export class AddGroupsModalComponent implements OnInit {
     facultyName: 'Назва факультету',
     specialityName: 'Назва спеціальності'
   };
-  successMsg = 'Групу додано успішно. Оновіть сторінку, щоб побачити зміни.';
   errorRequired = 'Заповніть поле!';
   btnClose = 'Відмінити';
-  btnOk = 'Ок';
   btnAdd = 'Додати групу';
 
   constructor(public dialogRef: MatDialogRef<AddGroupsModalComponent>,
@@ -73,9 +71,6 @@ export class AddGroupsModalComponent implements OnInit {
     return this.groupForm.valid;
   }
 
-  ngOnInit() {
-  }
-
   addGroup() {
     const group_name = this.groupName.value;
     const facultyName = this.facultyName.value;
@@ -110,7 +105,5 @@ export class AddGroupsModalComponent implements OnInit {
         this.modalService.openErrorDialog(generalConst.errMsgForGroups);
       }
     );
-
-
   }
 }

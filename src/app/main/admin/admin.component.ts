@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+import {MatDialog, PageEvent} from '@angular/material';
 
 import {Admin} from './admin-classes/Admin';
 import {AdminService} from './admin-services/admin.service';
-import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {generalConst} from '../shared/constants/general-constants';
 import {AddAdminModalComponent} from './add-admin-modal/add-admin-modal.component';
@@ -12,7 +11,6 @@ import {AddAdminModalComponent} from './add-admin-modal/add-admin-modal.componen
   selector: 'dtest-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
-  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
 
 export class AdminComponent implements OnInit {

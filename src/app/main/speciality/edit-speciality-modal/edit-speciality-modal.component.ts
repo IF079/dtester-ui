@@ -1,11 +1,8 @@
-import {Component, Inject} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import {Component} from '@angular/core';
+import {Validators} from '@angular/forms';
 
 import {SpecialityDto} from '../speciality-classes/speciality-dto';
 import {SpecialityModalComponent} from '../add-speciality-modal/add-speciality-modal.component';
-import {SpecialityService} from '../speciality-service/speciality.service';
-import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({

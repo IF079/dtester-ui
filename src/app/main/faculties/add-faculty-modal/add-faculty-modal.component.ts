@@ -46,6 +46,6 @@ export class FacultyModalComponent {
     (facultyData) => {
       this.delUpdateService.passInsertedItem<Faculty[]>(facultyData);
       this.modalService.openSuccessDialog(generalConst.addMsg);
-    }, () => this.modalService.openErrorDialog(generalConst.errorMsg));
+    }, () => this.modalService.openErrorDialog(generalConst.errorMsgForFaculty));
   }
 }

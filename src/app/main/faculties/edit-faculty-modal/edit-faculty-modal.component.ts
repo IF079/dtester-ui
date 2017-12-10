@@ -49,7 +49,7 @@ export class EditFacultyModalComponent {
         this.delUpdateService.passUpdatedItem<Faculty[]>(facultyData);
       this.modalService.openSuccessDialog(generalConst.updateMsg);
       }, () => {
-      this.modalService.openErrorDialog(generalConst.errorMsg);
+      this.modalService.openErrorDialog(generalConst.errorUpdateMsg);
       }
     );
   }

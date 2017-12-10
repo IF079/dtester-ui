@@ -2,11 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+
 import {RecordsCount} from '../../shared/entities/recordsCount';
-import {LoggerFactory} from '../../../shared/logger/logger.factory';
 import {url} from '../../shared/constants/url-constants';
 import {Admin} from '../admin-classes/Admin';
-import {Faculty} from '../../faculties/faculty';
 
 @Injectable()
 

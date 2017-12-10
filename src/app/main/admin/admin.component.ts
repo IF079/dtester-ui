@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatPaginatorIntl, PageEvent} from '@angular/material';
+
 import {Admin} from './admin-classes/Admin';
 import {AdminService} from './admin-services/admin.service';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {MatPaginatorIntlUkr} from '../shared/entities/custom-mat-paginator';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {generalConst} from '../shared/constants/general-constants';
@@ -46,7 +46,6 @@ export class AdminComponent implements OnInit {
 
   getAdmins() {
     this.adminService.getAdminsRange(this.limit, this.offset).subscribe(data => {
-      console.log(data[0]);
         this.admins = data[0].map(admin => ({
           id: admin.id,
           username: admin.username,
@@ -65,11 +64,7 @@ export class AdminComponent implements OnInit {
     this.getAdmins();
   }
 
-
   ngOnInit() {
-
     this.getAdmins();
   }
 }
-
-const log = LoggerFactory.create(AdminComponent);

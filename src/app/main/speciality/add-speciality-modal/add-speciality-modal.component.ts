@@ -51,7 +51,7 @@ export class SpecialityModalComponent {
       this.modalService.openSuccessDialog(generalConst.addMsg);
     },
       () => {
-        this.modalService.openErrorDialog(generalConst.errorMsg);
+        this.modalService.openErrorDialog(generalConst.errorMsgForSpeciality);
       });
   }
 }

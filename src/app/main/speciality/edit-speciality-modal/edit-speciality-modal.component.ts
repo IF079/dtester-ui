@@ -37,7 +37,7 @@ export class EditSpecialityModalComponent extends SpecialityModalComponent {
         this.modalService.openSuccessDialog(generalConst.updateMsg);
       },
       () => {
-        this.modalService.openErrorDialog(generalConst.errorMsg);
+        this.modalService.openErrorDialog(generalConst.errorUpdateMsg);
       }
     );
   }

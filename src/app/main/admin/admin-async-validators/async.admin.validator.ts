@@ -1,6 +1,6 @@
 import {AbstractControl} from '@angular/forms';
-import {AdminService} from '../admin-services/admin.service';
 
+import {AdminService} from '../admin-services/admin.service';
 
 export class AsyncUsernameValidator {
   static createValidator(adminService: AdminService) {

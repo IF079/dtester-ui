@@ -5,8 +5,6 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {AdminService} from '../admin-services/admin.service';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {Admin} from '../admin-classes/Admin';
-import {AsyncEmailValidator, AsyncUsernameValidator} from '../admin-async-validators/async.admin.validator';
-import {SubjectDto} from '../../subject/subject-classes/subject-dto';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {generalConst} from '../../shared/constants/general-constants';
 
@@ -20,8 +18,6 @@ import {generalConst} from '../../shared/constants/general-constants';
 export class EditAdminModalComponent {
   passwordVisible = false;
   form: FormGroup;
-  successMsg = 'Адміністратора додано успішно. Оновіть сторінку, щоб побачити зміни.';
-  isAdminAdded = false;
   placeholders = {
     username: 'Логін',
     email: 'Поштова скринька',
@@ -31,7 +27,6 @@ export class EditAdminModalComponent {
   editBtn = 'Редагувати адміністратора';
   errorRequired = 'Заповніть поле!';
   btnClose = 'Відмінити';
-  btnOk = 'Ок';
   errorRequestMsg: string;
   errorInvalidPassword = 'Пароль повинен займати 8-20 знаків (букви та цифри обов\'язкові)!';
   errorInvalidPasswordConfirm = 'Паролі не збігаються!';

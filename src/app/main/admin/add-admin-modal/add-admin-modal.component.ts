@@ -6,7 +6,6 @@ import {AdminService} from '../admin-services/admin.service';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {Admin} from '../admin-classes/Admin';
 import {AsyncEmailValidator, AsyncUsernameValidator} from '../admin-async-validators/async.admin.validator';
-import {SubjectDto} from '../../subject/subject-classes/subject-dto';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {generalConst} from '../../shared/constants/general-constants';
 
@@ -101,7 +100,6 @@ export class AddAdminModalComponent {
     const arrForAdmin = [];
     this.dialogRef.close();
     this.adminService.addAdmin({email, username, password, password_confirm}).subscribe(adminData => {
-        console.log(adminData);
         arrForAdmin.push(adminData);
         this.delUpdateService.passInsertedItem<Admin[]>(arrForAdmin);
         this.modalService.openSuccessDialog(generalConst.addMsg);

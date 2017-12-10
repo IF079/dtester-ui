@@ -24,6 +24,8 @@ import {EditQuestionModalComponent} from '../test/question/edit-question-modal/e
 import {QuestionDto} from '../test/question/question-dto';
 import {EditTestDetailModalComponent} from '../test/test-detail/edit-test-detail-modal/edit-test-detail-modal.component';
 import {TestDetailDto} from '../test/test-detail/test-detail-dto';
+import {EditAnswerModalComponent} from '../test/answer/edit-answer-modal/edit-answer-modal.component';
+import {Answer} from '../test/answer/answer';
 
 
 @Component({
@@ -51,7 +53,8 @@ export class EntityTableComponent implements OnChanges, OnInit {
     Test: EditTestModalComponent,
     AdminUser: EditAdminModalComponent,
     Question: EditQuestionModalComponent,
-    TestDetail: EditTestDetailModalComponent
+    TestDetail: EditTestDetailModalComponent,
+    Answer: EditAnswerModalComponent
   };
 
   constructor(public dialog: MatDialog,
@@ -74,6 +77,12 @@ export class EntityTableComponent implements OnChanges, OnInit {
       if (!this.pageSize || this.tableRowArr.length < this.pageSize) {
         this.tableRowArr.push(Object.values(data[0]));
       }
+    });
+  }
+
+  updateAnswerInDom() {
+    this.delUpdateService.itemUpdated$.subscribe((answerData: Answer[]) => {
+      this.updateTableRowArr<Answer[]>(answerData, 'answer_id');
     });
   }
 
@@ -180,6 +189,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
     this.updateTestInDom();
     this.updateQuestionInDom();
     this.updateTestDetailInDom();
+    this.updateAnswerInDom();
     this.insertItemInDom();
   }
 

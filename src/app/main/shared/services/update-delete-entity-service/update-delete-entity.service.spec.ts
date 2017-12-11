@@ -7,7 +7,7 @@ import {Group} from '../../../groups/groups-classes/group';
 import {url} from '../../constants/url-constants';
 import {UpdateDeleteEntityService} from './update-delete-entity.service';
 
-describe('Delete Update Service Service', () => {
+describe('Delete Update Entity Service', () => {
   let httpMock: HttpTestingController;
   let updateDeleteEntityService: UpdateDeleteEntityService;
 
@@ -57,7 +57,7 @@ describe('Delete Update Service Service', () => {
     httpMock.verify();
   });
 
-  it('should give response of group id, group name, speciality id, faculty id', (done) => {
+  it('should give response of group id, group name, speciality id, faculty id after update', (done) => {
 
     updateDeleteEntityService.updateEntity(mockedForRequest.id, mockedForRequest.entityName, mockedForRequest.updateData)
       .subscribe((resp) => {

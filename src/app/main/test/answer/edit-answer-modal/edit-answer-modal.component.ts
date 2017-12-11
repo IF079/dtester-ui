@@ -37,9 +37,14 @@ export class EditAnswerModalComponent {
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.currentAnswer = data;
     this.createForm();
+<<<<<<< HEAD
     const currentTrueAnswer = data[1] ? this.trueAnswers.find(trueAnswer => trueAnswer.text === data[1]).value : null;
     this.form.patchValue({
       trueAnswer: currentTrueAnswer,
+=======
+    this.form.patchValue({
+      trueAnswer: data[1]  === 'Правильна' ? 1 : 0,
+>>>>>>> spintest
       answerText: data[2],
       attachment: data[3]
     });
@@ -67,12 +72,9 @@ export class EditAnswerModalComponent {
     const true_answer = this.form.get('trueAnswer').value;
     const answer_text = this.form.get('answerText').value;
     const attachment = this.attachment;
-    const typeOfAnswer = this.currentAnswer[1] ?
-      this.trueAnswers.find(trueAnswer => trueAnswer.text === this.currentAnswer[1]).value : null;
     if (!(
-        true_answer === typeOfAnswer &&
-        answer_text === this.currentAnswer[2] &&
-        attachment === this.currentAnswer[3]
+        true_answer === (this.currentAnswer[1] === 'Правильна' ? 1 : 0) &&
+        answer_text === this.currentAnswer[2]
       )) {
       this.answerService.getAnswer(this.currentAnswer[0]).subscribe(response => {
         const answer_id = +response[0].answerId;

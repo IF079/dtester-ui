@@ -53,6 +53,7 @@ const mainRoutes = [
             {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
         ], canActivate: [StudentGuard]
         },
+        {path: '', redirectTo: '/login', pathMatch: 'full'}
       ]
     }
   ]

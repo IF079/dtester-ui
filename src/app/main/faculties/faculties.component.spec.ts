@@ -6,7 +6,7 @@ import {MainMaterialModule} from '../main-material.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {FacultyService} from './faculty.service';
 import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
-import {FacultyServiceMock} from './faculty.service.mock';
+import {FacultyServiceMock} from '../../../../mocks/faculty/faculty.service.mock';
 
 describe('FacultiesComponent', () => {
 

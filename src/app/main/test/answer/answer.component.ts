@@ -7,6 +7,7 @@ import {AnswerService} from './answer.service';
 import {Answer} from './answer';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {AddAnswerModalComponent} from './add-answer-modal/add-answer-modal.component';
+import {QuestionService} from '../question/question.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class AnswerComponent implements OnInit {
   answers: Answer[];
   answer: Answer;
   questionId: number;
+  questionText: string;
   headingColumnsOfTable = ['№', 'Статус', 'Текст'];
   numberOfRecords: number;
   btnAdd = 'Добавити відповідь';
@@ -31,7 +33,8 @@ export class AnswerComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private dialog: MatDialog,
-    private infoModal: InfoModalService
+    private infoModal: InfoModalService,
+    private questionService: QuestionService
   ) {
     this.answerStatuses = ['Неправильна', 'Правильна'];
   }
@@ -50,6 +53,12 @@ export class AnswerComponent implements OnInit {
       }
     },
     err => this.infoModal.openErrorDialog('Не вдалось завантажити дані з сервера. Спробуйте, будь ласка, пізніше!'));
+  }
+
+  getQuestionText(): void {
+    this.questionService.getQuestion(this.questionId).subscribe(question => {
+      this.questionText = question[0].questionText;
+    });
   }
 
   openAddAnswerModal(): void {
@@ -71,6 +80,7 @@ export class AnswerComponent implements OnInit {
     this.route.paramMap.subscribe( (params: ParamMap) => {
       this.questionId = +params.get('questionId');
       this.getAnswers();
+      this.getQuestionText();
     });
   }
 }

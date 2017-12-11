@@ -7,6 +7,7 @@ import {QuestionService} from './question.service';
 import {Question} from './question';
 import {InfoModalService} from '../../info-modal/info-modal.service';
 import {QuestionAddModalComponent} from './add-question-modal/add-question-modal.component';
+import {TestService} from '../test.service';
 
 @Component({
   selector: 'dtest-question',
@@ -20,6 +21,7 @@ export class QuestionComponent implements OnInit {
   questions: Question[];
   question: Question;
   testId: number;
+  testName: string;
   headingColumnsOfTable = ['№', 'Запитання', 'Рівень', 'Тип'];
   questionTypes: any[];
   numberOfRecords: number;
@@ -34,7 +36,8 @@ export class QuestionComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private dialog: MatDialog,
-    private infoModal: InfoModalService
+    private infoModal: InfoModalService,
+    private testService: TestService
   ) {
     this.questionTypes = ['Простий вибір', 'Мульти-вибір', 'Поле вводу'];
   }
@@ -54,6 +57,12 @@ export class QuestionComponent implements OnInit {
       }
     },
     err => this.infoModal.openErrorDialog('Не вдалось завантажити дані з сервера. Спробуйте, будь ласка, пізніше!'));
+  }
+
+  getTestName(): void {
+    this.testService.getTest(this.testId).subscribe(test => {
+      this.testName = test[0].testName;
+    })
   }
 
   openQuestionAddModal(): void {
@@ -80,6 +89,7 @@ export class QuestionComponent implements OnInit {
     this.route.paramMap.subscribe( (params: ParamMap) => {
       this.testId = +params.get('testId');
       this.getQuestions();
+      this.getTestName();
     });
   }
 }

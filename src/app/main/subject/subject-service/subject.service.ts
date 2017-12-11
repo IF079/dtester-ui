@@ -31,7 +31,7 @@ export class SubjectService {
   }
 
   getSubject(id: number): Observable<Subject[]> {
-    return this.http.get<SubjectDto[]>(`${url.subjectUrl}${url.getRecords}${id}`)
+    return this.http.get<SubjectDto[]>(`${url.subjectUrl}${url.getRecords}/${id}`)
       .map(subjectDtoArr => subjectDtoArr.map(subjectDto => new Subject(subjectDto)));
   }
 

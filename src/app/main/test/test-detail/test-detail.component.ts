@@ -19,6 +19,8 @@ export class TestDetailComponent implements OnInit {
   testDetails: TestDetail[];
   numberOfRecords: number;
   testId: number;
+  testName: string;
+  maxPoints = 0;
   nowTasks = 0;
   levels = [];
   errWithDisplayingStudents: string;
@@ -41,6 +43,7 @@ export class TestDetailComponent implements OnInit {
         delete detail.testId;
         this.nowTasks += +detail.tasks;
         this.levels.push(detail.level);
+        this.maxPoints += detail.tasks * detail.rate;
       });
     },
     err => {
@@ -48,13 +51,9 @@ export class TestDetailComponent implements OnInit {
     });
   }
 
-  getTestDetailsRange(): void {
-    this.testDetailService.getTestDetailsRange(5, 1).subscribe(data => {
-      this.testDetails = data[0];
-      this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
-    },
-    err => {
-      this.errWithDisplayingStudents = generalConst.errorWithDisplayData;
+  getTestName(): void {
+    this.testService.getTest(this.testId).subscribe(test => {
+      this.testName = test[0].testName;
     });
   }
 
@@ -83,6 +82,7 @@ export class TestDetailComponent implements OnInit {
     this.route.paramMap.subscribe( (params: ParamMap) => {
       this.testId = +params.get('testId');
       this.getTestDetails();
+      this.getTestName();
     });
   }
 }

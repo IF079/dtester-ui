@@ -24,6 +24,7 @@ export class TestComponent implements OnInit {
   tests: Test[];
   test: Test;
   subjectId: number;
+  subjectName: string;
   numberOfRecords: number;
   errWithDisplayingStudents: string;
   headingColumnsOfTable = ['№', 'Назва', 'Кількість завдань', 'Час на виконання (хв)', 'Статус', 'Кількість спроб'];
@@ -65,6 +66,12 @@ export class TestComponent implements OnInit {
         this.log.error(err);
         this.errWithDisplayingStudents = generalConst.errorWithDisplayData;
       });
+  }
+
+  getSubjectName(): void {
+    this.subjectService.getSubject(this.subjectId).subscribe(subject => {
+      this.subjectName = subject[0].name;
+    });
   }
 
   getTestsRange(): void {
@@ -113,6 +120,7 @@ export class TestComponent implements OnInit {
     this.route.paramMap.subscribe( (params: ParamMap) => {
       this.subjectId = +params.get('subjectId');
       this.getTestBySubjectId(this.subjectId);
+      this.getSubjectName();
     });
   }
 

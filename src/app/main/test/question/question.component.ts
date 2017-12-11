@@ -28,7 +28,7 @@ export class QuestionComponent implements OnInit {
   btnAdd = 'Додати запитання';
   buttons = [{
     templateClass: 'fa-list',
-    link: '/answers'
+    link: 'admin-area/answers'
   }];
 
   constructor(
@@ -62,7 +62,7 @@ export class QuestionComponent implements OnInit {
   getTestName(): void {
     this.testService.getTest(this.testId).subscribe(test => {
       this.testName = test[0].testName;
-    })
+    });
   }
 
   openQuestionAddModal(): void {

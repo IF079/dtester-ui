@@ -2,7 +2,7 @@
         color="primary"
         (click)="goBack()"
         class="fa fa-long-arrow-left backButton"></button>
-        
+
 <div id="title">Предмет: {{subjectName}}</div>
 
 <button class="addButton"
@@ -13,5 +13,5 @@
 <dtest-entity-table [entityName]="'Test'"
                     [columnsArray]="headingColumnsOfTable"
                     [entityArray]="tests"
-                    [detailUrl]="'/test'"
+                    [detailUrl]="'admin-area/test'"
                     [buttons]="buttons"></dtest-entity-table>

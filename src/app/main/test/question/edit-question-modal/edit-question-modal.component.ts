@@ -27,9 +27,9 @@ export class EditQuestionModalComponent {
   };
   levels = [1, 2, 3];
   types = [
-    {value: 0, text: 'Простий вибір'},
-    {value: 1, text: 'Мульти-вибір'},
-    {value: 2, text: 'Поле вводу'},
+    {value: 1, text: 'Простий вибір'},
+    {value: 2, text: 'Мульти-вибір'},
+    {value: 3, text: 'Поле вводу'},
   ];
   attachment: string;
   answers = [];
@@ -47,11 +47,11 @@ export class EditQuestionModalComponent {
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.currentQuestion = data;
     this.createForm();
-    const curentType = data[3] ? this.types.find(type => type.text === data[3]).value : null;
+    const currentType = data[3] ? this.types.find(type => type.text === data[3]).value : null;
     this.form.patchValue({
       questionText: data[1],
       level: +data[2],
-      type: curentType,
+      type: currentType,
       attachment: data[4]
     });
   }
@@ -81,6 +81,12 @@ export class EditQuestionModalComponent {
     const level = this.form.get('level').value;
     const type = this.form.get('type').value;
     const attachment = this.attachment;
+    const questionType = this.currentQuestion[3] ? this.types.find(item => item.text === this.currentQuestion[3]).value : null;
+    if (!(
+      question_text === this.currentQuestion[1] &&
+      level === +this.currentQuestion[2] &&
+      type === questionType &&
+      attachment === this.currentQuestion[4])) {
     this.questionService.getQuestion(this.currentQuestion[0]).subscribe(response => {
       const question_id = +response[0].questionId;
       this.delUpdateService.updateEntity(this.currentQuestion[0], entityName, {
@@ -100,5 +106,6 @@ export class EditQuestionModalComponent {
         this.modalService.openErrorDialog(generalConst.errorMsg);
       });
     });
+    }
   }
 }

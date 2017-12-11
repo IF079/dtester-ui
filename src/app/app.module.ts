@@ -17,7 +17,10 @@ import {MainModule} from './main/main.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path: '**', redirectTo: 'login', pathMatch: 'full'}
+    ]),
     LoginModule,
     MainModule
   ],

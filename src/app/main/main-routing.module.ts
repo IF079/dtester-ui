@@ -16,17 +16,17 @@ import {QuestionComponent} from './test/question/question.component';
 import {AnswerComponent} from './test/answer/answer.component';
 import {AdminComponent} from './admin/admin.component';
 import {TestDetailComponent} from './test/test-detail/test-detail.component';
+import {StudentGuard} from './student.guard';
 
 const mainRoutes = [
     {
       path: '',
       component: MainComponent,
       children: [
-        {path: 'welcome', component: WelcomeComponent},
-        {path: 'test-player', component: TestPlayerComponent},
         {
-          path: '',
+          path: 'admin-area',
           children: [
+            {path: 'welcome', component: WelcomeComponent},
             {path: 'groups/:groupId', component: StudentComponent},
             {path: 'students', redirectTo: '/groups', pathMatch: 'full'},
             {path: 'student/:id', component: StudentDetailComponent},
@@ -39,13 +39,24 @@ const mainRoutes = [
             {path: 'tests/:subjectId', component: TestComponent},
             {path: 'questions/:testId', component: QuestionComponent},
             {path: 'answers/:questionId', component: AnswerComponent},
-            {path: 'test/:testId', component: TestDetailComponent}
-          ],
-          canActivate: [AdminGuard]
-        }
+            {path: 'test/:testId', component: TestDetailComponent},
+            {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+            {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+          ], canActivate: [AdminGuard]
+        },
+        {
+          path: 'student-area',
+          children: [
+            {path: 'welcome', component: WelcomeComponent},
+            {path: 'test-player', component: TestPlayerComponent},
+            {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+            {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+        ], canActivate: [StudentGuard]
+        },
       ]
     }
-  ];
+  ]
+;
 
 @NgModule({
   imports: [
@@ -55,7 +66,8 @@ const mainRoutes = [
     RouterModule
   ],
   providers: [
-    AdminGuard
+    AdminGuard,
+    StudentGuard
   ]
 })
 export class MainRoutingModule {

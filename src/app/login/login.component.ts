@@ -42,7 +42,11 @@ export class LoginComponent {
       this.loginService.login(this.loginForm.value)
         .subscribe(
           () => {
+            if (this.loginService.user.isAdmin()) {
               this.router.navigate([this.getReturnUrl()]);
+            } else {
+              this.router.navigate(['student-area/welcome']);
+            }
           },
           err => {
             if (err instanceof HttpErrorResponse) {
@@ -56,7 +60,7 @@ export class LoginComponent {
   }
 
   getReturnUrl() {
-    return this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'welcome';
+    return this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'admin-area/welcome';
   }
   getRequiredMsg(): string {
     return 'Поле повинно бути заповненим';

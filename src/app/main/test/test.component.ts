@@ -32,7 +32,7 @@ export class TestComponent implements OnInit {
   testStatus = [];
   buttons = [{
     templateClass: 'fa-list',
-    link: '/questions'
+    link: 'admin-area/questions'
   }];
 
   constructor(

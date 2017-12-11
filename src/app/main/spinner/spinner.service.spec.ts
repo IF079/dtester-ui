@@ -13,7 +13,7 @@ describe('SpinnerService', () => {
     expect(service).toBeTruthy();
   }));
 
-  /*it ('spinner should be hidden by default', () => {
-    expect(SpinnerService.taskcounter).toEqual(0);
-  });*/
+  it ('spinner should be hidden by default', inject([SpinnerService], (service: SpinnerService) => {
+    expect (service.tasksCounter).toEqual(0);
+  }));
 });

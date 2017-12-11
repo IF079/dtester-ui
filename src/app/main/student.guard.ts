@@ -16,7 +16,7 @@ export class StudentGuard implements CanActivate {
       .map(user => user.isStudent())
       .do((canActivate) => {
          if (!canActivate) {
-          this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
+          this.router.navigate(['/login']);
         }
       });
     return Logged;

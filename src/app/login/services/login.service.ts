@@ -12,6 +12,7 @@ import {User} from '../entities/user';
 import {AuthService} from './auth.service';
 import {LoginUrl} from '../entities/login-url';
 import {DEFAULT_LOGIN_URL_CONFIG} from '../config/login-url.default.config';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class LoginService {
@@ -20,7 +21,7 @@ export class LoginService {
   private logoutConnectable: ConnectableObservable<User> = null;
   private initialized = false;
 
-  constructor(private auth: AuthService, private router: Router,
+  constructor(private auth: AuthService, private router: Router, private http: HttpClient,
               @Optional() private urlConfig: LoginUrl) {
     if (!urlConfig) {
       this.urlConfig = DEFAULT_LOGIN_URL_CONFIG;
@@ -41,7 +42,7 @@ export class LoginService {
   }
 
   logout(): Observable<User> {
-    this.router.navigate(['']);
+    this.router.navigate(['login']);
     return this.logoutConnectable || this.establishHotConnectionForIsLogout();
   }
 
@@ -86,5 +87,8 @@ export class LoginService {
     this.user.username = emptyUser.username;
     this.user.roles = emptyUser.roles;
     return droppedUser;
+  }
+  getLogo() {
+    return this.http.get(`/Welcome/logo`);
   }
 }

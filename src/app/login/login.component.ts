@@ -16,11 +16,14 @@ export class LoginComponent {
   loginForm: FormGroup;
   hasBadCredentialsError = false;
   returnUrl: string;
-
+  srcLogo: any;
   constructor(private loginService: LoginService,
               private router: Router,
               private route: ActivatedRoute,
               private fb: FormBuilder) {
+    this.loginService.getLogo().subscribe((resp) => {
+      this.srcLogo = resp.logo;
+    });
   this.loginForm = this.fb.group({
     username: [null, Validators.compose([
       Validators.required,

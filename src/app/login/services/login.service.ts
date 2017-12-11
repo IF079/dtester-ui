@@ -88,7 +88,7 @@ export class LoginService {
     this.user.roles = emptyUser.roles;
     return droppedUser;
   }
-  getLogo() {
+  getLogo(): Observable<any> {
     return this.http.get(`/Welcome/logo`);
   }
 }

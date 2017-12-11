@@ -46,9 +46,8 @@ export class EditGroupsModalComponent {
   }
 
   createForm(): void {
-    const groupName = this.data[1];
-    const specialityName = this.data[2];
-    const facultyName = this.data[3];
+
+    const [, groupName, specialityName, facultyName] = this.data;
     this.editGroupForm = this.formBuilder.group({
       groupName: [groupName, Validators.required],
       facultyName: [facultyName, Validators.required],

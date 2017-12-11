@@ -30,8 +30,8 @@ export class EditSubjectModalComponent {
   }
 
   createForm(): void {
-    const name = this.data[1];
-    const description = this.data[2];
+
+    const [, name, description] = this.data;
     this.editSubjectForm = this.formBuilder.group({
       name: [name, Validators.required],
       description: [description, Validators.required]

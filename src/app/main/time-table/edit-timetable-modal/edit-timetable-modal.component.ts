@@ -52,12 +52,7 @@ export class EditTimetableModalComponent {
   }
 
   createForm(): void {
-    const groupName = this.data[1];
-    const subjectName = this.data[2];
-    const startDate = this.data[3];
-    const startTime = this.data[4];
-    const endDate = this.data[5];
-    const endTime = this.data[6];
+    const [, groupName, subjectName, startDate, startTime, endDate, endTime] = this.data;
     this.editTimetableForm = this.formBuilder.group({
       groupName: [groupName, Validators.required],
       subjectName: [subjectName, Validators.required],

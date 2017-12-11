@@ -42,10 +42,8 @@ export class EditAdminModalComponent {
     this.createForm();
   }
 
-
   createForm(): void {
-    const username = this.data[1];
-    const email = this.data[2];
+    const [, username, email] = this.data;
     this.form = this.formBuilder.group({
       username: [username, {
         updateOn: 'blur', validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)]
@@ -107,7 +105,7 @@ export class EditAdminModalComponent {
       password,
       password_confirm
     }).subscribe(adminData => {
-        arrForAdmin.push({id, email, username});
+        arrForAdmin.push({id,  username, email});
         this.delUpdateService.passUpdatedItem<Admin[]>(arrForAdmin);
         this.modalService.openSuccessDialog(generalConst.updateMsg);
       },

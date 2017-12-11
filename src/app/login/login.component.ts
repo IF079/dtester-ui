@@ -53,7 +53,7 @@ export class LoginComponent {
   }
 
   getReturnUrl() {
-    return this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    return this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'welcome';
   }
   getRequiredMsg(): string {
     return 'Поле повинно бути заповненим';

@@ -23,7 +23,7 @@ const mainRoutes = [
       component: MainComponent,
       children: [
         {path: 'welcome', component: WelcomeComponent},
-        {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+        {path: 'test-player', component: TestPlayerComponent},
         {
           path: '',
           children: [
@@ -42,12 +42,10 @@ const mainRoutes = [
             {path: 'test/:testId', component: TestDetailComponent}
           ],
           canActivate: [AdminGuard]
-        }, {path: 'test-player', component: TestPlayerComponent},
-        {path: '**', redirectTo: 'welcome', pathMath: 'full'}
+        }
       ]
     }
-  ]
-;
+  ];
 
 @NgModule({
   imports: [

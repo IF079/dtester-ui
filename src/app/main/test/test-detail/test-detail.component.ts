@@ -74,6 +74,7 @@ export class TestDetailComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
           this.nowTasks = 0;
+          this.maxPoints = this.maxPoints + result;
         });
       });
     });

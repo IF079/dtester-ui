@@ -35,7 +35,7 @@ import {Answer} from '../test/answer/answer';
 })
 
 export class EntityTableComponent implements OnChanges, OnInit {
-  tableRowArr: any[];
+  tableRowArr: any[] = [];
   @Input() entityName: string;
   @Input() entityArray: any[];
   @Input() columnsArray: string[];
@@ -148,7 +148,7 @@ export class EntityTableComponent implements OnChanges, OnInit {
 
   deleteItemInDom() {
     this.delUpdateService.itemDeleted$.subscribe(res => {
-      this.tableRowArr = this.tableRowArr.filter(item => item !== res);
+        this.tableRowArr = this.tableRowArr.filter(item => item !== res);
     });
   }
 

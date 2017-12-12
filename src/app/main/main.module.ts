@@ -63,7 +63,8 @@ import {EditQuestionModalComponent} from './test/question/edit-question-modal/ed
 import {AddTestDetailModalComponent} from './test/test-detail/add-test-detail-modal/add-test-detail-modal.component';
 import {AddAnswerModalComponent} from './test/answer/add-answer-modal/add-answer-modal.component';
 import {EditTestDetailModalComponent} from './test/test-detail/edit-test-detail-modal/edit-test-detail-modal.component';
-import { EditAnswerModalComponent } from './test/answer/edit-answer-modal/edit-answer-modal.component';
+import {EditAnswerModalComponent} from './test/answer/edit-answer-modal/edit-answer-modal.component';
+import {WelcomeService} from './welcome/welcome.service';
 
 
 
@@ -164,7 +165,8 @@ import { EditAnswerModalComponent } from './test/answer/edit-answer-modal/edit-a
     ResultService,
     TestPlayerService,
     StudentService,
-    AdminService
+    AdminService,
+    WelcomeService
   ]
 })
 export class MainModule {

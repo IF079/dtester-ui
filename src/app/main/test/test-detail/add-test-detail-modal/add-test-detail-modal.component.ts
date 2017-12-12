@@ -46,7 +46,7 @@ export class AddTestDetailModalComponent {
   }
 
   onSubmit(testDetail: TestDetail) {
-    this.dialogRef.close();
+    this.dialogRef.close((testDetail.tasks ? testDetail.tasks : 0) * testDetail.rate);
     this.testDetailService.addTestDetail({
       testId: this.data.testId,
       level: testDetail.level,

@@ -41,7 +41,6 @@ export class TestDetailComponent implements OnInit {
       this.testDetails = data;
       this.testDetails.forEach(detail => {
         delete detail.testId;
-        this.nowTasks += +detail.tasks;
         this.levels.push(detail.level);
         this.maxPoints += detail.tasks * detail.rate;
       });
@@ -59,17 +58,23 @@ export class TestDetailComponent implements OnInit {
 
   openTestDetailModal(): void {
     this.testService.getTest(this.testId).subscribe(test => {
-      const dialogRef = this.dialog.open(AddTestDetailModalComponent, {
-        width: '400px',
-        data: {
-          testId: this.testId,
-          maxTasks: test[0].tasks,
-          nowTasks: this.nowTasks,
-          levels: this.levels
-        }
-      });
+      this.testDetailService.getTestDetailsByTestId(this.testId).subscribe(details => {
+        details.forEach(detail => {
+          this.nowTasks += +detail.tasks;
+        });
+        const dialogRef = this.dialog.open(AddTestDetailModalComponent, {
+          width: '400px',
+          data: {
+            testId: this.testId,
+            maxTasks: test[0].tasks,
+            nowTasks: this.nowTasks,
+            levels: this.levels
+          }
+        });
 
-      dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe(result => {
+          this.nowTasks = 0;
+        });
       });
     });
   }

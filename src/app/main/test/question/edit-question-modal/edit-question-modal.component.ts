@@ -25,11 +25,12 @@ export class EditQuestionModalComponent {
     attachment: 'Картинка',
     answer: 'Відповідь'
   };
-  levels = [1, 2, 3];
+  levels = this.setArrayOfDigit(20);
   types = [
     {value: 1, text: 'Простий вибір'},
     {value: 2, text: 'Мульти-вибір'},
     {value: 3, text: 'Поле вводу'},
+    {value: 4, text: 'Числова'}
   ];
   attachment: string;
   answers = [];
@@ -54,6 +55,14 @@ export class EditQuestionModalComponent {
       type: currentType,
       attachment: data[4]
     });
+  }
+
+  setArrayOfDigit(amount: number) {
+    const localArr = [];
+    for (let i = 1; i <= amount; i++) {
+      localArr.push(i);
+    }
+    return localArr;
   }
 
   createForm() {

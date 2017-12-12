@@ -39,7 +39,7 @@ export class QuestionComponent implements OnInit {
     private infoModal: InfoModalService,
     private testService: TestService
   ) {
-    this.questionTypes = ['Простий вибір', 'Мульти-вибір', 'Поле вводу'];
+    this.questionTypes = ['Простий вибір', 'Мульти-вибір', 'Поле вводу', 'Числова'];
   }
 
   getQuestions(): void {

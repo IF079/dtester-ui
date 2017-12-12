@@ -37,8 +37,10 @@ export class AddTestDetailModalComponent {
               public dialogRef: MatDialogRef<AddTestDetailModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = formBuilder.group({
-      'level': [null, [Validators.required, TestDetailValidator.createLevelValidator(this.existLevels)]],
-      'tasks': [null, [TestDetailValidator.createTasksValidator(this.nowTasks, this.maxTasks), Validators.pattern(/^\d{1,3}$/)]],
+      'level': [null, {updateOn: 'blur', validators: [Validators.required],
+                asyncValidators: [TestDetailValidator.createAsyncLevelValidator(testDetailService, this.data.testId)]}],
+      'tasks': [null, {updateOn: 'blur', validators: [Validators.pattern(/^\d{1,3}$/)],
+                asyncValidators: [TestDetailValidator.createAsyncTasksValidator(this.maxTasks, testDetailService, this.data.testId)]}],
       'rate': [null, [Validators.required, Validators.pattern(/^\d{1,3}$/)]]
     });
   }

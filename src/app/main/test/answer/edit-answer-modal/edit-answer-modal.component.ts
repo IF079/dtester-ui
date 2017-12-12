@@ -37,14 +37,8 @@ export class EditAnswerModalComponent {
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.currentAnswer = data;
     this.createForm();
-<<<<<<< HEAD
-    const currentTrueAnswer = data[1] ? this.trueAnswers.find(trueAnswer => trueAnswer.text === data[1]).value : null;
-    this.form.patchValue({
-      trueAnswer: currentTrueAnswer,
-=======
     this.form.patchValue({
       trueAnswer: data[1]  === 'Правильна' ? 1 : 0,
->>>>>>> spintest
       answerText: data[2],
       attachment: data[3]
     });

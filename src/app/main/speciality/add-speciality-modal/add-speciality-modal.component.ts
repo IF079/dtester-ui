@@ -6,7 +6,7 @@ import {SpecialityService} from '../speciality-service/speciality.service';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
 import {SpecialityDto} from '../speciality-classes/speciality-dto';
 import {InfoModalService} from '../../info-modal/info-modal.service';
-import {generalConst} from '../../shared/constants/general-constants';
+import {generalConst, modalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-speciality-modal',
@@ -16,15 +16,11 @@ import {generalConst} from '../../shared/constants/general-constants';
 
 export class SpecialityModalComponent {
   specialityForm: FormGroup;
+  specialityConst = modalConst;
   placeholders = {
     code: 'Код Спеціальності',
     name: 'Назва Спеціальності'
   };
-  btnAdd = 'Додати';
-  errorRequired = 'Заповніть поле!';
-  errorCodePattern = 'Дані повинні бути вигляду (1.2345678)';
-  title = 'Додати спеціальність';
-  btnClose = 'Відмінити';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<SpecialityModalComponent>,

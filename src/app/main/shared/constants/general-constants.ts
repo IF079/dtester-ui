@@ -9,7 +9,16 @@ export const generalConst = {
   errMsgForSubjects: 'Даний предмет вже існує або виникла інша помилка на сервері',
   errMsgForTimeTables: 'Розклад для такої групи і предмету вже можливо існує, або виникла інша помилка на сервері',
   errMsgForGroups: 'Дана група вже існує, або виникла інша помилка на сервері',
-  errMsgForAdmins: 'Даний логін або дана електорнна пошта вже існує, або відбулась інша помилка на сервері'
+  errMsgForAdmins: 'Даний логін або дана електорнна пошта вже існує, або відбулась інша помилка на сервері',
+};
+export const modalConst = {
+  addBtn: 'Додати',
+  updateBtn: 'Зберегти',
+  closeBtn: 'Відмінити',
+  errorRequired: 'Заповніть поле!',
+  specialityTitleAdd: 'Додати спеціальність',
+  specialityTitleUpd: 'Редагувати спеціальність',
+  errorCodePatternSpeciality: 'Дані повинні бути вигляду (1.2345678)'
 };
 
 

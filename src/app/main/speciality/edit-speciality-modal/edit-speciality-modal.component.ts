@@ -12,8 +12,6 @@ import {generalConst} from '../../shared/constants/general-constants';
 })
 
 export class EditSpecialityModalComponent extends SpecialityModalComponent {
-  btnUpd = 'Редагувати';
-  title = 'Редагувати спеціальність';
 
   createForm(): void {
     this.specialityForm = this.fb.group({
@@ -28,6 +26,9 @@ export class EditSpecialityModalComponent extends SpecialityModalComponent {
     const entityName = 'Speciality';
     const speciality_code = this.specialityForm.get('code').value;
     const speciality_name = this.specialityForm.get('name').value;
+    if (!(
+      speciality_code === this.data[1] &&
+      speciality_name === this.data[2])) {
     this.delUpdateService.updateEntity(id, entityName,
       {speciality_code, speciality_name}).subscribe((specialityData: SpecialityDto[]) => {
         this.delUpdateService.passUpdatedItem<SpecialityDto[]>(specialityData);
@@ -37,5 +38,6 @@ export class EditSpecialityModalComponent extends SpecialityModalComponent {
         this.modalService.openErrorDialog(generalConst.errorUpdateMsg);
       }
     );
+    }
   }
 }

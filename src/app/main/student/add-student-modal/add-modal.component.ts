@@ -7,6 +7,7 @@ import {InfoModalService} from '../../info-modal/info-modal.service';
 import {AsyncUsernameValidator, AsyncEmailValidator} from './async.validator';
 import {Student} from '../student-classes/student';
 import {UpdateDeleteEntityService} from '../../shared/services/update-delete-entity-service/update-delete-entity.service';
+import {generalConst} from '../../shared/constants/general-constants';
 
 @Component({
   selector: 'dtest-add-modal',
@@ -57,7 +58,7 @@ export class StudentAddModalComponent {
     private formBuilder: FormBuilder,
     private modalService: InfoModalService,
     public dialogRef: MatDialogRef<StudentAddModalComponent>,
-     private delUpdateService: UpdateDeleteEntityService,
+    private delUpdateService: UpdateDeleteEntityService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = formBuilder.group({
@@ -94,7 +95,7 @@ export class StudentAddModalComponent {
   }
 
   onSubmit(student) {
-    const selectedId = student.group || this.groupId;
+    const selectedId = student.group;
     this.dialogRef.close();
     this.studentService.setStudent({
       studentSurname: student.sname,
@@ -110,12 +111,15 @@ export class StudentAddModalComponent {
       passwordConfirm: student.passwords.passwordConfirm
     }).subscribe(res => {
       if (res.response !== 'ok') {
-        this.modalService.openErrorDialog('Помилка при відпраці даних на сервер. Cпробуйте, будь ласка, пізніше.');
+        this.modalService.openErrorDialog(generalConst.errorMsg);
       } else if (res.response === 'ok') {
-        if (selectedId === this.groupId) {
-          this.delUpdateService.passInsertedItem<Student[]>(res);
-        }
-        this.modalService.openSuccessDialog('Запис успішно добавлено! Обновіть сторінку для відображення даних.');
+        this.studentService.getStudent(res.id).subscribe(resStudent => {
+          delete resStudent[0].groupId;
+          delete resStudent[0].plainPassword;
+          delete resStudent[0].photo;
+          this.delUpdateService.passInsertedItem(resStudent);
+          this.modalService.openSuccessDialog(generalConst.addMsg);
+        });
       }
     });
   }

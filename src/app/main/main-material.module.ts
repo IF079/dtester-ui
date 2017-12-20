@@ -12,16 +12,17 @@ import {
   MatCardModule,
   MatDialogModule,
   MatSelectModule,
-  MatCheckboxModule, MatPaginatorIntl
+  MatCheckboxModule, MatPaginatorIntl, MatTooltipModule
 } from '@angular/material';
 
 import {MatPaginatorIntlUkr} from './shared/entities/custom-mat-paginator';
 
 @NgModule({
   imports: [MatSortModule, MatPaginatorModule, MatTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
-    MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule, MatCheckboxModule, BrowserAnimationsModule],
+     MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule, MatCheckboxModule, BrowserAnimationsModule,
+     MatTooltipModule],
   exports: [MatSortModule, MatPaginatorModule, MatTableModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
-    MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule, MatCheckboxModule],
+    MatProgressSpinnerModule, MatCardModule, MatDialogModule, MatSelectModule, MatCheckboxModule, MatTooltipModule],
   providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlUkr}]
 })
 

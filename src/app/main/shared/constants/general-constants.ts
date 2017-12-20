@@ -1,4 +1,6 @@
 export const generalConst = {
+  editTitle: 'Редагувати',
+  deleteTitle: 'Видалити',
   errorWithDisplayData: 'Щось пішло не так з відображенням даних. Будь ласка спробуйте знову.',
   updateMsg: 'Зміни успішно збережено!',
   addMsg: 'Запис успішно добавлено!',

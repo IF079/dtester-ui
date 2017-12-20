@@ -60,7 +60,7 @@ export class AddAnswerModalComponent {
       attachment: this.attachment || ''
     }).subscribe(answerData => {
       delete answerData[0].question_id;
-      delete answerData[0].attachment;
+      if (answerData[0].attachment) { answerData[0].attachment = `<img src="${answerData[0].attachment}">`; }
       answerData[0].true_answer = this.trueAnswers.find(item => item.value === +answerData[0].true_answer).text;
       this.delUpdateService.passInsertedItem(answerData);
       this.modalService.openSuccessDialog(generalConst.addMsg);

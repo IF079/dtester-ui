@@ -76,7 +76,7 @@ export class QuestionAddModalComponent {
       attachment: this.attachment || ''
     }).subscribe(questionData => {
       delete questionData[0].test_id;
-      delete questionData[0].attachment;
+      if (questionData[0].attachment) { questionData[0].attachment = `<img src="${questionData[0].attachment}">`; }
       questionData[0].type = this.types.find(item => item.value === +questionData[0].type).text;
       this.delUpdateService.passInsertedItem(questionData);
       this.modalService.openSuccessDialog(generalConst.addMsg);

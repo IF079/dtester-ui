@@ -23,7 +23,7 @@ export class AnswerComponent implements OnInit {
   answer: Answer;
   questionId: number;
   questionText: string;
-  headingColumnsOfTable = ['№', 'Статус', 'Текст'];
+  headingColumnsOfTable = ['№', 'Статус', 'Текст', 'Файл'];
   numberOfRecords: number;
   btnAdd = 'Добавити відповідь';
   answerStatuses = [];

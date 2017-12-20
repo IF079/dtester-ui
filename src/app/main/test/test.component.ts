@@ -5,7 +5,6 @@ import {MatDialog} from '@angular/material';
 
 import {TestService} from './test.service';
 import {Test} from './test';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
 import {generalConst} from '../shared/constants/general-constants';
 import {SubjectService} from '../subject/subject-service/subject.service';
 import {TestModalComponent} from './add-test-modal/add-test-modal.component';
@@ -20,7 +19,6 @@ import {InfoModalService} from '../info-modal/info-modal.service';
 export class TestComponent implements OnInit {
   limit = 100;
   offset = 0;
-  log = LoggerFactory.create(TestComponent);
   tests: Test[];
   test: Test;
   subjectId: number;
@@ -32,7 +30,8 @@ export class TestComponent implements OnInit {
   testStatus = [];
   buttons = [{
     templateClass: 'fa-list',
-    link: 'admin-area/questions'
+    link: 'admin-area/questions',
+    title: 'Перейти до запитань'
   }];
 
   constructor(
@@ -63,7 +62,6 @@ export class TestComponent implements OnInit {
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },
       err => {
-        this.log.error(err);
         this.errWithDisplayingStudents = generalConst.errorWithDisplayData;
       });
   }
@@ -80,7 +78,6 @@ export class TestComponent implements OnInit {
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },
       err => {
-        this.log.error(err);
         this.errWithDisplayingStudents = generalConst.errorWithDisplayData;
       });
   }

@@ -68,7 +68,8 @@ export class EditAnswerModalComponent {
     const attachment = this.attachment;
     if (!(
         true_answer === (this.currentAnswer[1] === 'Правильна' ? 1 : 0) &&
-        answer_text === this.currentAnswer[2]
+        answer_text === this.currentAnswer[2] &&
+        attachment === this.currentAnswer[3]
       )) {
       this.answerService.getAnswer(this.currentAnswer[0]).subscribe(response => {
         const answer_id = +response[0].answerId;
@@ -80,7 +81,7 @@ export class EditAnswerModalComponent {
           attachment
         }).subscribe(answerData => {
           delete answerData[0].question_id;
-          delete answerData[0].attachment;
+          if (answerData[0].attachment) { answerData[0].attachment = `<img src="${answerData[0].attachment}">`; }
           answerData[0].true_answer = this.trueAnswers.find(item => item.value === +answerData[0].true_answer).text;
           this.delUpdateService.passUpdatedItem(answerData);
           this.modalService.openSuccessDialog(generalConst.updateMsg);

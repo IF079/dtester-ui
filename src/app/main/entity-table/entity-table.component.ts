@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
 
@@ -32,7 +32,8 @@ import {generalConst} from '../shared/constants/general-constants';
 @Component({
   selector: 'dtest-entity-table',
   templateUrl: './entity-table.component.html',
-  styleUrls: ['./entity-table.component.scss']
+  styleUrls: ['./entity-table.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class EntityTableComponent implements OnChanges, OnInit {

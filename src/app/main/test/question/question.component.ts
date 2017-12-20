@@ -50,7 +50,7 @@ export class QuestionComponent implements OnInit {
         this.questions.forEach(question => {
           question.type = this.questionTypes[+question.type - 1];
           delete question.testId;
-          if (question.attachment) { question.attachment = `<img src="${question.attachment}">`; }
+          if (question.attachment) { question.attachment = `<img src="${question.attachment}" class="attachWidht">`; }
         });
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       } else {

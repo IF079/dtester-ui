@@ -30,20 +30,16 @@ export class FacultiesComponent implements OnInit {
  constructor(private delUpdateService: UpdateDeleteEntityService,
              private facultyService: FacultyService,
              public dialog: MatDialog) {
-   this.updateNumberOfRecordsInDomWhenAdded();
-   this.updateNumberOfRecordsInDomWhenDeleted();
+   this.updateNumberOfRecords();
   }
 
-  updateNumberOfRecordsInDomWhenAdded() {
+  updateNumberOfRecords() {
+    this.delUpdateService.itemDeleted$.subscribe((res) => {
+      this.numberOfRecords --;
+    });
     this.delUpdateService.itemInserted$.subscribe(() => {
-        this.numberOfRecords ++;
-      });
-  }
-
-  updateNumberOfRecordsInDomWhenDeleted() {
-    this.delUpdateService.itemDeleted$.subscribe(() => {
-        this.numberOfRecords --;
-      });
+      this.numberOfRecords ++;
+    });
   }
 
   openDialog() {

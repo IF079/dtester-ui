@@ -20,7 +20,9 @@ export class FacultyModalComponent {
     name: 'Назва Факультету',
     description: 'Опис Факультету'
   };
-  btnAdd = 'Додати Факультет';
+  title = 'Додати факультет';
+  btnAdd = 'Додати';
+  btnClose = 'Відмінити';
   errRequestMsg: string;
   errorRequired = 'Заповніть поле! (мін.3-макс.60 знаків)';
   errorRequiredInformation = 'Заповніть поле! (мін.3-макс.120 знаків)';

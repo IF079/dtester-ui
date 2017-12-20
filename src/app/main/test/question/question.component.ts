@@ -22,7 +22,7 @@ export class QuestionComponent implements OnInit {
   question: Question;
   testId: number;
   testName: string;
-  headingColumnsOfTable = ['№', 'Запитання', 'Рівень', 'Тип'];
+  headingColumnsOfTable = ['№', 'Запитання', 'Рівень', 'Тип', 'Файл'];
   questionTypes: any[];
   numberOfRecords: number;
   btnAdd = 'Додати запитання';
@@ -43,13 +43,13 @@ export class QuestionComponent implements OnInit {
   }
 
   getQuestions(): void {
-    this.questionService.getRecordsRangeByTest(this.testId, this.limit, this.offset, 'wi').subscribe((data) => {
+    this.questionService.getRecordsRangeByTest(this.testId, this.limit, this.offset).subscribe((data) => {
       if (data[0]) {
         this.questions = data[0];
         this.questions.forEach(question => {
           question.type = this.questionTypes[+question.type - 1];
           delete question.testId;
-          delete question.attachment;
+          if (question.attachment) { question.attachment = `<img src="${question.attachment}">`; }
         });
         this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       } else {

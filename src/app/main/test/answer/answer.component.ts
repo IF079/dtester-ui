@@ -45,8 +45,8 @@ export class AnswerComponent implements OnInit {
         this.answers = data;
         this.answers.forEach(answer => {
           delete answer.questionId;
-          delete answer.attachment;
           answer.trueAnswer = this.answerStatuses[answer.trueAnswer];
+          if (answer.attachment) { answer.attachment = `<img src="${answer.attachment}">`; }
         });
       } else {
         this.infoModal.openInfoDialog('Увага', 'На даний момент тут немає записів.');

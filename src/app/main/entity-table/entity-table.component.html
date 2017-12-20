@@ -7,7 +7,7 @@
   <tbody>
     <tr *ngFor="let rowItem of tableRowArr"
         (dblclick)="onSelect(rowItem)">
-      <td *ngFor="let item of rowItem" [class.cursorStyle]="detailUrl">{{item}}</td>
+      <td *ngFor="let item of rowItem" [class.cursorStyle]="detailUrl" [innerHtml]="item"></td>
       <td *ngFor="let button of buttons"><i (click)="go(button.link, rowItem)" class="fa {{button.templateClass}}"></i></td>
       <td><i (click)="openDialogForUpdate(rowItem)" class="fa fa-pencil-square-o"></i></td>
       <td><i (click)="openDialogForDelete(rowItem)" class="fa fa-times"></i></td>

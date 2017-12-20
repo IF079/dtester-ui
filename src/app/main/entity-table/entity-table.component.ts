@@ -26,6 +26,7 @@ import {EditTestDetailModalComponent} from '../test/test-detail/edit-test-detail
 import {TestDetailDto} from '../test/test-detail/test-detail-dto';
 import {EditAnswerModalComponent} from '../test/answer/edit-answer-modal/edit-answer-modal.component';
 import {Answer} from '../test/answer/answer';
+import {generalConst} from '../shared/constants/general-constants';
 
 
 @Component({
@@ -36,6 +37,7 @@ import {Answer} from '../test/answer/answer';
 
 export class EntityTableComponent implements OnChanges, OnInit {
   tableRowArr: any[] = [];
+  buttonTitle = generalConst;
   @Input() entityName: string;
   @Input() entityArray: any[];
   @Input() columnsArray: string[];

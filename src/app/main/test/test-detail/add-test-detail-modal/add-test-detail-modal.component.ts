@@ -57,7 +57,7 @@ export class AddTestDetailModalComponent {
       this.delUpdateService.passInsertedItem(testDetailResp);
       this.modalService.openSuccessDialog(generalConst.addMsg);
     }, () => {
-      this.modalService.openErrorDialog(generalConst.errorWithDisplayData);
+      this.modalService.openErrorDialog(generalConst.errorMsg);
     });
   }
 

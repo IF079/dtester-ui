@@ -28,7 +28,8 @@ export class QuestionComponent implements OnInit {
   btnAdd = 'Додати запитання';
   buttons = [{
     templateClass: 'fa-list',
-    link: 'admin-area/answers'
+    link: 'admin-area/answers',
+    title: 'Перейти до відповідей'
   }];
 
   constructor(

@@ -1,0 +1,17 @@
+<button mat-raised-button
+        color="primary"
+        (click)="goBack()"
+        class="fa fa-long-arrow-left backButton"></button>
+
+<div id="title">Предмет: {{subjectName}}</div>
+
+<button class="addButton"
+        mat-raised-button
+        color="primary"
+        (click)="openTestModal()">{{btnAdd}}</button>
+
+<dtest-entity-table [entityName]="'Test'"
+                    [columnsArray]="headingColumnsOfTable"
+                    [entityArray]="tests"
+                    [detailUrl]="'admin-area/test'"
+                    [buttons]="buttons"></dtest-entity-table>

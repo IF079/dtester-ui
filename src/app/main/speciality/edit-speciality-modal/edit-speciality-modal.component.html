@@ -1,0 +1,26 @@
+<form [formGroup]="specialityForm" (ngSubmit)="editEntityRecord()">
+  <h2 mat-dialog-title>{{specialityConst.specialityTitleUpd}}</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput [formControl]="specialityForm.controls['code']" placeholder="{{placeholders.code}}">
+      <mat-error>
+        <div *ngIf="specialityForm.controls['code'].hasError('required')">{{specialityConst.errorRequired}}</div>
+        <div *ngIf="specialityForm.controls['code'].hasError('pattern')">{{specialityConst.errorCodePatternSpeciality}}</div>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [formControl]="specialityForm.controls['name']" placeholder="{{placeholders.name}}">
+      <mat-error>
+        <div *ngIf="specialityForm.controls['name'].hasError('required')">{{specialityConst.errorRequired}}</div>
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="btn-center">
+      <button [disabled]="!specialityForm.valid" type="submit" class="modal-button" mat-raised-button color="primary">
+        {{specialityConst.updateBtn}}
+      </button>
+      <button mat-raised-button mat-dialog-close>{{specialityConst.closeBtn}}</button>
+    </div>
+  </mat-dialog-actions>
+</form>

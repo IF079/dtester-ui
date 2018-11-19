@@ -1,35 +1,30 @@
 import {Injectable, Optional} from '@angular/core';
-import {Credentials} from './entities/credentials';
-import {User} from './entities/user';
-import 'rxjs/add/operator/map';
-import {AuthService} from './auth.service';
-import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
+import {ConnectableObservable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/publish';
-import {ConnectableObservable} from 'rxjs/Rx';
-import {UrlUtils} from '../utils/url-utils';
-import {LoginUrlConfig} from '../config/login-url.config';
-import {defaultLoginUrlConfig} from '../config/login-url.default.config';
+
+import {User} from '../entities/user';
+import {AuthService} from './auth.service';
+import {LoginUrl} from '../entities/login-url';
+import {DEFAULT_LOGIN_URL_CONFIG} from '../config/login-url.default.config';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class LoginService {
-
   public user: User = new User();
-
-  public redirectAfterLogin: string = null;
-
   private isLoggedInConnectable: ConnectableObservable<User> = null;
-  private logoutInConnectable: ConnectableObservable<User> = null;
-
+  private logoutConnectable: ConnectableObservable<User> = null;
   private initialized = false;
 
-  constructor(private auth: AuthService, private router: Router,
-              @Optional() private urlConfig: LoginUrlConfig) {
+  constructor(private auth: AuthService, private router: Router, private http: HttpClient,
+              @Optional() private urlConfig: LoginUrl) {
     if (!urlConfig) {
-      this.urlConfig = defaultLoginUrlConfig;
+      this.urlConfig = DEFAULT_LOGIN_URL_CONFIG;
     }
     this.initialize();
   }
@@ -41,29 +36,20 @@ export class LoginService {
     return this.isLoggedInConnectable || this.establishHotConnectionForIsLoggedIn();
   }
 
-  login(credentials: Credentials): Observable<User> {
+  login(credentials: string): Observable<User> {
     return this.auth.login(credentials)
-      .do(user => {
-        return this.setupUser(user);
-      })
-      .do(() => this.router.navigate([this.getRedirectionUrl()]));
+      .do(user => this.setupUser(user));
   }
 
   logout(): Observable<User> {
-    return this.logoutInConnectable || this.establishHotConnectionForIsLogout();
+    this.router.navigate(['login']);
+    return this.logoutConnectable || this.establishHotConnectionForIsLogout();
   }
 
   private initialize() {
     this.isLoggedIn()
       .finally(() => this.initialized = true)
       .subscribe();
-
-  }
-
-  private getRedirectionUrl(): string {
-    return UrlUtils.trimRedirectionUrl(
-      UrlUtils.adornRedirectionUrl(this.redirectAfterLogin),
-      [this.urlConfig.login, this.urlConfig.logout], '/');
   }
 
   private establishHotConnectionForIsLoggedIn(): ConnectableObservable<User> {
@@ -77,21 +63,21 @@ export class LoginService {
   }
 
   private establishHotConnectionForIsLogout(): ConnectableObservable<User> {
-    this.logoutInConnectable = this.auth.logout()
-      .map((response) => this.dropUser())
-      .finally(() => this.logoutInConnectable = null)
+    const obs = this.auth.logout()
+      .map(() => this.dropUser())
+      .finally(() => this.logoutConnectable = null)
       .publish();
-    this.logoutInConnectable.connect();
-    return this.logoutInConnectable;
+    this.logoutConnectable = obs;
+    obs.connect();
+    return obs;
   }
 
-  private setupUser(user: User): User {
+  private setupUser(user: User): void {
     if (user) {
       this.user.id = user.id;
       this.user.username = user.username;
       this.user.roles = user.roles;
     }
-    return user;
   }
 
   private dropUser(): User {
@@ -102,5 +88,7 @@ export class LoginService {
     this.user.roles = emptyUser.roles;
     return droppedUser;
   }
-
+  getLogo(): Observable<any> {
+    return this.http.get(`/Welcome/logo`);
+  }
 }

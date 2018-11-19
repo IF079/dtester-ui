@@ -1,0 +1,34 @@
+<form [formGroup]="form" (ngSubmit)="editAnswer()">
+  <h2 mat-dialog-title>Редагувати відповідь</h2>
+  <mat-dialog-content>
+    <div class="container">
+      <div class="row">
+        <mat-form-field>
+          <mat-select [placeholder]="placeholders.trueAnswer" formControlName="trueAnswer">
+            <mat-option *ngFor="let trueAnswer of trueAnswers" [value]="trueAnswer.value">
+              {{trueAnswer.text}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!form.controls['trueAnswer'].valid && form.controls['trueAnswer'].touched">
+            {{errorEmptyInput}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [placeholder]="placeholders.answerText" formControlName="answerText">
+          <mat-error *ngIf="!form.controls['answerText'].valid && form.controls['answerText'].touched">
+            {{errorAnswerText}}
+          </mat-error>
+        </mat-form-field>
+        <input type="file" id="imageUpload" accept='image/*' (change)="fileSelect($event)">
+        <label for="imageUpload">
+          <a mat-button>Файл</a>
+        </label>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" [disabled]="!(form.controls['trueAnswer'].valid && form.controls['answerText'].valid)"
+            class="modal-button" mat-raised-button color="primary">Зберегти</button>
+    <button mat-button mat-dialog-close tabindex="-1">Відмінити</button>
+  </mat-dialog-actions>
+</form>

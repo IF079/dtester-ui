@@ -1,69 +1,68 @@
 import {Component, OnInit} from '@angular/core';
-import {FacultyService} from '../shared/services/crud/faculty.service';
-import {Faculty} from '../shared/entities/faculty';
+import {MatDialog, PageEvent} from '@angular/material';
 
+import {FacultyModalComponent} from './add-faculty-modal/add-faculty-modal.component';
+import {FacultyService} from './faculty.service';
+import {Faculty} from './faculty';
+import {generalConst} from '../shared/constants/general-constants';
+import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
-  selector: 'app-faculties',
+  selector: 'dtest-faculties',
   templateUrl: './faculties.component.html',
   styleUrls: ['./faculties.component.scss']
 })
+
 export class FacultiesComponent implements OnInit {
-
-  faculties: Faculty[];
-  headingColumnsOfTable = ['ID', 'Назва', 'Опис'];
-  errWithDisplayingFaculties: string;
-  errWithCountingRecords: string;
+  limit = 10;
   offset = 0;
-  currentPage = 1;
-  limitPerPage = 10;
+  pageSizeOptions = [5, 10, 25, 100];
+  faculties: Faculty[];
+  headingColumnsOfTable = ['№', 'Назва факультету', 'Опис факультету'];
+  placeholders = {
+    name: 'Назва факультету',
+    description: 'Опис факультету'
+  };
+  btnAdd = 'Додати факультет';
+  errWithDisplayingFaculties: string;
   numberOfRecords: number;
-  isLoading = false;
 
-  constructor(private facultyService: FacultyService) {
+ constructor(private delUpdateService: UpdateDeleteEntityService,
+             private facultyService: FacultyService,
+             public dialog: MatDialog) {
+   this.updateNumberOfRecords();
   }
 
-  goPage(n: number): void {
-    this.offset = (this.limitPerPage * n) - this.limitPerPage;
-    this.getFaculties();
+  updateNumberOfRecords() {
+    this.delUpdateService.itemDeleted$.subscribe((res) => {
+      this.numberOfRecords --;
+    });
+    this.delUpdateService.itemInserted$.subscribe(() => {
+      this.numberOfRecords ++;
+    });
   }
 
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-    this.getFaculties();
+  openDialog() {
+    const dialogRef = this.dialog.open(FacultyModalComponent);
   }
 
-  goNext(): void {
-    this.offset += this.limitPerPage;
-    this.getFaculties();
+  goPage(pageEvent: PageEvent) {
+    this.limit = pageEvent.pageSize;
+    this.offset = ((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize;
+    this.getFacultiesRange();
   }
 
-  getFaculties() {
-    this.isLoading = true;
-    this.facultyService.getFaculties(this.limitPerPage, this.offset).subscribe(data => {
-        this.faculties = data;
-        console.log(this.faculties);
-        this.isLoading = false;
+  getFacultiesRange() {
+    this.facultyService.getFacultiesRange(this.limit, this.offset).subscribe(data => {
+        this.faculties = data[0];
+        this.numberOfRecords = parseInt(data[1].numberOfRecords, 10);
       },
       err => {
-        console.log(err);
-        this.errWithDisplayingFaculties = 'Something is wrong with displaying data. Please try again.';
-      });
-  }
-
-  countRecords() {
-    this.facultyService.countFaculties().subscribe((data) => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-      err => {
-        console.log(err);
-        this.errWithCountingRecords = 'Something is wrong with displaying the number of  records';
+        this.errWithDisplayingFaculties = generalConst.errorWithDisplayData;
       });
   }
 
   ngOnInit() {
-    this.getFaculties();
-    this.countRecords();
+    this.getFacultiesRange();
   }
-
 }

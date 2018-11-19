@@ -1,0 +1,16 @@
+<button mat-raised-button
+        color="primary"
+        (click)="goBack()"
+        class="fa fa-long-arrow-left
+        backButton"></button>
+
+<div id="title">Відповіді на запитання: {{questionText}}</div>
+
+<button class="addButton"
+        mat-raised-button
+        color="primary"
+        (click)="openAddAnswerModal()">{{btnAdd}}</button>
+
+<dtest-entity-table [entityName]="'Answer'"
+                    [columnsArray]="headingColumnsOfTable"
+                    [entityArray]="answers"></dtest-entity-table>

@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <h2 mat-dialog-title>{{title}}</h2>
+  <mat-dialog-content>
+    <div class="container">
+      <div class="row">
+        <mat-form-field>
+          <input matInput [placeholder]="placeholders.testName" formControlName="testName">
+          <mat-error *ngIf="!form.controls['testName'].valid && form.controls['testName'].touched">{{errorTestName}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [placeholder]="placeholders.tasks" formControlName="tasks">
+          <mat-error *ngIf="!form.controls['tasks'].valid && form.controls['tasks'].touched">{{errorNumInput}}(макс. 999)</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [placeholder]="placeholders.timeForTest" formControlName="timeForTest">
+          <mat-error *ngIf="!form.controls['timeForTest'].valid && form.controls['timeForTest'].touched">{{errorNumInput}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [placeholder]="placeholders.enabled" formControlName="enabled">
+            <mat-option *ngFor="let stat of status" [value]="stat.value">
+              {{stat.text}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!form.controls['enabled'].valid && form.controls['enabled'].touched">{{errorEmptyInput}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [placeholder]="placeholders.attempts" formControlName="attempts">
+            <mat-option *ngFor="let attempt of attempts" [value]="attempt">
+              {{attempt}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!form.controls['attempts'].valid && form.controls['attempts'].touched">{{errorEmptyInput}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" class="modal-button" mat-raised-button color="primary" [disabled]="!form.valid">Добавити</button>
+    <button mat-button mat-dialog-close tabindex="-1">Відмінити</button>
+  </mat-dialog-actions>
+</form>

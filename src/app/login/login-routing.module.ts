@@ -1,17 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {LoginComponent} from './login/login.component';
-import {LogoutComponent} from './logout/logout.component';
-import {defaultLoginUrlConfig} from './config/login-url.default.config';
+
+import {LoginComponent} from './login.component';
+import {DEFAULT_LOGIN_URL_CONFIG} from './config/login-url.default.config';
 
 const loginRoutes = [
   {
-    path: defaultLoginUrlConfig.login, /// TODO: injectable loginUrlConfig
+    path: DEFAULT_LOGIN_URL_CONFIG.login,
     component: LoginComponent
-  },
-  {
-    path: defaultLoginUrlConfig.logout,
-    component: LogoutComponent
   }
 ];
 

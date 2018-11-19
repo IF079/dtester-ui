@@ -1,0 +1,17 @@
+<button mat-raised-button
+        color="primary"
+        (click)="goBack()"
+        class="fa fa-long-arrow-left backButton"></button>
+
+<div id="title">Деталі тесту: {{testName}}</div>
+
+<button class="addButton"
+        mat-raised-button color="primary"
+        (click)="openTestDetailModal()">{{btnAdd}}</button>
+
+<dtest-entity-table [entityName]="'TestDetail'"
+                    [columnsArray]="headingColumnsOfTable"
+                    [entityArray]="testDetails"
+                    [pageSize]="limit"></dtest-entity-table>
+
+<div id="maxPoints">Максимальний доступний бал: {{maxPoints}}</div>

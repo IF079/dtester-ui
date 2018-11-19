@@ -1,3 +1,20 @@
-<p style="margin-left: 20px; font-size: 3.6em">
-  {{getWelcomeMessage()}}
-</p>
+<h1 *ngIf="!loginService.user.isAdmin()">{{getWelcomeMessage()}}</h1>
+<div class="container" *ngIf="this.loginService.user.isAdmin()">
+  <div class="row">
+    <div class="col-md-11 mx-auto">
+      <div class="row">
+        <div *ngFor="let object of objects" class="col-md-6 col-lg-4 my-2">
+          <mat-card [routerLink]="object.link">
+            <mat-card-header>
+              <div class="title">{{object.name}}</div>
+            </mat-card-header>
+            <mat-card-content>
+              {{object.count}}
+            </mat-card-content>
+          </mat-card>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+</div>

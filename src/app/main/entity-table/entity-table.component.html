@@ -5,13 +5,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let tableItem of tableArray"
-        (dblclick)="onSelect(tableItem)">
-    <td *ngFor="let item of tableItem">{{item}}</td>
-    <td><i class="fa fa-pencil-square-o"></i></td>
-    <td><i class="fa fa-times"></i></td>
-  </tr>
+    <tr *ngFor="let rowItem of tableRowArr"
+        (dblclick)="onSelect(rowItem)">
+      <td *ngFor="let item of rowItem" [class.cursorStyle]="detailUrl" [innerHtml]="item"></td>
+      <td *ngFor="let button of buttons"><i (click)="go(button.link, rowItem)" class="fa {{button.templateClass}}" matTooltip="{{button.title}}"></i></td>
+      <td><i (click)="openDialogForUpdate(rowItem)" class="fa fa-pencil-square-o" matTooltip="{{buttonTitle.editTitle}}"></i></td>
+      <td><i (click)="openDialogForDelete(rowItem)" class="fa fa-times" matTooltip="{{buttonTitle.deleteTitle}}"></i></td>
+    </tr>
   </tbody>
 </table>
-
-

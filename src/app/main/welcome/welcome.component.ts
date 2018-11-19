@@ -1,20 +1,38 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+
 import {LoginService} from '../../login/services/login.service';
-import {User} from '../../login/services/entities/user';
+import {WelcomeService} from './welcome.service';
+import {User} from '../../login/entities/user';
 
 @Component({
-  selector: 'app-welcome',
+  selector: 'dtest-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
-export class WelcomeComponent implements OnInit {
 
+export class WelcomeComponent {
+  pre = '/admin-area/';
+  titles = ['Факультети', 'Спеціальності', 'Групи', 'Предмети', 'Розклад', 'Адміністратори'];
+  links = [`${this.pre}faculties`, `${this.pre}specialities`, `${this.pre}groups`,
+            `${this.pre}subjects`, `${this.pre}timetable`, `${this.pre}admins`];
+  objects = [];
   private anonymousUserUsername = 'анонімний користувач';
 
-  constructor(private loginService: LoginService) {
-  }
-
-  ngOnInit() {
+  constructor(
+    public loginService: LoginService,
+    private welcomeService: WelcomeService
+  ) {
+    welcomeService.getAllEntitiesCount().subscribe(counts => {
+      let i = 0;
+      counts.forEach(count => {
+        this.objects.push({
+          name: this.titles[i],
+          count: +count.numberOfRecords,
+          link: this.links[i]
+        });
+        i++;
+      });
+    });
   }
 
   getWelcomeMessage(): string {
@@ -36,3 +54,4 @@ export class WelcomeComponent implements OnInit {
   }
 
 }
+

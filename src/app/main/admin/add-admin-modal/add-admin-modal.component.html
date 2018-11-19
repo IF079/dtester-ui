@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="addAdmin()">
+  <h2 mat-dialog-title>Додайте запис</h2>
+  <mat-dialog-content>
+    <mat-card>
+      <mat-form-field>
+        <input matInput placeholder="{{placeholders.username}}" formControlName="username">
+        <mat-error
+          *ngIf="username.touched && !username.valid && !username.hasError('usernameTaken')">
+          {{errorInvalidUsername}}
+        </mat-error>
+        <mat-error *ngIf="username.hasError('usernameTaken')">{{errorUsernameIsTaken}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{placeholders.email}}" formControlName="email">
+        <mat-error
+          *ngIf="form.controls['email'].touched && !form.controls['email'].valid && !form.get('email').hasError('emailTaken')">
+          {{errorInvalidEmail}}
+        </mat-error>
+        <mat-error *ngIf="form.get('email').hasError('emailTaken')">{{errorEmailIsTaken}}</mat-error>
+      </mat-form-field>
+      <div formGroupName="passwords">
+        <mat-form-field>
+          <input matInput placeholder="{{placeholders.password}}"
+                 [type]="passwordVisible ? 'text' : 'password'" formControlName="password">
+          <mat-icon matSuffix (click)="passwordVisible = !passwordVisible"
+                    class="fa {{passwordVisible ? 'fa-unlock' : 'fa-lock'}}"></mat-icon>
+          <mat-error
+            *ngIf="!password.valid && password.touched">
+            {{errorInvalidPassword}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="{{placeholders.passwordConfirm}}"
+                 [type]="passwordVisible ? 'text' : 'password'" formControlName="passwordConfirm">
+          <mat-icon matSuffix (click)="passwordVisible = !passwordVisible"
+                    class="fa {{passwordVisible ? 'fa-unlock' : 'fa-lock'}}"></mat-icon>
+          <mat-error
+            *ngIf="!passwordConfirm.valid && passwordConfirm.dirty">
+            {{errorInvalidPasswordConfirm}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" class="modal-button" [disabled]="!isFormValid()" mat-raised-button color="primary">
+      {{btnAdd}}
+    </button>
+    <button mat-button mat-dialog-close>{{btnClose}}</button>
+  </mat-dialog-actions>
+
+</form>

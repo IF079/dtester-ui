@@ -1,4 +1,4 @@
-export const loggerColors = {
+export const LOGGER_COLOURS = {
   service: 'blue',
   component: 'green',
   directive: 'orange',

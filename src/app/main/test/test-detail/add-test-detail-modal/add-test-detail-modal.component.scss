@@ -1,0 +1,17 @@
+form {
+  mat-dialog-content {
+    mat-form-field {
+      width: 100%;
+    }
+    input[type="file"] {
+      display: none
+    }
+    label[for="imageUpload"] {
+      a {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

@@ -9,31 +9,55 @@ import {FacultiesComponent} from './faculties/faculties.component';
 import {GroupsComponent} from './groups/groups.component';
 import {TimeTableComponent} from './time-table/time-table.component';
 import {MainComponent} from './main.component';
-import {TestsComponent} from './tests/tests.component';
-
+import {TestComponent} from './test/test.component';
+import {TestPlayerComponent} from './test-player/test-player.component';
+import {AdminGuard} from './admin.guard';
+import {QuestionComponent} from './test/question/question.component';
+import {AnswerComponent} from './test/answer/answer.component';
+import {AdminComponent} from './admin/admin.component';
+import {TestDetailComponent} from './test/test-detail/test-detail.component';
+import {StudentGuard} from './student.guard';
 
 const mainRoutes = [
-  {
-    path: '',
-    component: MainComponent,
-    children: [
-      {
-        path: '',
-        children: [
-          {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-          {path: 'welcome', component: WelcomeComponent},
-          {path: 'students/:currentPage', component: StudentComponent},
-          {path: 'student/:id', component: StudentDetailComponent},
-          {path: 'specialities/:currentPage', component: SpecialityComponent},
-          {path: 'subjects/:currentPage', component: SubjectComponent},
-          {path: 'faculties/:currentPage', component: FacultiesComponent},
-          {path: 'groups/:currentPage', component: GroupsComponent},
-          {path: 'timetable/:currentPage', component: TimeTableComponent}
-        ]
-      }
-    ]
-  }
-];
+    {
+      path: '',
+      component: MainComponent,
+      children: [
+        {
+          path: 'admin-area',
+          children: [
+            {path: 'welcome', component: WelcomeComponent},
+            {path: 'groups/:groupId', component: StudentComponent},
+            {path: 'students', redirectTo: '/groups', pathMatch: 'full'},
+            {path: 'student/:id', component: StudentDetailComponent},
+            {path: 'specialities', component: SpecialityComponent},
+            {path: 'subjects', component: SubjectComponent},
+            {path: 'faculties', component: FacultiesComponent},
+            {path: 'groups', component: GroupsComponent},
+            {path: 'timetable', component: TimeTableComponent},
+            {path: 'admins', component: AdminComponent},
+            {path: 'tests/:subjectId', component: TestComponent},
+            {path: 'questions/:testId', component: QuestionComponent},
+            {path: 'answers/:questionId', component: AnswerComponent},
+            {path: 'test/:testId', component: TestDetailComponent},
+            {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+            {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+          ], canActivate: [AdminGuard]
+        },
+        {
+          path: 'student-area',
+          children: [
+            {path: 'welcome', component: WelcomeComponent},
+            {path: 'test-player', component: TestPlayerComponent},
+            {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+            {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+        ], canActivate: [StudentGuard]
+        },
+        {path: '', redirectTo: '/login', pathMatch: 'full'}
+      ]
+    }
+  ]
+;
 
 @NgModule({
   imports: [
@@ -41,6 +65,10 @@ const mainRoutes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    AdminGuard,
+    StudentGuard
   ]
 })
 export class MainRoutingModule {

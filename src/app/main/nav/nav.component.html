@@ -1,18 +1,23 @@
 <mat-toolbar>
-
-  <a mat-raised-button [routerLink]="['/']" color="primary" [routerLinkActive]="navActiveClass"
+  <a *ngIf="loginService.user.isStudent()" mat-raised-button [routerLink]="['/student-area/welcome']" color="primary" [routerLinkActive]="navActiveClass"
      [routerLinkActiveOptions]="{exact: true}"><i class="fa fa-home fa-lg"></i></a>
-  <a class="login" *ngIf="!loginService.user.isLogged()" mat-raised-button color="primary" [routerLink]="['/login']"
-     [routerLinkActive]="navActiveClass">Увійти</a>
-  <a class="login" *ngIf="loginService.user.isLogged()" mat-raised-button color="primary" [routerLink]="['/logout']"
-     [routerLinkActive]="navActiveClass">Вийти</a>
+  <a *ngIf="loginService.user.isAdmin()" mat-raised-button [routerLink]="['/admin-area/welcome']" color="primary" [routerLinkActive]="navActiveClass"
+     [routerLinkActiveOptions]="{exact: true}"><i class="fa fa-home fa-lg"></i></a>
+  <div class="login-container">
+    <a *ngIf="!loginService.user.isLogged()" mat-raised-button color="primary"
+       [routerLink]="['/login']"
+       [routerLinkActive]="navActiveClass">Увійти</a>
+    <a *ngIf="loginService.user.isLogged()" mat-raised-button color="primary"
+       (click)="loginService.logout()">Вийти</a>
+  </div>
   <mat-toolbar-row *ngIf="loginService.user.isAdmin()">
-    <a mat-button color="primary" [routerLink]="['/students/1']" [routerLinkActive]="navActiveClass">Студенти</a>
-    <a mat-button color="primary" [routerLink]="['/specialities/1']" [routerLinkActive]="navActiveClass">Спеціальності</a>
-    <a mat-button color="primary" [routerLink]="['/subjects/1']" [routerLinkActive]="navActiveClass">Предмети</a>
-    <a mat-button color="primary" [routerLink]="['/faculties/1']" [routerLinkActive]="navActiveClass">Факультети</a>
-    <a mat-button color="primary" [routerLink]="['/timetable/1']" [routerLinkActive]="navActiveClass">Розклад</a>
-    <a mat-button color="primary" [routerLink]="['/groups/1']" [routerLinkActive]="navActiveClass">Групи</a>
+    <a mat-button color="primary" [routerLink]="['/admin-area/faculties']" [routerLinkActive]="navActiveClass">Факультети</a>
+    <a mat-button color="primary" [routerLink]="['/admin-area/specialities']" [routerLinkActive]="navActiveClass">Спеціальності</a>
+    <a mat-button color="primary" [routerLink]="['/admin-area/groups']" [routerLinkActive]="navActiveClass">Групи</a>
+    <a mat-button color="primary" [routerLink]="['/admin-area/subjects']" [routerLinkActive]="navActiveClass">Предмети</a>
+    <a mat-button color="primary" [routerLink]="['/admin-area/timetable']" [routerLinkActive]="navActiveClass">Розклад</a>
+    <a mat-button color="primary" [routerLink]="['/admin-area/admins']" [routerLinkActive]="navActiveClass">Адміністратори</a>
   </mat-toolbar-row>
-
-</mat-toolbar>
+  <mat-toolbar-row *ngIf="loginService.user.isStudent()">
+    <a mat-button color="primary" [routerLink]="['/student-area/test-player']" [routerLinkActive]="navActiveClass">Почати тестування</a>
+  </mat-toolbar-row>

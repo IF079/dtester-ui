@@ -1,0 +1,33 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <h2 mat-dialog-title>Добавити деталі тесту</h2>
+  <mat-dialog-content>
+    <div class="container">
+      <div class="row">
+        <mat-form-field>
+          <mat-select [placeholder]="placeholders.level" formControlName="level">
+            <mat-option *ngFor="let level of levels" [value]="level">
+              {{level}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!form.controls['level'].valid && form.controls['level'].touched && !form.get('level').hasError('required')">{{errorLevelExist}}</mat-error>
+          <mat-error *ngIf="form.get('level').hasError('required')">{{errorEmptyInput}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input #tasks matInput [placeholder]="placeholders.tasks" formControlName="tasks">
+          <mat-error *ngIf="!form.controls['tasks'].valid && form.controls['tasks'].touched && !form.get('tasks').hasError('pattern')">{{errorTasksAmount}}</mat-error>
+          <mat-error *ngIf="form.get('tasks').hasError('pattern')">{{errorOnlyDigits}}</mat-error>
+          <mat-hint align="end">{{(parseInt(tasks.value) || 0)  + nowTasks}}/{{maxTasks}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [placeholder]="placeholders.rate" formControlName="rate">
+          <mat-error *ngIf="!form.controls['rate'].valid && form.controls['rate'].touched && !form.get('rate').hasError('required')">{{errorOnlyDigits}}</mat-error>
+          <mat-error *ngIf="!form.controls['rate'].valid && form.controls['rate'].touched">{{errorEmptyInput}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" class="modal-button" mat-raised-button color="primary" [disabled]="!form.valid">Добавити</button>
+    <button mat-button mat-dialog-close tabindex="-1">Відмінити</button>
+  </mat-dialog-actions>
+</form>

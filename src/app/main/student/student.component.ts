@@ -1,88 +1,119 @@
 import {Component, OnInit} from '@angular/core';
-import {StudentService} from '../shared/services/crud/student.service';
-import {Student} from '../shared/entities/student';
-import {ActivatedRoute, Router, ParamMap} from '@angular/router';
-import {LoggerFactory} from '../../shared/logger/logger.factory';
+import {MatDialog} from '@angular/material';
+import {Location} from '@angular/common';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+
+import {StudentService} from './student-service/student.service';
+import {GroupsService} from '../groups/groups-service/groups.service';
+import {Student} from './student-classes/student';
+import {StudentAddModalComponent} from './add-student-modal/add-modal.component';
+import {InfoModalService} from '../info-modal/info-modal.service';
+import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
-  selector: 'app-students',
+  selector: 'dtest-students',
   templateUrl: './student.component.html',
-  styleUrls: ['./student.component.scss']
+  styleUrls: ['./student.component.scss'],
 })
+
 export class StudentComponent implements OnInit {
-
-  students: Student[];
-  student: Student = new Student();
-  headingColumnsOfTable = ['ID', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові', 'ID групи'];
-  path = '/student';
-
-  errWithDisplayingStudents: string;
-  errWithCountingStudents: string;
-
-  // For Pagination
+  limit = 10;
   offset = 0;
-  currentPage = 1;
-  limitPerPage = 10;
+  pageSizeOptions = [5, 10, 25, 100];
+  students: Student[];
+  student: Student;
+  headingColumnsOfTable = ['№', '№ Залікової книжки', 'Прізвище', 'Ім\'я', 'По-батькові'];
+  btnAdd = 'Додати студента';
+  errWithDisplayingStudents: string;
   numberOfRecords: number;
-  isLoading = false;
+  groupId: number;
+  groups: any[];
 
-  selectedStudent: Student;
-
-  constructor(private studentService: StudentService) {
+  constructor(
+    private studentService: StudentService,
+    private groupsService: GroupsService,
+    private delUpdateService: UpdateDeleteEntityService,
+    private infoModal: InfoModalService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {
+    this.updateNumberOfRecordsInDomWhenAdded();
+    this.updateNumberOfRecordsInDomWhenDeleted();
   }
 
-  onSelect(student: Student): void {
-    this.selectedStudent = student;
+  openAddDialog() {
+    const dialogRef = this.dialog.open(StudentAddModalComponent, {
+      height: '',
+      width: '800px',
+      data: {
+        groups: this.groups,
+        groupId: this.groupId
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
-  /*FOR PAGINATION*/
-  goPage(n: number): void {
-    this.offset = (this.limitPerPage * n) - this.limitPerPage;
-    this.getStudents();
+  parseGroups(): void {
+    this.groupsService.getGroups().subscribe(data => {
+      const localArr = [];
+      data[0].forEach(group => {
+        localArr.push({
+          value: group.group_id,
+          text: group.group_name
+        });
+      });
+      this.groups = localArr;
+    });
   }
 
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-    this.getStudents();
+  getStudentsByGroup(groupId: number): void {
+    this.studentService.getStudentsByGroup(groupId).subscribe(data => {
+      this.students = data;
+      this.numberOfRecords = data.length;
+      this.students.forEach(student => {
+        delete student.photo;
+        delete student.plainPassword;
+        delete student.groupId;
+      });
+    },
+    error => this.infoModal.openInfoDialog('Увага', 'На даний момент тут немає записів.'));
   }
-
-  goNext(): void {
-    this.offset += this.limitPerPage;
-    this.getStudents();
-  }
-
-  /*///////////////*/
 
   getStudents(): void {
-    this.isLoading = true;
-    this.studentService.getStudents(this.limitPerPage, this.offset).subscribe(data => {
-        this.students = data;
+    this.studentService.getStudentsRange(this.limit, this.offset).subscribe(studentData => {
+        this.students = studentData[0];
         this.students.forEach(item => {
           delete item.photo;
           delete item.plainPassword;
         });
-        this.isLoading = false;
       },
-      err => {
-        console.log(err);
-        this.errWithDisplayingStudents = 'Something is wrong with displaying data. Please try again.';
+      error => this.infoModal.openInfoDialog('Увага', 'На даний момент тут немає записів.'));
+  }
+
+  updateNumberOfRecordsInDomWhenAdded() {
+    this.delUpdateService.itemInserted$.subscribe(() => {
+        this.numberOfRecords ++;
       });
   }
 
-  countRecords(): void {
-    this.studentService.countSubjects().subscribe(data => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-      err => {
-        console.log(err);
-        this.errWithCountingStudents = 'Something is wrong with displaying the number of students';
+  updateNumberOfRecordsInDomWhenDeleted() {
+    this.delUpdateService.itemDeleted$.subscribe(() => {
+        this.numberOfRecords --;
       });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   ngOnInit() {
-    this.getStudents();
-    this.countRecords();
+    this.parseGroups();
+    this.route.paramMap.subscribe( (params: ParamMap) => {
+      this.groupId = +params.get('groupId');
+      this.getStudentsByGroup(this.groupId);
+    });
   }
 }
-
-const log = LoggerFactory.create(StudentComponent);

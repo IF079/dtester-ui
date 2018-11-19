@@ -1,71 +1,73 @@
 import {Component, OnInit} from '@angular/core';
-import {TimeTableService} from '../shared/services/crud/time-table.service';
-import {TimeTable} from '../shared/entities/time-table';
+import {MatDialog, PageEvent} from '@angular/material';
 
-import {LoggerFactory} from '../../shared/logger/logger.factory';
+import {TimeTableService} from './timetable-service/time-table.service';
+import {TimeTable} from './timetable-classes/time-table';
+import {generalConst} from '../shared/constants/general-constants';
+import {AddTimeTableModalComponent} from './add-timetable-modal/add-time-table-modal.component';
+import {UpdateDeleteEntityService} from '../shared/services/update-delete-entity-service/update-delete-entity.service';
 
 @Component({
-  selector: 'app-time-table',
+  selector: 'dtest-time-table',
   templateUrl: './time-table.component.html',
   styleUrls: ['./time-table.component.scss']
 })
+
 export class TimeTableComponent implements OnInit {
-
-  timetables: TimeTable[];
-  headingColumnsOfTable = ['ID', 'Назва', 'Опис', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
-  errWithDisplayingTimeTables: string;
-  errWithCountingRecords: string;
+  limit = 10;
   offset = 0;
-  currentPage = 1;
-  limitPerPage = 10;
+  pageSizeOptions = [5, 10, 25, 100];
+  timetables: TimeTable[];
+  headingColumnsOfTable = ['№', 'Назва групи', 'Назва предмету', 'Дата початку', 'Час початку', 'Дата закінчення', 'Час закінчення'];
+  errWithDisplayingTimeTables: string;
   numberOfRecords: number;
-  isLoading = false;
+  subjectDictionary = {};
+  groupDictionary = {};
+  btnAdd = 'Додати розклад';
 
-  constructor(private timeTableService: TimeTableService) {
+  constructor(private timeTableService: TimeTableService, public dialog: MatDialog,  private delUpdateService: UpdateDeleteEntityService) {
+    this.updateNumberOfRecordsInDom();
   }
 
-  goPage(n: number): void {
-    this.offset = (this.limitPerPage * n) - this.limitPerPage;
-    this.getTimeTables();
+
+  updateNumberOfRecordsInDom() {
+    this.delUpdateService.itemInserted$.subscribe(() => {
+      this.numberOfRecords ++;
+    });
+    this.delUpdateService.itemDeleted$.subscribe(() => {
+      this.numberOfRecords --;
+    });
   }
 
-  goPrev(): void {
-    this.offset -= this.limitPerPage;
-    this.getTimeTables();
+  openDialog() {
+    const dialogRef = this.dialog.open(AddTimeTableModalComponent, {
+      data: {groupDictionary: this.groupDictionary, subjectDictionary: this.subjectDictionary}
+    });
   }
 
-  goNext(): void {
-    this.offset += this.limitPerPage;
+  goPage(pageEvent: PageEvent) {
+    this.limit = pageEvent.pageSize;
+    this.offset = ((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize;
     this.getTimeTables();
   }
 
   getTimeTables() {
-    this.isLoading = true;
-    this.timeTableService.getTimeTables(this.limitPerPage, this.offset).subscribe(data => {
-        this.timetables = data;
-        console.log(this.timetables);
-        this.isLoading = false;
+    this.timeTableService.getTimeTablesRange(this.limit, this.offset).subscribe(data => {
+        this.timetables = data[0];
+        data[1].forEach(item => this.groupDictionary[item.group_id] = item.group_name);
+        data[2].forEach(item => this.subjectDictionary[item.id] = item.name);
+        this.timetables.forEach((item) => {
+          item.group_id = this.groupDictionary[item.group_id];
+          item.subject_id = this.subjectDictionary[item.subject_id];
+        });
+        this.numberOfRecords = parseInt(data[3].numberOfRecords, 10);
       },
       err => {
-        console.log(err);
-        this.errWithDisplayingTimeTables = 'Something is wrong with displaying data. Please try again.';
-      });
-  }
-
-  countRecords(): void {
-    this.timeTableService.countTimeTableRecords().subscribe((data) => {
-        this.numberOfRecords = parseInt(data.numberOfRecords, 10);
-      },
-      err => {
-        console.log(err);
-        this.errWithCountingRecords = 'Something is wrong with displaying the number of timetable records';
+        this.errWithDisplayingTimeTables = generalConst.errorWithDisplayData;
       });
   }
 
   ngOnInit() {
     this.getTimeTables();
-    this.countRecords();
   }
-
-
 }

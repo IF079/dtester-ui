@@ -1,0 +1,28 @@
+<form [formGroup]="subjectForm" (ngSubmit)="addSubject()">
+  <h2 mat-dialog-title >Додайте запис</h2>
+  <mat-dialog-content>
+    <mat-card>
+      <mat-form-field>
+        <input formControlName="name" matInput placeholder="{{placeholders.name}}">
+        <mat-error>
+          <div *ngIf="name.hasError('required')">{{errorRequired}}</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="text-area-container">
+        <textarea formControlName="description" matInput placeholder="{{placeholders.description}}"></textarea>
+        <mat-error>
+          <div *ngIf="description.hasError('required')">{{errorRequired}}</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-error>
+        <div *ngIf="errRequestMsg">{{errRequestMsg}}</div>
+      </mat-error>
+    </mat-card>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" class="modal-button" [disabled]="!isFormValid()" mat-raised-button color="primary">
+      {{btnAdd}}
+    </button>
+    <button mat-button mat-dialog-close>{{btnClose}}</button>
+  </mat-dialog-actions>
+</form>

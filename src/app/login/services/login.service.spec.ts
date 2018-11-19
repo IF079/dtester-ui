@@ -1,38 +1,29 @@
-import {TestBed} from '@angular/core/testing';
-
 import {LoginService} from './login.service';
-import {LoginModule} from '../login.module';
-import {RouterTestingModule} from '@angular/router/testing';
-import {Observable} from 'rxjs/Observable';
-import {User} from './entities/user';
+import {inject, TestBed} from '@angular/core/testing';
 import {AuthService} from './auth.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
 
-describe('LoginService', () => {
-  let service: LoginService;
+describe('Login Service', () => {
+  let loginService: LoginService;
 
-  const user: User = new User('1', 'user', ['logged', 'user']);
-
-  class AuthServiceSpy {
-    isLoggedIn = jasmine.createSpy('isLoggedIn').and.callFake(
-      () => Observable.of(user)
-    );
-  }
-
-  beforeEach(async () => {
-    TestBed.configureTestingModule({
-      imports: [LoginModule, RouterTestingModule],
-      providers: [LoginService, {provide: AuthService, useClass: AuthServiceSpy}]
-    });
-  });
   beforeEach(() => {
-    service = TestBed.get(LoginService);
-  });
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, RouterTestingModule],
+      providers: [
+        LoginService,
+        AuthService]
+    });
 
-  it('should be created', () => {
+    loginService = TestBed.get(LoginService);
+  });
+  it('should be created', inject([LoginService], (service) => {
     expect(service).toBeTruthy();
+  }));
+  it('should setup User', () => {
+    expect(loginService.login('user')).toBeTruthy();
   });
-
-  it('should return user', () => {
-    expect(service.user).toEqual(user);
+  it('should check if User logged in', () => {
+    expect(loginService.isLoggedIn()).toBeTruthy();
   });
 });
